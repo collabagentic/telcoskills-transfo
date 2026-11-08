@@ -39,8 +39,9 @@ La formule des passerelles existantes en est le cœur et devient la signature du
    états vides, mode sombre, mobile. La barre de qualité est au §8. Mieux vaut un écran de moins qu'un écran moyen.
 4. **Pas de volume horaire cumulé.** Seul chiffre de temps autorisé : le **temps de lecture** d'une fiche, calculé sur son
    texte (mesure, pas hypothèse). Jamais de « 544 h ».
-5. **Le chiffre qui compte est celui de l'acquis** : « 9 de vos 14 savoir-faire restent valables tels quels ». Il est
-   **calculé** à partir du contenu, jamais écrit à la main.
+5. **Le chemin d'abord, pas le palmarès.** L'écran de bilan ne met pas en avant ce qui reste valable : il dit « votre métier
+   tient » en une phrase et pousse vers la première fiche. Les chiffres affichés (changent de forme, nouveaux, à lâcher) sont
+   **calculés** à partir du contenu, jamais écrits à la main. (Décision de l'auteur, 2026-11-08.)
 6. **Rien d'inventé.** Chaque affirmation technique d'une fiche a une source. Tout contenu non relu par l'auteur porte le
    statut `brouillon` et la mention visible « en relecture ».
 7. **Aucun compte, aucun serveur.** Le bilan vit dans le navigateur. Le partage passe par un lien ou une impression.
@@ -128,24 +129,24 @@ recalcule en direct sous la liste.
 │ …                                                            │
 │ ──────────────────────────────────────────────────────────── │
 │  Votre bilan                                                 │
-│  ┌──────────┐┌──────────┐┌──────────┐┌──────────┐            │
-│  │ 5        ││ 6        ││ 3        ││ 4        │            │
-│  │ restent  ││ changent ││ vraiment ││ réflexes │            │
-│  │ valables ││ de forme ││ nouveaux ││ à lâcher │            │
-│  └──────────┘└──────────┘└──────────┘└──────────┘            │
+│  ┌────────────┐┌────────────┐┌────────────┐                 │
+│  │ 6          ││ 3          ││ 4          │                 │
+│  │ changent   ││ vraiment   ││ réflexes   │                 │
+│  │ de forme   ││ nouveaux   ││ à lâcher   │                 │
+│  └────────────┘└────────────┘└────────────┘                 │
 │                                                              │
-│  11 de vos 14 savoir-faire vous servent dès demain.          │
-│                                 [ Voir mon plan (9 fiches) → ]│
+│  Votre métier tient. Neuf choses évoluent : une par une.     │
+│                    [ Commencer par la première · 6 min → ]  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
 Règle de calcul (testée, §6) :
-- savoir-faire coché **acquis** → « restent valables » ;
+- savoir-faire coché **acquis** → compté nulle part à l'écran du bilan (étiquette « reste valable » sur la ligne seulement) ;
 - savoir-faire coché lié à une **transposition** → « changent de forme » ; son réflexe à lâcher compte dans « à lâcher » ;
 - savoir-faire **décoché** lié à une transposition → la fiche reste dans le plan, mais passe en « à découvrir »
   (affichée sans la colonne « avant ») ;
 - les **nouveautés** du métier → « vraiment nouveaux », toujours dans le plan.
-- Phrase clé : « N de vos M savoir-faire vous servent dès demain » avec N = acquis + transpositions cochés.
+- Phrase clé : « Votre métier tient. N choses évoluent : une par une. » avec N = nombre de fiches du plan (le bouton nomme la première fiche et son temps de lecture).
 
 ### Écran 3 · `/plan` — « Votre plan »
 
@@ -344,7 +345,7 @@ Reprendre `telcocloud-roadmaps/src/app/theme-v4.css` comme base (palette décid�
 D4 (**Lexend** texte, **Geist Mono** identifiants et chiffres). Un seul fichier `src/app/tokens.css`, sans les ponts
 hérités (`--color-brand-*`, `--accent` de compatibilité). Ajouter : échelle typographique (6 tailles max), échelle
 d'espacement (4 px de base), durées et courbes d'animation, ombres (2 max), rayons.
-Attribution des teintes : une teinte par **genre** et par **catégorie du bilan** (restent valables / changent de forme
+Attribution des teintes : une teinte par **genre** et par **catégorie du bilan** (changent de forme
 / nouveau / à lâcher), pas par domaine.
 CA : clair et sombre ; test de contraste repris de `palette-v4.test.ts` (AA texte, 3:1 composants) ; aucune couleur
 en dur hors de ce fichier (règle ESLint ou test de grep).
@@ -474,13 +475,12 @@ CA : métier, avancement « 3 fiches sur 9 », lien vers la première fiche non 
 CA : tests couvrant tout coché, tout décoché, acquis décochés, transposition décochée → « à découvrir », réflexes
 comptés une seule fois.
 
-**E5-2 · Page métier (M)** : liste à cocher, bilan en direct (tuiles E1-4), phrase clé, bouton « Voir mon plan (N
-fiches) ».
+**E5-2 · Page métier (M)** : liste à cocher, bilan en direct (3 tuiles E1-4 : changent de forme, nouveaux, à lâcher), phrase clé,
+bouton « Commencer par la première · N min ».
 CA : rendu serveur = tout coché (bilan par défaut) ; une case décochée met à jour bilan et bouton sans rechargement ;
 clavier complet (espace coche) ; le bilan est enregistré au clic sur « Voir mon plan », pas avant.
-**Contre la flatterie** (PR/FAQ D5) : la tuile « réflexes à lâcher » a exactement le même poids visuel que les trois
-autres (taille, teinte de même intensité) ; la phrase clé est toujours suivie de la contrepartie : « 11 de vos 14
-savoir-faire vous servent dès demain, et 4 réflexes sont à lâcher. »
+**Contre la flatterie** (PR/FAQ D5) : la tuile « réflexes à lâcher » a exactement le même poids visuel que les deux
+autres (taille, intensité de la teinte) ; plus aucun chiffre ne célèbre l'acquis, et la phrase clé ne promet pas « dès demain ».
 
 **E5-3 · Changer de métier (S)** : confirmation si un plan existe déjà avec au moins une fiche lue.
 
