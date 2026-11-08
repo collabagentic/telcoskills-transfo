@@ -1,0 +1,15 @@
+{
+  "id": "q-pra-gitops-2",
+  "fiche": "pra-gitops",
+  "enonce": "Quel est le principe central de GitOps ?",
+  "options": [
+    "Les déploiements sont lancés par des scripts exécutés depuis le poste du développeur",
+    "L'état désiré est décrit de façon déclarative et versionné, et un agent le réconcilie en continu avec l'état réel",
+    "Les images sont construites sur chaque nœud du cluster",
+    "Les secrets sont conservés en clair dans git pour être toujours accessibles"
+  ],
+  "bonne": 1,
+  "explication": "Les quatre principes de GitOps : un état désiré déclaratif, versionné et immuable, tiré automatiquement par un agent, et réconcilié en continu. Les actions manuelles sur le cluster en sont l'exception, pas la règle.",
+  "source": "OpenGitOps : GitOps Principles (opengitops.dev)",
+  "statut": "brouillon"
+}

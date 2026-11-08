@@ -1,0 +1,15 @@
+{
+  "id": "q-operateurs-1",
+  "fiche": "operateurs",
+  "enonce": "Dans OLM, quel objet exprime la demande de suivre un opérateur dans un canal d'un catalogue, pour l'installer et le maintenir à jour ?",
+  "options": [
+    "Le CatalogSource",
+    "La Subscription",
+    "Le ClusterServiceVersion",
+    "L'InstallPlan"
+  ],
+  "bonne": 1,
+  "explication": "La Subscription désigne un package, un canal et une source de catalogue : elle sert à garder les CSV à jour. Le CatalogSource est le dépôt, le CSV décrit l'application, l'InstallPlan liste les ressources à créer.",
+  "source": "Operator Lifecycle Manager : architecture (olm.operatorframework.io/docs/concepts/olm-architecture/)",
+  "statut": "brouillon"
+}

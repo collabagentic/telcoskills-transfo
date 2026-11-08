@@ -1,0 +1,15 @@
+{
+  "id": "q-acces-rbac-1",
+  "fiche": "acces-rbac",
+  "enonce": "Une requête sur l'API Kubernetes ne correspond à aucune règle RBAC (Role ou ClusterRole) liée à l'utilisateur. Que décide RBAC ?",
+  "options": [
+    "Elle est autorisée en lecture seule",
+    "Elle est autorisée pour tout utilisateur authentifié",
+    "Elle est refusée : RBAC n'accorde que des permissions, rien n'est autorisé par défaut",
+    "Cela dépend du namespace par défaut de l'utilisateur"
+  ],
+  "bonne": 2,
+  "explication": "Les règles RBAC sont uniquement additives : il n'existe pas de règle de refus explicite, et en l'absence de règle qui l'autorise, l'accès est refusé. Les permissions se donnent via des Roles et des bindings.",
+  "source": "Kubernetes : Using RBAC Authorization (kubernetes.io/docs/reference/access-authn-authz/rbac/)",
+  "statut": "brouillon"
+}

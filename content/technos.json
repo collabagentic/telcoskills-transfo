@@ -1,0 +1,27 @@
+[
+  {
+    "id": "kubernetes",
+    "nom": "Kubernetes",
+    "url": "https://kubernetes.io/"
+  },
+  {
+    "id": "ovn-kubernetes",
+    "nom": "OVN-Kubernetes",
+    "url": "https://ovn-kubernetes.io/"
+  },
+  {
+    "id": "multus",
+    "nom": "Multus CNI",
+    "url": "https://github.com/k8snetworkplumbingwg/multus-cni"
+  },
+  {
+    "id": "argo-cd",
+    "nom": "Argo CD",
+    "url": "https://argo-cd.readthedocs.io/"
+  },
+  {
+    "id": "olm",
+    "nom": "Operator Lifecycle Manager",
+    "url": "https://olm.operatorframework.io/"
+  }
+]

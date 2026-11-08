@@ -1,0 +1,67 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "id": "acces-rbac",
+  "genre": "transposition",
+  "avant": "gestion des comptes et accès root",
+  "apres": "RBAC et comptes de service",
+  "resume": {
+    "avant": "Des comptes nominatifs, du sudo, un accès root partagé pour les urgences.",
+    "apres": "Des rôles qui listent ce qu'on peut faire, liés à des personnes ou des applications, dans un périmètre."
+  },
+  "resteVrai": [
+    "Le moindre privilège et la séparation des rôles restent la règle.",
+    "Les accès se revoient régulièrement.",
+    "Un accès d'urgence doit rester tracé."
+  ],
+  "change": [
+    "Rien n'est autorisé par défaut : une requête sans règle RBAC qui la couvre est refusée.",
+    "Un Role vaut dans un namespace ; un ClusterRole peut valoir pour tout le cluster.",
+    "Un RoleBinding qui référence un ClusterRole n'accorde ses droits que dans son propre namespace."
+  ],
+  "reflexe": "Un accès root partagé règle les urgences.",
+  "pourquoiNouveau": null,
+  "piege": "Lier un ClusterRole avec un ClusterRoleBinding alors qu'on voulait un seul namespace : les droits s'appliquent alors à tout le cluster.",
+  "exemple": "Un exploitant du cœur 5G reçoit un rôle de lecture sur le namespace de l'UPF ; l'outil de supervision a son propre compte de service, limité à la lecture des métriques.",
+  "technos": [
+    "kubernetes"
+  ],
+  "questions": [
+    "q-acces-rbac-1",
+    "q-acces-rbac-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : contrôle d'accès RBAC",
+      "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : comptes de service",
+      "url": "https://kubernetes.io/docs/concepts/security/service-accounts/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : contrôle d'accès RBAC",
+      "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+    },
+    {
+      "nom": "Kubernetes : comptes de service",
+      "url": "https://kubernetes.io/docs/concepts/security/service-accounts/"
+    }
+  ]
+}

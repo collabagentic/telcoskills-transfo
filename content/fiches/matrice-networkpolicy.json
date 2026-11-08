@@ -1,0 +1,68 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "id": "matrice-networkpolicy",
+  "genre": "transposition",
+  "avant": "matrice de flux",
+  "apres": "NetworkPolicy",
+  "resume": {
+    "avant": "Une ligne = IP source, IP destination, port. Validée par le pare-feu, appliquée par une équipe réseau.",
+    "apres": "Une règle = des labels, un namespace, un port. Versionnée dans Git, appliquée par le cluster."
+  },
+  "resteVrai": [
+    "Le moindre privilège sur les flux est inchangé.",
+    "Une matrice de flux explicite reste la référence à documenter et à relire.",
+    "Le port et le protocole comptent toujours (TCP, UDP, SCTP)."
+  ],
+  "change": [
+    "Sans NetworkPolicy, les pods acceptent tout trafic entrant : le défaut est ouvert.",
+    "Une règle désigne des pods par labels et namespaces, plus par adresses IP, car l'IP d'un pod est éphémère.",
+    "Le « default deny » se pose en premier : une policy qui sélectionne tous les pods et n'autorise rien en entrée."
+  ],
+  "reflexe": "Une IP identifie une machine.",
+  "pourquoiNouveau": null,
+  "piege": "Une NetworkPolicy peut être acceptée sans effet : si le plugin réseau du cluster ne gère pas les NetworkPolicy, rien n'est filtré. Autre piège classique : une règle ingress contenant un élément vide ({}) autorise tout le trafic au lieu de tout refuser.",
+  "exemple": "Pour l'AMF d'un cœur 5G, la règle sélectionne les pods de l'AMF par label et n'ouvre en entrée que le port 38412 en SCTP, le port de la signalisation NGAP (interface N2).",
+  "technos": [
+    "kubernetes",
+    "ovn-kubernetes"
+  ],
+  "questions": [
+    "q-matrice-networkpolicy-1",
+    "q-matrice-networkpolicy-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : Network Policies",
+      "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : tutoriel de déclaration d'une NetworkPolicy",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/declare-network-policy/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : Network Policies",
+      "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+    },
+    {
+      "nom": "3GPP TS 38.412 : transport de signalisation NG (SCTP, port 38412)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.412/"
+    }
+  ]
+}

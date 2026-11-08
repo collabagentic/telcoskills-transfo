@@ -1,0 +1,15 @@
+{
+  "id": "q-vm-pod-1",
+  "fiche": "vm-pod",
+  "enonce": "Une base de données répliquée a besoin, pour chaque réplica, d'un nom réseau stable et de son propre volume. Quel objet convient le mieux ?",
+  "options": [
+    "Un Deployment avec un seul PersistentVolumeClaim partagé",
+    "Un StatefulSet",
+    "Un DaemonSet",
+    "Un Job"
+  ],
+  "bonne": 1,
+  "explication": "Un StatefulSet donne à chaque pod une identité stable (nom ordonné, DNS propre) et, avec volumeClaimTemplates, un volume dédié qui le suit lors d'un redémarrage. Un Deployment traite ses pods comme interchangeables.",
+  "source": "Kubernetes : StatefulSets (kubernetes.io/docs/concepts/workloads/controllers/statefulset/)",
+  "statut": "brouillon"
+}

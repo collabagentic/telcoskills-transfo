@@ -1,0 +1,15 @@
+{
+  "id": "q-changement-pr-2",
+  "fiche": "changement-pr",
+  "enonce": "Quel fichier du dépôt définit les jobs d'un pipeline GitLab CI/CD ?",
+  "options": [
+    "Jenkinsfile",
+    ".github/workflows/ci.yml",
+    ".gitlab-ci.yml",
+    "pipeline.json"
+  ],
+  "bonne": 2,
+  "explication": "GitLab lit la configuration du pipeline dans le fichier .gitlab-ci.yml du projet. Jenkinsfile est propre à Jenkins et .github/workflows à GitHub Actions.",
+  "source": "GitLab : CI/CD YAML syntax reference (docs.gitlab.com/ci/yaml/)",
+  "statut": "brouillon"
+}

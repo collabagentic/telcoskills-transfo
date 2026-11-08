@@ -1,0 +1,15 @@
+{
+  "id": "q-vlan-reseaux-cluster-1",
+  "fiche": "vlan-reseaux-cluster",
+  "enonce": "À quoi sert Multus CNI ?",
+  "options": [
+    "À répartir le trafic entrant entre plusieurs pods d'un même Service",
+    "À attacher plusieurs interfaces réseau à un pod, en appelant plusieurs plugins CNI",
+    "À chiffrer le trafic entre deux nœuds du cluster",
+    "À limiter la bande passante consommée par un pod"
+  ],
+  "bonne": 1,
+  "explication": "Par défaut, un pod n'a qu'une interface réseau en plus du loopback. Multus joue le rôle de méta-plugin : il appelle d'autres plugins CNI pour créer des interfaces supplémentaires, par exemple pour séparer plan de contrôle, plan usager et gestion.",
+  "source": "Multus CNI : README (github.com/k8snetworkplumbingwg/multus-cni)",
+  "statut": "brouillon"
+}

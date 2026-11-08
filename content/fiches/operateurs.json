@@ -1,0 +1,75 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "id": "operateurs",
+  "genre": "nouveaute",
+  "avant": null,
+  "apres": "Les opérateurs et les ressources personnalisées",
+  "resume": {
+    "avant": null,
+    "apres": "La connaissance d'exploitation d'un logiciel (installer, mettre à jour, réparer) s'écrit dans un contrôleur qui tourne dans le cluster."
+  },
+  "resteVrai": [
+    "Les runbooks d'exploitation existent toujours : ils deviennent du code.",
+    "Un équipementier reste responsable de la qualité de ce qu'il livre."
+  ],
+  "change": [
+    "Une ressource personnalisée (CRD) ajoute à l'API un type d'objet propre à une application.",
+    "Un opérateur est un contrôleur qui réconcilie ces objets et automatise des tâches d'exploitation.",
+    "Sur OpenShift, OLM installe et met à jour les opérateurs : la Subscription exprime le canal suivi, l'InstallPlan porte les changements."
+  ],
+  "reflexe": null,
+  "pourquoiNouveau": "Les équipementiers livraient une appliance et une procédure d'exploitation. Kubernetes permet de livrer à la place un contrôleur qui applique cette procédure, avec la même boucle de réconciliation que le reste du cluster.",
+  "piege": "Traiter un opérateur comme une boîte noire. Il agit sur le cluster avec ses propres droits RBAC : lisez ce qu'il demande avant de l'installer.",
+  "exemple": "Un éditeur de cœur 5G livre un opérateur : vous créez un objet qui décrit la version et le nombre d'instances, et l'opérateur déploie et met à jour les pods.",
+  "technos": [
+    "kubernetes",
+    "olm"
+  ],
+  "questions": [
+    "q-operateurs-1",
+    "q-operateurs-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : le motif Operator",
+      "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/operator/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Operator Lifecycle Manager : documentation",
+      "url": "https://olm.operatorframework.io/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : le motif Operator",
+      "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/operator/"
+    },
+    {
+      "nom": "Kubernetes : ressources personnalisées",
+      "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/"
+    },
+    {
+      "nom": "Operator Lifecycle Manager",
+      "url": "https://olm.operatorframework.io/docs/"
+    },
+    {
+      "nom": "Kubernetes : contrôle d'accès RBAC",
+      "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+    }
+  ]
+}

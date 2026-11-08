@@ -1,0 +1,66 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "id": "reconciliation",
+  "genre": "nouveaute",
+  "avant": null,
+  "apres": "L'état désiré et la boucle de réconciliation",
+  "resume": {
+    "avant": null,
+    "apres": "Vous déclarez l'état voulu. Des contrôleurs comparent en permanence avec l'état réel et agissent pour s'en rapprocher."
+  },
+  "resteVrai": [
+    "Vous savez déjà décrire une cible et mesurer l'écart avec la réalité : c'est le métier de la supervision.",
+    "Un composant qui tombe doit toujours être remplacé : seul l'acteur change."
+  ],
+  "change": [
+    "Un Deployment qui déclare 3 réplicas alors qu'il en reste 2 voit le troisième recréé sans intervention.",
+    "Les contrôleurs passent par le serveur d'API, seul à lire et écrire dans etcd.",
+    "L'état voulu se modifie dans la déclaration, jamais sur l'objet qu'un contrôleur gère."
+  ],
+  "reflexe": null,
+  "pourquoiNouveau": "Dans une infrastructure classique, rien ne remet seul une machine dans l'état voulu : une alerte, puis un humain ou un script. Kubernetes fait de cette comparaison permanente son mécanisme central. Aucun équivalent direct dans votre métier d'origine.",
+  "piege": "Corriger à la main ce qu'un contrôleur gère : il remet l'état déclaré et efface la correction. Le bon geste est de modifier la déclaration.",
+  "exemple": "Si un pod de l'AMF disparaît, le contrôleur du Deployment en recrée un pour retrouver le nombre voulu ; l'équipe n'est alertée que si la reconstitution échoue.",
+  "technos": [
+    "kubernetes"
+  ],
+  "questions": [
+    "q-reconciliation-1",
+    "q-reconciliation-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : contrôleurs",
+      "url": "https://kubernetes.io/docs/concepts/architecture/controller/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : composants",
+      "url": "https://kubernetes.io/docs/concepts/overview/components/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : contrôleurs",
+      "url": "https://kubernetes.io/docs/concepts/architecture/controller/"
+    },
+    {
+      "nom": "Kubernetes : composants d'un cluster",
+      "url": "https://kubernetes.io/docs/concepts/overview/components/"
+    }
+  ]
+}

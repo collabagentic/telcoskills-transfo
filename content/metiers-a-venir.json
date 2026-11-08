@@ -1,0 +1,17 @@
+[
+  {
+    "id": "coeur-reseau",
+    "nom": "Ingénieur cœur réseau",
+    "accroche": "EPC · IMS · VoLTE"
+  },
+  {
+    "id": "architecte-si",
+    "nom": "Architecte SI",
+    "accroche": "TOGAF · ITIL · PRA"
+  },
+  {
+    "id": "avant-vente",
+    "nom": "Avant-vente technique",
+    "accroche": "Chiffrage · appels d'offres"
+  }
+]

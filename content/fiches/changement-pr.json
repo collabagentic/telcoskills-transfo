@@ -1,0 +1,71 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "id": "changement-pr",
+  "genre": "transposition",
+  "avant": "procédure de changement",
+  "apres": "pull request et pipeline",
+  "resume": {
+    "avant": "Une demande de changement (MOP, CAB), une fenêtre de maintenance, une exécution à la main.",
+    "apres": "Une pull request relue, des vérifications automatiques, une fusion qui déclenche le déploiement."
+  },
+  "resteVrai": [
+    "Toute évolution reste relue par un pair avant de toucher la production.",
+    "La traçabilité du qui, quoi, pourquoi reste exigée.",
+    "Un retour arrière reste à prévoir."
+  ],
+  "change": [
+    "La relecture porte sur un diff de fichiers dans une pull request, pas sur un document.",
+    "Des vérifications automatiques tournent dans un pipeline avant la fusion.",
+    "La fusion déclenche le déploiement : l'historique Git est la trace du changement."
+  ],
+  "reflexe": "Le changement s'exécute à la main, dans une fenêtre.",
+  "pourquoiNouveau": null,
+  "piege": "Une pull request ne protège que si les vérifications sont obligatoires avant fusion et si la branche principale est protégée. Sans cela, elle devient une formalité et le pipeline un simple outil de livraison.",
+  "exemple": "Le changement de configuration d'une fonction du cœur passe par une pull request sur le dépôt de la plateforme : le pipeline valide les fichiers, un relecteur approuve, puis la plateforme applique la fusion.",
+  "technos": [
+    "argo-cd"
+  ],
+  "questions": [
+    "q-changement-pr-1",
+    "q-changement-pr-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "GitLab CI/CD : documentation",
+      "url": "https://docs.gitlab.com/ee/ci/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "OpenGitOps : les principes",
+      "url": "https://opengitops.dev/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "GitHub : à propos des branches protégées",
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+    },
+    {
+      "nom": "GitLab CI/CD",
+      "url": "https://docs.gitlab.com/ee/ci/"
+    },
+    {
+      "nom": "OpenGitOps : principes",
+      "url": "https://opengitops.dev/"
+    }
+  ]
+}

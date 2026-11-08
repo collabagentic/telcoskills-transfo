@@ -1,0 +1,71 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "id": "actif-passif-replicas",
+  "genre": "transposition",
+  "avant": "haute disponibilité actif/passif",
+  "apres": "réplicas et sondes",
+  "resume": {
+    "avant": "Un nœud actif, un nœud passif en attente, une bascule déclenchée par un cluster ou un opérateur.",
+    "apres": "Plusieurs réplicas servent en même temps. Des sondes décident qui reçoit du trafic ; Kubernetes remplace ce qui tombe."
+  },
+  "resteVrai": [
+    "Éliminer les points de défaillance uniques reste le but de la conception.",
+    "Un quorum se calcule comme avant : 5 membres etcd supportent la perte de 2.",
+    "Une bascule non testée n'existe pas."
+  ],
+  "change": [
+    "On vise plusieurs réplicas actifs plutôt qu'un actif et un passif en attente.",
+    "La sonde de readiness retire un pod du trafic sans le tuer ; la liveness le redémarre.",
+    "Un PodDisruptionBudget limite le nombre de pods indisponibles pendant une opération planifiée."
+  ],
+  "reflexe": "Le passif attend, et on bascule à la main.",
+  "pourquoiNouveau": null,
+  "piege": "Une sonde de readiness mal réglée peut retirer tous les pods du trafic en même temps : le service se retrouve sans destination. Réglez les sondes sur le comportement réel de l'application.",
+  "exemple": "Les instances d'une fonction du cœur 5G sont répliquées ; un pod dont la sonde de readiness échoue cesse de recevoir du trafic le temps de se rétablir.",
+  "technos": [
+    "kubernetes"
+  ],
+  "questions": [
+    "q-actif-passif-replicas-1",
+    "q-actif-passif-replicas-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : sondes liveness, readiness et startup",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : perturbations et PodDisruptionBudget",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : sondes liveness, readiness, startup",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    },
+    {
+      "nom": "Kubernetes : perturbations (PodDisruptionBudget)",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
+    },
+    {
+      "nom": "etcd : FAQ, tolérance aux pannes",
+      "url": "https://etcd.io/docs/v3.5/faq/"
+    }
+  ]
+}

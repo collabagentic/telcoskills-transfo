@@ -1,0 +1,129 @@
+/*
+ * Jetons de design (DESIGN.md). Sombre par défaut, clair équivalent (préférence du système).
+ * Toute couleur du site vient d'ici : aucune couleur en dur ailleurs (vérifié par tests/tokens.test.ts).
+ */
+:root {
+  color-scheme: dark;
+
+  /* Surfaces et filets */
+  --fond: #08090b;
+  --surface-1: #0f1013;
+  --surface-2: #14151a;
+  --surface-3: #0d0e11;
+  --filet: #23252b;
+  --filet-fort: #2e3138;
+  --reflet: rgba(255, 255, 255, 0.06);
+
+  /* Encres */
+  --encre: #f4f3f0;
+  --encre-2: #a8aab0;
+  --encre-3: #8b8d93;
+
+  /* Accent : réservé aux actions, à « Après » et aux réflexes à lâcher */
+  --accent: #ff6a3d;
+  --accent-encre: #120a07;
+  --accent-texte: #ff8a63;
+  --focus: #ff6a3d;
+  --accent-halo: rgba(255, 106, 61, 0.16);
+  --accent-lueur: rgba(255, 106, 61, 0.3);
+  --accent-surface-1: #1a1411;
+  --accent-surface-2: #0f0c0b;
+  --accent-filet: #3a2a24;
+
+  /* Teintes du bilan : une par catégorie */
+  --teinte-forme: #8db4ff;
+  --teinte-nouveau: #f2c46b;
+  --teinte-lacher: #ff8a63;
+  --teinte-decouvrir: #a8aab0;
+  --teinte-ok: #7fd4a8;
+
+  /* Profondeur */
+  --ombre-1: 0 1px 0 var(--reflet) inset, 0 24px 50px rgba(0, 0, 0, 0.45);
+  --ombre-2: 0 1px 0 rgba(255, 150, 110, 0.16) inset, 0 20px 44px rgba(0, 0, 0, 0.5), 0 0 60px var(--accent-halo);
+  --grille: rgba(255, 255, 255, 0.035);
+
+  /* Échelle typographique (6 tailles) */
+  --t-xs: 0.75rem;
+  --t-s: 0.875rem;
+  --t-m: 1rem;
+  --t-l: 1.25rem;
+  --t-xl: 1.875rem;
+  --t-xxl: clamp(2.25rem, 6vw, 3.5rem);
+
+  /* Espacement (base 4 px) */
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem;
+  --e-6: 1.5rem;
+  --e-8: 2rem;
+  --e-12: 3rem;
+  --e-16: 4rem;
+
+  /* Rayons, durées, courbes */
+  --r-s: 0.5rem;
+  --r-m: 0.75rem;
+  --r-l: 1rem;
+  --r-pilule: 999px;
+  --d-rapide: 120ms;
+  --d-base: 200ms;
+  --d-lente: 300ms;
+  --courbe: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --reflet-accent: rgba(255, 255, 255, 0.35);
+  --ombre-fine: rgba(0, 0, 0, 0.35);
+  --masque: #000000;
+
+  --lecture: 40rem;
+  --page: 60rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --fond: #f6f5f2;
+    --surface-1: #ffffff;
+    --surface-2: #ffffff;
+    --surface-3: #fbfaf8;
+    --filet: #e2e0d9;
+    --filet-fort: #cfcdc5;
+    --reflet: rgba(255, 255, 255, 0.9);
+    --encre: #16171a;
+    --encre-2: #55585e;
+    --encre-3: #6b6e74;
+    --accent-texte: #b8400f;
+    --focus: #c2410c;
+    --accent-halo: rgba(255, 106, 61, 0.12);
+    --accent-lueur: rgba(255, 106, 61, 0.28);
+    --accent-surface-1: #fff4ee;
+    --accent-surface-2: #ffffff;
+    --accent-filet: #f3c5b2;
+    --teinte-forme: #2a5bd7;
+    --teinte-nouveau: #8a5a00;
+    --teinte-lacher: #c2410c;
+    --teinte-decouvrir: #55585e;
+    --teinte-ok: #1b7a4f;
+    --ombre-1: 0 1px 0 var(--reflet) inset, 0 1px 2px rgba(20, 20, 30, 0.06), 0 12px 32px rgba(20, 20, 30, 0.08);
+    --ombre-2: 0 1px 0 var(--reflet) inset, 0 1px 2px rgba(20, 20, 30, 0.06), 0 16px 40px rgba(255, 106, 61, 0.16);
+    --grille: rgba(20, 20, 30, 0.05);
+  }
+}
+
+/* Impression : toujours en clair, même si le site est en sombre */
+@media print {
+  :root {
+    color-scheme: light;
+    --fond: #ffffff;
+    --encre: #111111;
+    --encre-2: #333333;
+    --encre-3: #555555;
+    --filet: #cccccc;
+    --filet-fort: #aaaaaa;
+    --surface-2: #ffffff;
+    --surface-3: #ffffff;
+    --reflet: transparent;
+    --ombre-1: none;
+    --grille: transparent;
+    --accent-halo: transparent;
+  }
+}

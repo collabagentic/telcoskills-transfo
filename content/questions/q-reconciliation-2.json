@@ -1,0 +1,15 @@
+{
+  "id": "q-reconciliation-2",
+  "fiche": "reconciliation",
+  "enonce": "Quel composant est le seul à lire et écrire directement dans etcd, les autres composants passant par lui ?",
+  "options": [
+    "kube-controller-manager",
+    "kubelet",
+    "kube-apiserver",
+    "kube-scheduler"
+  ],
+  "bonne": 2,
+  "explication": "Le kube-apiserver est la porte d'entrée de l'état du cluster : il valide les requêtes, les authentifie, les autorise et les persiste dans etcd. Le scheduler, les contrôleurs et les kubelets lisent et modifient l'état via l'API, jamais directement dans etcd.",
+  "source": "Kubernetes : Cluster Architecture (kubernetes.io/docs/concepts/architecture/)",
+  "statut": "brouillon"
+}

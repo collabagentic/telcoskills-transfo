@@ -1,0 +1,72 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "id": "pra-gitops",
+  "genre": "transposition",
+  "avant": "dossier PRA",
+  "apres": "GitOps",
+  "resume": {
+    "avant": "Un dossier avec RTO et RPO, des procédures de reprise rédigées, testées une fois par an.",
+    "apres": "L'état voulu du cluster est dans Git. Reconstruire, c'est réappliquer ce dépôt, aussi souvent qu'on veut."
+  },
+  "resteVrai": [
+    "Le RTO mesure le temps de reprise acceptable, le RPO la perte de données acceptable.",
+    "Les données persistantes restent à répliquer et à sauvegarder : Git ne contient pas vos bases.",
+    "Un PRA qu'on ne teste pas ne vaut rien."
+  ],
+  "change": [
+    "Le dépôt Git décrit l'état voulu ; un outil GitOps le réapplique et peut corriger la dérive.",
+    "Reconstruire un cluster, c'est rejouer des manifestes, pas dérouler une procédure à la main.",
+    "Une modification faite à la main dans le cluster peut être écrasée par ce que dit le dépôt."
+  ],
+  "reflexe": "La procédure de reprise est un document que l'on déroule.",
+  "pourquoiNouveau": null,
+  "piege": "Croire que Git suffit. Les manifestes reconstruisent les applications, pas les données ni les secrets : il faut toujours des sauvegardes testées (par exemple de la base etcd) et une gestion des secrets. Le RPO dépend de la réplication des données, pas de Git.",
+  "exemple": "Un site de secours doit accueillir des fonctions du cœur (AMF, SMF) : le cluster est recréé, le dépôt est réappliqué, puis les données d'abonnés et de sessions sont restaurées depuis leur réplication.",
+  "technos": [
+    "kubernetes",
+    "argo-cd"
+  ],
+  "questions": [
+    "q-pra-gitops-1",
+    "q-pra-gitops-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "OpenGitOps : les principes",
+      "url": "https://opengitops.dev/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Argo CD : documentation",
+      "url": "https://argo-cd.readthedocs.io/en/stable/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "OpenGitOps : principes",
+      "url": "https://opengitops.dev/"
+    },
+    {
+      "nom": "Argo CD : synchronisation automatique et self-heal",
+      "url": "https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/"
+    },
+    {
+      "nom": "Kubernetes : sauvegarde d'etcd",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/"
+    }
+  ]
+}

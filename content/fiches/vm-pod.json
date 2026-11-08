@@ -1,0 +1,71 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "id": "vm-pod",
+  "genre": "transposition",
+  "avant": "VM et template",
+  "apres": "pod et déploiement",
+  "resume": {
+    "avant": "Une VM créée depuis un template, patchée sur place, qui garde son identité pendant des années.",
+    "apres": "Un pod est jetable. Un déploiement en maintient N, remplacés par de nouveaux quand l'image change."
+  },
+  "resteVrai": [
+    "Un point de départ reproductible (le template) a son équivalent : l'image.",
+    "Dimensionner reste nécessaire : CPU et mémoire se demandent explicitement.",
+    "Chaque service a un cycle de vie à piloter."
+  ],
+  "change": [
+    "Un pod est éphémère : il n'est pas réparé, il est remplacé.",
+    "Un Deployment maintient le nombre voulu de pods identiques et remplace progressivement les anciens.",
+    "On ne se connecte pas pour corriger : on change l'image ou la configuration, puis on redéploie."
+  ],
+  "reflexe": "Corriger en SSH sur la machine.",
+  "pourquoiNouveau": null,
+  "piege": "Mettre une application à état dans un Deployment. Une base répliquée, qui demande à chaque réplica un nom réseau stable et son propre volume, relève d'un StatefulSet.",
+  "exemple": "Un frontal HTTP/2 d'interface SBI, sans état local, se déploie en plusieurs pods identiques ; si l'un tombe, un autre est créé à sa place.",
+  "technos": [
+    "kubernetes"
+  ],
+  "questions": [
+    "q-vm-pod-1",
+    "q-vm-pod-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : Pods",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : Deployments",
+      "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : Pods",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/"
+    },
+    {
+      "nom": "Kubernetes : Deployments",
+      "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    },
+    {
+      "nom": "Kubernetes : StatefulSets",
+      "url": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/"
+    }
+  ]
+}

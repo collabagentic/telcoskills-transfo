@@ -1,0 +1,73 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "id": "vlan-reseaux-cluster",
+  "genre": "transposition",
+  "avant": "découpage en VLAN",
+  "apres": "réseaux du cluster",
+  "resume": {
+    "avant": "Un VLAN par usage, tagué sur le portgroup de chaque VM. L'isolation passe par le découpage en sous-réseaux.",
+    "apres": "Un réseau plat pour les pods, isolé par des règles. Les VLAN reviennent sur les réseaux secondaires (Multus, SR-IOV)."
+  },
+  "resteVrai": [
+    "Séparer signalisation, données et administration reste une exigence d'architecture.",
+    "Le VLAN et la MTU existent toujours, sur les réseaux secondaires qui portent le plan data.",
+    "Chaque interface demande toujours un plan d'adressage."
+  ],
+  "change": [
+    "Le réseau primaire des pods est plat : l'isolation passe par des NetworkPolicy qui raisonnent en labels, pas en sous-réseaux.",
+    "Les réseaux additionnels (Multus) portent le plan data ; VLAN, MTU et VF SR-IOV se déclarent via NMState.",
+    "L'adressage des interfaces secondaires est géré à part de celui des pods."
+  ],
+  "reflexe": "Isoler, c'est mettre dans un autre sous-réseau.",
+  "pourquoiNouveau": null,
+  "piege": "Appliquer le bon réflexe au mauvais plan. Sur le réseau primaire des pods, découper en sous-réseaux n'isole rien : l'IP d'un pod est éphémère. L'erreur inverse, côté profil cloud-natif, consiste à ignorer les réseaux secondaires, là où le VLAN reste légitime.",
+  "exemple": "Dans un cœur 5G déployé en CNF, la signalisation reste sur le réseau primaire du cluster. Le trafic utilisateur d'une fonction UPF passe par une interface secondaire attachée en SR-IOV, avec son VLAN et sa MTU.",
+  "technos": [
+    "kubernetes",
+    "ovn-kubernetes",
+    "multus"
+  ],
+  "questions": [
+    "q-vlan-reseaux-cluster-1",
+    "q-vlan-reseaux-cluster-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "opensource",
+      "nom": "Multus CNI (dépôt et documentation)",
+      "url": "https://github.com/k8snetworkplumbingwg/multus-cni",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Red Hat, OpenShift 4.20 : référence de conception telco core",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/scalability_and_performance/telco-core-ref-design-specs",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Red Hat, OpenShift 4.20 : telco core reference design",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/scalability_and_performance/telco-core-ref-design-specs"
+    },
+    {
+      "nom": "VMware Telco Cloud Platform 2.7, guide d'architecture",
+      "url": "https://docs.vmware.com/en/VMware-Telco-Cloud-Platform/2.7/telco-cloud-platform-5G-edition-reference-architecture-guide-27/GUID-81109C7A-A6F9-4FEA-A9F3-443D919BF19A.html"
+    },
+    {
+      "nom": "Tigera : Kubernetes n'a pas de notion native de segment L2 ni de VLAN",
+      "url": "https://www.tigera.io/?p=69568"
+    }
+  ]
+}
