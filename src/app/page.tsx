@@ -8,7 +8,10 @@ export default function Accueil() {
   const c = chargerContenu();
   const donnees = donneesPubliques();
   // Phrases courtes seulement (hauteur stable, lisibles sur mobile). Les amorces sont calculées à partir des transpositions du contenu : rien d'écrit à la main dans le code.
-  const paires: PaireAmorce[] = c.fiches.filter((f) => f.genre === "transposition" && f.avant && f.avant.length + f.apres.length <= 40).slice(0, 5).map((f) => ({ avant: f.avant!, apres: f.apres }));
+  const paires: PaireAmorce[] = [...new Set(c.metiers.flatMap((m) => m.ordre))]
+    .map((id) => c.fiches.find((f) => f.id === id)!)
+    .filter((f) => f.genre === "transposition" && f.avant && f.avant.length + f.apres.length <= 40)
+    .slice(0, 5).map((f) => ({ avant: f.avant!, apres: f.apres }));
   const metiers: OptionMetier[] = [
     ...c.metiers.map((m) => ({ id: m.id, nom: m.nom, accroche: m.accroche, disponible: true, enRelecture: m.statut === "brouillon" })),
     ...c.aVenir.map((m) => ({ id: m.id, nom: m.nom, accroche: m.accroche, disponible: false })),

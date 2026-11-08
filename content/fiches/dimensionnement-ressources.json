@@ -1,0 +1,75 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "Un vCPU alloué est un vCPU réservé.",
+  "genre": "transposition",
+  "id": "dimensionnement-ressources",
+  "avant": "dimensionnement en vCPU et RAM",
+  "apres": "requests, limits et CPU pinning",
+  "resume": {
+    "avant": "Des vCPU et de la RAM alloués à une VM, avec un surdimensionnement toléré par l'hyperviseur.",
+    "apres": "Une demande (request) pour le placement, une limite (limit) appliquée à l'exécution, et des CPU exclusifs pour les fonctions exigeantes."
+  },
+  "resteVrai": [
+    "Dimensionner à partir de la charge réelle et de la marge voulue reste le travail.",
+    "Les fonctions de plan usager restent sensibles à la latence et au débit.",
+    "Les ressources d'un nœud restent finies : il faut toujours les compter."
+  ],
+  "change": [
+    "Les « requests » servent à placer le pod sur un nœud ; les « limits » sont appliquées pendant l'exécution.",
+    "Un pod dont requests et limits sont égales, en CPU entiers, peut recevoir des CPU exclusifs (politique static du CPU Manager).",
+    "Les hugepages et l'alignement NUMA (Topology Manager) se demandent eux aussi explicitement."
+  ],
+  "piege": "Fixer des limites sans en connaître l'effet : une limite mémoire dépassée tue le conteneur, une limite CPU le ralentit. Et sans requests, le placement ne tient pas compte de vos besoins.",
+  "exemple": "Un UPF qui traite du trafic utilisateur demande des CPU entiers, des hugepages, et un nœud où ses CPU et sa carte réseau relèvent du même NUMA.",
+  "technos": [
+    "kubernetes"
+  ],
+  "questions": [
+    "q-dimensionnement-ressources-1",
+    "q-dimensionnement-ressources-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : gérer les ressources des conteneurs",
+      "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : politiques de gestion du CPU",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : gérer les ressources des conteneurs",
+      "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+    },
+    {
+      "nom": "Kubernetes : politiques de gestion du CPU",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/"
+    },
+    {
+      "nom": "Kubernetes : hugepages",
+      "url": "https://kubernetes.io/docs/tasks/manage-hugepages/scheduling-hugepages/"
+    },
+    {
+      "nom": "Kubernetes : Topology Manager",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/"
+    }
+  ]
+}

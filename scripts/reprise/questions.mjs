@@ -17,6 +17,12 @@ const CORRESPONDANCE = {
   "acces-rbac": [["k8s-rbac", "rappel-rbac-defaut"], ["k8s-rbac", "rappel-rolebinding-clusterrole"]],
   reconciliation: [["k8s-archi", "rappel-reconciliation"], ["k8s-archi", "rappel-api-etcd"]],
   operateurs: [["ocp-operators", "rappel-subscription-olm"], ["ocp-operators", "rappel-installplan"]],
+  "supervision-prometheus": [["alerting-utile", "rappel-alerte-symptome"], ["obs-metrics", "rappel-regroupement"]],
+  "interfaces-sbi": [["sbi-http2", "rappel-sbi-protocole"], ["sbi-http2", "rappel-sbi-openapi"]],
+  "appliance-cnf": [["helm", "rappel-helm-upgrade"], ["helm", "rappel-helm-rollback"]],
+  "observabilite-traces": [["obs-telemetry", "rappel-signaux-otel"], ["obs-telemetry", "rappel-collector-otel"]],
+  "patch-images": [["sec-supply", "rappel-digest-image"], ["sec-supply", "rappel-sbom"]],
+  "lb-services": [["k8s-services", "rappel-nodeport"], ["k8s-services", "rappel-service-headless"]],
 };
 
 const sortie = path.join(import.meta.dirname, "..", "..", "content", "questions");

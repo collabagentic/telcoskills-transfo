@@ -1,0 +1,72 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "La configuration vit dans l'équipement.",
+  "genre": "transposition",
+  "id": "appliance-cnf",
+  "avant": "boîte équipementier",
+  "apres": "CNF et son cycle de vie",
+  "resume": {
+    "avant": "Une appliance livrée par l'équipementier, installée par lui, mise à jour par un jeu de procédures.",
+    "apres": "Une fonction réseau livrée en conteneurs et en chart Helm, déployée et mise à jour par des commandes versionnées."
+  },
+  "resteVrai": [
+    "Le fournisseur reste responsable du logiciel et de sa feuille de route.",
+    "Une recette de réception reste nécessaire avant la production.",
+    "Le support et les correctifs se contractualisent toujours."
+  ],
+  "change": [
+    "Le CNF se déploie avec un chart Helm : « helm upgrade » applique une nouvelle version ou de nouvelles valeurs.",
+    "Chaque installation est une release ; les révisions précédentes permettent de revenir en arrière avec « helm rollback ».",
+    "La configuration est dans des fichiers de valeurs versionnés, plus dans une console de l'équipement."
+  ],
+  "piege": "Prendre le chart de l'éditeur tel quel. Les valeurs par défaut ne conviennent pas à votre cluster (réseaux secondaires, ressources, stockage) : elles se documentent et se versionnent, comme une configuration d'équipement.",
+  "exemple": "L'éditeur livre l'UPF sous forme de chart ; votre équipe fixe dans les valeurs les interfaces secondaires et les ressources, puis déploie la version par « helm upgrade ».",
+  "technos": [
+    "kubernetes",
+    "helm"
+  ],
+  "questions": [
+    "q-appliance-cnf-1",
+    "q-appliance-cnf-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Helm : utiliser Helm",
+      "url": "https://helm.sh/docs/intro/using_helm/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Helm : helm rollback",
+      "url": "https://helm.sh/docs/helm/helm_rollback/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Helm : helm upgrade",
+      "url": "https://helm.sh/docs/helm/helm_upgrade/"
+    },
+    {
+      "nom": "Helm : helm rollback",
+      "url": "https://helm.sh/docs/helm/helm_rollback/"
+    },
+    {
+      "nom": "Helm : utiliser Helm",
+      "url": "https://helm.sh/docs/intro/using_helm/"
+    }
+  ]
+}

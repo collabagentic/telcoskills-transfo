@@ -1,0 +1,15 @@
+{
+  "id": "q-patch-images-1",
+  "fiche": "patch-images",
+  "enonce": "Pourquoi référencer une image par son digest (sha256:…) plutôt que par un tag tel que :latest ?",
+  "options": [
+    "Le digest est plus court à écrire",
+    "Les tags sont interdits en production par Kubernetes",
+    "Un tag peut être déplacé vers une autre image ; le digest désigne un contenu précis et immuable",
+    "Le digest accélère le démarrage du conteneur"
+  ],
+  "bonne": 2,
+  "explication": "Un tag est un pointeur modifiable : le même tag peut désigner demain une autre image. Le digest est l'empreinte du contenu : il garantit qu'on déploie exactement ce qui a été analysé et validé.",
+  "source": "OCI Distribution Specification (github.com/opencontainers/distribution-spec) ; Kubernetes : Images (kubernetes.io/docs/concepts/containers/images/)",
+  "statut": "brouillon"
+}

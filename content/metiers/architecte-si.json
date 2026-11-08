@@ -1,0 +1,109 @@
+{
+  "id": "architecte-si",
+  "nom": "Architecte SI",
+  "accroche": "TOGAF · ITIL · PRA",
+  "amorce": "Votre dossier PRA, version GitOps.",
+  "portrait": "Plus de vingt ans de systèmes d'information : dossiers d'architecture, ITIL, PRA, arbitrage entre fournisseurs. Le cloud natif change la forme de vos livrables, pas leur utilité.",
+  "savoirFaire": [
+    {
+      "id": "sf-pra",
+      "texte": "Je rédige et teste des plans de reprise (PRA)",
+      "statut": "transpose",
+      "fiche": "pra-gitops"
+    },
+    {
+      "id": "sf-flux",
+      "texte": "Je rédige des matrices de flux",
+      "statut": "transpose",
+      "fiche": "matrice-networkpolicy"
+    },
+    {
+      "id": "sf-changement",
+      "texte": "Je gouverne les changements (CAB, MOP)",
+      "statut": "transpose",
+      "fiche": "changement-pr"
+    },
+    {
+      "id": "sf-vm",
+      "texte": "Je définis des VM et des templates",
+      "statut": "transpose",
+      "fiche": "vm-pod"
+    },
+    {
+      "id": "sf-patch",
+      "texte": "Je planifie le patch des serveurs",
+      "statut": "transpose",
+      "fiche": "patch-images"
+    },
+    {
+      "id": "sf-lb",
+      "texte": "Je dimensionne les load balancers",
+      "statut": "transpose",
+      "fiche": "lb-services"
+    },
+    {
+      "id": "sf-dossier",
+      "texte": "Je rédige des dossiers d'architecture validés en comité",
+      "statut": "transpose",
+      "fiche": "dossier-archi-code"
+    },
+    {
+      "id": "sf-cmdb",
+      "texte": "Je tiens la CMDB et l'inventaire",
+      "statut": "transpose",
+      "fiche": "cmdb-git"
+    },
+    {
+      "id": "sf-acces",
+      "texte": "Je gère les comptes et les accès à privilèges",
+      "statut": "transpose",
+      "fiche": "acces-rbac"
+    },
+    {
+      "id": "sf-fournisseurs",
+      "texte": "J'arbitre entre fournisseurs",
+      "statut": "acquis"
+    },
+    {
+      "id": "sf-itil",
+      "texte": "J'applique les processus ITIL",
+      "statut": "acquis"
+    },
+    {
+      "id": "sf-comite",
+      "texte": "Je défends une architecture devant un comité",
+      "statut": "acquis"
+    },
+    {
+      "id": "sf-capacite",
+      "texte": "Je dimensionne la capacité d'un service",
+      "statut": "acquis"
+    }
+  ],
+  "nouveautes": [
+    "reconciliation",
+    "operateurs",
+    "plateforme-produit"
+  ],
+  "ordre": [
+    "pra-gitops",
+    "matrice-networkpolicy",
+    "dossier-archi-code",
+    "changement-pr",
+    "vm-pod",
+    "reconciliation",
+    "patch-images",
+    "lb-services",
+    "cmdb-git",
+    "acces-rbac",
+    "operateurs",
+    "plateforme-produit"
+  ],
+  "sources": [
+    {
+      "nom": "Archétypes des passerelles TelcoSkills (personas construits à partir de CV et d'offres publics)",
+      "url": "https://github.com/taoufikbo/telcoskills"
+    }
+  ],
+  "statut": "brouillon"
+}

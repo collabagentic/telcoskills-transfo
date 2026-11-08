@@ -1,0 +1,15 @@
+{
+  "id": "q-interfaces-sbi-2",
+  "fiche": "interfaces-sbi",
+  "enonce": "Comment le format des messages d'un service SBI est-il décrit officiellement ?",
+  "options": [
+    "Par un schéma ASN.1 compilé dans chaque fonction réseau",
+    "Par un fichier WSDL au format SOAP",
+    "Par un schéma Protocol Buffers publié sur gRPC",
+    "Par une spécification OpenAPI, utilisée comme langage de description d'interface"
+  ],
+  "bonne": 3,
+  "explication": "La spécification technique impose OpenAPI comme langage de description d'interface (IDL) des SBI : chaque service dispose de son fichier OpenAPI, qui permet de lire un appel et sa réponse. L'ASN.1 sert à d'autres interfaces, comme NGAP.",
+  "source": "3GPP TS 29.500, clause 5.5 (Interface Definition Language) (etsi.org/deliver/etsi_TS/129500_129599/129500/18.09.00_60/ts_129500v180900p.pdf)",
+  "statut": "brouillon"
+}

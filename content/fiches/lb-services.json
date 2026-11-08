@@ -1,0 +1,76 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "Le répartiteur de charge est un équipement qu'on configure à la main.",
+  "genre": "transposition",
+  "id": "lb-services",
+  "avant": "load balancer (F5)",
+  "apres": "Service, Ingress et MetalLB",
+  "resume": {
+    "avant": "Un F5 devant les serveurs : virtual servers, pools, persistance, tout configuré sur l'équipement.",
+    "apres": "Un Service répartit le trafic entre pods ; Ingress ou Route pour le HTTP ; MetalLB pour exposer des adresses en L4, SCTP compris."
+  },
+  "resteVrai": [
+    "Répartir la charge et supprimer les points uniques reste le but.",
+    "Les adresses de service restent à réserver et à documenter.",
+    "Le L4 et le L7 se distinguent toujours."
+  ],
+  "change": [
+    "Un Service est un répartiteur logiciel : il suit les pods qui répondent, sans pools à maintenir à la main.",
+    "Une Route ou un Ingress ne gère que HTTP, HTTPS et TLS ; le SCTP demande un autre mécanisme.",
+    "MetalLB expose des Services de type LoadBalancer sur du bare metal, notamment en mode BGP."
+  ],
+  "piege": "Faire passer le SCTP de la signalisation N2 par un Ingress : il ne le transporte pas. Il faut un Service de type LoadBalancer (par exemple avec MetalLB) ou un équivalent.",
+  "exemple": "L'AMF expose le port NGAP en SCTP par un Service LoadBalancer dont l'adresse est annoncée en BGP aux routeurs de la RAN.",
+  "technos": [
+    "kubernetes",
+    "metallb"
+  ],
+  "questions": [
+    "q-lb-services-1",
+    "q-lb-services-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : Services",
+      "url": "https://kubernetes.io/docs/concepts/services-networking/service/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "MetalLB : mode BGP",
+      "url": "https://metallb.io/concepts/bgp/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : Services",
+      "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+    },
+    {
+      "nom": "Kubernetes : Ingress",
+      "url": "https://kubernetes.io/docs/concepts/services-networking/ingress/"
+    },
+    {
+      "nom": "MetalLB : mode BGP",
+      "url": "https://metallb.io/concepts/bgp/"
+    },
+    {
+      "nom": "VMware Telco Cloud Platform 2.7, guide d'architecture",
+      "url": "https://docs.vmware.com/en/VMware-Telco-Cloud-Platform/2.7/telco-cloud-platform-5G-edition-reference-architecture-guide-27/GUID-81109C7A-A6F9-4FEA-A9F3-443D919BF19A.html"
+    }
+  ]
+}

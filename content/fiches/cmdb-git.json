@@ -1,0 +1,72 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "L'inventaire se tient dans un outil à part, mis à jour à la main.",
+  "genre": "transposition",
+  "id": "cmdb-git",
+  "avant": "CMDB et inventaire",
+  "apres": "Git comme source de vérité et labels",
+  "resume": {
+    "avant": "Une CMDB mise à jour à la main ou par découverte, où l'inventaire retarde sur la réalité.",
+    "apres": "L'état voulu est dans Git ; les objets se retrouvent par des labels. L'inventaire se lit dans le cluster, il n'est pas ressaisi."
+  },
+  "resteVrai": [
+    "Savoir ce qui existe, qui en est responsable et à quoi ça sert reste indispensable.",
+    "Un inventaire faux est pire que pas d'inventaire.",
+    "Les relations entre composants restent à documenter."
+  ],
+  "change": [
+    "Git décrit l'état voulu ; un outil GitOps le réapplique, donc dépôt et cluster ne divergent pas longtemps.",
+    "Les labels (clé/valeur) disent propriétaire, application, version : on sélectionne et on filtre dessus.",
+    "Un objet sans labels cohérents est un objet que l'inventaire ne retrouve pas."
+  ],
+  "piege": "Mélanger labels et annotations : les labels servent à sélectionner et regrouper, les annotations à porter des informations non identifiantes. Et sans convention de nommage des labels, chaque équipe invente la sienne.",
+  "exemple": "Chaque fonction du cœur porte les labels application, version et propriétaire ; une requête sur le propriétaire liste ce qu'une équipe exploite, sans consulter une CMDB.",
+  "technos": [
+    "kubernetes",
+    "argo-cd"
+  ],
+  "questions": [
+    "q-cmdb-git-1",
+    "q-cmdb-git-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : labels et sélecteurs",
+      "url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "OpenGitOps : les principes",
+      "url": "https://opengitops.dev/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : labels et sélecteurs",
+      "url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/"
+    },
+    {
+      "nom": "Kubernetes : annotations",
+      "url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/"
+    },
+    {
+      "nom": "OpenGitOps : principes",
+      "url": "https://opengitops.dev/"
+    }
+  ]
+}

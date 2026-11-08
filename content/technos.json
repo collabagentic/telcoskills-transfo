@@ -23,5 +23,25 @@
     "id": "olm",
     "nom": "Operator Lifecycle Manager",
     "url": "https://olm.operatorframework.io/"
+  },
+  {
+    "id": "prometheus",
+    "nom": "Prometheus",
+    "url": "https://prometheus.io/"
+  },
+  {
+    "id": "helm",
+    "nom": "Helm",
+    "url": "https://helm.sh/"
+  },
+  {
+    "id": "opentelemetry",
+    "nom": "OpenTelemetry",
+    "url": "https://opentelemetry.io/"
+  },
+  {
+    "id": "metallb",
+    "nom": "MetalLB",
+    "url": "https://metallb.io/"
   }
 ]

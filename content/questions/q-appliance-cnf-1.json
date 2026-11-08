@@ -1,0 +1,15 @@
+{
+  "id": "q-appliance-cnf-1",
+  "fiche": "appliance-cnf",
+  "enonce": "Quelle commande applique une nouvelle version d'un chart, ou de nouvelles valeurs, à une release Helm déjà installée ?",
+  "options": [
+    "helm template",
+    "helm lint",
+    "helm pull",
+    "helm upgrade"
+  ],
+  "bonne": 3,
+  "explication": "helm upgrade met à jour une release existante et crée une nouvelle révision. helm template génère les manifestes sans rien installer, helm lint vérifie un chart, helm pull le télécharge.",
+  "source": "Helm : helm upgrade (helm.sh/docs/helm/helm_upgrade/)",
+  "statut": "brouillon"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "q-lb-services-2",
+  "fiche": "lb-services",
+  "enonce": "Dans quel cas un Service « headless » (clusterIP: None) est-il adapté ?",
+  "options": [
+    "Pour exposer l'application sur Internet",
+    "Quand le DNS doit renvoyer directement les adresses des pods, sans adresse virtuelle ni répartition par kube-proxy, par exemple pour un StatefulSet",
+    "Pour chiffrer le trafic entre les pods",
+    "Pour limiter le débit d'un Service"
+  ],
+  "bonne": 1,
+  "explication": "Un Service headless n'alloue pas d'adresse virtuelle : la résolution DNS renvoie les adresses des pods qui le composent. C'est ce qu'utilisent les StatefulSets pour que chaque réplica ait un nom DNS stable.",
+  "source": "Kubernetes : Headless Services (kubernetes.io/docs/concepts/services-networking/service/#headless-services)",
+  "statut": "brouillon"
+}

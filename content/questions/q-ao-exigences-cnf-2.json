@@ -1,0 +1,15 @@
+{
+  "id": "q-ao-exigences-cnf-2",
+  "fiche": "ao-exigences-cnf",
+  "enonce": "Dans la micro-enquête telco de la CNCF (2022), quelles priorités ressortent pour les fonctions réseau cloud natives sous Kubernetes ?",
+  "options": [
+    "L'interopérabilité et la portabilité",
+    "Le coût du matériel et l'efficacité énergétique",
+    "La taille des images et la vitesse de build",
+    "La réduction du nombre de fournisseurs et la facturation à l'usage"
+  ],
+  "bonne": 0,
+  "explication": "Le titre même de la synthèse de la CNCF le dit : les CNF sous Kubernetes arrivent, mais l'interopérabilité et la portabilité sont les priorités.",
+  "source": "CNCF : micro-enquête telco (cncf.io/blog/2022/08/02/cncf-telco-microsurvey-cloud-native-network-functions-with-kubernetes-are-coming-but-interoperability-and-portability-are-priorities)",
+  "statut": "brouillon"
+}

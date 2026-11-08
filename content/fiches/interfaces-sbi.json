@@ -1,0 +1,71 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "Une interface est un lien dédié entre deux nœuds.",
+  "genre": "transposition",
+  "id": "interfaces-sbi",
+  "avant": "pile S1AP, GTP et Diameter",
+  "apres": "interfaces SBI",
+  "resume": {
+    "avant": "Des interfaces point à point entre nœuds, des protocoles dédiés (SCTP, GTP, Diameter), des liens câblés.",
+    "apres": "Des fonctions qui s'appellent en HTTP/2 avec des messages JSON décrits en OpenAPI ; quelques interfaces gardent leur transport d'origine."
+  },
+  "resteVrai": [
+    "Les procédures du cœur (enregistrement, session, mobilité) restent à connaître.",
+    "La signalisation entre RAN et cœur (N2) reste transportée en SCTP.",
+    "Lire une trace pour comprendre un incident reste le geste de base."
+  ],
+  "change": [
+    "Les fonctions du cœur se parlent par des interfaces de service (SBI) en HTTP/2, avec des messages JSON.",
+    "Chaque service est décrit par une spécification OpenAPI publiée par le 3GPP.",
+    "Les nœuds laissent place à des fonctions (AMF, SMF, UPF) reliées par des points de référence nommés N1, N2, N3, N4."
+  ],
+  "piege": "Croire que tout passe en HTTP/2. Les interfaces N2 (NGAP en SCTP) et N3 (GTP-U) gardent leur transport d'origine : elles demandent un traitement réseau particulier dans le cluster (SCTP, interface secondaire).",
+  "exemple": "L'AMF appelle la SMF pour créer une session PDU par une requête HTTP/2 sur l'interface de service ; la RAN, elle, parle à l'AMF en SCTP sur N2.",
+  "technos": [
+    "kubernetes"
+  ],
+  "questions": [
+    "q-interfaces-sbi-1",
+    "q-interfaces-sbi-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : Services, protocole SCTP",
+      "url": "https://kubernetes.io/docs/concepts/services-networking/service/#protocol-sctp",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    },
+    {
+      "nom": "3GPP TS 29.500 : principes des interfaces de service",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.500/"
+    },
+    {
+      "nom": "3GPP TS 38.412 : transport de signalisation NG (SCTP)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.412/"
+    }
+  ]
+}

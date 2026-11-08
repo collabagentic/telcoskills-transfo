@@ -1,0 +1,15 @@
+{
+  "id": "q-appliance-cnf-2",
+  "fiche": "appliance-cnf",
+  "enonce": "Une mise à jour Helm a mal tourné. Qu'est-ce qui permet de revenir à l'état précédent ?",
+  "options": [
+    "Les révisions de la release, conservées dans le cluster : helm rollback rétablit une révision antérieure",
+    "Un dépôt git que Helm tient à jour automatiquement",
+    "L'historique de la commande kubectl",
+    "Un instantané des volumes pris par Helm avant chaque mise à jour"
+  ],
+  "bonne": 0,
+  "explication": "Helm 3 enregistre chaque révision d'une release dans le cluster (par défaut sous forme de Secrets, dans le namespace de la release). helm rollback applique une révision précédente. Les données des volumes ne sont pas restaurées par Helm.",
+  "source": "Helm : helm rollback (helm.sh/docs/helm/helm_rollback/)",
+  "statut": "brouillon"
+}

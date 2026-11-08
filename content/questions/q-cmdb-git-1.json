@@ -1,0 +1,15 @@
+{
+  "id": "q-cmdb-git-1",
+  "fiche": "cmdb-git",
+  "enonce": "À quoi servent les labels Kubernetes ?",
+  "options": [
+    "À chiffrer les données d'un objet",
+    "À identifier et sélectionner des groupes d'objets par attributs clé/valeur",
+    "À fixer les limites de CPU d'un pod",
+    "À choisir le plugin réseau du cluster"
+  ],
+  "bonne": 1,
+  "explication": "Les labels sont des paires clé/valeur attachées aux objets ; les sélecteurs s'en servent pour retrouver et regrouper des objets.",
+  "source": "Kubernetes : labels et sélecteurs (kubernetes.io/docs/concepts/overview/working-with-objects/labels/)",
+  "statut": "brouillon"
+}

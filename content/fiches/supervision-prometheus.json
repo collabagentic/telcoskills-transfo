@@ -1,0 +1,71 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "Une alarme par cause possible.",
+  "genre": "transposition",
+  "id": "supervision-prometheus",
+  "avant": "compteurs et alarmes",
+  "apres": "métriques et alertes sur symptômes",
+  "resume": {
+    "avant": "Des compteurs propriétaires remontés par l'équipementier, des seuils fixes, une alarme par cause possible.",
+    "apres": "Des métriques ouvertes interrogées par Prometheus, des alertes sur ce que voit l'utilisateur, regroupées pour limiter le bruit."
+  },
+  "resteVrai": [
+    "Une alarme doit toujours conduire à une action, sinon elle ne doit pas exister.",
+    "Les compteurs de base (débit, erreurs, latence) restent les premiers indicateurs.",
+    "Un seuil se règle sur le service réel, pas sur une valeur par défaut."
+  ],
+  "change": [
+    "Prometheus évalue les règles d'alerte à intervalle régulier ; la clause « for » impose que la condition dure avant d'alerter.",
+    "On alerte de préférence sur les symptômes (taux d'erreurs vu par l'utilisateur) plutôt que sur chaque cause possible.",
+    "Alertmanager regroupe les alertes similaires, par labels, en une seule notification."
+  ],
+  "piege": "Reproduire la logique de l'ancien nœud : des centaines de règles sur des causes, qui se déclenchent ensemble. Résultat : du bruit, et les vraies alertes se perdent. Partez de ce que l'utilisateur ressent, puis creusez vers les causes.",
+  "exemple": "Pour une SMF, une alerte part si le taux d'échec d'établissement de session PDU dépasse un seuil pendant plusieurs minutes, au lieu d'une alarme par pod redémarré.",
+  "technos": [
+    "prometheus"
+  ],
+  "questions": [
+    "q-supervision-prometheus-1",
+    "q-supervision-prometheus-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Prometheus : règles d'alerte",
+      "url": "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Alertmanager : documentation",
+      "url": "https://prometheus.io/docs/alerting/latest/alertmanager/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Prometheus : règles d'alerte",
+      "url": "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/"
+    },
+    {
+      "nom": "Alertmanager",
+      "url": "https://prometheus.io/docs/alerting/latest/alertmanager/"
+    },
+    {
+      "nom": "Google SRE : superviser les systèmes distribués (symptômes et causes)",
+      "url": "https://sre.google/sre-book/monitoring-distributed-systems/"
+    }
+  ]
+}

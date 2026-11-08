@@ -1,0 +1,65 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "Le chiffrage se fige à la signature.",
+  "genre": "transposition",
+  "id": "chiffrage-slo",
+  "avant": "chiffrage et TCO",
+  "apres": "coût par SLO et FinOps",
+  "resume": {
+    "avant": "Un chiffrage par équipement et par licence, un TCO sur cinq ans, des marges de sécurité.",
+    "apres": "Un coût rattaché à un niveau de service (SLO) : ce qu'on paie pour tenir 99,9 % plutôt que 99 %, mesuré en continu."
+  },
+  "resteVrai": [
+    "Un chiffrage reste une hypothèse, avec ses marges et ses risques.",
+    "Le TCO reste utile pour comparer des options sur la durée.",
+    "Le client achète un service, pas une technologie."
+  ],
+  "change": [
+    "Un SLO est un objectif mesurable de niveau de service ; son budget d'erreur dit combien d'indisponibilité est tolérée.",
+    "Chaque niveau de disponibilité en plus a un coût d'architecture : on le chiffre en face de l'objectif.",
+    "FinOps rend le coût visible et attribuable par équipe ou par service, en continu."
+  ],
+  "piege": "Vendre un SLO sans pouvoir le mesurer. Un objectif de disponibilité n'a de sens que défini avec son indicateur (SLI) et sa fenêtre de mesure.",
+  "exemple": "Pour une fonction du cœur, deux options sont chiffrées : trois réplicas sur un site, ou six répartis sur deux sites. Le client voit le coût de chaque objectif de disponibilité.",
+  "technos": [],
+  "questions": [
+    "q-chiffrage-slo-1",
+    "q-chiffrage-slo-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Google SRE : objectifs de niveau de service",
+      "url": "https://sre.google/sre-book/service-level-objectives/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "FinOps Foundation : qu'est-ce que le FinOps",
+      "url": "https://www.finops.org/introduction/what-is-finops/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Google SRE : objectifs de niveau de service",
+      "url": "https://sre.google/sre-book/service-level-objectives/"
+    },
+    {
+      "nom": "FinOps Foundation : qu'est-ce que le FinOps",
+      "url": "https://www.finops.org/introduction/what-is-finops/"
+    }
+  ]
+}

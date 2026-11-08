@@ -1,0 +1,15 @@
+{
+  "id": "q-chiffrage-slo-1",
+  "fiche": "chiffrage-slo",
+  "enonce": "Un SLO de 99,9 % de disponibilité sur 30 jours tolère environ combien d'indisponibilité ?",
+  "options": [
+    "Environ 43 minutes",
+    "Environ 7 heures",
+    "Environ 4 minutes",
+    "Environ 72 heures"
+  ],
+  "bonne": 0,
+  "explication": "30 jours font 43 200 minutes ; 0,1 % de ce total fait 43,2 minutes. C'est le budget d'erreur de l'objectif.",
+  "source": "Google SRE : objectifs de niveau de service (sre.google/sre-book/service-level-objectives/)",
+  "statut": "brouillon"
+}

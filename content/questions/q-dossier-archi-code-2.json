@@ -1,0 +1,15 @@
+{
+  "id": "q-dossier-archi-code-2",
+  "fiche": "dossier-archi-code",
+  "enonce": "Où vit un ADR dans une approche « architecture as code » ?",
+  "options": [
+    "Dans un document partagé unique, remplacé à chaque version",
+    "Dans le dépôt, à côté de ce qu'il décrit, modifié par pull request",
+    "Dans l'outil de ticketing uniquement",
+    "Dans la CMDB, sans historique"
+  ],
+  "bonne": 1,
+  "explication": "Les ADR se conservent dans le dépôt du projet : ils sont versionnés et relus comme le code.",
+  "source": "Michael Nygard, Documenting Architecture Decisions (cognitect.com/blog/2011/11/15/documenting-architecture-decisions)",
+  "statut": "brouillon"
+}

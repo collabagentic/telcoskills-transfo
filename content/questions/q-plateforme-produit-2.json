@@ -1,0 +1,15 @@
+{
+  "id": "q-plateforme-produit-2",
+  "fiche": "plateforme-produit",
+  "enonce": "Comment juge-t-on le succès d'une plateforme gérée comme un produit ?",
+  "options": [
+    "Par le nombre de tickets traités",
+    "Par l'adoption et la satisfaction de ses utilisateurs internes",
+    "Par le nombre d'outils installés",
+    "Par la taille de l'équipe plateforme"
+  ],
+  "bonne": 1,
+  "explication": "Un produit se mesure à son usage et à la satisfaction de ses utilisateurs, ici les équipes internes.",
+  "source": "CNCF : modèle de maturité des plateformes (tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/)",
+  "statut": "brouillon"
+}

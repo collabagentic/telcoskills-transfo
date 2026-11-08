@@ -1,0 +1,65 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "Le dossier validé en comité fait foi pour des années.",
+  "genre": "transposition",
+  "id": "dossier-archi-code",
+  "avant": "dossier d'architecture validé en comité",
+  "apres": "décisions d'architecture versionnées",
+  "resume": {
+    "avant": "Un dossier produit en début de projet, validé en comité, puis rarement relu.",
+    "apres": "Des décisions courtes (ADR) et des schémas décrits en fichiers, versionnés avec le code et relus comme lui."
+  },
+  "resteVrai": [
+    "Le comité d'architecture garde son rôle : arbitrer et rendre les décisions explicites.",
+    "Une décision se justifie par ses alternatives et ses conséquences.",
+    "Un dossier doit rester lisible par des non-spécialistes."
+  ],
+  "change": [
+    "Chaque décision est un court document (ADR) : contexte, décision, statut, conséquences, avec une date.",
+    "Les ADR vivent dans le dépôt, à côté de ce qu'ils décrivent, et changent par pull request.",
+    "Un schéma décrit en texte se compare version par version, ce qu'un diagramme dessiné ne permet pas."
+  ],
+  "piege": "Écrire un ADR après coup, pour justifier. Sa valeur vient de ce qu'il est daté et rédigé au moment du choix ; une décision remplacée reste dans l'historique, marquée comme telle.",
+  "exemple": "Le choix de séparer le plan usager sur une interface secondaire SR-IOV s'écrit en un ADR d'une page, relu en pull request par l'équipe réseau.",
+  "technos": [],
+  "questions": [
+    "q-dossier-archi-code-1",
+    "q-dossier-archi-code-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Architecture Decision Records : site de référence",
+      "url": "https://adr.github.io/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Documenting Architecture Decisions (Michael Nygard)",
+      "url": "https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Michael Nygard : Documenting Architecture Decisions",
+      "url": "https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions"
+    },
+    {
+      "nom": "ADR : site de référence",
+      "url": "https://adr.github.io/"
+    }
+  ]
+}

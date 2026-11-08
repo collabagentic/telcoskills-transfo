@@ -22,6 +22,15 @@ describe("règles du contenu", () => {
     expect(erreursDeRegle(e, 1).join()).toContain("fantome");
   });
 
+  it("règle 1 : un identifiant de savoir-faire en double dans un même métier", () => {
+    const c = contenuValide();
+    c.metiers[0].savoirFaire[1].id = c.metiers[0].savoirFaire[0].id;
+    expect(erreursDeRegle(c, 1).join()).toContain("savoir-faire en double");
+    const d = contenuValide();
+    d.metiers.push({ ...d.metiers[0], id: "m2" });
+    expect(erreursDeRegle(d, 1)).toEqual([]);
+  });
+
   it("règle 2 : un acquis sans fiche, un transpose vers une nouveauté", () => {
     const c = contenuValide();
     c.metiers[0].savoirFaire[5].fiche = "f1";

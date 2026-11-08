@@ -1,0 +1,15 @@
+{
+  "id": "q-cmdb-git-2",
+  "fiche": "cmdb-git",
+  "enonce": "Où mettre une information utile mais non identifiante, par exemple un lien vers un ticket ?",
+  "options": [
+    "Dans une annotation",
+    "Dans un label de sélection",
+    "Dans le nodeSelector du pod",
+    "Dans le nom du namespace"
+  ],
+  "bonne": 0,
+  "explication": "Les annotations portent des métadonnées non identifiantes ; les labels servent à identifier et sélectionner.",
+  "source": "Kubernetes : annotations (kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)",
+  "statut": "brouillon"
+}

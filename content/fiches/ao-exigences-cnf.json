@@ -1,0 +1,72 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "L'équipementier choisit et impose son infrastructure.",
+  "genre": "transposition",
+  "id": "ao-exigences-cnf",
+  "avant": "appel d'offres multi-fournisseurs",
+  "apres": "exigences CNF et critères d'éligibilité",
+  "resume": {
+    "avant": "Un cahier des charges par fonctionnalités, des critères de conformité à l'équipement, une notation des réponses.",
+    "apres": "Un cahier des charges qui exige aussi la façon de livrer et d'exploiter : plateforme conforme, livraison en conteneurs, mises à jour déclaratives."
+  },
+  "resteVrai": [
+    "Comparer les offres sur une grille pondérée reste la méthode.",
+    "Les exigences de sécurité, de support et de performance restent contractuelles.",
+    "La réversibilité se prévoit dès l'appel d'offres."
+  ],
+  "change": [
+    "On exige que la fonction tourne sur une plateforme Kubernetes conforme, pas sur un matériel imposé.",
+    "On demande la façon de livrer : images de conteneurs, charts, documentation des réseaux secondaires et des ressources.",
+    "On vérifie l'interopérabilité et la portabilité, que les opérateurs placent en priorité dans l'enquête de la CNCF."
+  ],
+  "piege": "Écrire « compatible cloud natif » sans le rendre vérifiable. Une exigence doit se tester : version de Kubernetes certifiée, formats de livraison, comportement à la mise à jour. Sinon, chaque fournisseur la comprend à sa façon.",
+  "exemple": "Dans l'appel d'offres d'une SMF, « livrée en chart Helm, déployable sur une plateforme Kubernetes certifiée CNCF, avec la liste des réseaux secondaires requis » remplace « fournie sur serveur dédié ».",
+  "technos": [
+    "kubernetes",
+    "helm"
+  ],
+  "questions": [
+    "q-ao-exigences-cnf-1",
+    "q-ao-exigences-cnf-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "CNCF : groupe de travail CNF",
+      "url": "https://github.com/cncf/cnf-wg",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "CNCF : programme de conformité Kubernetes",
+      "url": "https://www.cncf.io/training/certification/software-conformance/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "CNCF : micro-enquête telco",
+      "url": "https://www.cncf.io/blog/2022/08/02/cncf-telco-microsurvey-cloud-native-network-functions-with-kubernetes-are-coming-but-interoperability-and-portability-are-priorities"
+    },
+    {
+      "nom": "CNCF : programme de conformité logicielle",
+      "url": "https://www.cncf.io/training/certification/software-conformance/"
+    },
+    {
+      "nom": "CNCF : groupe de travail CNF",
+      "url": "https://github.com/cncf/cnf-wg"
+    }
+  ]
+}

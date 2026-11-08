@@ -12,7 +12,6 @@ export function verifierContenu(c: Contenu): string[] {
     ["fiches", c.fiches.map((f) => f.id)],
     ["questions", c.questions.map((q) => q.id)],
     ["technos", c.technos.map((t) => t.id)],
-    ["savoir-faire", c.metiers.flatMap((m) => m.savoirFaire.map((s) => s.id))],
   ] as const) {
     for (const id of new Set(doublons([...ids]))) err(1, `identifiant en double parmi les ${nom} : « ${id} ».`);
   }
@@ -30,6 +29,11 @@ export function verifierContenu(c: Contenu): string[] {
     for (const t of f.technos) if (!technos.has(t)) err(1, `fiche « ${f.id} » : la techno « ${t} » n'existe pas.`);
   }
   for (const q of c.questions) if (!fiches.has(q.fiche)) err(1, `la question « ${q.id} » référence une fiche inconnue : « ${q.fiche} ».`);
+
+  // Un identifiant de savoir-faire est propre à son métier (le bilan ne concerne qu'un métier à la fois).
+  for (const m of c.metiers) {
+    for (const id of new Set(doublons(m.savoirFaire.map((s) => s.id)))) err(1, `métier « ${m.id} » : identifiant de savoir-faire en double : « ${id} ».`);
+  }
 
   for (const m of c.metiers) {
     // 2. Un savoir-faire « transpose » pointe une transposition ; un « acquis » n'a pas de fiche.

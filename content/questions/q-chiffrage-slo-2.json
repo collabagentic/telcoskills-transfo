@@ -1,0 +1,15 @@
+{
+  "id": "q-chiffrage-slo-2",
+  "fiche": "chiffrage-slo",
+  "enonce": "Que désigne un SLI ?",
+  "options": [
+    "Une pénalité financière prévue au contrat",
+    "Un indicateur mesuré du niveau de service, par exemple la proportion de requêtes réussies",
+    "Le plan de reprise du service",
+    "La liste des clients concernés"
+  ],
+  "bonne": 1,
+  "explication": "Un SLI (service level indicator) est la mesure sur laquelle s'appuie le SLO : proportion de requêtes réussies, latence, etc.",
+  "source": "Google SRE : objectifs de niveau de service (sre.google/sre-book/service-level-objectives/)",
+  "statut": "brouillon"
+}

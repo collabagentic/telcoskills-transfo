@@ -1,0 +1,66 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": "Quand une session traverse plusieurs fonctions qui s'appellent en HTTP/2, aucun journal pris seul ne montre où le temps est perdu. C'est ce que la trace distribuée apporte, et il n'y avait pas d'équivalent dans l'ancien nœud monolithique.",
+  "reflexe": null,
+  "genre": "nouveaute",
+  "avant": null,
+  "id": "observabilite-traces",
+  "apres": "Les traces distribuées (OpenTelemetry)",
+  "resume": {
+    "avant": null,
+    "apres": "Une requête traverse plusieurs services : une trace la suit de bout en bout, avec le temps passé dans chacun."
+  },
+  "resteVrai": [
+    "Les journaux et les compteurs restent utiles : la trace s'ajoute, elle ne les remplace pas.",
+    "Reconstituer un déroulé d'appel pour comprendre un incident est déjà votre geste."
+  ],
+  "change": [
+    "OpenTelemetry collecte trois signaux : traces, métriques et journaux.",
+    "Le Collector reçoit, traite et exporte la télémétrie vers les outils d'analyse.",
+    "Un identifiant de trace relie entre elles les étapes d'une même requête."
+  ],
+  "piege": "Tout tracer. La télémétrie coûte du stockage et du réseau : on échantillonne et on choisit ce qui est instrumenté. Le Collector sert aussi à filtrer avant l'export.",
+  "exemple": "Une création de session PDU traverse l'AMF, la SMF, la PCF et l'UPF ; la trace montre quelle étape ralentit la création de session.",
+  "technos": [
+    "opentelemetry"
+  ],
+  "questions": [
+    "q-observabilite-traces-1",
+    "q-observabilite-traces-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "OpenTelemetry : signaux",
+      "url": "https://opentelemetry.io/docs/concepts/signals/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "OpenTelemetry : Collector",
+      "url": "https://opentelemetry.io/docs/collector/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "OpenTelemetry : signaux",
+      "url": "https://opentelemetry.io/docs/concepts/signals/"
+    },
+    {
+      "nom": "OpenTelemetry : Collector",
+      "url": "https://opentelemetry.io/docs/collector/"
+    }
+  ]
+}

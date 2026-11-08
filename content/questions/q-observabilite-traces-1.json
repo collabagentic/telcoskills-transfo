@@ -1,0 +1,15 @@
+{
+  "id": "q-observabilite-traces-1",
+  "fiche": "observabilite-traces",
+  "enonce": "Quels sont les trois signaux principaux collectés avec OpenTelemetry ?",
+  "options": [
+    "Les alertes, les tableaux de bord et les rapports",
+    "Les pods, les services et les nœuds",
+    "Les traces, les métriques et les journaux (logs)",
+    "Le CPU, la mémoire et le disque"
+  ],
+  "bonne": 2,
+  "explication": "OpenTelemetry standardise la collecte des traces (parcours d'une requête), des métriques (mesures agrégées) et des logs (événements). Les autres propositions sont des usages ou des ressources, pas des signaux.",
+  "source": "OpenTelemetry : Signals (opentelemetry.io/docs/concepts/signals/)",
+  "statut": "brouillon"
+}

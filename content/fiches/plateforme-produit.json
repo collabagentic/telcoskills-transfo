@@ -1,0 +1,66 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": "Dans un modèle classique, une équipe d'infrastructure traite des demandes. Ici, la plateforme se conçoit pour ses utilisateurs internes, avec une feuille de route et des retours, comme un produit.",
+  "reflexe": null,
+  "genre": "nouveaute",
+  "avant": null,
+  "id": "plateforme-produit",
+  "apres": "La plateforme comme produit interne",
+  "resume": {
+    "avant": null,
+    "apres": "La plateforme est un produit : elle a des utilisateurs (les équipes), un catalogue de capacités et un responsable qui l'améliore."
+  },
+  "resteVrai": [
+    "Un service interne a toujours des clients : les équipes d'exploitation et de développement.",
+    "Les engagements de service et le support restent à définir."
+  ],
+  "change": [
+    "Une équipe plateforme propose des capacités en libre-service plutôt que de traiter des tickets.",
+    "On mesure le produit comme tout produit : adoption, satisfaction, délai pour obtenir une capacité.",
+    "Elle ne cache pas Kubernetes : elle réduit la charge cognitive des équipes qui l'utilisent."
+  ],
+  "piege": "Réduire la plateforme à un outil installé. Sans équipe responsable, sans catalogue et sans retour des utilisateurs, elle redevient un guichet de tickets.",
+  "exemple": "L'équipe plateforme propose un gabarit « déployer une CNF » (réseaux secondaires, supervision, accès) que les équipes d'exploitation utilisent sans recréer chaque réglage.",
+  "technos": [
+    "kubernetes"
+  ],
+  "questions": [
+    "q-plateforme-produit-1",
+    "q-plateforme-produit-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "CNCF : livre blanc sur les plateformes",
+      "url": "https://tag-app-delivery.cncf.io/whitepapers/platforms/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "CNCF : modèle de maturité des plateformes",
+      "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "CNCF : livre blanc sur les plateformes",
+      "url": "https://tag-app-delivery.cncf.io/whitepapers/platforms/"
+    },
+    {
+      "nom": "CNCF : modèle de maturité des plateformes",
+      "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
+    }
+  ]
+}

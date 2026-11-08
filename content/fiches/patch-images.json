@@ -1,0 +1,71 @@
+{
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "pourquoiNouveau": null,
+  "reflexe": "Le serveur patché reste le même serveur.",
+  "genre": "transposition",
+  "id": "patch-images",
+  "avant": "patch des serveurs",
+  "apres": "images immuables et chaîne d'approvisionnement",
+  "resume": {
+    "avant": "Un correctif appliqué serveur par serveur, une fenêtre par lot, un état qui diverge au fil du temps.",
+    "apres": "On ne corrige plus un conteneur existant : on reconstruit l'image, on la vérifie, on la redéploie."
+  },
+  "resteVrai": [
+    "Corriger vite les failles critiques reste une obligation.",
+    "Une recette avant production reste nécessaire.",
+    "Savoir ce qui tourne, et où, reste le point de départ."
+  ],
+  "change": [
+    "Une image se référence par son digest (sha256:…), pas par un tag comme :latest qui peut changer.",
+    "Un SBOM liste les composants d'une image : on sait où se trouve une bibliothèque vulnérable.",
+    "Le correctif est un nouveau déploiement, pas une modification de l'existant."
+  ],
+  "piege": "Utiliser :latest en production : le même tag peut désigner deux contenus différents, donc deux comportements. Le digest, lui, désigne un contenu précis.",
+  "exemple": "Une faille touche une bibliothèque de l'AMF : le SBOM indique quelles images la contiennent ; on reconstruit, on déploie par digest, et l'ancien état reste récupérable.",
+  "technos": [
+    "kubernetes"
+  ],
+  "questions": [
+    "q-patch-images-1",
+    "q-patch-images-2"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : images de conteneurs",
+      "url": "https://kubernetes.io/docs/concepts/containers/images/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "SLSA : niveaux de sécurité de la chaîne logicielle",
+      "url": "https://slsa.dev/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : images de conteneurs",
+      "url": "https://kubernetes.io/docs/concepts/containers/images/"
+    },
+    {
+      "nom": "CISA : SBOM",
+      "url": "https://www.cisa.gov/sbom"
+    },
+    {
+      "nom": "SLSA",
+      "url": "https://slsa.dev/"
+    }
+  ]
+}
