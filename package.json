@@ -1,0 +1,33 @@
+{
+  "name": "telcoskills-transformation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Commandes sans npm ni npx (bloqués sur le poste de l'auteur) : voir CLAUDE.md. Équivalents : dev = node node_modules/next/dist/bin/next dev -p 3000 ; lint = node node_modules/eslint/bin/eslint.js . ; types = node node_modules/typescript/bin/tsc --noEmit ; test = node node_modules/vitest/vitest.mjs run ; build = node node_modules/next/dist/bin/next build.",
+  "scripts": {
+    "dev": "node node_modules/next/dist/bin/next dev -p 3000",
+    "build": "node node_modules/next/dist/bin/next build",
+    "start": "node node_modules/next/dist/bin/next start",
+    "lint": "node node_modules/eslint/bin/eslint.js .",
+    "types": "node node_modules/typescript/bin/tsc --noEmit",
+    "test": "node node_modules/vitest/vitest.mjs run",
+    "verifier": "node node_modules/eslint/bin/eslint.js . && node node_modules/typescript/bin/tsc --noEmit && node node_modules/vitest/vitest.mjs run && node node_modules/next/dist/bin/next build"
+  },
+  "dependencies": {
+    "next": "^16.4.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.1",
+    "postcss": "^8.5.29",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.3"
+  }
+}
