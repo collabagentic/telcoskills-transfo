@@ -53,3 +53,55 @@ export function SuiteFiche({ ficheId, donnees }: { ficheId: string; donnees: Don
     </div>
   );
 }
+
+/**
+ * Barre de progression collée en haut de la fiche : où je suis dans mon plan, un point par fiche (vérifiée, lue, à lire),
+ * précédente et suivante. N'apparaît que si un plan existe et contient cette fiche.
+ */
+export function BarreFiche({ ficheId, donnees }: { ficheId: string; donnees: DonneesPubliques }) {
+  const bilan = useBilan();
+  const metier = bilan ? donnees.metiers[bilan.metier] : undefined;
+  if (!bilan || !metier) return null;
+  const plan = calculerPlan(bilan, metier, donnees.fiches);
+  const i = plan.lignes.findIndex((l) => l.id === ficheId);
+  if (i < 0) return null;
+  const precedente = i > 0 ? plan.lignes[i - 1].id : null;
+  const suivante = i + 1 < plan.lignes.length ? plan.lignes[i + 1].id : null;
+  return (
+    <nav className="fiche-barre" aria-label="Progression dans votre plan">
+      {precedente ? (
+        <Link href={`/fiche/${precedente}`} className="barre-fleche" aria-label={`Fiche précédente : ${donnees.fiches[precedente].titre}`}>
+          ‹
+        </Link>
+      ) : (
+        <span className="barre-fleche barre-inactive" aria-hidden="true">
+          ‹
+        </span>
+      )}
+      <ol className="barre-points">
+        {plan.lignes.map((l, k) => (
+          <li key={l.id}>
+            <Link
+              href={`/fiche/${l.id}`}
+              className={`barre-point barre-${l.etat}${k === i ? " barre-courante" : ""}`}
+              aria-current={k === i ? "step" : undefined}
+              aria-label={`${donnees.fiches[l.id].titre} — ${l.etat === "verifie" ? "vérifiée" : l.etat === "lu" ? "lue" : "à lire"}`}
+            />
+          </li>
+        ))}
+      </ol>
+      <span className="pastille barre-compteur">
+        {i + 1} sur {plan.total}
+      </span>
+      {suivante ? (
+        <Link href={`/fiche/${suivante}`} className="barre-fleche" aria-label={`Fiche suivante : ${donnees.fiches[suivante].titre}`}>
+          ›
+        </Link>
+      ) : (
+        <span className="barre-fleche barre-inactive" aria-hidden="true">
+          ›
+        </span>
+      )}
+    </nav>
+  );
+}

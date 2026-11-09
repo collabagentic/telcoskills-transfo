@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AvantApres } from "@/composants/AvantApres";
 import { SchemaFiche } from "@/composants/SchemaFiche";
-import { HautDeFiche, SuiteFiche } from "@/composants/NavigationFiche";
+import { BarreFiche, HautDeFiche, SuiteFiche } from "@/composants/NavigationFiche";
 import { Verifier } from "@/composants/Verifier";
 import { chargerContenu } from "@/contenu/charger";
 import { preparerQuestion, tempsLecture, titreFiche } from "@/contenu/lecture";
@@ -24,7 +24,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: titreFiche(f), description: f.resume.apres, openGraph: { title: titreFiche(f), description: f.resume.apres } };
 }
 
-const TYPE_LIEN = { opensource: "open source", doc: "documentation", cours: "cours", video: "vidéo", spec: "spécification" } as const;
+const TYPE_LIEN = { cours: "Cours", video: "Vidéos", doc: "Documentation", opensource: "Open source", spec: "Spécifications" } as const;
+const ORDRE_TYPES = ["cours", "video", "doc", "opensource", "spec"] as const;
+const ACCES = { gratuit: 0, freemium: 1, payant: 2 } as const;
 const GENRE = { transposition: "Change de forme", nouveaute: "Vraiment nouveau" } as const;
 
 export default async function PageFiche({ params }: Props) {
@@ -48,6 +50,11 @@ export default async function PageFiche({ params }: Props) {
   const recents = f.historique.slice(0, 3);
   const anciens = f.historique.slice(3);
   const donnees = donneesPubliques();
+  // Ressources groupées par type ; dans chaque groupe, le gratuit d'abord puis le français.
+  const ressources = ORDRE_TYPES.map((type) => [
+    type,
+    f.plusLoin.filter((l) => l.type === type).sort((a, b) => ACCES[a.acces] - ACCES[b.acces] || Number(b.langue === "fr") - Number(a.langue === "fr")),
+  ] as const).filter(([, liens]) => liens.length > 0);
 
   return (
     <article className="fiche lecture">
@@ -61,7 +68,7 @@ export default async function PageFiche({ params }: Props) {
 
       <AvantApres genre={f.genre} resume={f.resume} lies={lies} technos={technos.map((t) => ({ id: t.id, nom: t.nom }))} />
 
-      <SchemaFiche schema={f.schema} />
+      <BarreFiche ficheId={f.id} donnees={donnees} />
 
       <section className="rubrique">
         <h2>Ce qui reste vrai</h2>
@@ -78,6 +85,10 @@ export default async function PageFiche({ params }: Props) {
             <li key={p}>{p}</li>
           ))}
         </ul>
+      </section>
+      <section className="rubrique">
+        <h2>Le schéma</h2>
+        <SchemaFiche schema={f.schema} />
       </section>
       {f.genre === "transposition" && f.reflexe ? (
         <section className="rubrique">
@@ -103,21 +114,28 @@ export default async function PageFiche({ params }: Props) {
 
       <section className="rubrique plus-loin">
         <h2>Pour aller plus loin</h2>
-        <ul>
-          {[...f.plusLoin]
-            .sort((a, b) => Number(b.acces === "gratuit") - Number(a.acces === "gratuit"))
-            .map((l) => (
-              <li key={l.url}>
-                <a href={l.url} target="_blank" rel="noopener noreferrer">
-                  {l.nom}
-                </a>{" "}
-                <span className="pastille">
-                  {TYPE_LIEN[l.type]} · {l.langue} · {l.acces}
-                  {l.auteur ? ` · ${l.auteur}` : ""}
-                </span>
-              </li>
-            ))}
-        </ul>
+        <p className="sous-titre" style={{ marginBottom: "var(--e-4)" }}>
+          Le gratuit d'abord, le français avant l'anglais.
+        </p>
+        {ressources.map(([type, liens]) => (
+          <div className="ressources-groupe" key={type}>
+            <h3 className="pastille">{TYPE_LIEN[type]}</h3>
+            <ul className="ressources">
+              {liens.map((l) => (
+                <li key={l.url}>
+                  <a className="ressource" href={l.url} target="_blank" rel="noopener noreferrer">
+                    <span className="ressource-nom">{l.nom}</span>
+                    <span className="ressource-meta">
+                      <span className="badge">{l.langue === "fr" ? "FR" : "EN"}</span>
+                      <span className={`badge${l.acces === "gratuit" ? " badge-gratuit" : ""}`}>{l.acces}</span>
+                      {l.auteur ? <span className="ressource-auteur">{l.auteur}</span> : null}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
         <details>
           <summary>Sources de cette fiche</summary>
           <ul>
