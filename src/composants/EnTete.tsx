@@ -13,8 +13,8 @@ export function EnTete() {
         TelcoSkills
       </Link>
       {actif ? (
-        <Link href="/roadmap" className="pilule-lien">
-          Ma feuille de route
+        <Link href="/cockpit" className="pilule-lien">
+          Mon cockpit
         </Link>
       ) : (
         <span aria-hidden="true" />

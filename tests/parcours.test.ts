@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { chargerContenu } from "@/contenu/charger";
-import { competenceFaite, cumulerEffets, etatsEtapes, fermeture, prochaineEtape, recombiner, restantPour, type CompetenceGraphe, type QuestionLite } from "@/lib/parcours";
+import { apercuDomaines, blocsProgramme, competenceFaite, cumulerEffets, etatsEtapes, fermeture, prochaineEtape, recombiner, restantPour, type CompetenceGraphe, type QuestionLite } from "@/lib/parcours";
 
 const g = (id: string, domaine: string, prerequis: string[] = [], niveau: CompetenceGraphe["niveau"] = "intermediaire", fiches: string[] = []): CompetenceGraphe => ({
   id, titre: `Titre ${id}`, domaine, niveau, prerequis, fiches,
@@ -134,5 +134,23 @@ describe("contenu réel", () => {
     const dans = new Set(f.etapes.map((e) => e.id));
     expect(f.acquises.some((a) => dans.has(a))).toBe(false);
     expect(f.ecartees.some((a) => dans.has(a))).toBe(false);
+  });
+});
+
+describe("aperçu et programme", () => {
+  const f = recombiner(graphe, questions, { q1: "x" }); // a, b, c (domaine x)
+  it("aperçu par domaine : total, étapes, acquises", () => {
+    const apercu = apercuDomaines(graphe, recombiner(graphe, questions, { q1: "x", q2: "sait" }), ["x", "y", "z", "vide"]);
+    expect(apercu).toEqual([
+      { domaine: "x", total: 3, etapes: 1, acquises: 2 },
+      { domaine: "y", total: 2, etapes: 0, acquises: 0 },
+      { domaine: "z", total: 1, etapes: 0, acquises: 0 },
+    ]);
+  });
+  it("programme : étapes regroupées par domaine dans l'ordre de la feuille de route", () => {
+    const blocs = blocsProgramme(recombiner(graphe, questions, {}));
+    expect(blocs.flatMap((b) => b.etapes).length).toBe(6);
+    expect(new Set(blocs.map((b) => b.domaine)).size).toBe(blocs.length);
+    expect(blocsProgramme(f).map((b) => b.domaine)).toEqual(["x"]);
   });
 });

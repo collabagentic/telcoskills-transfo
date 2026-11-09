@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { FeuilleVivante } from "@/composants/FeuilleVivante";
+import { Assistant } from "@/composants/Assistant";
 import { donneesPubliques } from "@/contenu/publiques";
 
-export const metadata: Metadata = { title: "Ma feuille de route" };
+export const metadata: Metadata = { title: "Composer ma feuille de route" };
 
 export default function PageRoadmap() {
-  return <FeuilleVivante donnees={donneesPubliques()} />;
+  return <Assistant donnees={donneesPubliques()} />;
 }

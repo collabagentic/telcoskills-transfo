@@ -33,8 +33,8 @@ export default async function PageCompetence({ params }: Props) {
 
   return (
     <article className="fiche lecture">
-      <Link href="/roadmap" className="retour">
-        ‹ Ma feuille de route
+      <Link href="/cockpit" className="retour">
+        ‹ Mon cockpit
       </Link>
       <div className="fiche-meta">
         <span className="pastille">{domaine?.nom}</span>

@@ -19,7 +19,7 @@ export function Reprise({ donnees }: { donnees: DonneesPubliques }) {
   return (
     <div className="fente-reprise carte-reprise">
       {feuille ? (
-        <Link className="reprise" href="/roadmap">
+        <Link className="reprise" href="/cockpit">
           <span>Reprendre votre feuille de route</span>
           <strong>
             {faites} sur {feuille.etapes.length}

@@ -204,3 +204,30 @@ export function restantPour(cible: string, feuille: Feuille, a: Avancement): Eta
   }
   return feuille.etapes.filter((e) => necessaires.has(e.id) && !competenceFaite(e, a));
 }
+
+/** Aperçu par domaine : combien de compétences il compte, combien restent dans la feuille de route, combien sont acquises. */
+export type ApercuDomaine = { domaine: string; total: number; etapes: number; acquises: number };
+
+export function apercuDomaines(graphe: CompetenceGraphe[], feuille: Feuille, ordreDomaines: string[]): ApercuDomaine[] {
+  const acquises = new Set(feuille.acquises);
+  const dansFeuille = new Set(feuille.etapes.map((e) => e.id));
+  return ordreDomaines
+    .map((domaine) => {
+      const membres = graphe.filter((c) => c.domaine === domaine);
+      return { domaine, total: membres.length, etapes: membres.filter((c) => dansFeuille.has(c.id)).length, acquises: membres.filter((c) => acquises.has(c.id)).length };
+    })
+    .filter((d) => d.total > 0);
+}
+
+/** Le programme : les étapes regroupées par domaine, dans l'ordre où chaque domaine apparaît dans la feuille de route. */
+export type Bloc = { domaine: string; etapes: Etape[] };
+
+export function blocsProgramme(feuille: Feuille): Bloc[] {
+  const blocs: Bloc[] = [];
+  for (const e of feuille.etapes) {
+    const bloc = blocs.find((b) => b.domaine === e.domaine);
+    if (bloc) bloc.etapes.push(e);
+    else blocs.push({ domaine: e.domaine, etapes: [e] });
+  }
+  return blocs;
+}

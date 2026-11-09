@@ -23,8 +23,8 @@ export function HautDeFiche({ ficheId }: { ficheId: string }) {
   const verifie = Boolean(parcours?.fiches[ficheId]?.verifie);
   return (
     <>
-      <Link href="/roadmap" className="retour">
-        ‹ Ma feuille de route
+      <Link href="/cockpit" className="retour">
+        ‹ Mon cockpit
       </Link>
       {verifie ? (
         <span className="pastille" style={{ color: "var(--teinte-ok)" }}>
@@ -52,16 +52,16 @@ export function SuiteFiche({ ficheId, donnees }: { ficheId: string; donnees: Don
   const suivante = i >= 0 && i + 1 < liste.length ? liste[i + 1] : null;
   return (
     <div className="suite-fiche">
-      <Link className="btn btn-lien" href="/roadmap">
-        Ma feuille de route
+      <Link className="btn btn-lien" href="/cockpit">
+        Mon cockpit
       </Link>
       {suivante ? (
         <Link className="btn btn-principal" href={`/fiche/${suivante}`}>
           Fiche suivante →
         </Link>
       ) : (
-        <Link className="btn btn-principal" href="/roadmap">
-          Retour à ma feuille de route
+        <Link className="btn btn-principal" href="/cockpit">
+          Retour à mon cockpit
         </Link>
       )}
     </div>
