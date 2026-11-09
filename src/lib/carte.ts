@@ -10,10 +10,18 @@ export type EtatCarte = "verifie" | "lu" | "disponible" | "a-venir";
 export type NoeudPlace = { id: string; couche: number; rang: number; x: number; y: number };
 export type Arete = { de: string; vers: string };
 
-export const LARGEUR_NOEUD = 208;
-export const HAUTEUR_NOEUD = 84;
-const ECART_X = 56;
-const ECART_Y = 24;
+export const LARGEUR_NOEUD = 256;
+/** Largeur et hauteur totales du graphe placé (pour régler le zoom initial). */
+export function tailleGraphe(noeuds: NoeudPlace[]): { largeur: number; hauteur: number } {
+  return {
+    largeur: Math.max(...noeuds.map((n) => n.x)) + LARGEUR_NOEUD,
+    hauteur: Math.max(...noeuds.map((n) => n.y)) + HAUTEUR_NOEUD,
+  };
+}
+
+export const HAUTEUR_NOEUD = 116;
+const ECART_X = 64;
+const ECART_Y = 28;
 
 /** Couche d'une étape = 0 sans prérequis, sinon 1 + la plus haute couche de ses prérequis (placement de gauche à droite). */
 export function placer(ordre: string[], dependances: Dependances): { noeuds: NoeudPlace[]; aretes: Arete[] } {

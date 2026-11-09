@@ -937,7 +937,8 @@ details summary {
 
 /* Carte de transformation (React Flow) : couleurs et formes viennent de nos jetons */
 .carte {
-  height: 32rem;
+  position: relative;
+  height: 34rem;
   border: 1px solid var(--filet);
   border-radius: var(--r-l);
   background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
@@ -945,7 +946,7 @@ details summary {
   overflow: hidden;
 }
 .carte .react-flow {
-  --xy-edge-stroke-default: var(--encre-3);
+  --xy-edge-stroke-default: var(--filet-fort);
   --xy-edge-stroke-width-default: 1.5;
   --xy-edge-stroke-selected-default: var(--encre-3);
   --xy-background-color-default: transparent;
@@ -964,72 +965,107 @@ details summary {
   stroke: var(--accent);
   stroke-width: 2;
 }
+
 .carte .arete-estompee .react-flow__edge-path {
-  opacity: 0.25;
+  opacity: 0.3;
 }
 .etape {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: var(--e-2);
   padding: var(--e-3) var(--e-4);
   border-radius: var(--r-m);
   border: 1px solid var(--filet-fort);
   background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
-  box-shadow: 0 1px 0 var(--reflet) inset;
-  font-size: var(--t-s);
-  line-height: 1.3;
+  box-shadow: 0 1px 0 var(--reflet) inset, 0 10px 24px var(--ombre-fine);
   transition: border-color var(--d-rapide) var(--courbe), transform var(--d-rapide) var(--courbe), opacity var(--d-base) var(--courbe);
   overflow: hidden;
 }
+.etape::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--teinte-decouvrir);
+}
+.etape-transposition::before {
+  background: var(--teinte-forme);
+}
+.etape-nouveaute::before {
+  background: var(--teinte-nouveau);
+}
 .etape:hover {
   border-color: var(--encre-3);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+.etape-entete {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  font-family: var(--police-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--encre-3);
+  min-width: 0;
+}
+.etape-genre {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.etape-temps {
+  flex: none;
+}
+.etape-repere {
+  flex: none;
+  color: var(--accent-texte);
+  font-weight: 500;
 }
 .etape-titre {
+  font-size: var(--t-s);
   font-weight: 500;
+  line-height: 1.3;
   letter-spacing: -0.01em;
+  color: var(--encre);
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+.etape .etat {
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
 }
 .etape-verifie {
   border-color: var(--teinte-ok);
 }
-.etape-a-venir {
-  opacity: 0.85;
+.etape-a-venir .etape-titre {
+  color: var(--encre-2);
 }
-.etape-nouveaute {
-  border-top: 2px solid var(--teinte-nouveau);
-}
-.etape-transposition {
-  border-top: 2px solid var(--teinte-forme);
-}
-.etape-decouvrir {
-  border-top: 2px solid var(--teinte-decouvrir);
+.etape-suivante {
+  border-color: var(--accent-filet);
+  box-shadow: var(--ombre-2);
 }
 .etape-cible {
   border-color: var(--accent);
   box-shadow: var(--ombre-2);
 }
 .etape-estompee {
-  opacity: 0.35;
+  opacity: 0.5;
 }
-.etape-objectif {
-  color: var(--accent-texte);
-}
-.etape .pastille {
-  display: flex;
-  align-items: center;
-  gap: var(--e-2);
-  letter-spacing: 0.02em;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.etape .etat {
-  width: 0.7rem;
-  height: 0.7rem;
+.carte-aide {
+  position: absolute;
+  left: var(--e-4);
+  bottom: var(--e-3);
+  pointer-events: none;
 }
 
 /* Schéma des fiches */

@@ -171,7 +171,7 @@ export function PlanVue({ donnees }: { donnees: DonneesPubliques }) {
       </div>
 
       {vue === "carte" ? (
-        <CarteTransformation metier={metier} fiches={donnees.fiches} modes={modes} etats={etats} objectif={objectif} />
+        <CarteTransformation metier={metier} fiches={donnees.fiches} modes={modes} etats={etats} objectif={objectif} suivante={plan.reprise} />
       ) : (
         <div className="lecture">
           {GROUPES.map((g) => {
