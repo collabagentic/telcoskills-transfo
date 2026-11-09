@@ -52,6 +52,100 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Deux plans de réseau pour un même pod : primaire et secondaire",
+    "largeur": 760,
+    "hauteur": 340,
+    "zones": [
+      {
+        "id": "noeud",
+        "titre": "Nœud OpenShift",
+        "x": 20,
+        "y": 20,
+        "w": 470,
+        "h": 300
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "pod",
+        "texte": "Pod CNF",
+        "detail": "eth0 et net1",
+        "x": 40,
+        "y": 130,
+        "w": 150,
+        "h": 70,
+        "zone": "noeud",
+        "ton": "chaud"
+      },
+      {
+        "id": "ovn",
+        "texte": "Réseau primaire",
+        "detail": "OVN-Kubernetes",
+        "x": 270,
+        "y": 50,
+        "w": 200,
+        "h": 60,
+        "zone": "noeud"
+      },
+      {
+        "id": "multus",
+        "texte": "Réseau secondaire",
+        "detail": "Multus + SR-IOV (VF)",
+        "x": 270,
+        "y": 230,
+        "w": 200,
+        "h": 60,
+        "zone": "noeud",
+        "ton": "froid"
+      },
+      {
+        "id": "services",
+        "texte": "Autres pods, Services",
+        "detail": "règles par labels",
+        "x": 560,
+        "y": 50,
+        "w": 180,
+        "h": 60
+      },
+      {
+        "id": "commutateur",
+        "texte": "Commutateur",
+        "detail": "VLAN, MTU, plan data",
+        "x": 560,
+        "y": 230,
+        "w": 180,
+        "h": 60,
+        "ton": "froid"
+      }
+    ],
+    "liens": [
+      {
+        "de": "pod",
+        "vers": "ovn",
+        "texte": "eth0"
+      },
+      {
+        "de": "pod",
+        "vers": "multus",
+        "texte": "net1"
+      },
+      {
+        "de": "ovn",
+        "vers": "services",
+        "texte": "signalisation"
+      },
+      {
+        "de": "multus",
+        "vers": "commutateur",
+        "texte": "VLAN"
+      }
+    ],
+    "source": {
+      "nom": "Red Hat, OpenShift 4.20 : telco core reference design",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/scalability_and_performance/telco-core-ref-design-specs"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-08",
   "historique": [

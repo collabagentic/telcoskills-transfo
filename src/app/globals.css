@@ -1880,3 +1880,113 @@ a.barre-fleche:hover {
     justify-content: center;
   }
 }
+
+/* Diagrammes d architecture (SVG) */
+.diagramme {
+  margin: 0 0 var(--e-8);
+  padding: var(--e-4) var(--e-4) var(--e-3);
+}
+.diagramme figcaption {
+  display: block;
+  margin-bottom: var(--e-3);
+  padding: 0 var(--e-2);
+}
+.diagramme-defile {
+  overflow-x: auto;
+}
+.diagramme-svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  min-width: 36rem;
+  font-family: var(--police-texte), system-ui, sans-serif;
+}
+.dg-zone rect {
+  fill: var(--surface-3);
+  stroke: var(--filet-fort);
+  stroke-width: 1;
+  stroke-dasharray: 5 4;
+}
+.dg-zone-titre {
+  fill: var(--encre-3);
+  font-family: var(--police-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dg-zone.dg-ton-chaud rect {
+  stroke: var(--accent-filet);
+  fill: var(--accent-surface-2);
+}
+.dg-zone.dg-ton-froid rect {
+  stroke: var(--teinte-forme);
+  stroke-opacity: 0.5;
+}
+.dg-forme {
+  fill: var(--surface-2);
+  stroke: var(--filet-fort);
+  stroke-width: 1.2;
+}
+.dg-texte {
+  fill: var(--encre);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.dg-detail {
+  fill: var(--encre-3);
+  font-size: 11px;
+}
+.dg-ton-chaud .dg-forme {
+  stroke: var(--accent);
+  fill: var(--accent-surface-1);
+}
+.dg-ton-froid .dg-forme {
+  stroke: var(--teinte-forme);
+}
+.dg-ton-ok .dg-forme {
+  stroke: var(--teinte-ok);
+}
+.dg-ton-faible .dg-forme {
+  stroke-dasharray: 4 3;
+  opacity: 0.8;
+}
+.dg-lien {
+  stroke: var(--encre-3);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+.dg-pointille {
+  stroke-dasharray: 5 4;
+}
+.dg-pointe {
+  fill: none;
+  stroke: var(--encre-3);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dg-etiquette {
+  fill: var(--encre-2);
+  font-size: 11px;
+  paint-order: stroke;
+  stroke: var(--surface-2);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+.diagramme-source {
+  margin-top: var(--e-2);
+  padding: 0 var(--e-2);
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+}
+.diagramme-source a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.fiche .diagramme {
+  position: relative;
+  left: 50%;
+  width: min(calc(100vw - 3rem), 56rem);
+  transform: translateX(-50%);
+}

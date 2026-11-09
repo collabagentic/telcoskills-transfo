@@ -1,3 +1,4 @@
+import { verifierDiagramme } from "./diagramme";
 import type { Contenu } from "./schemas";
 
 /** Les règles du build. Renvoie la liste des erreurs, en français, vide si le contenu est valide. */
@@ -31,8 +32,9 @@ export function verifierContenu(c: Contenu): string[] {
       else if (!competences.has(p)) err(12, `compétence « ${x.id} » : le prérequis « ${p} » n'existe pas.`);
     }
   }
-  // 14. Le schéma de base d'une compétence décrit un mécanisme : pas de colonne « avant ».
-  for (const x of c.competences) if (x.schemaBase?.avant) err(14, `compétence « ${x.id} » : le schéma de base n'a pas de colonne « avant ».`);
+  // 15. Diagrammes : références, débordements, chevauchements, texte qui tient dans sa boîte.
+  for (const x of c.competences) if (x.diagramme) for (const e of verifierDiagramme(x.diagramme)) err(15, `compétence « ${x.id} » : ${e}`);
+  for (const f of c.fiches) if (f.diagramme) for (const e of verifierDiagramme(f.diagramme)) err(15, `fiche « ${f.id} » : ${e}`);
   const etat = new Map<string, 1 | 2>(); // 1 = en cours, 2 = terminé
   const visiter = (id: string, chemin: string[]) => {
     if (etat.get(id) === 2) return;

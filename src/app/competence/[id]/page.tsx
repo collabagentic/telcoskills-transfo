@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BoutonRessources } from "@/composants/BoutonRessources";
 import { Maitrise } from "@/composants/Maitrise";
-import { SchemaFiche } from "@/composants/SchemaFiche";
+import { Diagramme } from "@/composants/Diagramme";
 import { Ressources } from "@/composants/Ressources";
 import { chargerContenu } from "@/contenu/charger";
 import { titreFiche } from "@/contenu/lecture";
@@ -49,10 +49,10 @@ export default async function PageCompetence({ params }: Props) {
         <Maitrise id={x.id} />
       </div>
 
-      {x.schemaBase ? (
+      {x.diagramme ? (
         <section className="rubrique">
           <h2>Le schéma de base</h2>
-          <SchemaFiche schema={x.schemaBase} />
+          <Diagramme diagramme={x.diagramme} />
         </section>
       ) : null}
 

@@ -62,17 +62,7 @@ k8s.casUsage = [
   },
 ];
 
-k8s.schemaBase = {
-  legende: "Les composants de base d'un cluster",
-  avant: null,
-  apres: [
-    { texte: "Vous", detail: "kubectl, pipeline GitOps" },
-    { texte: "API server", detail: "point d'entrée unique du cluster" },
-    { texte: "etcd", detail: "stocke l'état voulu et l'état réel" },
-    { texte: "Scheduler et contrôleurs", detail: "placent les pods, réconcilient" },
-    { texte: "kubelet", detail: "sur chaque nœud, démarre les pods" },
-  ],
-};
+// Le schéma de base est un vrai diagramme : voir scripts/migration/diagrammes.mjs
 // Les sources du schéma de base : composants d'un cluster (kubernetes.io/docs/concepts/overview/components/)
 fs.writeFileSync(fichier, JSON.stringify(liste, null, 2) + "\n");
 console.log("k8s-archi enrichie :", k8s.chronologie.length, "jalons,", k8s.casUsage.length, "cas d'usage, schéma de base.");

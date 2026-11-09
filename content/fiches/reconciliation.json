@@ -38,6 +38,86 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "La boucle de réconciliation : l'état voulu contre l'état réel",
+    "largeur": 760,
+    "hauteur": 260,
+    "zones": [
+      {
+        "id": "boucle",
+        "titre": "Boucle de réconciliation",
+        "x": 220,
+        "y": 130,
+        "w": 480,
+        "h": 100,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "vous",
+        "texte": "Vous",
+        "detail": "déclarez le voulu",
+        "x": 20,
+        "y": 120,
+        "w": 130,
+        "h": 56
+      },
+      {
+        "id": "api",
+        "texte": "API server",
+        "detail": "stocke l'état voulu",
+        "x": 240,
+        "y": 40,
+        "w": 160,
+        "h": 56
+      },
+      {
+        "id": "ctrl",
+        "texte": "Contrôleur",
+        "detail": "compare voulu et réel",
+        "x": 240,
+        "y": 160,
+        "w": 160,
+        "h": 56,
+        "zone": "boucle",
+        "ton": "chaud"
+      },
+      {
+        "id": "reel",
+        "texte": "État réel",
+        "detail": "pods, nœuds, volumes",
+        "x": 500,
+        "y": 160,
+        "w": 180,
+        "h": 56,
+        "zone": "boucle",
+        "ton": "ok"
+      }
+    ],
+    "liens": [
+      {
+        "de": "vous",
+        "vers": "api",
+        "texte": "apply"
+      },
+      {
+        "de": "api",
+        "vers": "ctrl",
+        "texte": "watch"
+      },
+      {
+        "de": "ctrl",
+        "vers": "reel",
+        "sens": "double",
+        "texte": "observe, agit"
+      }
+    ],
+    "source": {
+      "nom": "Kubernetes : contrôleurs",
+      "url": "https://kubernetes.io/docs/concepts/architecture/controller/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-08",
   "historique": [

@@ -164,31 +164,164 @@
         }
       }
     ],
-    "schemaBase": {
-      "legende": "Les composants de base d'un cluster",
-      "avant": null,
-      "apres": [
+    "diagramme": {
+      "legende": "Architecture d'un cluster Kubernetes : plan de contrôle et nœud de calcul",
+      "largeur": 760,
+      "hauteur": 420,
+      "zones": [
         {
-          "texte": "Vous",
-          "detail": "kubectl, pipeline GitOps"
+          "id": "plan-controle",
+          "titre": "Plan de contrôle",
+          "x": 150,
+          "y": 20,
+          "w": 340,
+          "h": 380
         },
         {
-          "texte": "API server",
-          "detail": "point d'entrée unique du cluster"
-        },
-        {
-          "texte": "etcd",
-          "detail": "stocke l'état voulu et l'état réel"
-        },
-        {
-          "texte": "Scheduler et contrôleurs",
-          "detail": "placent les pods, réconcilient"
-        },
-        {
-          "texte": "kubelet",
-          "detail": "sur chaque nœud, démarre les pods"
+          "id": "noeud",
+          "titre": "Nœud de calcul",
+          "x": 530,
+          "y": 20,
+          "w": 210,
+          "h": 380
         }
-      ]
+      ],
+      "noeuds": [
+        {
+          "id": "vous",
+          "texte": "Vous",
+          "detail": "kubectl, GitOps",
+          "x": 20,
+          "y": 150,
+          "w": 110,
+          "h": 54
+        },
+        {
+          "id": "sched",
+          "texte": "Scheduler",
+          "detail": "choisit le nœud",
+          "x": 170,
+          "y": 60,
+          "w": 130,
+          "h": 54,
+          "zone": "plan-controle"
+        },
+        {
+          "id": "ctrl",
+          "texte": "Contrôleurs",
+          "detail": "réconcilient",
+          "x": 170,
+          "y": 240,
+          "w": 130,
+          "h": 54,
+          "zone": "plan-controle"
+        },
+        {
+          "id": "api",
+          "texte": "API server",
+          "detail": "point d'entrée unique",
+          "x": 320,
+          "y": 150,
+          "w": 150,
+          "h": 54,
+          "zone": "plan-controle",
+          "ton": "chaud"
+        },
+        {
+          "id": "etcd",
+          "texte": "etcd",
+          "detail": "état du cluster",
+          "x": 335,
+          "y": 56,
+          "w": 120,
+          "h": 60,
+          "zone": "plan-controle",
+          "ton": "froid",
+          "forme": "base"
+        },
+        {
+          "id": "proxy",
+          "texte": "kube-proxy",
+          "detail": "réseau des Services",
+          "x": 550,
+          "y": 56,
+          "w": 170,
+          "h": 54,
+          "zone": "noeud"
+        },
+        {
+          "id": "kubelet",
+          "texte": "kubelet",
+          "detail": "démarre et suit les pods",
+          "x": 550,
+          "y": 150,
+          "w": 170,
+          "h": 54,
+          "zone": "noeud",
+          "ton": "chaud"
+        },
+        {
+          "id": "runtime",
+          "texte": "Runtime",
+          "detail": "containerd, CRI-O",
+          "x": 550,
+          "y": 240,
+          "w": 170,
+          "h": 54,
+          "zone": "noeud"
+        },
+        {
+          "id": "pods",
+          "texte": "Pods",
+          "detail": "vos charges de travail",
+          "x": 550,
+          "y": 326,
+          "w": 170,
+          "h": 54,
+          "zone": "noeud",
+          "ton": "ok"
+        }
+      ],
+      "liens": [
+        {
+          "de": "vous",
+          "vers": "api",
+          "texte": "HTTPS"
+        },
+        {
+          "de": "sched",
+          "vers": "api",
+          "decalageEntree": -12
+        },
+        {
+          "de": "ctrl",
+          "vers": "api",
+          "decalageEntree": 12
+        },
+        {
+          "de": "api",
+          "vers": "etcd",
+          "sens": "double"
+        },
+        {
+          "de": "api",
+          "vers": "kubelet",
+          "texte": "ordres"
+        },
+        {
+          "de": "kubelet",
+          "vers": "runtime",
+          "texte": "CRI"
+        },
+        {
+          "de": "runtime",
+          "vers": "pods"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : composants d'un cluster",
+        "url": "https://kubernetes.io/docs/concepts/overview/components/"
+      }
     }
   },
   {

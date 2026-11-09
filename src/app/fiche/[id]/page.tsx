@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AvantApres } from "@/composants/AvantApres";
 import { BoutonRessources } from "@/composants/BoutonRessources";
+import { Diagramme } from "@/composants/Diagramme";
 import { BarreFiche, HautDeFiche, SuiteFiche } from "@/composants/NavigationFiche";
 import { Ressources } from "@/composants/Ressources";
 import { SchemaFiche } from "@/composants/SchemaFiche";
@@ -79,7 +80,7 @@ export default async function PageFiche({ params }: Props) {
       </section>
       <section className="rubrique">
         <h2>Le schéma</h2>
-        <SchemaFiche schema={f.schema} />
+        {f.diagramme ? <Diagramme diagramme={f.diagramme} /> : <SchemaFiche schema={f.schema} />}
       </section>
       {f.genre === "transposition" && f.reflexe ? (
         <section className="rubrique">

@@ -54,6 +54,93 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "GitOps : l'état voulu est dans Git, le cluster se reconstruit depuis lui",
+    "largeur": 760,
+    "hauteur": 300,
+    "zones": [],
+    "noeuds": [
+      {
+        "id": "vous",
+        "texte": "Vous",
+        "detail": "pull request",
+        "x": 20,
+        "y": 100,
+        "w": 120,
+        "h": 56
+      },
+      {
+        "id": "git",
+        "texte": "Dépôt Git",
+        "detail": "état voulu",
+        "x": 190,
+        "y": 100,
+        "w": 150,
+        "h": 56,
+        "ton": "chaud"
+      },
+      {
+        "id": "gitops",
+        "texte": "Outil GitOps",
+        "detail": "Argo CD, Flux",
+        "x": 400,
+        "y": 100,
+        "w": 150,
+        "h": 56
+      },
+      {
+        "id": "cluster",
+        "texte": "Cluster",
+        "detail": "état réel",
+        "x": 610,
+        "y": 100,
+        "w": 130,
+        "h": 56,
+        "ton": "ok"
+      },
+      {
+        "id": "sauvegardes",
+        "texte": "Sauvegardes",
+        "detail": "etcd, données, secrets",
+        "x": 400,
+        "y": 210,
+        "w": 150,
+        "h": 60,
+        "ton": "froid",
+        "forme": "base"
+      }
+    ],
+    "liens": [
+      {
+        "de": "vous",
+        "vers": "git",
+        "texte": "fusion"
+      },
+      {
+        "de": "gitops",
+        "vers": "git",
+        "texte": "lit",
+        "style": "pointille"
+      },
+      {
+        "de": "gitops",
+        "vers": "cluster",
+        "texte": "applique"
+      },
+      {
+        "de": "sauvegardes",
+        "vers": "cluster",
+        "texte": "restaure",
+        "style": "pointille",
+        "sortie": "d",
+        "entree": "b"
+      }
+    ],
+    "source": {
+      "nom": "OpenGitOps : principes",
+      "url": "https://opengitops.dev/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-08",
   "historique": [

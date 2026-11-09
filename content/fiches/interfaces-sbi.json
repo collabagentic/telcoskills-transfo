@@ -52,6 +52,119 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Le cœur 5G : interfaces de service (SBI) et points de référence",
+    "largeur": 800,
+    "hauteur": 350,
+    "zones": [
+      {
+        "id": "sbi",
+        "titre": "Interfaces de service (HTTP/2 + JSON)",
+        "x": 260,
+        "y": 20,
+        "w": 420,
+        "h": 190
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "ran",
+        "texte": "RAN (gNB)",
+        "detail": "radio",
+        "x": 20,
+        "y": 95,
+        "w": 110,
+        "h": 56
+      },
+      {
+        "id": "amf",
+        "texte": "AMF",
+        "detail": "accès, mobilité",
+        "x": 280,
+        "y": 70,
+        "w": 110,
+        "h": 56,
+        "zone": "sbi"
+      },
+      {
+        "id": "smf",
+        "texte": "SMF",
+        "detail": "sessions PDU",
+        "x": 550,
+        "y": 70,
+        "w": 110,
+        "h": 56,
+        "zone": "sbi"
+      },
+      {
+        "id": "nrf",
+        "texte": "NRF",
+        "detail": "annuaire",
+        "x": 395,
+        "y": 140,
+        "w": 120,
+        "h": 56,
+        "zone": "sbi",
+        "ton": "froid"
+      },
+      {
+        "id": "upf",
+        "texte": "UPF",
+        "detail": "plan usager",
+        "x": 570,
+        "y": 270,
+        "w": 110,
+        "h": 56,
+        "ton": "chaud"
+      }
+    ],
+    "liens": [
+      {
+        "de": "ran",
+        "vers": "amf",
+        "texte": "N2 · SCTP"
+      },
+      {
+        "de": "amf",
+        "vers": "smf",
+        "texte": "N11 · HTTP/2"
+      },
+      {
+        "de": "amf",
+        "vers": "nrf",
+        "texte": "Nnrf",
+        "sortie": "b",
+        "entree": "g"
+      },
+      {
+        "de": "smf",
+        "vers": "nrf",
+        "texte": "Nnrf",
+        "sortie": "b",
+        "entree": "d",
+        "decalageSortie": -20
+      },
+      {
+        "de": "smf",
+        "vers": "upf",
+        "texte": "N4 · PFCP",
+        "sortie": "b",
+        "entree": "h",
+        "decalageSortie": 20
+      },
+      {
+        "de": "ran",
+        "vers": "upf",
+        "texte": "N3 · GTP-U",
+        "sortie": "b",
+        "entree": "g"
+      }
+    ],
+    "source": {
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [
