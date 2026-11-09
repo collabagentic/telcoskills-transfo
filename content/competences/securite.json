@@ -422,7 +422,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "La chaîne d'approvisionnement : du code au pod, chaque étape se vérifie",
-      "largeur": 714,
+      "largeur": 746,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -441,7 +441,7 @@
           "detail": "dépendances épinglées",
           "ton": "chaud",
           "w": 180,
-          "x": 272,
+          "x": 294,
           "y": 30,
           "h": 56
         },
@@ -450,7 +450,7 @@
           "texte": "SBOM et signature",
           "detail": "contenu et origine",
           "w": 170,
-          "x": 524,
+          "x": 556,
           "y": 30,
           "h": 56
         },
@@ -469,7 +469,7 @@
           "detail": "refuse l'image non signée",
           "ton": "froid",
           "w": 190,
-          "x": 212,
+          "x": 222,
           "y": 150,
           "h": 56
         },
@@ -479,7 +479,7 @@
           "detail": "image par digest",
           "ton": "ok",
           "w": 140,
-          "x": 474,
+          "x": 500,
           "y": 150,
           "h": 56
         }
@@ -1055,7 +1055,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Sécuriser le bus de services : TLS mutuel et jeton OAuth2",
-      "largeur": 674,
+      "largeur": 684,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1074,7 +1074,7 @@
           "detail": "délivre un jeton",
           "ton": "chaud",
           "w": 140,
-          "x": 252,
+          "x": 262,
           "y": 30,
           "h": 56
         },
@@ -1083,7 +1083,7 @@
           "texte": "Jeton OAuth2",
           "detail": "portée et durée limitées",
           "w": 190,
-          "x": 464,
+          "x": 474,
           "y": 30,
           "h": 56
         },
@@ -1302,7 +1302,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Détecter : journaliser, collecter, corréler, alerter",
-      "largeur": 744,
+      "largeur": 764,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1320,7 +1320,7 @@
           "texte": "Collecte",
           "detail": "agents, transfert sûr",
           "w": 170,
-          "x": 312,
+          "x": 328,
           "y": 30,
           "h": 56
         },
@@ -1330,7 +1330,7 @@
           "detail": "centralise et corrèle",
           "ton": "chaud",
           "w": 170,
-          "x": 554,
+          "x": 574,
           "y": 30,
           "h": 56
         },
@@ -1349,7 +1349,7 @@
           "detail": "vers l'équipe sécurité",
           "ton": "faible",
           "w": 170,
-          "x": 272,
+          "x": 305,
           "y": 150,
           "h": 56
         }
@@ -1576,7 +1576,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Gérer les vulnérabilités : scanner, trier, corriger, redéployer",
-      "largeur": 836,
+      "largeur": 657,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1594,7 +1594,7 @@
           "texte": "Rapport",
           "detail": "failles connues",
           "w": 130,
-          "x": 222,
+          "x": 232,
           "y": 30,
           "h": 56
         },
@@ -1604,7 +1604,7 @@
           "detail": "exposition et gravité",
           "ton": "chaud",
           "w": 170,
-          "x": 424,
+          "x": 467,
           "y": 30,
           "h": 56
         },
@@ -1613,8 +1613,8 @@
           "texte": "Correctif",
           "detail": "image reconstruite",
           "w": 150,
-          "x": 666,
-          "y": 30,
+          "x": 20,
+          "y": 150,
           "h": 56
         },
         {
@@ -1623,7 +1623,7 @@
           "detail": "par pipeline",
           "ton": "ok",
           "w": 130,
-          "x": 20,
+          "x": 264,
           "y": 150,
           "h": 56
         }
@@ -1642,14 +1642,14 @@
         {
           "de": "prio",
           "vers": "fix",
-          "texte": "décide"
+          "texte": "décide",
+          "sortie": "b",
+          "entree": "h"
         },
         {
           "de": "fix",
           "vers": "dep",
-          "texte": "livré par",
-          "sortie": "b",
-          "entree": "h"
+          "texte": "livré par"
         }
       ],
       "source": {

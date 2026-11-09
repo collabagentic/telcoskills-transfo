@@ -116,15 +116,18 @@ export function flux({ legende, noeuds, etiquettes = [], extra = [], cadre, larg
   const y0 = y ?? (cadre ? 62 : 30);
   const lignes = [[]];
   let cx = x;
-  for (const it of noeuds) {
+  // L'écart après un composant s'élargit pour que l'étiquette de la flèche tienne entre les deux boîtes.
+  const texteEtiquette = (i) => (Array.isArray(etiquettes[i]) ? etiquettes[i][0] : etiquettes[i]) ?? "";
+  const ecartApres = (i) => Math.max(gap, Math.ceil(texteEtiquette(i).length * 5.9 + 40));
+  noeuds.forEach((it, i) => {
     const w = it.largeur ?? mesure(it.texte, it.detail);
     if (cx + w > largeurMax && lignes[lignes.length - 1].length > 0) {
       lignes.push([]);
       cx = x;
     }
     lignes[lignes.length - 1].push({ ...it, w, ligne: lignes.length - 1, x: cx });
-    cx += w + gap;
-  }
+    cx += w + ecartApres(i);
+  });
   const places = [];
   lignes.forEach((ligne, i) => {
     for (const it of ligne) {
@@ -146,7 +149,9 @@ export function flux({ legende, noeuds, etiquettes = [], extra = [], cadre, larg
 /**
  * Étoile : un composant central et jusqu'à quatre voisins (h, b, g, d). `sens: "depuis"` inverse la flèche, "double" la rend bidirectionnelle.
  */
-export function etoile({ legende, centre, voisins, source, ecart = 90 }) {
+export function etoile({ legende, centre, voisins, source, ecart: ecartMin = 90 }) {
+  // L'écart s'élargit pour que la plus longue étiquette tienne entre le centre et un voisin.
+  const ecart = Math.max(ecartMin, ...voisins.map((v) => (v.texte ? Math.ceil(v.texte.length * 5.9 + 40) : 0)));
   const par = Object.fromEntries(voisins.map((v) => [v.cote, v]));
   const larg = (k) => k.largeur ?? mesure(k.texte, k.detail);
   const wc = larg(centre);

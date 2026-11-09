@@ -39,7 +39,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Du HLD au LLD : de la vision aux détails d'installation",
-      "largeur": 734,
+      "largeur": 785,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -58,7 +58,7 @@
           "texte": "LLD",
           "detail": "paramètres, ports, adresses",
           "w": 210,
-          "x": 272,
+          "x": 323,
           "y": 30,
           "h": 56
         },
@@ -67,7 +67,7 @@
           "texte": "Plan d'adressage",
           "detail": "VLAN, sous-réseaux",
           "w": 160,
-          "x": 554,
+          "x": 605,
           "y": 30,
           "h": 56
         },
@@ -212,7 +212,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Comparer des fournisseurs : critères pondérés, preuve de concept, décision",
-      "largeur": 826,
+      "largeur": 757,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -230,7 +230,7 @@
           "texte": "Réponses",
           "detail": "offres reçues",
           "w": 120,
-          "x": 232,
+          "x": 283,
           "y": 30,
           "h": 56
         },
@@ -240,7 +240,7 @@
           "detail": "tests sur vos cas",
           "ton": "chaud",
           "w": 170,
-          "x": 424,
+          "x": 567,
           "y": 30,
           "h": 56
         },
@@ -249,8 +249,8 @@
           "texte": "Notation",
           "detail": "grille et écarts",
           "w": 140,
-          "x": 666,
-          "y": 30,
+          "x": 20,
+          "y": 150,
           "h": 56
         },
         {
@@ -259,7 +259,7 @@
           "detail": "tracée et justifiée",
           "ton": "ok",
           "w": 150,
-          "x": 20,
+          "x": 254,
           "y": 150,
           "h": 56
         }
@@ -278,14 +278,14 @@
         {
           "de": "poc",
           "vers": "note",
-          "texte": "alimente"
+          "texte": "alimente",
+          "sortie": "b",
+          "entree": "h"
         },
         {
           "de": "note",
           "vers": "dec",
-          "texte": "conduit à",
-          "sortie": "b",
-          "entree": "h"
+          "texte": "conduit à"
         }
       ],
       "source": {
@@ -346,7 +346,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Coût et énergie : mesurer ce que consomme un service",
-      "largeur": 684,
+      "largeur": 756,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -364,7 +364,7 @@
           "texte": "Consommation",
           "detail": "puissance, charge",
           "w": 140,
-          "x": 262,
+          "x": 289,
           "y": 30,
           "h": 56
         },
@@ -374,7 +374,7 @@
           "detail": "par service et par équipe",
           "ton": "chaud",
           "w": 190,
-          "x": 474,
+          "x": 546,
           "y": 30,
           "h": 56
         },
@@ -461,7 +461,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Le cycle de vie : suivre les versions avant la fin du support",
-      "largeur": 684,
+      "largeur": 715,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -480,7 +480,7 @@
           "detail": "en lab, sur vos fonctions",
           "ton": "chaud",
           "w": 190,
-          "x": 252,
+          "x": 256,
           "y": 30,
           "h": 56
         },
@@ -489,7 +489,7 @@
           "texte": "Mise à jour",
           "detail": "cluster par cluster",
           "w": 150,
-          "x": 514,
+          "x": 545,
           "y": 30,
           "h": 56
         },

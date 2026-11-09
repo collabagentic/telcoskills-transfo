@@ -53,15 +53,15 @@
   },
   "diagramme": {
     "legende": "Qui peut faire quoi, et où : sujets, liaisons, rôles, ressources",
-    "largeur": 886,
+    "largeur": 836,
     "hauteur": 346,
     "zones": [
       {
         "id": "ns",
         "titre": "Namespace 5gc",
-        "x": 224,
+        "x": 194,
         "y": 80,
-        "w": 642,
+        "w": 622,
         "h": 110,
         "ton": "chaud"
       }
@@ -89,7 +89,7 @@
         "id": "rb",
         "texte": "RoleBinding",
         "detail": "lie sujet et rôle",
-        "x": 240,
+        "x": 210,
         "y": 118,
         "w": 140,
         "h": 56,
@@ -98,22 +98,22 @@
       {
         "id": "role",
         "texte": "Role",
-        "detail": "verbes sur des ressources",
+        "detail": "verbes sur ressources",
         "ton": "chaud",
         "x": 430,
         "y": 118,
-        "w": 190,
+        "w": 170,
         "h": 56,
         "zone": "ns"
       },
       {
         "id": "res",
         "texte": "Ressources",
-        "detail": "pods, secrets, services",
+        "detail": "pods, secrets",
         "ton": "ok",
-        "x": 670,
+        "x": 680,
         "y": 118,
-        "w": 180,
+        "w": 120,
         "h": 56,
         "zone": "ns"
       },
@@ -122,7 +122,7 @@
         "texte": "ClusterRoleBinding",
         "detail": "portée : tout le cluster",
         "ton": "faible",
-        "x": 240,
+        "x": 210,
         "y": 270,
         "w": 190,
         "h": 56
@@ -146,8 +146,7 @@
       },
       {
         "de": "sa",
-        "vers": "rb",
-        "texte": "sujet"
+        "vers": "rb"
       },
       {
         "de": "rb",

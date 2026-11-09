@@ -2016,3 +2016,14 @@ a.barre-fleche:hover {
 .accueil .action-accueil {
   margin-top: var(--e-8);
 }
+.diagramme-aide {
+  display: none;
+  margin: var(--e-2) var(--e-2) 0;
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+}
+@media (max-width: 719px) {
+  .diagramme-aide {
+    display: block;
+  }
+}

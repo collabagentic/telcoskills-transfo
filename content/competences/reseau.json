@@ -469,7 +469,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Deux chemins pour un paquet : par le noyau, ou directement dans l'application avec DPDK",
-      "largeur": 842,
+      "largeur": 852,
       "hauteur": 312,
       "zones": [
         {
@@ -485,7 +485,7 @@
           "titre": "Chemin DPDK",
           "x": 20,
           "y": 182,
-          "w": 802,
+          "w": 812,
           "h": 110,
           "ton": "chaud"
         }
@@ -535,10 +535,10 @@
         {
           "id": "p2",
           "texte": "Paquet",
-          "detail": "arrive sur la carte",
+          "detail": "sur la carte",
           "x": 36,
           "y": 220,
-          "w": 150,
+          "w": 110,
           "h": 56,
           "zone": "chemin-dpdk"
         },
@@ -546,7 +546,7 @@
           "id": "vf",
           "texte": "VF SR-IOV",
           "detail": "accès direct",
-          "x": 236,
+          "x": 226,
           "y": 220,
           "w": 110,
           "h": 56,
@@ -555,11 +555,11 @@
         {
           "id": "dpdk",
           "texte": "DPDK",
-          "detail": "interrogation en continu",
+          "detail": "scrute les paquets",
           "ton": "chaud",
-          "x": 396,
+          "x": 416,
           "y": 220,
-          "w": 190,
+          "w": 150,
           "h": 56,
           "zone": "chemin-dpdk"
         },
@@ -568,7 +568,7 @@
           "texte": "Application",
           "detail": "hugepages, CPU isolés",
           "ton": "ok",
-          "x": 636,
+          "x": 646,
           "y": 220,
           "w": 170,
           "h": 56,
@@ -741,7 +741,6 @@
         {
           "de": "sp2",
           "vers": "svc",
-          "texte": "vers les pods",
           "sortie": "d",
           "entree": "g"
         }
@@ -1031,7 +1030,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Le piège de la MTU : une encapsulation ajoute des octets, le paquet ne passe plus",
-      "largeur": 728,
+      "largeur": 764,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1050,7 +1049,7 @@
           "detail": "ajoute un en-tête",
           "ton": "chaud",
           "w": 140,
-          "x": 304,
+          "x": 316,
           "y": 30,
           "h": 56
         },
@@ -1059,7 +1058,7 @@
           "texte": "Carte et commutateurs",
           "detail": "MTU du support",
           "w": 200,
-          "x": 508,
+          "x": 544,
           "y": 30,
           "h": 56
         },
@@ -1135,7 +1134,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Dépanner le réseau d'une plateforme telco : du lien jusqu'au protocole",
-      "largeur": 658,
+      "largeur": 676,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1154,7 +1153,7 @@
           "texte": "Interface",
           "detail": "ip link : VLAN, MTU",
           "w": 150,
-          "x": 304,
+          "x": 322,
           "y": 30,
           "h": 56
         },
@@ -1163,7 +1162,7 @@
           "texte": "Routage",
           "detail": "ip route, BGP",
           "w": 120,
-          "x": 518,
+          "x": 536,
           "y": 30,
           "h": 56
         },
@@ -1182,7 +1181,7 @@
           "detail": "tcpdump, association SCTP",
           "ton": "chaud",
           "w": 190,
-          "x": 254,
+          "x": 260,
           "y": 150,
           "h": 56
         }

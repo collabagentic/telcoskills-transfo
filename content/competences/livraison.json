@@ -30,7 +30,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Packager une fonction réseau : un chart, des sous-charts, des valeurs par environnement",
-      "largeur": 844,
+      "largeur": 574,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -49,7 +49,7 @@
           "texte": "Sous-charts",
           "detail": "base de données, configuration",
           "w": 220,
-          "x": 312,
+          "x": 334,
           "y": 30,
           "h": 56
         },
@@ -58,8 +58,8 @@
           "texte": "Valeurs d'environnement",
           "detail": "lab, préproduction, production",
           "w": 220,
-          "x": 604,
-          "y": 30,
+          "x": 20,
+          "y": 150,
           "h": 56
         },
         {
@@ -68,7 +68,7 @@
           "detail": "installée et suivie",
           "ton": "ok",
           "w": 150,
-          "x": 20,
+          "x": 322,
           "y": 150,
           "h": 56
         }
@@ -82,14 +82,14 @@
         {
           "de": "sub",
           "vers": "env",
-          "texte": "surchargées par"
+          "texte": "surchargées par",
+          "sortie": "b",
+          "entree": "h"
         },
         {
           "de": "env",
           "vers": "rel",
-          "texte": "produit",
-          "sortie": "b",
-          "entree": "h"
+          "texte": "produit"
         }
       ],
       "source": {
@@ -129,7 +129,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Configurer une fonction par API : un modèle, un protocole, des datastores",
-      "largeur": 744,
+      "largeur": 810,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -148,7 +148,7 @@
           "detail": "décrit la configuration",
           "ton": "chaud",
           "w": 180,
-          "x": 292,
+          "x": 331,
           "y": 30,
           "h": 56
         },
@@ -157,7 +157,7 @@
           "texte": "NETCONF ou RESTCONF",
           "detail": "protocole d'accès",
           "w": 180,
-          "x": 544,
+          "x": 610,
           "y": 30,
           "h": 56
         },
@@ -228,7 +228,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Le cycle de vie selon ETSI : du paquet à l'instance",
-      "largeur": 684,
+      "largeur": 721,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -247,7 +247,7 @@
           "detail": "intègre au catalogue",
           "ton": "chaud",
           "w": 160,
-          "x": 292,
+          "x": 319,
           "y": 30,
           "h": 56
         },
@@ -256,7 +256,7 @@
           "texte": "VNFM",
           "detail": "pilote l'instance",
           "w": 140,
-          "x": 524,
+          "x": 561,
           "y": 30,
           "h": 56
         },
@@ -320,7 +320,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Accueillir un éditeur : de l'exigence à la qualification",
-      "largeur": 694,
+      "largeur": 749,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -338,7 +338,7 @@
           "texte": "Livraison",
           "detail": "charts, images, doc",
           "w": 150,
-          "x": 252,
+          "x": 262,
           "y": 30,
           "h": 56
         },
@@ -348,7 +348,7 @@
           "detail": "conformité aux exigences",
           "ton": "chaud",
           "w": 200,
-          "x": 474,
+          "x": 529,
           "y": 30,
           "h": 56
         },
@@ -367,7 +367,7 @@
           "detail": "accord de mise en service",
           "ton": "ok",
           "w": 190,
-          "x": 252,
+          "x": 256,
           "y": 150,
           "h": 56
         }
@@ -425,7 +425,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Le dossier d'intégration : de l'architecture à la procédure",
-      "largeur": 664,
+      "largeur": 742,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -443,7 +443,7 @@
           "texte": "Matrice de flux",
           "detail": "qui parle à qui",
           "w": 150,
-          "x": 262,
+          "x": 289,
           "y": 30,
           "h": 56
         },
@@ -452,7 +452,7 @@
           "texte": "Plan d'adressage",
           "detail": "VLAN, sous-réseaux",
           "w": 160,
-          "x": 484,
+          "x": 562,
           "y": 30,
           "h": 56
         },
@@ -471,7 +471,7 @@
           "detail": "relu et versionné",
           "ton": "ok",
           "w": 140,
-          "x": 282,
+          "x": 321,
           "y": 150,
           "h": 56
         }
@@ -538,7 +538,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "CI/CD d'intégration : chaque version passe par les mêmes tests",
-      "largeur": 674,
+      "largeur": 706,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -557,7 +557,7 @@
           "detail": "contrôles, build",
           "ton": "chaud",
           "w": 140,
-          "x": 272,
+          "x": 294,
           "y": 30,
           "h": 56
         },
@@ -566,7 +566,7 @@
           "texte": "Déploiement en lab",
           "detail": "environnement jetable",
           "w": 170,
-          "x": 484,
+          "x": 516,
           "y": 30,
           "h": 56
         },
@@ -585,7 +585,7 @@
           "detail": "vers l'environnement suivant",
           "ton": "ok",
           "w": 210,
-          "x": 262,
+          "x": 272,
           "y": 150,
           "h": 56
         }
@@ -742,7 +742,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Un laboratoire reproductible : tout se recrée depuis le dépôt",
-      "largeur": 744,
+      "largeur": 760,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -770,7 +770,7 @@
           "texte": "Déploiement",
           "detail": "charts de la plateforme",
           "w": 180,
-          "x": 544,
+          "x": 560,
           "y": 30,
           "h": 56
         },
@@ -789,7 +789,7 @@
           "detail": "rien ne traîne",
           "ton": "faible",
           "w": 120,
-          "x": 262,
+          "x": 272,
           "y": 150,
           "h": 56
         }
@@ -925,7 +925,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Développer un opérateur : un type d'objet, une boucle de réconciliation",
-      "largeur": 747,
+      "largeur": 797,
       "hauteur": 302,
       "zones": [
         {
@@ -941,7 +941,7 @@
           "titre": "Opérateur",
           "x": 295,
           "y": 172,
-          "w": 432,
+          "w": 482,
           "h": 110,
           "ton": "chaud"
         }
@@ -985,7 +985,7 @@
           "texte": "Ressources créées",
           "detail": "Deployment, Service",
           "ton": "ok",
-          "x": 541,
+          "x": 591,
           "y": 210,
           "w": 170,
           "h": 56,
@@ -1053,7 +1053,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Gérer le changement : demande, revue, fenêtre, retour d'expérience",
-      "largeur": 796,
+      "largeur": 840,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1081,7 +1081,7 @@
           "texte": "Fenêtre",
           "detail": "quand l'appliquer",
           "w": 140,
-          "x": 434,
+          "x": 456,
           "y": 30,
           "h": 56
         },
@@ -1090,7 +1090,7 @@
           "texte": "Exécution",
           "detail": "par le pipeline",
           "w": 130,
-          "x": 646,
+          "x": 690,
           "y": 30,
           "h": 56
         },
@@ -1182,7 +1182,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Réduire le toil : repérer, automatiser, mesurer le gain",
-      "largeur": 714,
+      "largeur": 752,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1201,7 +1201,7 @@
           "texte": "Mesure",
           "detail": "temps passé par semaine",
           "w": 180,
-          "x": 302,
+          "x": 324,
           "y": 30,
           "h": 56
         },
@@ -1211,7 +1211,7 @@
           "detail": "script, opérateur",
           "ton": "chaud",
           "w": 140,
-          "x": 554,
+          "x": 592,
           "y": 30,
           "h": 56
         },

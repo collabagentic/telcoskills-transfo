@@ -79,8 +79,8 @@ import { n, rangee, colonne, centrer, decaler, zone, diagramme, fiche } from "./
 // 4. Accès : sujets, liaisons, rôles
 {
   const sujets = colonne([n("user", "Utilisateur", "identité OIDC"), n("sa", "Compte de service", "identité d'un pod")], { x: 20, y: 70, gap: 60 });
-  const ns = rangee([n("rb", "RoleBinding", "lie sujet et rôle"), n("role", "Role", "verbes sur des ressources", { ton: "chaud" }), n("res", "Ressources", "pods, secrets, services", { ton: "ok" })], { x: 240, y: 118, gap: 50 });
-  const cl = rangee([n("crb", "ClusterRoleBinding", "portée : tout le cluster", { ton: "faible" }), n("cr", "ClusterRole", "droits sur tout le cluster", { ton: "faible" })], { x: 240, y: 270, gap: 50 });
+  const ns = rangee([n("rb", "RoleBinding", "lie sujet et rôle"), n("role", "Role", "verbes sur ressources", { ton: "chaud" }), n("res", "Ressources", "pods, secrets", { ton: "ok" })], { x: 210, y: 118, gap: 80 });
+  const cl = rangee([n("crb", "ClusterRoleBinding", "portée : tout le cluster", { ton: "faible" }), n("cr", "ClusterRole", "droits sur tout le cluster", { ton: "faible" })], { x: 210, y: 270, gap: 80 });
   fiche(
     "acces-rbac",
     diagramme({
@@ -89,7 +89,7 @@ import { n, rangee, colonne, centrer, decaler, zone, diagramme, fiche } from "./
       noeuds: [...sujets, ...ns, ...cl],
       liens: [
         ["user", "rb", "sujet"],
-        ["sa", "rb", "sujet"],
+        ["sa", "rb"],
         ["rb", "role", "référence"],
         ["role", "res", "get, list"],
         ["sa", "crb", "piège : tout le cluster", { style: "pointille" }],
@@ -251,8 +251,8 @@ import { n, rangee, colonne, centrer, decaler, zone, diagramme, fiche } from "./
 // 11. Dossier d'architecture : décisions versionnées
 {
   const a = rangee(
-    [n("besoin", "À décider", "choix structurant"), n("adr", "ADR", "contexte, décision, effets", { ton: "chaud" }), n("pr", "Pull request", "relue par pairs et comité"), n("accepte", "ADR accepté", "statut et date", { ton: "ok" })],
-    { x: 20, y: 60, gap: 46 },
+    [n("besoin", "À décider", "choix structurant"), n("adr", "ADR", "contexte, décision, effets", { ton: "chaud" }), n("pr", "Pull request", "relue par les pairs"), n("accepte", "ADR accepté", "statut et date", { ton: "ok" })],
+    { x: 20, y: 60, gap: 66 },
   );
   const b = rangee([n("rempl", "ADR remplacé", "lien vers le nouveau", { ton: "faible" })], { y: 190 });
   centrer(b, "rempl", a[3].x + a[3].w / 2);
@@ -364,8 +364,8 @@ import { n, rangee, colonne, centrer, decaler, zone, diagramme, fiche } from "./
 {
   const users = colonne([n("exp", "Exploitation", "libre-service"), n("dev", "Développement", "libre-service")], { x: 36, y: 90, gap: 60 });
   const portail = rangee([n("portail", "Portail", "catalogue de capacités", { ton: "chaud" })], { x: 240, y: 120 });
-  const eq = colonne([n("gab", "Gabarits", "chemins balisés"), n("ops", "Opérateurs", "exploitation automatisée"), n("feuille", "Feuille de route", "adoption, retours", { ton: "froid" })], { x: 480, y: 70, gap: 20, w: 200 });
-  const cl = rangee([n("cluster", "Plateformes", "Kubernetes", { ton: "ok", largeur: 130 })], { x: 480 + 200 + 56, y: 120 });
+  const eq = colonne([n("gab", "Gabarits", "chemins balisés"), n("ops", "Opérateurs", "exploitation automatisée"), n("feuille", "Feuille de route", "adoption, retours", { ton: "froid" })], { x: 480, y: 70, gap: 20, w: 190 });
+  const cl = rangee([n("cluster", "Plateformes", "Kubernetes", { ton: "ok", largeur: 130 })], { x: 480 + 190 + 80, y: 120 });
   fiche(
     "plateforme-produit",
     diagramme({

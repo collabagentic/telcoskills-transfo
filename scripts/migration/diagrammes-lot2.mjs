@@ -53,6 +53,7 @@ const faible = { ton: "faible" };
   const pv = d.noeuds.find((k) => k.id === "pv");
   d.noeuds.push({ id: "sc", texte: "StorageClass", detail: "provisionne à la demande", x: Math.round(pv.x + pv.w / 2 - 100), y: pv.y + 110, w: 200, h: 56, ton: "froid" });
   d.hauteur = Math.max(d.hauteur, pv.y + 110 + 56 + 20);
+  d.largeur = Math.max(d.largeur, Math.round(pv.x + pv.w / 2 + 100 + 20));
   competence("k8s-stockage", d);
 }
 
@@ -74,7 +75,7 @@ const faible = { ton: "faible" };
 
 // Helm
 {
-  const haut = rangee([n("reg", "Registre de charts", "OCI, versionnés"), n("chart", "Chart", "templates + values.yaml", chaud), n("up", "helm upgrade", "fusionne les valeurs", chaud), n("cl", "Cluster", "release n", ok)], { x: 20, y: 40, gap: 50 });
+  const haut = rangee([n("reg", "Registre de charts", "OCI, versionnés"), n("chart", "Chart", "templates + values.yaml", chaud), n("up", "helm upgrade", "fusionne les valeurs", chaud), n("cl", "Cluster", "release n", ok)], { x: 20, y: 40, gap: 70 });
   const bas = rangee([n("vals", "Vos valeurs", "values.yaml dans Git")], { y: 190 });
   centrer(bas, "vals", haut[2].x + haut[2].w / 2);
   const hist = rangee([n("hist", "Révisions", "historique, rollback", faible)], { y: 190 });
@@ -116,7 +117,7 @@ competence(
 
 // Opérateurs et OLM
 {
-  const plat = rangee([n("cvo", "Cluster Version Operator", "pilote la plateforme", chaud), n("ops", "Opérateurs de plateforme", "réseau, console, etcd")], { x: 36, y: 60, gap: 70 });
+  const plat = rangee([n("cvo", "Cluster Version Operator", "pilote la plateforme", chaud), n("ops", "Opérateurs de plateforme", "réseau, console, etcd")], { x: 36, y: 60, gap: 80 });
   const opt = rangee([n("olm", "OLM", "catalogue, abonnements", chaud), n("opt", "Opérateurs optionnels", "SR-IOV, MetalLB, NMState")], { x: 36, y: 200, gap: 70 });
   const cluster = rangee([n("cl", "Cluster", "état conforme", ok)], { x: 700, y: 130 });
   competence(
@@ -304,7 +305,7 @@ competence(
 // DPDK
 {
   const a = rangee([n("p1", "Paquet", "arrive sur la carte"), n("drv", "Pilote noyau", "interruptions"), n("pile", "Pile réseau Linux", "copies mémoire"), n("app1", "Application", "reçoit le paquet", faible)], { x: 36, y: 60, gap: 50 });
-  const b = rangee([n("p2", "Paquet", "arrive sur la carte"), n("vf", "VF SR-IOV", "accès direct"), n("dpdk", "DPDK", "interrogation en continu", chaud), n("app2", "Application", "hugepages, CPU isolés", ok)], { x: 36, y: 220, gap: 50 });
+  const b = rangee([n("p2", "Paquet", "sur la carte"), n("vf", "VF SR-IOV", "accès direct"), n("dpdk", "DPDK", "scrute les paquets", chaud), n("app2", "Application", "hugepages, CPU isolés", ok)], { x: 36, y: 220, gap: 80 });
   competence(
     "dpdk",
     diagramme({
@@ -328,7 +329,7 @@ competence(
       legende: "MetalLB annonce l'adresse du Service en BGP : le routeur répartit entre les nœuds",
       zones: [zone("cluster", "Cluster", speakers)],
       noeuds: [...client, ...routeur, ...speakers, ...svc],
-      liens: [["client", "routeur", "trafic"], ["sp1", "routeur", "annonce l'IP", { sortie: "g", entree: "d", decalageEntree: -20 }], ["sp2", "routeur", undefined, { sortie: "g", entree: "d" }], ["sp3", "routeur", undefined, { sortie: "g", entree: "d", decalageEntree: 20 }], ["sp2", "svc", "vers les pods", { sortie: "d", entree: "g" }]],
+      liens: [["client", "routeur", "trafic"], ["sp1", "routeur", "annonce l'IP", { sortie: "g", entree: "d", decalageEntree: -20 }], ["sp2", "routeur", undefined, { sortie: "g", entree: "d" }], ["sp3", "routeur", undefined, { sortie: "g", entree: "d", decalageEntree: 20 }], ["sp2", "svc", undefined, { sortie: "d", entree: "g" }]],
     }),
   );
 }
@@ -466,7 +467,7 @@ competence(
 
 // Hugepages et NUMA
 {
-  const n0 = rangee([n("cpu0", "CPU exclusifs", "cœurs 0 à 15", chaud), n("hp0", "Hugepages", "1 Gio réservées", ok), n("nic0", "Carte SR-IOV", "branchée sur NUMA 0", froid)], { x: 36, y: 60, gap: 40 });
+  const n0 = rangee([n("cpu0", "CPU exclusifs", "cœurs 0 à 15", chaud), n("hp0", "Hugepages", "1 Gio réservées", ok), n("nic0", "Carte SR-IOV", "branchée sur NUMA 0", froid)], { x: 36, y: 60, gap: 110 });
   const n1 = rangee([n("cpu1", "CPU partagés", "cœurs 16 à 31"), n("mem1", "Mémoire", "accès plus lent depuis NUMA 0", faible)], { x: 36, y: 220, gap: 40 });
   competence(
     "perf-hugepages",
@@ -511,7 +512,7 @@ competence(
     legende: "Valider un dimensionnement : générer du trafic, mesurer, comparer aux seuils",
     noeuds: [n("gen", "Générateur", "RAN et UE simulés"), n("cnf", "Fonction sous test", "la charge réelle", chaud), n("mesure", "Mesures", "latence, pertes, CPU"), n("seuils", "Seuils (SLO)", "ce qui est acceptable"), n("verdict", "Verdict", "ajuster les ressources", ok)],
     etiquettes: ["envoie du trafic", "exporte", "comparées à", "décide"],
-    extra: [["verdict", "cnf", "nouveau test", { style: "pointille", sortie: "h", entree: "h" }]],
+    extra: [["verdict", "cnf", undefined, { style: "pointille", sortie: "h", entree: "h" }]],
   }),
 );
 

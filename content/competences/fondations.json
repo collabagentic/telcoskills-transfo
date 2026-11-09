@@ -236,8 +236,8 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Un conteneur : un processus isolé par le noyau",
-      "largeur": 800,
-      "hauteur": 398,
+      "largeur": 866,
+      "hauteur": 464,
       "zones": [],
       "noeuds": [
         {
@@ -245,8 +245,8 @@
           "texte": "Conteneur",
           "detail": "un processus, pas une VM",
           "ton": "chaud",
-          "x": 310,
-          "y": 176,
+          "x": 343,
+          "y": 209,
           "w": 190,
           "h": 56
         },
@@ -255,7 +255,7 @@
           "texte": "Namespaces",
           "detail": "vue isolée du système",
           "ton": "froid",
-          "x": 320,
+          "x": 353,
           "y": 30,
           "w": 170,
           "h": 56
@@ -264,8 +264,8 @@
           "id": "rt",
           "texte": "Runtime",
           "detail": "CRI-O, containerd",
-          "x": 335,
-          "y": 322,
+          "x": 368,
+          "y": 388,
           "w": 140,
           "h": 56
         },
@@ -275,7 +275,7 @@
           "detail": "limitent CPU et mémoire",
           "ton": "froid",
           "x": 20,
-          "y": 176,
+          "y": 209,
           "w": 180,
           "h": 56
         },
@@ -284,8 +284,8 @@
           "texte": "Image en couches",
           "detail": "fichiers en lecture seule",
           "ton": "ok",
-          "x": 590,
-          "y": 176,
+          "x": 656,
+          "y": 209,
           "w": 190,
           "h": 56
         }
@@ -380,7 +380,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Le réseau mobile en une ligne : du terminal au service",
-      "largeur": 786,
+      "largeur": 806,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -407,7 +407,7 @@
           "texte": "Transport",
           "detail": "fibre, routeurs",
           "w": 130,
-          "x": 424,
+          "x": 440,
           "y": 30,
           "h": 56
         },
@@ -417,7 +417,7 @@
           "detail": "sessions, abonnés",
           "ton": "chaud",
           "w": 140,
-          "x": 626,
+          "x": 646,
           "y": 30,
           "h": 56
         },
@@ -514,7 +514,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Le réseau mobile en un schéma : abonné, radio, transport, cœur, services",
-      "largeur": 702,
+      "largeur": 796,
       "hauteur": 274,
       "zones": [
         {
@@ -522,7 +522,7 @@
           "titre": "Réseau de l'opérateur",
           "x": 4,
           "y": 24,
-          "w": 678,
+          "w": 772,
           "h": 230
         }
       ],
@@ -542,7 +542,7 @@
           "texte": "Radio",
           "detail": "accès",
           "w": 90,
-          "x": 182,
+          "x": 215,
           "y": 62,
           "h": 56,
           "zone": "operateur"
@@ -552,7 +552,7 @@
           "texte": "Transport",
           "detail": "IP, MPLS",
           "w": 100,
-          "x": 344,
+          "x": 393,
           "y": 62,
           "h": 56,
           "zone": "operateur"
@@ -563,7 +563,7 @@
           "detail": "contrôle et données",
           "ton": "chaud",
           "w": 150,
-          "x": 516,
+          "x": 610,
           "y": 62,
           "h": 56,
           "zone": "operateur"
@@ -674,7 +674,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "De la boîte au conteneur : trois générations de fonctions réseau",
-      "largeur": 714,
+      "largeur": 828,
       "hauteur": 120,
       "zones": [],
       "noeuds": [
@@ -693,7 +693,7 @@
           "texte": "VNF",
           "detail": "fonction en machine virtuelle",
           "w": 220,
-          "x": 232,
+          "x": 283,
           "y": 30,
           "h": 56
         },
@@ -703,7 +703,7 @@
           "detail": "fonction en conteneurs",
           "ton": "chaud",
           "w": 170,
-          "x": 524,
+          "x": 638,
           "y": 30,
           "h": 56
         }
@@ -996,7 +996,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Git et CI/CD : du commit à la livraison",
-      "largeur": 644,
+      "largeur": 676,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1015,7 +1015,7 @@
           "detail": "build et tests",
           "ton": "chaud",
           "w": 190,
-          "x": 242,
+          "x": 264,
           "y": 30,
           "h": 56
         },
@@ -1024,7 +1024,7 @@
           "texte": "Artefacts",
           "detail": "images, charts",
           "w": 120,
-          "x": 504,
+          "x": 536,
           "y": 30,
           "h": 56
         },
@@ -1097,8 +1097,8 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Le SLI, le SLO et le budget d'erreur",
-      "largeur": 856,
-      "hauteur": 120,
+      "largeur": 640,
+      "hauteur": 226,
       "zones": [],
       "noeuds": [
         {
@@ -1116,7 +1116,7 @@
           "detail": "l'objectif visé",
           "ton": "chaud",
           "w": 130,
-          "x": 222,
+          "x": 238,
           "y": 30,
           "h": 56
         },
@@ -1125,7 +1125,7 @@
           "texte": "Budget d'erreur",
           "detail": "marge d'indisponibilité",
           "w": 180,
-          "x": 424,
+          "x": 440,
           "y": 30,
           "h": 56
         },
@@ -1135,8 +1135,8 @@
           "detail": "livrer ou stabiliser",
           "ton": "ok",
           "w": 160,
-          "x": 676,
-          "y": 30,
+          "x": 20,
+          "y": 150,
           "h": 56
         }
       ],
@@ -1154,7 +1154,9 @@
         {
           "de": "bud",
           "vers": "dec",
-          "texte": "guide"
+          "texte": "guide",
+          "sortie": "b",
+          "entree": "h"
         }
       ],
       "source": {

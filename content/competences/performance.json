@@ -40,7 +40,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "NUMA : tout ce que le plan usager utilise doit rester sur le même nœud NUMA",
-      "largeur": 562,
+      "largeur": 702,
       "hauteur": 312,
       "zones": [
         {
@@ -48,7 +48,7 @@
           "titre": "NUMA 0 : plan usager",
           "x": 20,
           "y": 22,
-          "w": 522,
+          "w": 662,
           "h": 110,
           "ton": "chaud"
         },
@@ -78,7 +78,7 @@
           "texte": "Hugepages",
           "detail": "1 Gio réservées",
           "ton": "ok",
-          "x": 206,
+          "x": 276,
           "y": 60,
           "w": 130,
           "h": 56,
@@ -89,7 +89,7 @@
           "texte": "Carte SR-IOV",
           "detail": "branchée sur NUMA 0",
           "ton": "froid",
-          "x": 376,
+          "x": 516,
           "y": 60,
           "w": 150,
           "h": 56,
@@ -312,7 +312,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Dimensionner : du besoin de trafic au nombre de nœuds, puis validation par un test de charge",
-      "largeur": 728,
+      "largeur": 787,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -331,7 +331,7 @@
           "detail": "capacité d'une instance",
           "ton": "chaud",
           "w": 180,
-          "x": 274,
+          "x": 327,
           "y": 30,
           "h": 56
         },
@@ -340,7 +340,7 @@
           "texte": "Ressources",
           "detail": "vCPU, mémoire, hugepages",
           "w": 190,
-          "x": 518,
+          "x": 577,
           "y": 30,
           "h": 56
         },
@@ -359,7 +359,7 @@
           "detail": "valide ou corrige",
           "ton": "ok",
           "w": 140,
-          "x": 234,
+          "x": 275,
           "y": 150,
           "h": 56
         }
@@ -424,7 +424,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Valider un dimensionnement : générer du trafic, mesurer, comparer aux seuils",
-      "largeur": 638,
+      "largeur": 727,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -443,7 +443,7 @@
           "detail": "la charge réelle",
           "ton": "chaud",
           "w": 170,
-          "x": 224,
+          "x": 295,
           "y": 30,
           "h": 56
         },
@@ -452,7 +452,7 @@
           "texte": "Mesures",
           "detail": "latence, pertes, CPU",
           "w": 160,
-          "x": 458,
+          "x": 547,
           "y": 30,
           "h": 56
         },
@@ -471,7 +471,7 @@
           "detail": "ajuster les ressources",
           "ton": "ok",
           "w": 170,
-          "x": 254,
+          "x": 266,
           "y": 150,
           "h": 56
         }
@@ -502,7 +502,6 @@
         {
           "de": "verdict",
           "vers": "cnf",
-          "texte": "nouveau test",
           "style": "pointille",
           "sortie": "h",
           "entree": "h"

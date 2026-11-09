@@ -15,7 +15,7 @@ const E = (o) => etoile(o);
 {
   const w = { largeur: 110 };
   const ue = rangee([n("ue", "UE", "terminal", { largeur: 90 })], { x: 20, y: 230 });
-  const ran = rangee([n("ran", "RAN (gNB)", "radio", w)], { x: 150, y: 230 });
+  const ran = rangee([n("ran", "RAN (gNB)", "radio", w)], { x: 170, y: 230 });
   const ra = rangee([n("nssf", "NSSF", "slices", w), n("ausf", "AUSF", "authentifie", w), n("udm", "UDM", "abonnés", w)], { x: 340, y: 70, gap: 24 });
   const rb = rangee([n("pcf", "PCF", "politiques", w), n("nrf", "NRF", "annuaire", { ...w, ...froid })], { x: 340, y: 150, gap: 24 });
   const rc = rangee([n("amf", "AMF", "accès, mobilité", { ...w, ...chaud }), n("smf", "SMF", "sessions", { ...w, ...chaud })], { x: 340, y: 230, gap: 24 });
@@ -80,7 +80,7 @@ competence("pcf-chf", E({ legende: "La SMF consulte la PCF pour la politique et 
 // SEPP
 {
   const a = rangee([n("nfa", "Cœur de l'opérateur A", "AMF, SMF, UDM", { largeur: 190 }), n("seppa", "SEPP A", "protège la sortie", { ...chaud, largeur: 130 })], { x: 36, y: 70, gap: 50 });
-  const b = rangee([n("seppb", "SEPP B", "protège l'entrée", { ...chaud, largeur: 130 }), n("nfb", "Cœur de l'opérateur B", "AMF, SMF, UDM", { largeur: 190 })], { x: 470, y: 70, gap: 50 });
+  const b = rangee([n("seppb", "SEPP B", "protège l'entrée", { ...chaud, largeur: 130 }), n("nfb", "Cœur de l'opérateur B", "AMF, SMF, UDM", { largeur: 190 })], { x: 490, y: 70, gap: 50 });
   competence(
     "sepp",
     diagramme({
@@ -261,7 +261,7 @@ competence("lab-as-code", F({ legende: "Un laboratoire reproductible : tout se r
 // Développer un opérateur
 {
   const crd = rangee([n("crd", "CRD", "définit un type d'objet", froid), n("cr", "Ressource personnalisée", "ce que l'utilisateur déclare", chaud)], { x: 36, y: 60, gap: 70 });
-  const ctrl = rangee([n("rec", "Boucle reconcile", "écrite en Go", chaud), n("res", "Ressources créées", "Deployment, Service", ok)], { x: 36, y: 210, gap: 70 });
+  const ctrl = rangee([n("rec", "Boucle reconcile", "écrite en Go", chaud), n("res", "Ressources créées", "Deployment, Service", ok)], { x: 36, y: 210, gap: 120 });
   centrer(ctrl, "rec", crd[1].x + crd[1].w / 2);
   competence(
     "operators-dev",

@@ -40,7 +40,7 @@
   },
   "diagramme": {
     "legende": "La plateforme comme produit : un portail, des gabarits, une équipe qui écoute ses utilisateurs",
-    "largeur": 886,
+    "largeur": 900,
     "hauteur": 314,
     "zones": [
       {
@@ -56,7 +56,7 @@
         "titre": "Équipe plateforme",
         "x": 464,
         "y": 32,
-        "w": 232,
+        "w": 222,
         "h": 262,
         "ton": "chaud"
       }
@@ -98,7 +98,7 @@
         "detail": "chemins balisés",
         "x": 480,
         "y": 70,
-        "w": 200,
+        "w": 190,
         "h": 56,
         "zone": "plateforme"
       },
@@ -108,7 +108,7 @@
         "detail": "exploitation automatisée",
         "x": 480,
         "y": 146,
-        "w": 200,
+        "w": 190,
         "h": 56,
         "zone": "plateforme"
       },
@@ -119,7 +119,7 @@
         "ton": "froid",
         "x": 480,
         "y": 222,
-        "w": 200,
+        "w": 190,
         "h": 56,
         "zone": "plateforme"
       },
@@ -128,7 +128,7 @@
         "texte": "Plateformes",
         "detail": "Kubernetes",
         "ton": "ok",
-        "x": 736,
+        "x": 750,
         "y": 120,
         "w": 130,
         "h": 56

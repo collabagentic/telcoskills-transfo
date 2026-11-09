@@ -55,16 +55,56 @@ export function tracer(p: Point, cp: Cote, q: Point, cq: Cote): Point[] {
   return horizontal(cp) ? [p, { x: q.x, y: p.y }, q] : [p, { x: p.x, y: q.y }, q];
 }
 
-export type LienTrace = { points: Point[]; texte?: string; accent: boolean; pointille: boolean; double: boolean; milieu: Point };
+export type LienTrace = { points: Point[]; texte?: string; accent: boolean; pointille: boolean; double: boolean; milieu: Point; etiquetteLibre: boolean };
 
-/** Le milieu du plus long segment, pour poser l'étiquette d'une flèche. */
-function milieuPlusLongSegment(points: Point[]): Point {
-  let meilleur = { longueur: -1, milieu: points[0] };
+/** Largeur approximative d'un caractère d'étiquette (11 px). */
+export const LARGEUR_CAR_ETIQUETTE = 5.9;
+
+/** Boîte occupée par une étiquette posée sur un point (le texte est centré au-dessus du point). */
+export function boiteEtiquette(texte: string, p: Point): Boite {
+  const w = texte.length * LARGEUR_CAR_ETIQUETTE + 8;
+  return { x: p.x - w / 2, y: p.y - 19, w, h: 15 };
+}
+
+/** Points possibles pour poser une étiquette : milieux des segments (les plus longs d'abord), plus les quarts des longs segments. */
+function candidatsEtiquette(points: Point[], texte: string): Point[] {
+  const segs: { longueur: number; a: Point; b: Point }[] = [];
   for (let i = 0; i + 1 < points.length; i++) {
-    const l = Math.abs(points[i + 1].x - points[i].x) + Math.abs(points[i + 1].y - points[i].y);
-    if (l > meilleur.longueur) meilleur = { longueur: l, milieu: { x: (points[i].x + points[i + 1].x) / 2, y: (points[i].y + points[i + 1].y) / 2 } };
+    segs.push({ longueur: Math.abs(points[i + 1].x - points[i].x) + Math.abs(points[i + 1].y - points[i].y), a: points[i], b: points[i + 1] });
   }
-  return meilleur.milieu;
+  segs.sort((s, t) => t.longueur - s.longueur);
+  const sortie: Point[] = [];
+  const demi = (texte.length * LARGEUR_CAR_ETIQUETTE + 8) / 2;
+  for (const s of segs) {
+    const milieu = { x: (s.a.x + s.b.x) / 2, y: (s.a.y + s.b.y) / 2 };
+    sortie.push(milieu);
+    // Sur un trait vertical, l'étiquette peut aussi se poser à droite ou à gauche du trait.
+    if (s.a.x === s.b.x && s.longueur > 0) {
+      sortie.push({ x: milieu.x + demi + 6, y: milieu.y + 10 });
+      sortie.push({ x: milieu.x - demi - 6, y: milieu.y + 10 });
+    }
+  }
+  for (const s of segs.filter((k) => k.longueur > 120)) {
+    sortie.push({ x: s.a.x + (s.b.x - s.a.x) * 0.25, y: s.a.y + (s.b.y - s.a.y) * 0.25 });
+    sortie.push({ x: s.a.x + (s.b.x - s.a.x) * 0.75, y: s.a.y + (s.b.y - s.a.y) * 0.75 });
+  }
+  return sortie;
+}
+
+/** Choisit pour chaque flèche étiquetée le premier emplacement qui ne chevauche ni composant ni autre étiquette. */
+function placerEtiquettes(d: Diagramme, traces: LienTrace[]): void {
+  const posees: Boite[] = [];
+  for (const t of traces) {
+    if (!t.texte) continue;
+    const candidats = candidatsEtiquette(t.points, t.texte);
+    const libre = candidats.find((p) => {
+      const b = boiteEtiquette(t.texte!, p);
+      return !d.noeuds.some((n) => sechevauchent(b, n, 2)) && !posees.some((o) => sechevauchent(b, o, 2));
+    });
+    t.etiquetteLibre = libre !== undefined;
+    t.milieu = libre ?? candidats[0];
+    posees.push(boiteEtiquette(t.texte, t.milieu));
+  }
 }
 
 export function tracerLiens(d: Diagramme): LienTrace[] {
@@ -78,8 +118,9 @@ export function tracerLiens(d: Diagramme): LienTrace[] {
     const sortie = l.sortie ?? auto.sortie;
     const entree = l.entree ?? auto.entree;
     const points = tracer(ancrage(a, sortie, l.decalageSortie ?? 0), sortie, ancrage(b, entree, l.decalageEntree ?? 0), entree);
-    traces.push({ points, texte: l.texte, accent: false, pointille: l.style === "pointille", double: l.sens === "double", milieu: milieuPlusLongSegment(points) });
+    traces.push({ points, texte: l.texte, accent: false, pointille: l.style === "pointille", double: l.sens === "double", milieu: points[0], etiquetteLibre: true });
   }
+  placerEtiquettes(d, traces);
   return traces;
 }
 
@@ -131,6 +172,11 @@ export function verifierDiagramme(d: Diagramme): string[] {
         if (n.id !== t.l.de && n.id !== t.l.vers && sechevauchent(seg, n, -1)) erreurs.push(`diagramme : la flèche « ${t.l.de} → ${t.l.vers} » traverse « ${n.id} ».`);
     }
   }
+  // Une étiquette trouve une place qui ne chevauche ni un composant ni une autre étiquette.
+  const traces = tracerLiens(d);
+  traces.forEach((t, i) => {
+    if (t.texte && !t.etiquetteLibre) erreurs.push(`diagramme : l'étiquette « ${t.texte} » (${d.liens[i].de} → ${d.liens[i].vers}) chevauche un composant ou une autre étiquette.`);
+  });
   return erreurs;
 }
 

@@ -75,6 +75,9 @@ export function Diagramme({ diagramme: d }: { diagramme: DonneesDiagramme }) {
           )}
         </svg>
       </div>
+      <p className="diagramme-aide" aria-hidden="true">
+        Faites glisser le schéma pour voir la suite →
+      </p>
       <p className="diagramme-source">
         Source :{" "}
         <a href={d.source.url} target="_blank" rel="noopener noreferrer">

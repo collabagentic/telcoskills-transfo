@@ -104,7 +104,7 @@
           "id": "ran",
           "texte": "RAN (gNB)",
           "detail": "radio",
-          "x": 150,
+          "x": 170,
           "y": 230,
           "w": 110,
           "h": 56
@@ -270,7 +270,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Accueillir une fonction réseau : de l'exigence à la mise en production",
-      "largeur": 714,
+      "largeur": 730,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -288,7 +288,7 @@
           "texte": "Livraison éditeur",
           "detail": "charts, images, doc",
           "w": 170,
-          "x": 262,
+          "x": 272,
           "y": 30,
           "h": 56
         },
@@ -298,7 +298,7 @@
           "detail": "contrôle des artefacts",
           "ton": "chaud",
           "w": 170,
-          "x": 504,
+          "x": 518,
           "y": 30,
           "h": 56
         },
@@ -326,7 +326,7 @@
           "detail": "déploiement par pipeline",
           "ton": "ok",
           "w": 190,
-          "x": 504,
+          "x": 520,
           "y": 150,
           "h": 56
         }
@@ -640,7 +640,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "De la fonction réseau aux ressources de la plateforme",
-      "largeur": 704,
+      "largeur": 741,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -659,7 +659,7 @@
           "texte": "Exigences",
           "detail": "CPU, mémoire, interfaces",
           "w": 190,
-          "x": 242,
+          "x": 252,
           "y": 30,
           "h": 56
         },
@@ -669,7 +669,7 @@
           "detail": "une ligne par fonction",
           "ton": "chaud",
           "w": 180,
-          "x": 504,
+          "x": 541,
           "y": 30,
           "h": 56
         },
@@ -688,7 +688,7 @@
           "detail": "à combler ou à négocier",
           "ton": "faible",
           "w": 180,
-          "x": 262,
+          "x": 266,
           "y": 150,
           "h": 56
         }
@@ -746,7 +746,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Les identités d'un abonné : permanente, chiffrée, temporaire",
-      "largeur": 694,
+      "largeur": 766,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -765,7 +765,7 @@
           "detail": "SUPI chiffré, envoyé par radio",
           "ton": "chaud",
           "w": 220,
-          "x": 242,
+          "x": 269,
           "y": 30,
           "h": 56
         },
@@ -774,7 +774,7 @@
           "texte": "UDM",
           "detail": "retrouve le SUPI",
           "w": 140,
-          "x": 534,
+          "x": 606,
           "y": 30,
           "h": 56
         },
@@ -853,7 +853,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Une interface de service : un client, un NRF, un fournisseur, en HTTP/2",
-      "largeur": 770,
+      "largeur": 812,
       "hauteur": 120,
       "zones": [],
       "noeuds": [
@@ -862,7 +862,7 @@
           "texte": "NRF",
           "detail": "annuaire des services",
           "ton": "froid",
-          "x": 290,
+          "x": 311,
           "y": 30,
           "w": 170,
           "h": 56
@@ -881,7 +881,7 @@
           "texte": "Fonction fournisseuse",
           "detail": "expose le service OpenAPI",
           "ton": "chaud",
-          "x": 550,
+          "x": 592,
           "y": 30,
           "w": 200,
           "h": 56
@@ -945,7 +945,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Lire un échange 5G : capturer, décoder, suivre la procédure",
-      "largeur": 654,
+      "largeur": 714,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -963,7 +963,7 @@
           "texte": "Capture",
           "detail": "fichier pcap",
           "w": 110,
-          "x": 262,
+          "x": 289,
           "y": 30,
           "h": 56
         },
@@ -973,7 +973,7 @@
           "detail": "décode NGAP, PFCP, HTTP/2",
           "ton": "chaud",
           "w": 190,
-          "x": 444,
+          "x": 504,
           "y": 30,
           "h": 56
         },
@@ -992,7 +992,7 @@
           "detail": "message en échec",
           "ton": "faible",
           "w": 140,
-          "x": 232,
+          "x": 242,
           "y": 150,
           "h": 56
         }
@@ -1067,8 +1067,8 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "L'AMF : terminaison de la signalisation du terminal et de la radio",
-      "largeur": 570,
-      "hauteur": 398,
+      "largeur": 578,
+      "hauteur": 406,
       "zones": [],
       "noeuds": [
         {
@@ -1076,8 +1076,8 @@
           "texte": "AMF",
           "detail": "accès et mobilité",
           "ton": "chaud",
-          "x": 230,
-          "y": 176,
+          "x": 234,
+          "y": 180,
           "w": 140,
           "h": 56
         },
@@ -1085,7 +1085,7 @@
           "id": "udm",
           "texte": "UDM",
           "detail": "abonnés",
-          "x": 255,
+          "x": 259,
           "y": 30,
           "w": 90,
           "h": 56
@@ -1094,8 +1094,8 @@
           "id": "ausf",
           "texte": "AUSF",
           "detail": "authentification",
-          "x": 230,
-          "y": 322,
+          "x": 234,
+          "y": 330,
           "w": 140,
           "h": 56
         },
@@ -1104,7 +1104,7 @@
           "texte": "RAN (gNB)",
           "detail": "radio",
           "x": 20,
-          "y": 176,
+          "y": 180,
           "w": 100,
           "h": 56
         },
@@ -1112,8 +1112,8 @@
           "id": "smf",
           "texte": "SMF",
           "detail": "sessions",
-          "x": 460,
-          "y": 176,
+          "x": 468,
+          "y": 180,
           "w": 90,
           "h": 56
         }
@@ -1188,8 +1188,8 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "La SMF pilote l'UPF : le plan de contrôle décide, le plan usager exécute",
-      "largeur": 660,
-      "hauteur": 398,
+      "largeur": 678,
+      "hauteur": 416,
       "zones": [],
       "noeuds": [
         {
@@ -1197,8 +1197,8 @@
           "texte": "UPF",
           "detail": "achemine le trafic",
           "ton": "chaud",
-          "x": 230,
-          "y": 176,
+          "x": 239,
+          "y": 185,
           "w": 150,
           "h": 56
         },
@@ -1206,7 +1206,7 @@
           "id": "smf",
           "texte": "SMF",
           "detail": "décide des règles",
-          "x": 235,
+          "x": 244,
           "y": 30,
           "w": 140,
           "h": 56
@@ -1215,8 +1215,8 @@
           "id": "upf2",
           "texte": "Autre UPF",
           "detail": "chaînage",
-          "x": 255,
-          "y": 322,
+          "x": 264,
+          "y": 340,
           "w": 100,
           "h": 56
         },
@@ -1225,7 +1225,7 @@
           "texte": "RAN (gNB)",
           "detail": "radio",
           "x": 20,
-          "y": 176,
+          "y": 185,
           "w": 100,
           "h": 56
         },
@@ -1233,8 +1233,8 @@
           "id": "dn",
           "texte": "Réseau de données",
           "detail": "Internet, entreprise",
-          "x": 470,
-          "y": 176,
+          "x": 488,
+          "y": 185,
           "w": 170,
           "h": 56
         }
@@ -1317,8 +1317,8 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "NRF et SCP : enregistrer, découvrir, router",
-      "largeur": 690,
-      "hauteur": 252,
+      "largeur": 708,
+      "hauteur": 261,
       "zones": [],
       "noeuds": [
         {
@@ -1326,7 +1326,7 @@
           "texte": "NRF",
           "detail": "annuaire",
           "ton": "froid",
-          "x": 330,
+          "x": 339,
           "y": 30,
           "w": 90,
           "h": 56
@@ -1336,8 +1336,8 @@
           "texte": "SCP",
           "detail": "route et équilibre",
           "ton": "chaud",
-          "x": 300,
-          "y": 176,
+          "x": 309,
+          "y": 185,
           "w": 150,
           "h": 56
         },
@@ -1354,7 +1354,7 @@
           "id": "cons",
           "texte": "Fonction cliente",
           "detail": "cherche un service",
-          "x": 510,
+          "x": 528,
           "y": 30,
           "w": 160,
           "h": 56
@@ -1479,7 +1479,7 @@
           "detail": "5G-GUTI attribué",
           "ton": "ok",
           "w": 140,
-          "x": 232,
+          "x": 242,
           "y": 150,
           "h": 56
         }
@@ -1624,7 +1624,7 @@
           "detail": "trafic usager",
           "ton": "ok",
           "w": 140,
-          "x": 222,
+          "x": 232,
           "y": 150,
           "h": 56
         }
@@ -1704,7 +1704,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Un cœur 5G open source en lab : du cluster au test",
-      "largeur": 856,
+      "largeur": 614,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1723,7 +1723,7 @@
           "detail": "cœur open source",
           "ton": "chaud",
           "w": 140,
-          "x": 242,
+          "x": 252,
           "y": 30,
           "h": 56
         },
@@ -1732,7 +1732,7 @@
           "texte": "Cœur 5G",
           "detail": "AMF, SMF, UPF",
           "w": 120,
-          "x": 454,
+          "x": 474,
           "y": 30,
           "h": 56
         },
@@ -1741,8 +1741,8 @@
           "texte": "Simulateur RAN et UE",
           "detail": "génère du trafic",
           "w": 190,
-          "x": 646,
-          "y": 30,
+          "x": 20,
+          "y": 150,
           "h": 56
         },
         {
@@ -1751,7 +1751,7 @@
           "detail": "enregistrement, session",
           "ton": "ok",
           "w": 190,
-          "x": 20,
+          "x": 286,
           "y": 150,
           "h": 56
         }
@@ -1770,14 +1770,14 @@
         {
           "de": "core",
           "vers": "sim",
-          "texte": "relié à"
+          "texte": "relié à",
+          "sortie": "b",
+          "entree": "h"
         },
         {
           "de": "sim",
           "vers": "test",
-          "texte": "valide",
-          "sortie": "b",
-          "entree": "h"
+          "texte": "valide"
         }
       ],
       "source": {
@@ -1915,7 +1915,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "La SMF consulte la PCF pour la politique et la CHF pour la facturation",
-      "largeur": 690,
+      "largeur": 756,
       "hauteur": 120,
       "zones": [],
       "noeuds": [
@@ -1924,7 +1924,7 @@
           "texte": "SMF",
           "detail": "session PDU",
           "ton": "chaud",
-          "x": 300,
+          "x": 333,
           "y": 30,
           "w": 100,
           "h": 56
@@ -1942,7 +1942,7 @@
           "id": "chf",
           "texte": "CHF",
           "detail": "facturation convergente",
-          "x": 490,
+          "x": 556,
           "y": 30,
           "w": 180,
           "h": 56
@@ -2141,7 +2141,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "L'itinérance 5G : deux SEPP protègent l'interface N32 entre opérateurs",
-      "largeur": 876,
+      "largeur": 896,
       "hauteur": 162,
       "zones": [
         {
@@ -2155,7 +2155,7 @@
         {
           "id": "b",
           "titre": "Opérateur B",
-          "x": 454,
+          "x": 474,
           "y": 32,
           "w": 402,
           "h": 110
@@ -2188,7 +2188,7 @@
           "texte": "SEPP B",
           "detail": "protège l'entrée",
           "ton": "chaud",
-          "x": 470,
+          "x": 490,
           "y": 70,
           "w": 130,
           "h": 56,
@@ -2198,7 +2198,7 @@
           "id": "nfb",
           "texte": "Cœur de l'opérateur B",
           "detail": "AMF, SMF, UDM",
-          "x": 650,
+          "x": 670,
           "y": 70,
           "w": 190,
           "h": 56,
@@ -2418,7 +2418,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "La voix sur 5G : le cœur 5G porte la session, l'IMS établit l'appel",
-      "largeur": 776,
+      "largeur": 786,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -2446,7 +2446,7 @@
           "detail": "point d'entrée IMS",
           "ton": "chaud",
           "w": 150,
-          "x": 384,
+          "x": 394,
           "y": 30,
           "h": 56
         },
@@ -2455,7 +2455,7 @@
           "texte": "S-CSCF",
           "detail": "enregistre et route",
           "w": 150,
-          "x": 606,
+          "x": 616,
           "y": 30,
           "h": 56
         },
@@ -2530,7 +2530,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "La recette : du critère d'acceptation au rapport",
-      "largeur": 694,
+      "largeur": 761,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -2548,7 +2548,7 @@
           "texte": "Plan de tests",
           "detail": "fonctionnels, performance",
           "w": 190,
-          "x": 262,
+          "x": 325,
           "y": 30,
           "h": 56
         },
@@ -2558,7 +2558,7 @@
           "detail": "en lab puis en site",
           "ton": "chaud",
           "w": 150,
-          "x": 524,
+          "x": 591,
           "y": 30,
           "h": 56
         },
@@ -2577,7 +2577,7 @@
           "detail": "accepté ou réserve",
           "ton": "ok",
           "w": 150,
-          "x": 232,
+          "x": 254,
           "y": 150,
           "h": 56
         }

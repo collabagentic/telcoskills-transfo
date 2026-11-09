@@ -63,7 +63,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Ceph piloté par Rook : de l'opérateur au volume du pod",
-      "largeur": 772,
+      "largeur": 796,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -91,7 +91,7 @@
           "texte": "Pool",
           "detail": "réplication ×3",
           "w": 120,
-          "x": 438,
+          "x": 450,
           "y": 30,
           "h": 56
         },
@@ -100,7 +100,7 @@
           "texte": "StorageClass",
           "detail": "RBD, CephFS",
           "w": 130,
-          "x": 622,
+          "x": 646,
           "y": 30,
           "h": 56
         },
@@ -119,7 +119,7 @@
           "detail": "monte le volume",
           "ton": "ok",
           "w": 130,
-          "x": 204,
+          "x": 234,
           "y": 150,
           "h": 56
         }

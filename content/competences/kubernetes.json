@@ -741,8 +741,8 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Du pod au disque : PVC, PV, StorageClass",
-      "largeur": 812,
-      "hauteur": 216,
+      "largeur": 660,
+      "hauteur": 226,
       "zones": [],
       "noeuds": [
         {
@@ -760,7 +760,7 @@
           "detail": "demande : 10 Gio, RWO",
           "ton": "chaud",
           "w": 170,
-          "x": 214,
+          "x": 232,
           "y": 30,
           "h": 56
         },
@@ -770,7 +770,7 @@
           "detail": "volume lié",
           "ton": "chaud",
           "w": 100,
-          "x": 448,
+          "x": 490,
           "y": 30,
           "h": 56
         },
@@ -780,15 +780,15 @@
           "detail": "Ceph, SAN, disque local",
           "ton": "froid",
           "w": 180,
-          "x": 612,
-          "y": 30,
+          "x": 20,
+          "y": 150,
           "h": 56
         },
         {
           "id": "sc",
           "texte": "StorageClass",
           "detail": "provisionne à la demande",
-          "x": 398,
+          "x": 440,
           "y": 140,
           "w": 200,
           "h": 56,
@@ -809,7 +809,9 @@
         {
           "de": "pv",
           "vers": "backend",
-          "texte": "adossé à"
+          "texte": "adossé à",
+          "sortie": "b",
+          "entree": "h"
         },
         {
           "de": "sc",
@@ -1047,7 +1049,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Helm : un chart, vos valeurs, une release versionnée",
-      "largeur": 825,
+      "largeur": 885,
       "hauteur": 266,
       "zones": [],
       "noeuds": [
@@ -1065,7 +1067,7 @@
           "texte": "Chart",
           "detail": "templates + values.yaml",
           "ton": "chaud",
-          "x": 240,
+          "x": 260,
           "y": 40,
           "w": 180,
           "h": 56
@@ -1075,7 +1077,7 @@
           "texte": "helm upgrade",
           "detail": "fusionne les valeurs",
           "ton": "chaud",
-          "x": 470,
+          "x": 510,
           "y": 40,
           "w": 160,
           "h": 56
@@ -1085,7 +1087,7 @@
           "texte": "Cluster",
           "detail": "release n",
           "ton": "ok",
-          "x": 680,
+          "x": 740,
           "y": 40,
           "w": 90,
           "h": 56
@@ -1094,7 +1096,7 @@
           "id": "vals",
           "texte": "Vos valeurs",
           "detail": "values.yaml dans Git",
-          "x": 470,
+          "x": 510,
           "y": 190,
           "w": 160,
           "h": 56
@@ -1104,7 +1106,7 @@
           "texte": "Révisions",
           "detail": "historique, rollback",
           "ton": "faible",
-          "x": 645,
+          "x": 705,
           "y": 190,
           "w": 160,
           "h": 56
@@ -1392,7 +1394,7 @@
           "detail": "rejoignent le cluster",
           "ton": "ok",
           "w": 170,
-          "x": 244,
+          "x": 268,
           "y": 150,
           "h": 56
         }
@@ -1507,7 +1509,7 @@
           "titre": "Socle OpenShift",
           "x": 20,
           "y": 22,
-          "w": 542,
+          "w": 552,
           "h": 110
         },
         {
@@ -1536,7 +1538,7 @@
           "id": "ops",
           "texte": "Opérateurs de plateforme",
           "detail": "réseau, console, etcd",
-          "x": 326,
+          "x": 336,
           "y": 60,
           "w": 220,
           "h": 56,
@@ -1650,7 +1652,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Mise à jour d'un cluster : un chemin sûr, le plan de contrôle d'abord, les workers par lots",
-      "largeur": 842,
+      "largeur": 632,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1669,7 +1671,7 @@
           "detail": "choisit un chemin sûr",
           "ton": "chaud",
           "w": 170,
-          "x": 184,
+          "x": 202,
           "y": 30,
           "h": 56
         },
@@ -1678,7 +1680,7 @@
           "texte": "Plan de contrôle",
           "detail": "mis à jour en premier",
           "w": 170,
-          "x": 418,
+          "x": 442,
           "y": 30,
           "h": 56
         },
@@ -1688,8 +1690,8 @@
           "detail": "workers par lots",
           "ton": "chaud",
           "w": 170,
-          "x": 652,
-          "y": 30,
+          "x": 20,
+          "y": 150,
           "h": 56
         },
         {
@@ -1698,7 +1700,7 @@
           "detail": "drain, redémarrage, retour",
           "ton": "ok",
           "w": 200,
-          "x": 20,
+          "x": 325,
           "y": 150,
           "h": 56
         }
@@ -1717,14 +1719,14 @@
         {
           "de": "cp",
           "vers": "mcp",
-          "texte": "puis"
+          "texte": "puis",
+          "sortie": "b",
+          "entree": "h"
         },
         {
           "de": "mcp",
           "vers": "noeud",
-          "texte": "un lot à la fois",
-          "sortie": "b",
-          "entree": "h"
+          "texte": "un lot à la fois"
         }
       ],
       "source": {
@@ -1938,7 +1940,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Zero-touch : du dépôt Git à un cluster edge configuré, sans intervention sur place",
-      "largeur": 698,
+      "largeur": 734,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -1957,7 +1959,7 @@
           "texte": "Argo CD",
           "detail": "sur le hub",
           "w": 100,
-          "x": 254,
+          "x": 284,
           "y": 30,
           "h": 56
         },
@@ -1966,7 +1968,7 @@
           "texte": "Assisted Service",
           "detail": "prépare l'installation",
           "w": 170,
-          "x": 418,
+          "x": 466,
           "y": 30,
           "h": 56
         },
@@ -1985,7 +1987,7 @@
           "detail": "installe le cluster",
           "ton": "ok",
           "w": 150,
-          "x": 294,
+          "x": 300,
           "y": 150,
           "h": 56
         },
@@ -1995,7 +1997,7 @@
           "detail": "appliquées au cluster",
           "ton": "chaud",
           "w": 170,
-          "x": 508,
+          "x": 544,
           "y": 150,
           "h": 56
         }
@@ -2267,8 +2269,8 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Plusieurs distributions, une même API Kubernetes",
-      "largeur": 570,
-      "hauteur": 398,
+      "largeur": 612,
+      "hauteur": 440,
       "zones": [],
       "noeuds": [
         {
@@ -2276,8 +2278,8 @@
           "texte": "Kubernetes",
           "detail": "API conforme CNCF",
           "ton": "chaud",
-          "x": 230,
-          "y": 176,
+          "x": 251,
+          "y": 197,
           "w": 140,
           "h": 56
         },
@@ -2285,7 +2287,7 @@
           "id": "sylva",
           "texte": "Sylva",
           "detail": "pile télécom ouverte",
-          "x": 220,
+          "x": 241,
           "y": 30,
           "w": 160,
           "h": 56
@@ -2294,8 +2296,8 @@
           "id": "edit",
           "texte": "Distributions d'éditeurs",
           "detail": "Nokia, Ericsson",
-          "x": 190,
-          "y": 322,
+          "x": 211,
+          "y": 364,
           "w": 220,
           "h": 56
         },
@@ -2304,7 +2306,7 @@
           "texte": "OpenShift",
           "detail": "Red Hat",
           "x": 20,
-          "y": 176,
+          "y": 197,
           "w": 100,
           "h": 56
         },
@@ -2312,8 +2314,8 @@
           "id": "ran",
           "texte": "Rancher",
           "detail": "SUSE",
-          "x": 460,
-          "y": 176,
+          "x": 502,
+          "y": 197,
           "w": 90,
           "h": 56
         }
@@ -2405,7 +2407,7 @@
     "statut": "brouillon",
     "diagramme": {
       "legende": "Dépanner Kubernetes : du symptôme à la cause, couche par couche",
-      "largeur": 688,
+      "largeur": 741,
       "hauteur": 226,
       "zones": [],
       "noeuds": [
@@ -2424,7 +2426,7 @@
           "texte": "Événements",
           "detail": "kubectl describe",
           "w": 140,
-          "x": 274,
+          "x": 292,
           "y": 30,
           "h": 56
         },
@@ -2433,7 +2435,7 @@
           "texte": "Journaux",
           "detail": "kubectl logs --previous",
           "w": 180,
-          "x": 478,
+          "x": 496,
           "y": 30,
           "h": 56
         },
@@ -2451,7 +2453,7 @@
           "texte": "Réseau",
           "detail": "DNS, Service, NetworkPolicy",
           "w": 210,
-          "x": 234,
+          "x": 252,
           "y": 150,
           "h": 56
         },
@@ -2461,7 +2463,7 @@
           "detail": "API, etcd, scheduler",
           "ton": "chaud",
           "w": 160,
-          "x": 508,
+          "x": 561,
           "y": 150,
           "h": 56
         }
