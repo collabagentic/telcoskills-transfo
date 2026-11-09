@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "Une interface est un lien dédié entre deux nœuds.",
-  "genre": "transposition",
   "id": "interfaces-sbi",
+  "genre": "transposition",
   "avant": "pile S1AP, GTP et Diameter",
   "apres": "interfaces SBI",
   "resume": {
@@ -29,8 +17,51 @@
     "Chaque service est décrit par une spécification OpenAPI publiée par le 3GPP.",
     "Les nœuds laissent place à des fonctions (AMF, SMF, UPF) reliées par des points de référence nommés N1, N2, N3, N4."
   ],
+  "reflexe": "Une interface est un lien dédié entre deux nœuds.",
+  "pourquoiNouveau": null,
   "piege": "Croire que tout passe en HTTP/2. Les interfaces N2 (NGAP en SCTP) et N3 (GTP-U) gardent leur transport d'origine : elles demandent un traitement réseau particulier dans le cluster (SCTP, interface secondaire).",
   "exemple": "L'AMF appelle la SMF pour créer une session PDU par une requête HTTP/2 sur l'interface de service ; la RAN, elle, parle à l'AMF en SCTP sur N2.",
+  "schema": {
+    "legende": "Du lien dédié à l'interface de service",
+    "avant": [
+      {
+        "texte": "Nœud",
+        "detail": "MME"
+      },
+      {
+        "texte": "Interface dédiée",
+        "detail": "SCTP, GTP, Diameter"
+      },
+      {
+        "texte": "Nœud",
+        "detail": "SGW, HSS"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Fonction",
+        "detail": "AMF"
+      },
+      {
+        "texte": "Interface de service",
+        "detail": "HTTP/2, JSON, OpenAPI"
+      },
+      {
+        "texte": "Fonction",
+        "detail": "SMF"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes"
   ],
@@ -52,6 +83,46 @@
       "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "cours",
+      "nom": "MOOC de l'IMT Atlantique : 5G, réseaux mobiles",
+      "url": "https://www.imt-atlantique.fr/en/study/pedagogical-innovation/moocs",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "IMT Atlantique"
+    },
+    {
+      "type": "video",
+      "nom": "Free 5G Training: 5G for Absolute Beginners",
+      "url": "https://www.youtube.com/playlist?list=PLBC3G7CyizTqRsMpP9dqv6MR7jbBiPXEm",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3G4G"
+    },
+    {
+      "type": "video",
+      "nom": "5G Mobile Core Network Fundamentals",
+      "url": "https://www.youtube.com/playlist?list=PLRbUOpXOpZ2rTpT7xcaeCse8hbWbvV9bJ",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Hamidreza Bolhasani"
+    },
+    {
+      "type": "cours",
+      "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+      "url": "https://www.sharetechnote.com/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "ShareTechnote"
+    },
+    {
+      "type": "cours",
+      "nom": "5G Network Fundamentals (Institut Mines-Télécom, Coursera, audit gratuit)",
+      "url": "https://www.coursera.org/learn/5g-network-fundamentals",
+      "langue": "en",
+      "acces": "freemium",
+      "auteur": "Institut Mines-Télécom"
     }
   ],
   "sources": [

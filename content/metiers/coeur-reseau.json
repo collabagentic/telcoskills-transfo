@@ -92,6 +92,39 @@
     "operateurs",
     "ao-exigences-cnf"
   ],
+  "dependances": {
+    "vlan-reseaux-cluster": [
+      "interfaces-sbi"
+    ],
+    "appliance-cnf": [
+      "interfaces-sbi"
+    ],
+    "actif-passif-replicas": [
+      "appliance-cnf"
+    ],
+    "dimensionnement-ressources": [
+      "appliance-cnf"
+    ],
+    "reconciliation": [
+      "appliance-cnf"
+    ],
+    "supervision-prometheus": [
+      "actif-passif-replicas"
+    ],
+    "observabilite-traces": [
+      "supervision-prometheus"
+    ],
+    "changement-pr": [
+      "reconciliation"
+    ],
+    "operateurs": [
+      "reconciliation"
+    ],
+    "ao-exigences-cnf": [
+      "appliance-cnf",
+      "dimensionnement-ressources"
+    ]
+  },
   "sources": [
     {
       "nom": "Archétypes des passerelles TelcoSkills (personas construits à partir de CV et d'offres publics)",

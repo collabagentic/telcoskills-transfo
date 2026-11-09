@@ -19,6 +19,8 @@ export type Bilan = {
   metier: string;
   decoches: string[];
   fiches: Record<string, { lu?: string; verifie?: string }>;
+  /** Fiche choisie comme objectif : le cockpit montre le chemin restant pour l'atteindre. */
+  objectif?: string;
 };
 
 export type ResultatBilan = {

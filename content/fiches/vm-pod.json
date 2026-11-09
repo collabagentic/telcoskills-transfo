@@ -1,14 +1,4 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-08",
-  "historique": [
-    {
-      "date": "2026-11-08",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
   "id": "vm-pod",
   "genre": "transposition",
   "avant": "VM et template",
@@ -31,6 +21,47 @@
   "pourquoiNouveau": null,
   "piege": "Mettre une application à état dans un Deployment. Une base répliquée, qui demande à chaque réplica un nom réseau stable et son propre volume, relève d'un StatefulSet.",
   "exemple": "Un frontal HTTP/2 d'interface SBI, sans état local, se déploie en plusieurs pods identiques ; si l'un tombe, un autre est créé à sa place.",
+  "schema": {
+    "legende": "De la machine qu'on soigne au pod qu'on remplace",
+    "avant": [
+      {
+        "texte": "Template",
+        "detail": "VM de référence"
+      },
+      {
+        "texte": "VM",
+        "detail": "patchée sur place"
+      },
+      {
+        "texte": "Correction",
+        "detail": "connexion en SSH"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Image",
+        "detail": "construite et versionnée"
+      },
+      {
+        "texte": "Deployment",
+        "detail": "N pods voulus"
+      },
+      {
+        "texte": "Pods",
+        "detail": "remplacés, jamais réparés"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes"
   ],
@@ -52,6 +83,46 @@
       "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Docker formation de A à Z",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWq0iz59-px2z-qjDdZKEvWd",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "video",
+      "nom": "Podman : Tutoriels et Formation",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo_IZ1s2v1Ijf-SnPQY8J57",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "video",
+      "nom": "Kubernetes v2 : formation et tutoriels pour débuter",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo6wiy2G3SjBubF6zXjksap",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "video",
+      "nom": "La meilleure formation kubernetes en français (LMFK)",
+      "url": "https://www.youtube.com/playlist?list=PL1CpaUw4aBIxTPvr5l_pKoHxI0Tz2qoyK",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "khgcode"
+    },
+    {
+      "type": "video",
+      "nom": "KubeVirt Summit 2025",
+      "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2PHiIU_qr729UCWibWvtcQB",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "CNCF [Cloud Native Computing Foundation]"
     }
   ],
   "sources": [

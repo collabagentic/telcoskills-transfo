@@ -13,6 +13,7 @@
     "verifier": "node node_modules/eslint/bin/eslint.js . && node node_modules/typescript/bin/tsc --noEmit && node node_modules/vitest/vitest.mjs run && node node_modules/next/dist/bin/next build"
   },
   "dependencies": {
+    "@xyflow/react": "^12.12.1",
     "next": "^16.4.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

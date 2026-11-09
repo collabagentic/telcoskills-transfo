@@ -1,14 +1,4 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-08",
-  "historique": [
-    {
-      "date": "2026-11-08",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
   "id": "operateurs",
   "genre": "nouveaute",
   "avant": null,
@@ -30,6 +20,34 @@
   "pourquoiNouveau": "Les équipementiers livraient une appliance et une procédure d'exploitation. Kubernetes permet de livrer à la place un contrôleur qui applique cette procédure, avec la même boucle de réconciliation que le reste du cluster.",
   "piege": "Traiter un opérateur comme une boîte noire. Il agit sur le cluster avec ses propres droits RBAC : lisez ce qu'il demande avant de l'installer.",
   "exemple": "Un éditeur de cœur 5G livre un opérateur : vous créez un objet qui décrit la version et le nombre d'instances, et l'opérateur déploie et met à jour les pods.",
+  "schema": {
+    "legende": "Un contrôleur qui exploite l'application",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "Ressource personnalisée",
+        "detail": "décrit l'application"
+      },
+      {
+        "texte": "Opérateur",
+        "detail": "contrôleur dédié"
+      },
+      {
+        "texte": "Pods",
+        "detail": "déployés et mis à jour"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes",
     "olm"
@@ -52,6 +70,38 @@
       "url": "https://olm.operatorframework.io/docs/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Ask an OpenShift Expert | Red Hat Livestreaming",
+      "url": "https://www.youtube.com/playlist?list=PLaR6Rq6Z4IqdsG6b09q4QIv_Yq5fNL7zh",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "OpenShift"
+    },
+    {
+      "type": "video",
+      "nom": "OpenShift BootCamp - Free Course",
+      "url": "https://www.youtube.com/playlist?list=PLH5uDiXcw8tRG7_RJOe7leEvDBfC46Bl_",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "techbeatly"
+    },
+    {
+      "type": "cours",
+      "nom": "Developer Sandbox for Red Hat OpenShift : cluster gratuit pour s'entraîner",
+      "url": "https://developers.redhat.com/developer-sandbox",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Red Hat"
+    },
+    {
+      "type": "doc",
+      "nom": "Operator SDK : développer un opérateur en Go",
+      "url": "https://sdk.operatorframework.io/docs/building-operators/golang/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Operator Framework"
     }
   ],
   "sources": [

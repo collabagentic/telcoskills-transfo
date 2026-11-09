@@ -58,6 +58,17 @@ export function verifierContenu(c: Contenu): string[] {
     for (const id of attendues) if (!m.ordre.includes(id)) err(3, `métier « ${m.id} » : « ${id} » manque dans l'ordre.`);
     for (const id of m.ordre) if (!attendues.has(id)) err(3, `métier « ${m.id} » : « ${id} » est dans l'ordre mais n'est liée à aucun savoir-faire ni nouveauté.`);
 
+    // 10. Dépendances : fiches du métier, sans boucle, chaque prérequis avant la fiche dans l'ordre.
+    for (const [fiche, prerequis] of Object.entries(m.dependances)) {
+      const i = m.ordre.indexOf(fiche);
+      if (i < 0) err(10, `métier « ${m.id} » : la dépendance « ${fiche} » n'est pas dans l'ordre.`);
+      for (const p of prerequis) {
+        const j = m.ordre.indexOf(p);
+        if (j < 0) err(10, `métier « ${m.id} » : le prérequis « ${p} » de « ${fiche} » n'est pas dans l'ordre.`);
+        else if (i >= 0 && j >= i) err(10, `métier « ${m.id} » : le prérequis « ${p} » doit précéder « ${fiche} » dans l'ordre (sinon la carte aurait une boucle).`);
+      }
+    }
+
     // 8. Entre 8 et 16 savoir-faire, au moins 3 acquis.
     if (m.savoirFaire.length < 8 || m.savoirFaire.length > 16) err(8, `métier « ${m.id} » : ${m.savoirFaire.length} savoir-faire (entre 8 et 16 attendus).`);
     if (m.savoirFaire.filter((s) => s.statut === "acquis").length < 3) err(8, `métier « ${m.id} » : au moins 3 savoir-faire acquis sont attendus.`);
@@ -79,6 +90,10 @@ export function verifierContenu(c: Contenu): string[] {
     if (!f.plusLoin.some((l) => l.acces === "gratuit" && (l.type === "opensource" || l.type === "doc"))) {
       err(5, `fiche « ${f.id} » : au moins un lien « pour aller plus loin » libre (open source ou documentation gratuite) est attendu.`);
     }
+
+    // 11. Schéma : une nouveauté n'a pas de schéma « avant », une transposition en a un.
+    if (f.genre === "transposition" && !f.schema.avant) err(11, `fiche « ${f.id} » : une transposition a un schéma « avant ».`);
+    if (f.genre === "nouveaute" && f.schema.avant) err(11, `fiche « ${f.id} » : une nouveauté n'a pas de schéma « avant ».`);
 
     // 9. Historique trié du plus récent au plus ancien, première date = date de mise à jour.
     const dates = f.historique.map((h) => h.date);

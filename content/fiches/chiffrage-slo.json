@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "Le chiffrage se fige à la signature.",
-  "genre": "transposition",
   "id": "chiffrage-slo",
+  "genre": "transposition",
   "avant": "chiffrage et TCO",
   "apres": "coût par SLO et FinOps",
   "resume": {
@@ -29,8 +17,51 @@
     "Chaque niveau de disponibilité en plus a un coût d'architecture : on le chiffre en face de l'objectif.",
     "FinOps rend le coût visible et attribuable par équipe ou par service, en continu."
   ],
+  "reflexe": "Le chiffrage se fige à la signature.",
+  "pourquoiNouveau": null,
   "piege": "Vendre un SLO sans pouvoir le mesurer. Un objectif de disponibilité n'a de sens que défini avec son indicateur (SLI) et sa fenêtre de mesure.",
   "exemple": "Pour une fonction du cœur, deux options sont chiffrées : trois réplicas sur un site, ou six répartis sur deux sites. Le client voit le coût de chaque objectif de disponibilité.",
+  "schema": {
+    "legende": "Du chiffrage par équipement au coût par niveau de service",
+    "avant": [
+      {
+        "texte": "Équipements",
+        "detail": "et licences"
+      },
+      {
+        "texte": "TCO",
+        "detail": "sur cinq ans"
+      },
+      {
+        "texte": "Marge",
+        "detail": "de sécurité"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "SLO",
+        "detail": "objectif mesuré"
+      },
+      {
+        "texte": "Architecture",
+        "detail": "réplicas, sites"
+      },
+      {
+        "texte": "Coût",
+        "detail": "par niveau de service"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [],
   "questions": [
     "q-chiffrage-slo-1",
@@ -50,6 +81,30 @@
       "url": "https://www.finops.org/introduction/what-is-finops/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Prometheus Fundamentals",
+      "url": "https://www.youtube.com/playlist?list=PLyBW7UHmEXgylLwxdVbrBQJ-fJ_jMvh8h",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Prometheus Monitoring with Julius | PromLabs"
+    },
+    {
+      "type": "cours",
+      "nom": "Google SRE : ressources, livres gratuits et études de cas",
+      "url": "https://sre.google/resources/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Google"
+    },
+    {
+      "type": "cours",
+      "nom": "Green Software for Practitioners (Green Software Foundation)",
+      "url": "https://learn.greensoftware.foundation/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Green Software Foundation"
     }
   ],
   "sources": [

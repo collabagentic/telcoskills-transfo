@@ -1,14 +1,4 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-08",
-  "historique": [
-    {
-      "date": "2026-11-08",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
   "id": "vlan-reseaux-cluster",
   "genre": "transposition",
   "avant": "découpage en VLAN",
@@ -31,6 +21,47 @@
   "pourquoiNouveau": null,
   "piege": "Appliquer le bon réflexe au mauvais plan. Sur le réseau primaire des pods, découper en sous-réseaux n'isole rien : l'IP d'un pod est éphémère. L'erreur inverse, côté profil cloud-natif, consiste à ignorer les réseaux secondaires, là où le VLAN reste légitime.",
   "exemple": "Dans un cœur 5G déployé en CNF, la signalisation reste sur le réseau primaire du cluster. Le trafic utilisateur d'une fonction UPF passe par une interface secondaire attachée en SR-IOV, avec son VLAN et sa MTU.",
+  "schema": {
+    "legende": "Deux plans de réseau dans un cluster",
+    "avant": [
+      {
+        "texte": "VM",
+        "detail": "portgroup tagué VLAN"
+      },
+      {
+        "texte": "Commutateur",
+        "detail": "trunk 802.1Q"
+      },
+      {
+        "texte": "Pare-feu",
+        "detail": "règles entre VLAN"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Pod",
+        "detail": "IP éphémère, réseau plat"
+      },
+      {
+        "texte": "Réseau primaire",
+        "detail": "OVN-Kubernetes, NetworkPolicy"
+      },
+      {
+        "texte": "Interface secondaire",
+        "detail": "Multus, SR-IOV, VLAN"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes",
     "ovn-kubernetes",
@@ -54,6 +85,38 @@
       "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/scalability_and_performance/telco-core-ref-design-specs",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Kubernetes Security and Networking",
+      "url": "https://www.youtube.com/playlist?list=PLtO_OYBiEo6klZcU3HVfbrSgolnvnkCCB",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Packet Pushers"
+    },
+    {
+      "type": "video",
+      "nom": "Networking | DPDK / SR-IOV",
+      "url": "https://www.youtube.com/playlist?list=PL-E57_RQ89Wcr8qLKLxPLW6pNVOCzYzFg",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "David Walter"
+    },
+    {
+      "type": "doc",
+      "nom": "Multus CNI : guide de démarrage (interfaces multiples par pod)",
+      "url": "https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/quickstart.md",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Kubernetes Network Plumbing WG"
+    },
+    {
+      "type": "doc",
+      "nom": "SR-IOV Network Device Plugin : documentation du projet",
+      "url": "https://github.com/k8snetworkplumbingwg/sriov-network-device-plugin",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Kubernetes Network Plumbing WG"
     }
   ],
   "sources": [

@@ -1,14 +1,4 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-08",
-  "historique": [
-    {
-      "date": "2026-11-08",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
   "id": "pra-gitops",
   "genre": "transposition",
   "avant": "dossier PRA",
@@ -31,6 +21,49 @@
   "pourquoiNouveau": null,
   "piege": "Croire que Git suffit. Les manifestes reconstruisent les applications, pas les données ni les secrets : il faut toujours des sauvegardes testées (par exemple de la base etcd) et une gestion des secrets. Le RPO dépend de la réplication des données, pas de Git.",
   "exemple": "Un site de secours doit accueillir des fonctions du cœur (AMF, SMF) : le cluster est recréé, le dépôt est réappliqué, puis les données d'abonnés et de sessions sont restaurées depuis leur réplication.",
+  "schema": {
+    "legende": "Reprise : procédure ou dépôt",
+    "avant": [
+      {
+        "texte": "Sinistre"
+      },
+      {
+        "texte": "Dossier PRA",
+        "detail": "procédure rédigée"
+      },
+      {
+        "texte": "Reprise manuelle",
+        "detail": "RTO tenu à la main"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Sinistre"
+      },
+      {
+        "texte": "Dépôt Git",
+        "detail": "état voulu du cluster"
+      },
+      {
+        "texte": "Outil GitOps",
+        "detail": "réapplique les manifestes"
+      },
+      {
+        "texte": "Données",
+        "detail": "restaurées depuis la réplication"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes",
     "argo-cd"
@@ -53,6 +86,30 @@
       "url": "https://argo-cd.readthedocs.io/en/stable/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Velero Demos and Deep Dives",
+      "url": "https://www.youtube.com/playlist?list=PL7bmigfV0EqT82eQaVCslWWM4k4d63KyK",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "VMware Cloud Native Apps"
+    },
+    {
+      "type": "video",
+      "nom": "GitOps Guide to the Galaxy",
+      "url": "https://www.youtube.com/playlist?list=PLbMP1JcGBmSGKO8UreWpOBOhCqilejhtd",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Red Hat"
+    },
+    {
+      "type": "video",
+      "nom": "Argo CD: Basics to Production Course",
+      "url": "https://www.youtube.com/playlist?list=PLmPit9IIdzwSR-4FP65oP3AoZCKBvbwXg",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Cloud With VarJosh"
     }
   ],
   "sources": [

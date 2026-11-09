@@ -103,4 +103,21 @@ describe("règles du contenu", () => {
     ];
     expect(erreursDeRegle(d, 9).join()).toContain("trié");
   });
+
+  it("règle 10 : un prérequis doit précéder la fiche dans l'ordre", () => {
+    const c = contenuValide();
+    c.metiers[0].dependances = { f2: ["f1"], f3: ["f2"] };
+    expect(erreursDeRegle(c, 10)).toEqual([]);
+    c.metiers[0].dependances = { f1: ["f2"] };
+    expect(erreursDeRegle(c, 10).join()).toContain("précéder");
+    c.metiers[0].dependances = { f2: ["fantome"] };
+    expect(erreursDeRegle(c, 10).join()).toContain("n'est pas dans l'ordre");
+  });
+
+  it("règle 11 : une transposition a un schéma avant, une nouveauté non", () => {
+    const c = contenuValide();
+    c.fiches[0].schema.avant = null;
+    c.fiches[5].schema.avant = [{ texte: "A" }, { texte: "B" }];
+    expect(erreursDeRegle(c, 11).length).toBe(2);
+  });
 });

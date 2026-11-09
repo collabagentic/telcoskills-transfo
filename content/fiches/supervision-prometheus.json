@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "Une alarme par cause possible.",
-  "genre": "transposition",
   "id": "supervision-prometheus",
+  "genre": "transposition",
   "avant": "compteurs et alarmes",
   "apres": "métriques et alertes sur symptômes",
   "resume": {
@@ -29,8 +17,51 @@
     "On alerte de préférence sur les symptômes (taux d'erreurs vu par l'utilisateur) plutôt que sur chaque cause possible.",
     "Alertmanager regroupe les alertes similaires, par labels, en une seule notification."
   ],
+  "reflexe": "Une alarme par cause possible.",
+  "pourquoiNouveau": null,
   "piege": "Reproduire la logique de l'ancien nœud : des centaines de règles sur des causes, qui se déclenchent ensemble. Résultat : du bruit, et les vraies alertes se perdent. Partez de ce que l'utilisateur ressent, puis creusez vers les causes.",
   "exemple": "Pour une SMF, une alerte part si le taux d'échec d'établissement de session PDU dépasse un seuil pendant plusieurs minutes, au lieu d'une alarme par pod redémarré.",
+  "schema": {
+    "legende": "De l'alarme par cause à l'alerte sur symptôme",
+    "avant": [
+      {
+        "texte": "Nœud",
+        "detail": "compteurs propriétaires"
+      },
+      {
+        "texte": "Seuil fixe",
+        "detail": "une alarme par cause"
+      },
+      {
+        "texte": "Console",
+        "detail": "bruit"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Métriques",
+        "detail": "exposées par les pods"
+      },
+      {
+        "texte": "Prometheus",
+        "detail": "règles d'alerte, clause for"
+      },
+      {
+        "texte": "Alertmanager",
+        "detail": "regroupe par labels"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "prometheus"
   ],
@@ -52,6 +83,46 @@
       "url": "https://prometheus.io/docs/alerting/latest/alertmanager/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "PROMETHEUS / GRAFANA : tutos et formation sur l'observabilité",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo3_2pj5Jflqwla62P5OI8n",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "video",
+      "nom": "Prometheus Fundamentals",
+      "url": "https://www.youtube.com/playlist?list=PLyBW7UHmEXgylLwxdVbrBQJ-fJ_jMvh8h",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Prometheus Monitoring with Julius | PromLabs"
+    },
+    {
+      "type": "cours",
+      "nom": "Grafana : tutoriels pas à pas (dont « Grafana fundamentals »)",
+      "url": "https://grafana.com/tutorials/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Grafana Labs"
+    },
+    {
+      "type": "cours",
+      "nom": "Grafana : parcours d'apprentissage guidés (Learning Journeys)",
+      "url": "https://grafana.com/docs/learning-journeys/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Grafana Labs"
+    },
+    {
+      "type": "cours",
+      "nom": "Google SRE : ressources, livres gratuits et études de cas",
+      "url": "https://sre.google/resources/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Google"
     }
   ],
   "sources": [

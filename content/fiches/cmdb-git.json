@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "L'inventaire se tient dans un outil à part, mis à jour à la main.",
-  "genre": "transposition",
   "id": "cmdb-git",
+  "genre": "transposition",
   "avant": "CMDB et inventaire",
   "apres": "Git comme source de vérité et labels",
   "resume": {
@@ -29,8 +17,50 @@
     "Les labels (clé/valeur) disent propriétaire, application, version : on sélectionne et on filtre dessus.",
     "Un objet sans labels cohérents est un objet que l'inventaire ne retrouve pas."
   ],
+  "reflexe": "L'inventaire se tient dans un outil à part, mis à jour à la main.",
+  "pourquoiNouveau": null,
   "piege": "Mélanger labels et annotations : les labels servent à sélectionner et regrouper, les annotations à porter des informations non identifiantes. Et sans convention de nommage des labels, chaque équipe invente la sienne.",
   "exemple": "Chaque fonction du cœur porte les labels application, version et propriétaire ; une requête sur le propriétaire liste ce qu'une équipe exploite, sans consulter une CMDB.",
+  "schema": {
+    "legende": "Où vit l'inventaire",
+    "avant": [
+      {
+        "texte": "Saisie ou découverte"
+      },
+      {
+        "texte": "CMDB",
+        "detail": "inventaire séparé"
+      },
+      {
+        "texte": "Écart",
+        "detail": "retard sur la réalité"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Git",
+        "detail": "état voulu"
+      },
+      {
+        "texte": "Cluster",
+        "detail": "objets avec labels"
+      },
+      {
+        "texte": "Requête",
+        "detail": "par propriétaire, version"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes",
     "argo-cd"
@@ -53,6 +83,30 @@
       "url": "https://opengitops.dev/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "NETCONF YANG Tutorial with Cisco real time examples",
+      "url": "https://www.youtube.com/playlist?list=PLOocymQm7YWaJX5l5SgfkAvHQYUS-Xr1Q",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "NetworkEvolution"
+    },
+    {
+      "type": "video",
+      "nom": "GitOps Guide to the Galaxy",
+      "url": "https://www.youtube.com/playlist?list=PLbMP1JcGBmSGKO8UreWpOBOhCqilejhtd",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Red Hat"
+    },
+    {
+      "type": "video",
+      "nom": "Argo CD: Basics to Production Course",
+      "url": "https://www.youtube.com/playlist?list=PLmPit9IIdzwSR-4FP65oP3AoZCKBvbwXg",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Cloud With VarJosh"
     }
   ],
   "sources": [

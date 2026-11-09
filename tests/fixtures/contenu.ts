@@ -18,6 +18,7 @@ export function fiche(id: string, genre: Fiche["genre"] = "transposition"): Fich
     pourquoiNouveau: transposition ? null : "Parce que.",
     piege: "Un piège.",
     exemple: "Un exemple.",
+    schema: { legende: "Légende", avant: transposition ? [{ texte: "A" }, { texte: "B" }] : null, apres: [{ texte: "C" }, { texte: "D" }] },
     technos: ["kube"],
     questions: [`q-${id}-1`, `q-${id}-2`],
     plusLoin: [lien],
@@ -49,6 +50,7 @@ export function contenuValide(): Contenu {
     ],
     nouveautes: ["n1"],
     ordre: [...transpositions, "n1"],
+    dependances: {},
     sources: [{ nom: "Source", url: "https://exemple.org/s" }],
     statut: "brouillon",
   };

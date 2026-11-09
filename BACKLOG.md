@@ -51,7 +51,7 @@ La formule des passerelles existantes en est le cœur et devient la signature du
 
 ### Ce qu'on ne fait pas (anti-périmètre, ne pas rouvrir)
 
-Roadmaps et graphes de prérequis · React Flow, dagre · diagnostic multi-questions · test de positionnement · projet fil
+Roadmaps de 16 à 63 compétences (voir §12 : la carte de transformation, elle, existe) · dagre · diagnostic multi-questions · test de positionnement · projet fil
 rouge et ses 9 phases · vue Équipe (reportée, §7 E11) · rôles cibles comme porte d'entrée · heures, rythme, date
 d'arrivée · révisions espacées · vidéos générées · analyses, frameworks, offres · Sylva comme rubrique.
 
@@ -688,3 +688,15 @@ enchaîner. Hors points d'arrêt, enchaîner sans redemander.
 | Q9 | Que devient l'ancien site telcoskills ? | Il reste en ligne tel quel jusqu'à la bascule ; aucune modification. |
 | Q10 | Quel délai de réponse vous engagez-vous à tenir sur un signalement (affiché sur la page Contribuer) ? | « Sous 7 jours ». |
 | Q11 | Les contributeurs sont-ils nommés dans l'historique par défaut ? | Oui s'ils l'acceptent dans l'issue (case à cocher du gabarit), sinon « un contributeur ». |
+
+---
+
+## 12. Évolution du 2026-11-09 : cockpit, carte et schémas (décision de l'auteur)
+
+L'auteur veut un vrai cockpit, une progression et une carte, à partir du projet d'origine, **adaptés à la transformation** (pas à des parcours complets). Ce qui est ajouté, et ce qui reste exclu :
+
+- **Carte de transformation** (React Flow, `@xyflow/react`) : seulement les 7 à 12 étapes du métier, reliées par des **prérequis conseillés** (`dependances` du métier, règle 10 : chaque prérequis précède la fiche dans `ordre`). Jamais de verrou. Placement calculé (`src/lib/carte.ts`), style par les jetons, chaque étape est un lien vers la fiche. Sur petit écran, la liste remplace la carte.
+- **Cockpit** (`/plan`) : où j'en suis (vérifiées, lues), prochaine étape, **objectif** (une fiche à atteindre : étapes restantes et temps de lecture restant, chemin surligné sur la carte). Stocké dans `ts:bilan` (`objectif`, facultatif).
+- **Schémas** (règle 11) : chaque fiche a une chaîne d'étapes « avant » puis « après » (SVG et HTML statique), sauf la nouveauté qui n'a pas d'« avant ».
+- **Ressources** : les ressources d'apprentissage de l'ancien dépôt sont reprises par fiche (`scripts/reprise/ressources.mjs`), le gratuit et le français d'abord ; types `cours` et `video` ajoutés.
+- **Toujours exclus** : heures cumulées, rythme et date d'arrivée estimée (le seul temps affiché est la somme des temps de lecture), parcours complets, rôles cibles, vue Métro, vue Arbre.

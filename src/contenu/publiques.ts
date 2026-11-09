@@ -13,6 +13,7 @@ export type FicheLite = {
   liens: { nom: string; url: string; acces: string; type: string }[];
 };
 export type MetierLite = Omit<MetierPourBilan, "savoirFaire"> & {
+  dependances: Record<string, string[]>;
   savoirFaire: (MetierPourBilan["savoirFaire"][number] & { texte: string })[];
   nom: string;
   accroche: string;
@@ -37,7 +38,7 @@ export function donneesPubliques(): DonneesPubliques {
   }
   const metiers: Record<string, MetierLite> = {};
   for (const m of c.metiers) {
-    metiers[m.id] = { id: m.id, nom: m.nom, accroche: m.accroche, statut: m.statut, savoirFaire: m.savoirFaire, nouveautes: m.nouveautes, ordre: m.ordre };
+    metiers[m.id] = { id: m.id, nom: m.nom, accroche: m.accroche, statut: m.statut, savoirFaire: m.savoirFaire, nouveautes: m.nouveautes, ordre: m.ordre, dependances: m.dependances };
   }
   return { metiers, fiches };
 }

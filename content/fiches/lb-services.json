@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "Le répartiteur de charge est un équipement qu'on configure à la main.",
-  "genre": "transposition",
   "id": "lb-services",
+  "genre": "transposition",
   "avant": "load balancer (F5)",
   "apres": "Service, Ingress et MetalLB",
   "resume": {
@@ -29,8 +17,49 @@
     "Une Route ou un Ingress ne gère que HTTP, HTTPS et TLS ; le SCTP demande un autre mécanisme.",
     "MetalLB expose des Services de type LoadBalancer sur du bare metal, notamment en mode BGP."
   ],
+  "reflexe": "Le répartiteur de charge est un équipement qu'on configure à la main.",
+  "pourquoiNouveau": null,
   "piege": "Faire passer le SCTP de la signalisation N2 par un Ingress : il ne le transporte pas. Il faut un Service de type LoadBalancer (par exemple avec MetalLB) ou un équivalent.",
   "exemple": "L'AMF expose le port NGAP en SCTP par un Service LoadBalancer dont l'adresse est annoncée en BGP aux routeurs de la RAN.",
+  "schema": {
+    "legende": "Répartir le trafic",
+    "avant": [
+      {
+        "texte": "Client"
+      },
+      {
+        "texte": "F5",
+        "detail": "virtual server et pool"
+      },
+      {
+        "texte": "Serveurs",
+        "detail": "pool tenu à la main"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Client"
+      },
+      {
+        "texte": "Service LoadBalancer",
+        "detail": "MetalLB, BGP"
+      },
+      {
+        "texte": "Pods",
+        "detail": "endpoints suivis seuls"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes",
     "metallb"
@@ -53,6 +82,30 @@
       "url": "https://metallb.io/concepts/bgp/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Kubernetes v2 : formation et tutoriels pour débuter",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo6wiy2G3SjBubF6zXjksap",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "video",
+      "nom": "La meilleure formation kubernetes en français (LMFK)",
+      "url": "https://www.youtube.com/playlist?list=PL1CpaUw4aBIxTPvr5l_pKoHxI0Tz2qoyK",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "khgcode"
+    },
+    {
+      "type": "cours",
+      "nom": "Killercoda : laboratoires Kubernetes interactifs dans le navigateur",
+      "url": "https://killercoda.com/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Killercoda"
     }
   ],
   "sources": [

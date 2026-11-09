@@ -15,7 +15,13 @@ export function analyserBilan(brut: string | null): Bilan | null {
   try {
     const b = JSON.parse(brut) as Partial<Bilan>;
     if (b?.v !== 1 || typeof b.metier !== "string" || !Array.isArray(b.decoches) || typeof b.fiches !== "object" || b.fiches === null) return null;
-    return { v: 1, metier: b.metier, decoches: b.decoches.filter((x) => typeof x === "string"), fiches: b.fiches };
+    return {
+      v: 1,
+      metier: b.metier,
+      decoches: b.decoches.filter((x) => typeof x === "string"),
+      fiches: b.fiches,
+      ...(typeof b.objectif === "string" ? { objectif: b.objectif } : {}),
+    };
   } catch {
     return null;
   }
@@ -86,4 +92,12 @@ export function marquerFiche(id: string, etat: "lu" | "verifie"): void {
   const suivant = etat === "verifie" ? { ...actuel, lu: actuel.lu ?? jour, verifie: actuel.verifie ?? jour } : { ...actuel, lu: actuel.lu ?? jour };
   if (suivant.lu === actuel.lu && suivant.verifie === actuel.verifie) return;
   ecrireBilan({ ...bilan, fiches: { ...bilan.fiches, [id]: suivant } });
+}
+
+/** Choisit (ou retire, avec null) la fiche objectif du plan. */
+export function definirObjectif(id: string | null): void {
+  const bilan = analyserBilan(lireBrut());
+  if (!bilan) return;
+  const { objectif: _ancien, ...reste } = bilan;
+  ecrireBilan(id ? { ...reste, objectif: id } : reste);
 }

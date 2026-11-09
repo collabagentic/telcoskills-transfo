@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "La configuration vit dans l'équipement.",
-  "genre": "transposition",
   "id": "appliance-cnf",
+  "genre": "transposition",
   "avant": "boîte équipementier",
   "apres": "CNF et son cycle de vie",
   "resume": {
@@ -29,8 +17,51 @@
     "Chaque installation est une release ; les révisions précédentes permettent de revenir en arrière avec « helm rollback ».",
     "La configuration est dans des fichiers de valeurs versionnés, plus dans une console de l'équipement."
   ],
+  "reflexe": "La configuration vit dans l'équipement.",
+  "pourquoiNouveau": null,
   "piege": "Prendre le chart de l'éditeur tel quel. Les valeurs par défaut ne conviennent pas à votre cluster (réseaux secondaires, ressources, stockage) : elles se documentent et se versionnent, comme une configuration d'équipement.",
   "exemple": "L'éditeur livre l'UPF sous forme de chart ; votre équipe fixe dans les valeurs les interfaces secondaires et les ressources, puis déploie la version par « helm upgrade ».",
+  "schema": {
+    "legende": "Cycle de vie d'une fonction réseau",
+    "avant": [
+      {
+        "texte": "Appliance",
+        "detail": "livrée par l'équipementier"
+      },
+      {
+        "texte": "Console",
+        "detail": "configuration dans l'équipement"
+      },
+      {
+        "texte": "Procédure",
+        "detail": "mise à jour par lots"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Chart Helm",
+        "detail": "livré par l'éditeur"
+      },
+      {
+        "texte": "Valeurs",
+        "detail": "versionnées chez vous"
+      },
+      {
+        "texte": "helm upgrade",
+        "detail": "rollback possible"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes",
     "helm"
@@ -53,6 +84,30 @@
       "url": "https://helm.sh/docs/helm/helm_rollback/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "La meilleure formation kubernetes en français (LMFK)",
+      "url": "https://www.youtube.com/playlist?list=PL1CpaUw4aBIxTPvr5l_pKoHxI0Tz2qoyK",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "khgcode"
+    },
+    {
+      "type": "video",
+      "nom": "TUTORIALS ET FORMATION HELM",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWqIeLqU1194K-LS1O5m2lDd",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "video",
+      "nom": "Cloud Native Telco Day 2026 - Europe",
+      "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2N_B1HGXUyfn4HjjydZctPA",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "CNCF [Cloud Native Computing Foundation]"
     }
   ],
   "sources": [

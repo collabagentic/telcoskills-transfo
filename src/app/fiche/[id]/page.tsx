@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AvantApres } from "@/composants/AvantApres";
+import { SchemaFiche } from "@/composants/SchemaFiche";
 import { HautDeFiche, SuiteFiche } from "@/composants/NavigationFiche";
 import { Verifier } from "@/composants/Verifier";
 import { chargerContenu } from "@/contenu/charger";
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: titreFiche(f), description: f.resume.apres, openGraph: { title: titreFiche(f), description: f.resume.apres } };
 }
 
+const TYPE_LIEN = { opensource: "open source", doc: "documentation", cours: "cours", video: "vidéo", spec: "spécification" } as const;
 const GENRE = { transposition: "Change de forme", nouveaute: "Vraiment nouveau" } as const;
 
 export default async function PageFiche({ params }: Props) {
@@ -58,6 +60,8 @@ export default async function PageFiche({ params }: Props) {
       <h1>{titre}</h1>
 
       <AvantApres genre={f.genre} resume={f.resume} lies={lies} technos={technos.map((t) => ({ id: t.id, nom: t.nom }))} />
+
+      <SchemaFiche schema={f.schema} />
 
       <section className="rubrique">
         <h2>Ce qui reste vrai</h2>
@@ -108,7 +112,8 @@ export default async function PageFiche({ params }: Props) {
                   {l.nom}
                 </a>{" "}
                 <span className="pastille">
-                  {l.langue} · {l.acces}
+                  {TYPE_LIEN[l.type]} · {l.langue} · {l.acces}
+                  {l.auteur ? ` · ${l.auteur}` : ""}
                 </span>
               </li>
             ))}

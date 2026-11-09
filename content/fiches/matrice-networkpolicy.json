@@ -1,14 +1,4 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-08",
-  "historique": [
-    {
-      "date": "2026-11-08",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
   "id": "matrice-networkpolicy",
   "genre": "transposition",
   "avant": "matrice de flux",
@@ -31,6 +21,47 @@
   "pourquoiNouveau": null,
   "piege": "Une NetworkPolicy peut être acceptée sans effet : si le plugin réseau du cluster ne gère pas les NetworkPolicy, rien n'est filtré. Autre piège classique : une règle ingress contenant un élément vide ({}) autorise tout le trafic au lieu de tout refuser.",
   "exemple": "Pour l'AMF d'un cœur 5G, la règle sélectionne les pods de l'AMF par label et n'ouvre en entrée que le port 38412 en SCTP, le port de la signalisation NGAP (interface N2).",
+  "schema": {
+    "legende": "De l'adresse IP au label",
+    "avant": [
+      {
+        "texte": "Source",
+        "detail": "adresse IP et sous-réseau"
+      },
+      {
+        "texte": "Pare-feu",
+        "detail": "une ligne : IP, port"
+      },
+      {
+        "texte": "Destination",
+        "detail": "adresse IP du serveur"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Pods source",
+        "detail": "sélectionnés par label"
+      },
+      {
+        "texte": "NetworkPolicy",
+        "detail": "labels, namespace, port"
+      },
+      {
+        "texte": "Pods AMF",
+        "detail": "label app=amf"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes",
     "ovn-kubernetes"
@@ -53,6 +84,14 @@
       "url": "https://kubernetes.io/docs/tasks/administer-cluster/declare-network-policy/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Kubernetes Security and Networking",
+      "url": "https://www.youtube.com/playlist?list=PLtO_OYBiEo6klZcU3HVfbrSgolnvnkCCB",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Packet Pushers"
     }
   ],
   "sources": [

@@ -69,6 +69,23 @@
     "reconciliation",
     "plateforme-produit"
   ],
+  "dependances": {
+    "ao-exigences-cnf": [
+      "chiffrage-slo"
+    ],
+    "dimensionnement-ressources": [
+      "appliance-cnf"
+    ],
+    "dossier-archi-code": [
+      "ao-exigences-cnf"
+    ],
+    "reconciliation": [
+      "appliance-cnf"
+    ],
+    "plateforme-produit": [
+      "reconciliation"
+    ]
+  },
   "sources": [
     {
       "nom": "Archétypes des passerelles TelcoSkills (personas construits à partir de CV et d'offres publics)",

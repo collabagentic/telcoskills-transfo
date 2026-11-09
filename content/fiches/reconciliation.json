@@ -1,14 +1,4 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-08",
-  "historique": [
-    {
-      "date": "2026-11-08",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
   "id": "reconciliation",
   "genre": "nouveaute",
   "avant": null,
@@ -30,6 +20,34 @@
   "pourquoiNouveau": "Dans une infrastructure classique, rien ne remet seul une machine dans l'état voulu : une alerte, puis un humain ou un script. Kubernetes fait de cette comparaison permanente son mécanisme central. Aucun équivalent direct dans votre métier d'origine.",
   "piege": "Corriger à la main ce qu'un contrôleur gère : il remet l'état déclaré et efface la correction. Le bon geste est de modifier la déclaration.",
   "exemple": "Si un pod de l'AMF disparaît, le contrôleur du Deployment en recrée un pour retrouver le nombre voulu ; l'équipe n'est alertée que si la reconstitution échoue.",
+  "schema": {
+    "legende": "La boucle de réconciliation",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "État voulu",
+        "detail": "déclaré dans l'API"
+      },
+      {
+        "texte": "Contrôleur",
+        "detail": "compare en continu"
+      },
+      {
+        "texte": "État réel",
+        "detail": "ramené vers le voulu"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes"
   ],
@@ -51,6 +69,46 @@
       "url": "https://kubernetes.io/docs/concepts/overview/components/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Kubernetes v2 : formation et tutoriels pour débuter",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo6wiy2G3SjBubF6zXjksap",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "video",
+      "nom": "La meilleure formation kubernetes en français (LMFK)",
+      "url": "https://www.youtube.com/playlist?list=PL1CpaUw4aBIxTPvr5l_pKoHxI0Tz2qoyK",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "khgcode"
+    },
+    {
+      "type": "video",
+      "nom": "Kubernetes 101",
+      "url": "https://www.youtube.com/playlist?list=PL2_OBreMn7FoYmfx27iSwocotjiikS5BD",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Jeff Geerling"
+    },
+    {
+      "type": "cours",
+      "nom": "Introduction to Kubernetes (LFS158), cours en ligne gratuit",
+      "url": "https://training.linuxfoundation.org/training/introduction-to-kubernetes/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Linux Foundation"
+    },
+    {
+      "type": "cours",
+      "nom": "Kubernetes The Hard Way : monter un cluster pas à pas",
+      "url": "https://github.com/kelseyhightower/kubernetes-the-hard-way",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Kelsey Hightower"
     }
   ],
   "sources": [

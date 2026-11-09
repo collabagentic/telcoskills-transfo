@@ -75,7 +75,7 @@
   --masque: #000000;
 
   --lecture: 40rem;
-  --page: 60rem;
+  --page: 72rem;
 }
 
 @media (prefers-color-scheme: light) {

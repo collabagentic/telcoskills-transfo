@@ -99,6 +99,33 @@
     "operateurs",
     "plateforme-produit"
   ],
+  "dependances": {
+    "changement-pr": [
+      "dossier-archi-code"
+    ],
+    "reconciliation": [
+      "vm-pod"
+    ],
+    "patch-images": [
+      "vm-pod"
+    ],
+    "lb-services": [
+      "vm-pod"
+    ],
+    "cmdb-git": [
+      "changement-pr"
+    ],
+    "acces-rbac": [
+      "vm-pod"
+    ],
+    "operateurs": [
+      "reconciliation"
+    ],
+    "plateforme-produit": [
+      "operateurs",
+      "cmdb-git"
+    ]
+  },
   "sources": [
     {
       "nom": "Archétypes des passerelles TelcoSkills (personas construits à partir de CV et d'offres publics)",

@@ -16,14 +16,21 @@ export type Source = z.infer<typeof sourceSchema>;
 
 export const lienSchema = z
   .object({
-    type: z.enum(["opensource", "doc", "cours", "spec"]),
+    type: z.enum(["opensource", "doc", "cours", "video", "spec"]),
     nom: texte(120),
     url,
     langue: z.enum(["fr", "en"]),
     acces: z.enum(["gratuit", "freemium", "payant"]),
+    auteur: texte(80).optional(),
   })
   .strict();
 export type Lien = z.infer<typeof lienSchema>;
+
+/** Schéma d'une fiche : une chaîne de 2 à 5 étapes, avant puis après (« avant » est null pour une nouveauté). */
+const etape = z.object({ texte: texte(40), detail: texte(60).optional() }).strict();
+const chaine = z.array(etape).min(2, "2 étapes au minimum").max(5, "5 étapes au maximum");
+export const schemaFicheSchema = z.object({ legende: texte(120), avant: chaine.nullable(), apres: chaine }).strict();
+export type SchemaFiche = z.infer<typeof schemaFicheSchema>;
 
 const puces = z.array(texte(140)).min(2, "2 puces au minimum").max(4, "4 puces au maximum");
 
@@ -40,6 +47,7 @@ export const ficheSchema = z
     pourquoiNouveau: texte(500).nullable(),
     piege: texte(600),
     exemple: texte(400),
+    schema: schemaFicheSchema,
     technos: z.array(identifiant),
     questions: z.array(identifiant).length(2, "exactement 2 questions"),
     plusLoin: z.array(lienSchema).min(1),
@@ -73,6 +81,8 @@ export const metierSchema = z
     savoirFaire: z.array(savoirFaireSchema),
     nouveautes: z.array(identifiant),
     ordre: z.array(identifiant).min(1),
+    /** Prérequis conseillés : fiche → fiches à voir avant (la carte les relie). Chaque prérequis précède la fiche dans « ordre ». */
+    dependances: z.record(identifiant, z.array(identifiant)).default({}),
     sources: z.array(sourceSchema).min(1),
     statut,
   })

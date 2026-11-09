@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "L'équipementier choisit et impose son infrastructure.",
-  "genre": "transposition",
   "id": "ao-exigences-cnf",
+  "genre": "transposition",
   "avant": "appel d'offres multi-fournisseurs",
   "apres": "exigences CNF et critères d'éligibilité",
   "resume": {
@@ -29,8 +17,51 @@
     "On demande la façon de livrer : images de conteneurs, charts, documentation des réseaux secondaires et des ressources.",
     "On vérifie l'interopérabilité et la portabilité, que les opérateurs placent en priorité dans l'enquête de la CNCF."
   ],
+  "reflexe": "L'équipementier choisit et impose son infrastructure.",
+  "pourquoiNouveau": null,
   "piege": "Écrire « compatible cloud natif » sans le rendre vérifiable. Une exigence doit se tester : version de Kubernetes certifiée, formats de livraison, comportement à la mise à jour. Sinon, chaque fournisseur la comprend à sa façon.",
   "exemple": "Dans l'appel d'offres d'une SMF, « livrée en chart Helm, déployable sur une plateforme Kubernetes certifiée CNCF, avec la liste des réseaux secondaires requis » remplace « fournie sur serveur dédié ».",
+  "schema": {
+    "legende": "Ce que l'appel d'offres exige",
+    "avant": [
+      {
+        "texte": "Cahier des charges",
+        "detail": "fonctionnalités"
+      },
+      {
+        "texte": "Conformité",
+        "detail": "à l'équipement"
+      },
+      {
+        "texte": "Notation",
+        "detail": "grille pondérée"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Exigences",
+        "detail": "fonctions et livraison"
+      },
+      {
+        "texte": "Plateforme",
+        "detail": "Kubernetes certifiée"
+      },
+      {
+        "texte": "Preuves",
+        "detail": "charts, images, tests"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes",
     "helm"
@@ -53,6 +84,30 @@
       "url": "https://www.cncf.io/training/certification/software-conformance/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Sylva : projet de pile cloud native pour les télécoms (Linux Foundation Europe)",
+      "url": "https://sylvaproject.org/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Sylva"
+    },
+    {
+      "type": "video",
+      "nom": "Sylva presentations",
+      "url": "https://www.youtube.com/playlist?list=PL_KV1BsedfgnHJrQvtVqZHqOMQjip9Gda",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Sylva"
+    },
+    {
+      "type": "video",
+      "nom": "Cloud Native Telco Day 2026 - Europe",
+      "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2N_B1HGXUyfn4HjjydZctPA",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "CNCF [Cloud Native Computing Foundation]"
     }
   ],
   "sources": [

@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "Le serveur patché reste le même serveur.",
-  "genre": "transposition",
   "id": "patch-images",
+  "genre": "transposition",
   "avant": "patch des serveurs",
   "apres": "images immuables et chaîne d'approvisionnement",
   "resume": {
@@ -29,8 +17,51 @@
     "Un SBOM liste les composants d'une image : on sait où se trouve une bibliothèque vulnérable.",
     "Le correctif est un nouveau déploiement, pas une modification de l'existant."
   ],
+  "reflexe": "Le serveur patché reste le même serveur.",
+  "pourquoiNouveau": null,
   "piege": "Utiliser :latest en production : le même tag peut désigner deux contenus différents, donc deux comportements. Le digest, lui, désigne un contenu précis.",
   "exemple": "Une faille touche une bibliothèque de l'AMF : le SBOM indique quelles images la contiennent ; on reconstruit, on déploie par digest, et l'ancien état reste récupérable.",
+  "schema": {
+    "legende": "Du correctif sur place à l'image reconstruite",
+    "avant": [
+      {
+        "texte": "Correctif",
+        "detail": "serveur par serveur"
+      },
+      {
+        "texte": "Fenêtre",
+        "detail": "par lots"
+      },
+      {
+        "texte": "Dérive",
+        "detail": "états différents"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Image",
+        "detail": "reconstruite"
+      },
+      {
+        "texte": "SBOM",
+        "detail": "composants listés"
+      },
+      {
+        "texte": "Déploiement",
+        "detail": "par digest sha256"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes"
   ],
@@ -52,6 +83,30 @@
       "url": "https://slsa.dev/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Ask an OpenShift Expert | Red Hat Livestreaming",
+      "url": "https://www.youtube.com/playlist?list=PLaR6Rq6Z4IqdsG6b09q4QIv_Yq5fNL7zh",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "OpenShift"
+    },
+    {
+      "type": "cours",
+      "nom": "Kubernetes Goat : laboratoire de vulnérabilités Kubernetes pour s'entraîner",
+      "url": "https://github.com/madhuakula/kubernetes-goat",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Madhu Akula"
+    },
+    {
+      "type": "doc",
+      "nom": "CISA : catalogue des vulnérabilités exploitées connues (KEV)",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "CISA"
     }
   ],
   "sources": [

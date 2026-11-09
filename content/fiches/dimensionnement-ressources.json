@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "Un vCPU alloué est un vCPU réservé.",
-  "genre": "transposition",
   "id": "dimensionnement-ressources",
+  "genre": "transposition",
   "avant": "dimensionnement en vCPU et RAM",
   "apres": "requests, limits et CPU pinning",
   "resume": {
@@ -29,8 +17,47 @@
     "Un pod dont requests et limits sont égales, en CPU entiers, peut recevoir des CPU exclusifs (politique static du CPU Manager).",
     "Les hugepages et l'alignement NUMA (Topology Manager) se demandent eux aussi explicitement."
   ],
+  "reflexe": "Un vCPU alloué est un vCPU réservé.",
+  "pourquoiNouveau": null,
   "piege": "Fixer des limites sans en connaître l'effet : une limite mémoire dépassée tue le conteneur, une limite CPU le ralentit. Et sans requests, le placement ne tient pas compte de vos besoins.",
   "exemple": "Un UPF qui traite du trafic utilisateur demande des CPU entiers, des hugepages, et un nœud où ses CPU et sa carte réseau relèvent du même NUMA.",
+  "schema": {
+    "legende": "De l'allocation à la demande",
+    "avant": [
+      {
+        "texte": "VM",
+        "detail": "vCPU et RAM alloués"
+      },
+      {
+        "texte": "Hyperviseur",
+        "detail": "surdimensionnement toléré"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Requests",
+        "detail": "servent au placement"
+      },
+      {
+        "texte": "Limits",
+        "detail": "plafond à l'exécution"
+      },
+      {
+        "texte": "CPU exclusifs",
+        "detail": "QoS Guaranteed, CPU entiers"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes"
   ],
@@ -52,6 +79,22 @@
       "url": "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Learn k6 Series",
+      "url": "https://www.youtube.com/playlist?list=PLJ9A48W0kpRJKmVeurt7ltKfrOdr8ZBdt",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "QAInsights"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : vider un nœud en sécurité (drain)",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Kubernetes"
     }
   ],
   "sources": [

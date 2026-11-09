@@ -1,14 +1,4 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-08",
-  "historique": [
-    {
-      "date": "2026-11-08",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
   "id": "actif-passif-replicas",
   "genre": "transposition",
   "avant": "haute disponibilité actif/passif",
@@ -31,6 +21,47 @@
   "pourquoiNouveau": null,
   "piege": "Une sonde de readiness mal réglée peut retirer tous les pods du trafic en même temps : le service se retrouve sans destination. Réglez les sondes sur le comportement réel de l'application.",
   "exemple": "Les instances d'une fonction du cœur 5G sont répliquées ; un pod dont la sonde de readiness échoue cesse de recevoir du trafic le temps de se rétablir.",
+  "schema": {
+    "legende": "Haute disponibilité : attendre ou répartir",
+    "avant": [
+      {
+        "texte": "Nœud actif",
+        "detail": "sert le trafic"
+      },
+      {
+        "texte": "Cluster HA",
+        "detail": "détecte la panne"
+      },
+      {
+        "texte": "Nœud passif",
+        "detail": "prend le relais"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Service",
+        "detail": "répartit le trafic"
+      },
+      {
+        "texte": "Réplicas",
+        "detail": "plusieurs pods actifs"
+      },
+      {
+        "texte": "Sondes",
+        "detail": "readiness retire, liveness redémarre"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes"
   ],
@@ -52,6 +83,46 @@
       "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Kubernetes v2 : formation et tutoriels pour débuter",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo6wiy2G3SjBubF6zXjksap",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "video",
+      "nom": "La meilleure formation kubernetes en français (LMFK)",
+      "url": "https://www.youtube.com/playlist?list=PL1CpaUw4aBIxTPvr5l_pKoHxI0Tz2qoyK",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "khgcode"
+    },
+    {
+      "type": "video",
+      "nom": "Cloud Native Telco Day 2026 - Europe",
+      "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2N_B1HGXUyfn4HjjydZctPA",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "CNCF [Cloud Native Computing Foundation]"
+    },
+    {
+      "type": "video",
+      "nom": "Kubernetes 101",
+      "url": "https://www.youtube.com/playlist?list=PL2_OBreMn7FoYmfx27iSwocotjiikS5BD",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Jeff Geerling"
+    },
+    {
+      "type": "cours",
+      "nom": "Introduction to Kubernetes (LFS158), cours en ligne gratuit",
+      "url": "https://training.linuxfoundation.org/training/introduction-to-kubernetes/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Linux Foundation"
     }
   ],
   "sources": [

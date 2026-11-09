@@ -1,19 +1,7 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": "Quand une session traverse plusieurs fonctions qui s'appellent en HTTP/2, aucun journal pris seul ne montre où le temps est perdu. C'est ce que la trace distribuée apporte, et il n'y avait pas d'équivalent dans l'ancien nœud monolithique.",
-  "reflexe": null,
+  "id": "observabilite-traces",
   "genre": "nouveaute",
   "avant": null,
-  "id": "observabilite-traces",
   "apres": "Les traces distribuées (OpenTelemetry)",
   "resume": {
     "avant": null,
@@ -28,8 +16,38 @@
     "Le Collector reçoit, traite et exporte la télémétrie vers les outils d'analyse.",
     "Un identifiant de trace relie entre elles les étapes d'une même requête."
   ],
+  "reflexe": null,
+  "pourquoiNouveau": "Quand une session traverse plusieurs fonctions qui s'appellent en HTTP/2, aucun journal pris seul ne montre où le temps est perdu. C'est ce que la trace distribuée apporte, et il n'y avait pas d'équivalent dans l'ancien nœud monolithique.",
   "piege": "Tout tracer. La télémétrie coûte du stockage et du réseau : on échantillonne et on choisit ce qui est instrumenté. Le Collector sert aussi à filtrer avant l'export.",
   "exemple": "Une création de session PDU traverse l'AMF, la SMF, la PCF et l'UPF ; la trace montre quelle étape ralentit la création de session.",
+  "schema": {
+    "legende": "Suivre une requête de bout en bout",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "Services",
+        "detail": "instrumentés"
+      },
+      {
+        "texte": "Collector",
+        "detail": "reçoit et filtre"
+      },
+      {
+        "texte": "Trace",
+        "detail": "temps passé par étape"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "opentelemetry"
   ],
@@ -51,6 +69,30 @@
       "url": "https://opentelemetry.io/docs/collector/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Wireshark Masterclass",
+      "url": "https://www.youtube.com/playlist?list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Chris Greer"
+    },
+    {
+      "type": "cours",
+      "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+      "url": "https://www.sharetechnote.com/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "ShareTechnote"
+    },
+    {
+      "type": "video",
+      "nom": "OpenTelemetry Bootcamp Tutorials | Complete Course",
+      "url": "https://www.youtube.com/playlist?list=PLNxnp_rzlqf6z1cC0IkIwp6yjsBboX945",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Aspecto"
     }
   ],
   "sources": [

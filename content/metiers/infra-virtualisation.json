@@ -83,6 +83,27 @@
     "acces-rbac",
     "operateurs"
   ],
+  "dependances": {
+    "vlan-reseaux-cluster": [
+      "matrice-networkpolicy"
+    ],
+    "actif-passif-replicas": [
+      "vm-pod"
+    ],
+    "reconciliation": [
+      "vm-pod"
+    ],
+    "pra-gitops": [
+      "changement-pr",
+      "reconciliation"
+    ],
+    "acces-rbac": [
+      "vm-pod"
+    ],
+    "operateurs": [
+      "reconciliation"
+    ]
+  },
   "sources": [
     {
       "nom": "Archétype « architecte infra virtualisation / datacenter » (passerelles TelcoSkills, personas)",

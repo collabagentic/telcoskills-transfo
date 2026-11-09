@@ -1,18 +1,6 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": null,
-  "reflexe": "Le dossier validé en comité fait foi pour des années.",
-  "genre": "transposition",
   "id": "dossier-archi-code",
+  "genre": "transposition",
   "avant": "dossier d'architecture validé en comité",
   "apres": "décisions d'architecture versionnées",
   "resume": {
@@ -29,8 +17,51 @@
     "Les ADR vivent dans le dépôt, à côté de ce qu'ils décrivent, et changent par pull request.",
     "Un schéma décrit en texte se compare version par version, ce qu'un diagramme dessiné ne permet pas."
   ],
+  "reflexe": "Le dossier validé en comité fait foi pour des années.",
+  "pourquoiNouveau": null,
   "piege": "Écrire un ADR après coup, pour justifier. Sa valeur vient de ce qu'il est daté et rédigé au moment du choix ; une décision remplacée reste dans l'historique, marquée comme telle.",
   "exemple": "Le choix de séparer le plan usager sur une interface secondaire SR-IOV s'écrit en un ADR d'une page, relu en pull request par l'équipe réseau.",
+  "schema": {
+    "legende": "Du dossier au dépôt",
+    "avant": [
+      {
+        "texte": "Dossier",
+        "detail": "rédigé au lancement"
+      },
+      {
+        "texte": "Comité",
+        "detail": "validation"
+      },
+      {
+        "texte": "Archive",
+        "detail": "rarement relue"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "ADR",
+        "detail": "contexte, décision, conséquences"
+      },
+      {
+        "texte": "Pull request",
+        "detail": "relue par les pairs"
+      },
+      {
+        "texte": "Dépôt",
+        "detail": "historique daté"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [],
   "questions": [
     "q-dossier-archi-code-1",
@@ -50,6 +81,22 @@
       "url": "https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Software Architecture and Design",
+      "url": "https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "A Dev' Story"
+    },
+    {
+      "type": "cours",
+      "nom": "Le modèle C4 : décrire une architecture logicielle",
+      "url": "https://c4model.com/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Simon Brown"
     }
   ],
   "sources": [

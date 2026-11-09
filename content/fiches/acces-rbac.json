@@ -1,14 +1,4 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-08",
-  "historique": [
-    {
-      "date": "2026-11-08",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
   "id": "acces-rbac",
   "genre": "transposition",
   "avant": "gestion des comptes et accès root",
@@ -31,6 +21,46 @@
   "pourquoiNouveau": null,
   "piege": "Lier un ClusterRole avec un ClusterRoleBinding alors qu'on voulait un seul namespace : les droits s'appliquent alors à tout le cluster.",
   "exemple": "Un exploitant du cœur 5G reçoit un rôle de lecture sur le namespace de l'UPF ; l'outil de supervision a son propre compte de service, limité à la lecture des métriques.",
+  "schema": {
+    "legende": "Qui peut faire quoi, où",
+    "avant": [
+      {
+        "texte": "Compte nominatif"
+      },
+      {
+        "texte": "sudo",
+        "detail": "droits sur la machine"
+      },
+      {
+        "texte": "Root partagé",
+        "detail": "pour les urgences"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Sujet",
+        "detail": "personne ou compte de service"
+      },
+      {
+        "texte": "RoleBinding",
+        "detail": "lie le sujet au rôle"
+      },
+      {
+        "texte": "Role",
+        "detail": "verbes sur des ressources"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes"
   ],
@@ -52,6 +82,38 @@
       "url": "https://kubernetes.io/docs/concepts/security/service-accounts/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "Kubernetes Security and Networking",
+      "url": "https://www.youtube.com/playlist?list=PLtO_OYBiEo6klZcU3HVfbrSgolnvnkCCB",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Packet Pushers"
+    },
+    {
+      "type": "cours",
+      "nom": "Killercoda : laboratoires Kubernetes interactifs dans le navigateur",
+      "url": "https://killercoda.com/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Killercoda"
+    },
+    {
+      "type": "cours",
+      "nom": "Kubernetes Goat : laboratoire de vulnérabilités Kubernetes pour s'entraîner",
+      "url": "https://github.com/madhuakula/kubernetes-goat",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Madhu Akula"
+    },
+    {
+      "type": "cours",
+      "nom": "Parcours d'apprentissage HashiCorp Vault",
+      "url": "https://developer.hashicorp.com/vault/tutorials",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "HashiCorp"
     }
   ],
   "sources": [

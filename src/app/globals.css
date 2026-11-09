@@ -868,3 +868,250 @@ details summary {
     padding: var(--e-2) 0;
   }
 }
+
+/* Cockpit */
+.cockpit {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-3);
+  margin-top: var(--e-6);
+}
+.cockpit-carte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  padding: var(--e-4) var(--e-6);
+  min-width: 0;
+}
+.cockpit-chiffre {
+  font-size: var(--t-xxl);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.cockpit-chiffre small {
+  font-size: var(--t-l);
+  color: var(--encre-3);
+  letter-spacing: 0;
+}
+.cockpit-texte {
+  color: var(--encre-2);
+  font-size: var(--t-s);
+}
+.cockpit-titre {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  flex: 1;
+}
+.selecteur {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0 var(--e-3);
+  border-radius: var(--r-m);
+  border: 1px solid var(--filet-fort);
+  background: var(--surface-3);
+  color: var(--encre);
+  font: inherit;
+  font-size: var(--t-s);
+}
+.chemin {
+  list-style: decimal;
+  padding-left: var(--e-6);
+  font-size: var(--t-s);
+  color: var(--encre-2);
+}
+.chemin a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.bascule {
+  display: flex;
+  gap: var(--e-1);
+  margin: var(--e-6) 0 var(--e-3);
+}
+.bascule .btn[aria-pressed="true"] {
+  background: var(--surface-2);
+  border-color: var(--filet-fort);
+  color: var(--encre);
+}
+
+/* Carte de transformation (React Flow) : couleurs et formes viennent de nos jetons */
+.carte {
+  height: 32rem;
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  box-shadow: var(--ombre-1);
+  overflow: hidden;
+}
+.carte .react-flow {
+  --xy-edge-stroke-default: var(--encre-3);
+  --xy-edge-stroke-width-default: 1.5;
+  --xy-edge-stroke-selected-default: var(--encre-3);
+  --xy-background-color-default: transparent;
+  --xy-background-pattern-color-default: var(--filet);
+  --xy-controls-button-background-color-default: var(--surface-2);
+  --xy-controls-button-background-color-hover-default: var(--surface-1);
+  --xy-controls-button-color-default: var(--encre);
+  --xy-controls-button-border-color-default: var(--filet);
+  --xy-node-boxshadow-hover-default: none;
+}
+.carte .react-flow__arrowhead polyline {
+  stroke: var(--encre-3);
+  fill: var(--encre-3);
+}
+.carte .arete-chemin .react-flow__edge-path {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+.carte .arete-estompee .react-flow__edge-path {
+  opacity: 0.25;
+}
+.etape {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--e-3) var(--e-4);
+  border-radius: var(--r-m);
+  border: 1px solid var(--filet-fort);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  box-shadow: 0 1px 0 var(--reflet) inset;
+  font-size: var(--t-s);
+  line-height: 1.3;
+  transition: border-color var(--d-rapide) var(--courbe), transform var(--d-rapide) var(--courbe), opacity var(--d-base) var(--courbe);
+  overflow: hidden;
+}
+.etape:hover {
+  border-color: var(--encre-3);
+  transform: translateY(-1px);
+}
+.etape-titre {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.etape-verifie {
+  border-color: var(--teinte-ok);
+}
+.etape-a-venir {
+  opacity: 0.85;
+}
+.etape-nouveaute {
+  border-top: 2px solid var(--teinte-nouveau);
+}
+.etape-transposition {
+  border-top: 2px solid var(--teinte-forme);
+}
+.etape-decouvrir {
+  border-top: 2px solid var(--teinte-decouvrir);
+}
+.etape-cible {
+  border-color: var(--accent);
+  box-shadow: var(--ombre-2);
+}
+.etape-estompee {
+  opacity: 0.35;
+}
+.etape-objectif {
+  color: var(--accent-texte);
+}
+.etape .pastille {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  letter-spacing: 0.02em;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.etape .etat {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+/* Schéma des fiches */
+.schema {
+  margin: 0 0 var(--e-8);
+  padding: var(--e-4) var(--e-6);
+  display: grid;
+  gap: var(--e-4);
+}
+.schema-rangee {
+  display: grid;
+  gap: var(--e-2);
+}
+.schema-chaine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--e-2);
+}
+.schema-etape {
+  display: flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-width: 0;
+}
+.schema-fleche {
+  flex: none;
+  width: 1.75rem;
+  height: 0.75rem;
+  fill: none;
+  stroke: var(--encre-3);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.schema-boite {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-1);
+  padding: var(--e-2) var(--e-4);
+  border-radius: var(--r-m);
+  border: 1px solid var(--filet-fort);
+  background: var(--surface-3);
+  font-size: var(--t-s);
+  line-height: 1.3;
+}
+.schema-boite small {
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+}
+.schema-avant .schema-boite {
+  opacity: 0.8;
+  border-style: dashed;
+}
+.schema-apres .schema-boite {
+  border-color: var(--accent-filet);
+  background: linear-gradient(180deg, var(--accent-surface-1), var(--accent-surface-2));
+}
+.schema-apres .schema-etiquette {
+  color: var(--accent-texte);
+}
+
+@media (max-width: 899px) {
+  .cockpit {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 719px) {
+  .schema-chaine {
+    flex-direction: column;
+  }
+  .schema-etape {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .schema-fleche {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+}
+
+.carte .poignee {
+  opacity: 0;
+  pointer-events: none;
+}

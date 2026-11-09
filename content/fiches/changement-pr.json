@@ -1,14 +1,4 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-08",
-  "historique": [
-    {
-      "date": "2026-11-08",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
   "id": "changement-pr",
   "genre": "transposition",
   "avant": "procédure de changement",
@@ -31,6 +21,47 @@
   "pourquoiNouveau": null,
   "piege": "Une pull request ne protège que si les vérifications sont obligatoires avant fusion et si la branche principale est protégée. Sans cela, elle devient une formalité et le pipeline un simple outil de livraison.",
   "exemple": "Le changement de configuration d'une fonction du cœur passe par une pull request sur le dépôt de la plateforme : le pipeline valide les fichiers, un relecteur approuve, puis la plateforme applique la fusion.",
+  "schema": {
+    "legende": "Du formulaire à la fusion",
+    "avant": [
+      {
+        "texte": "Demande de changement",
+        "detail": "MOP, document"
+      },
+      {
+        "texte": "Comité",
+        "detail": "CAB, validation"
+      },
+      {
+        "texte": "Fenêtre",
+        "detail": "exécution à la main"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Pull request",
+        "detail": "diff relu"
+      },
+      {
+        "texte": "Pipeline",
+        "detail": "vérifications obligatoires"
+      },
+      {
+        "texte": "Fusion",
+        "detail": "déclenche le déploiement"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-08",
+  "historique": [
+    {
+      "date": "2026-11-08",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "argo-cd"
   ],
@@ -52,6 +83,46 @@
       "url": "https://opengitops.dev/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "GITLAB : tutos et formation",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWrRoZZXv0xf71mvT4E0QDOF",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "cours",
+      "nom": "Learn Git Branching : apprendre Git en visualisant les branches",
+      "url": "https://learngitbranching.js.org/?locale=fr_FR",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "Learn Git Branching"
+    },
+    {
+      "type": "video",
+      "nom": "GitOps Guide to the Galaxy",
+      "url": "https://www.youtube.com/playlist?list=PLbMP1JcGBmSGKO8UreWpOBOhCqilejhtd",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Red Hat"
+    },
+    {
+      "type": "video",
+      "nom": "Argo CD: Basics to Production Course",
+      "url": "https://www.youtube.com/playlist?list=PLmPit9IIdzwSR-4FP65oP3AoZCKBvbwXg",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Cloud With VarJosh"
+    },
+    {
+      "type": "video",
+      "nom": "SREcon25 Americas",
+      "url": "https://www.youtube.com/playlist?list=PLbRoZ5Rrl5letLDlvWuS1r8CZokFl-Is6",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "USENIX"
     }
   ],
   "sources": [

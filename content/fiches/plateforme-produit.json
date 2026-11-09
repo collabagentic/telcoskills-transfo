@@ -1,19 +1,7 @@
 {
-  "statut": "brouillon",
-  "misAJour": "2026-11-09",
-  "historique": [
-    {
-      "date": "2026-11-09",
-      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
-      "par": "Brouillon assisté par IA",
-      "lien": null
-    }
-  ],
-  "pourquoiNouveau": "Dans un modèle classique, une équipe d'infrastructure traite des demandes. Ici, la plateforme se conçoit pour ses utilisateurs internes, avec une feuille de route et des retours, comme un produit.",
-  "reflexe": null,
+  "id": "plateforme-produit",
   "genre": "nouveaute",
   "avant": null,
-  "id": "plateforme-produit",
   "apres": "La plateforme comme produit interne",
   "resume": {
     "avant": null,
@@ -28,8 +16,38 @@
     "On mesure le produit comme tout produit : adoption, satisfaction, délai pour obtenir une capacité.",
     "Elle ne cache pas Kubernetes : elle réduit la charge cognitive des équipes qui l'utilisent."
   ],
+  "reflexe": null,
+  "pourquoiNouveau": "Dans un modèle classique, une équipe d'infrastructure traite des demandes. Ici, la plateforme se conçoit pour ses utilisateurs internes, avec une feuille de route et des retours, comme un produit.",
   "piege": "Réduire la plateforme à un outil installé. Sans équipe responsable, sans catalogue et sans retour des utilisateurs, elle redevient un guichet de tickets.",
   "exemple": "L'équipe plateforme propose un gabarit « déployer une CNF » (réseaux secondaires, supervision, accès) que les équipes d'exploitation utilisent sans recréer chaque réglage.",
+  "schema": {
+    "legende": "Une plateforme avec ses utilisateurs",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "Équipes",
+        "detail": "utilisateurs internes"
+      },
+      {
+        "texte": "Capacités",
+        "detail": "en libre-service"
+      },
+      {
+        "texte": "Équipe plateforme",
+        "detail": "feuille de route, retours"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-09",
+  "historique": [
+    {
+      "date": "2026-11-09",
+      "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
   "technos": [
     "kubernetes"
   ],
@@ -51,6 +69,38 @@
       "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/",
       "langue": "en",
       "acces": "gratuit"
+    },
+    {
+      "type": "video",
+      "nom": "ANSIBLE - Tutos & Formation : automatiser vos configurations",
+      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWoCpLKOSw3mXCqbRocnhrh-",
+      "langue": "fr",
+      "acces": "gratuit",
+      "auteur": "xavki"
+    },
+    {
+      "type": "cours",
+      "nom": "Google SRE : ressources, livres gratuits et études de cas",
+      "url": "https://sre.google/resources/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Google"
+    },
+    {
+      "type": "video",
+      "nom": "SREcon25 Americas",
+      "url": "https://www.youtube.com/playlist?list=PLbRoZ5Rrl5letLDlvWuS1r8CZokFl-Is6",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "USENIX"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : budgets de perturbation (PodDisruptionBudget) et interruptions volontaires",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Kubernetes"
     }
   ],
   "sources": [

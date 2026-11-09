@@ -11,7 +11,7 @@ Le backlog complet, les écrans, le modèle de contenu et l'ordre des lots sont 
 - Français partout (interface, commits, docs). Ton direct, pas de jargon. Vouvoiement à l'écran.
 - Ne rouvre pas les principes et l'anti-périmètre (`BACKLOG.md` §2). Une contradiction trouvée : la signaler, chiffre à l'appui.
 - Rien d'inventé : toute affirmation technique d'une fiche a une source ; tout contenu neuf est `statut: "brouillon"`.
-- Une dépendance ajoutée = une ligne de justification dans le commit. Pas de React Flow, pas de dagre.
+- Une dépendance ajoutée = une ligne de justification dans le commit. React Flow est autorisé pour la carte de transformation (décision de l'auteur, 2026-11-09) ; pas de dagre, le placement est maison (`src/lib/carte.ts`).
 - Aucun déploiement, aucune fusion, aucun push sans accord explicite de l'auteur dans la conversation.
 
 ## Commandes (npm et npx sont bloqués sur ce poste : passer par node)
