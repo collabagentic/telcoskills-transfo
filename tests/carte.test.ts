@@ -1,14 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { cheminComplet, cheminRestant, etatCarte, placer, prerequisTransitifs } from "@/lib/carte";
-import { chargerContenu } from "@/contenu/charger";
+import { cheminComplet, DIMS_ENSEMBLE, placer, tailleGraphe } from "@/lib/carte";
 
 const ordre = ["a", "b", "c", "d", "e"];
 const dep = { b: ["a"], c: ["a"], d: ["b", "c"], e: ["d"] };
 
 describe("placer", () => {
   it("place chaque étape une couche après ses prérequis", () => {
-    const { noeuds } = placer(ordre, dep);
-    const couche = Object.fromEntries(noeuds.map((n) => [n.id, n.couche]));
+    const couche = Object.fromEntries(placer(ordre, dep).noeuds.map((n) => [n.id, n.couche]));
     expect(couche).toEqual({ a: 0, b: 1, c: 1, d: 2, e: 3 });
   });
 
@@ -20,9 +18,9 @@ describe("placer", () => {
     expect(b.y).not.toBe(c.y);
   });
 
-  it("relie chaque prérequis à son étape", () => {
-    expect(placer(ordre, dep).aretes).toContainEqual({ de: "b", vers: "d" });
+  it("relie chaque prérequis à son étape, en ignorant les prérequis absents", () => {
     expect(placer(ordre, dep).aretes.length).toBe(5);
+    expect(placer(["x", "y"], { y: ["x", "absent"] }).aretes).toEqual([{ de: "x", vers: "y" }]);
   });
 
   it("sans dépendances, toutes les étapes sont dans la première couche", () => {
@@ -32,41 +30,14 @@ describe("placer", () => {
   it("ne plante pas sur une boucle (interdite par les règles du build)", () => {
     expect(() => placer(["a", "b"], { a: ["b"], b: ["a"] })).not.toThrow();
   });
-});
 
-describe("états et chemin", () => {
-  it("une étape est disponible quand ses prérequis sont lus, à venir sinon, jamais verrouillée", () => {
-    expect(etatCarte("a", {}, dep)).toBe("disponible");
-    expect(etatCarte("b", {}, dep)).toBe("a-venir");
-    expect(etatCarte("b", { a: "lu" }, dep)).toBe("disponible");
-    expect(etatCarte("b", { b: "lu" }, dep)).toBe("lu");
-    expect(etatCarte("b", { b: "verifie" }, dep)).toBe("verifie");
-  });
-
-  it("prérequis transitifs", () => {
-    expect([...prerequisTransitifs("e", dep)].sort()).toEqual(["a", "b", "c", "d"]);
-    expect([...prerequisTransitifs("a", dep)]).toEqual([]);
-  });
-
-  it("chemin restant : prérequis non vérifiés puis la cible, dans l'ordre", () => {
-    expect(cheminRestant("d", ordre, dep, {})).toEqual(["a", "b", "c", "d"]);
-    expect(cheminRestant("d", ordre, dep, { a: "verifie", b: "verifie" })).toEqual(["c", "d"]);
-    expect(cheminRestant("d", ordre, dep, { a: "verifie", b: "verifie", c: "verifie", d: "verifie" })).toEqual([]);
-    expect(cheminRestant("inconnue", ordre, dep, {})).toEqual([]);
+  it("la vue d'ensemble est plus compacte", () => {
+    const grand = tailleGraphe(placer(ordre, dep).noeuds);
+    const petit = tailleGraphe(placer(ordre, dep, DIMS_ENSEMBLE).noeuds, DIMS_ENSEMBLE);
+    expect(petit.largeur).toBeLessThan(grand.largeur);
   });
 
   it("chemin complet", () => {
     expect([...cheminComplet("d", dep)].sort()).toEqual(["a", "b", "c", "d"]);
-  });
-});
-
-describe("cartes du contenu réel", () => {
-  it("chaque métier se place sans chevauchement", () => {
-    for (const m of chargerContenu().metiers) {
-      const { noeuds } = placer(m.ordre, m.dependances);
-      expect(noeuds.length).toBe(m.ordre.length);
-      const cles = noeuds.map((n) => `${n.x}:${n.y}`);
-      expect(new Set(cles).size, m.id).toBe(cles.length);
-    }
   });
 });

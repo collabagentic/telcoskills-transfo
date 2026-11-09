@@ -1,0 +1,939 @@
+[
+  {
+    "id": "k8s-archi",
+    "titre": "Architecture Kubernetes",
+    "domaine": "kubernetes",
+    "niveau": "fondamental",
+    "prerequis": [
+      "conteneurs"
+    ],
+    "resume": "Control plane, etcd, kubelet, scheduler, API server, contrôleurs.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : architecture du cluster",
+        "url": "https://kubernetes.io/docs/concepts/architecture/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation Kubernetes (Concepts)",
+        "url": "https://kubernetes.io/docs/concepts/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "certif",
+        "nom": "CKA (curriculum CNCF)",
+        "url": "https://github.com/cncf/curriculum",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF"
+      },
+      {
+        "type": "video",
+        "nom": "Kubernetes v2 : formation et tutoriels pour débuter",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo6wiy2G3SjBubF6zXjksap",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      },
+      {
+        "type": "video",
+        "nom": "La meilleure formation kubernetes en français (LMFK)",
+        "url": "https://www.youtube.com/playlist?list=PL1CpaUw4aBIxTPvr5l_pKoHxI0Tz2qoyK",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "khgcode"
+      },
+      {
+        "type": "video",
+        "nom": "Kubernetes 101",
+        "url": "https://www.youtube.com/playlist?list=PL2_OBreMn7FoYmfx27iSwocotjiikS5BD",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Jeff Geerling"
+      },
+      {
+        "type": "cours",
+        "nom": "Introduction to Kubernetes (LFS158), cours en ligne gratuit",
+        "url": "https://training.linuxfoundation.org/training/introduction-to-kubernetes/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      },
+      {
+        "type": "cours",
+        "nom": "Kubernetes The Hard Way : monter un cluster pas à pas",
+        "url": "https://github.com/kelseyhightower/kubernetes-the-hard-way",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kelsey Hightower"
+      },
+      {
+        "type": "cours",
+        "nom": "Certified Kubernetes Administrator (CKA) : formation et examen",
+        "url": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      },
+      {
+        "type": "cours",
+        "nom": "Certified Kubernetes Administrator (CKA) with Practice Tests",
+        "url": "https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Udemy (Mumshad Mannambeth)"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ia-agentique-telco",
+      "ingenieur-caas-telco",
+      "parcours-sylva",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "k8s-workloads",
+    "titre": "Workloads : Pods, Deployments, StatefulSets, Jobs",
+    "domaine": "kubernetes",
+    "niveau": "fondamental",
+    "prerequis": [
+      "k8s-archi"
+    ],
+    "resume": "Cycle de vie, probes, ressources, affinités, PodDisruptionBudgets.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : workloads",
+        "url": "https://kubernetes.io/docs/concepts/workloads/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "video",
+        "nom": "Kubernetes v2 : formation et tutoriels pour débuter",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo6wiy2G3SjBubF6zXjksap",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      },
+      {
+        "type": "video",
+        "nom": "La meilleure formation kubernetes en français (LMFK)",
+        "url": "https://www.youtube.com/playlist?list=PL1CpaUw4aBIxTPvr5l_pKoHxI0Tz2qoyK",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "khgcode"
+      },
+      {
+        "type": "video",
+        "nom": "Kubernetes 101",
+        "url": "https://www.youtube.com/playlist?list=PL2_OBreMn7FoYmfx27iSwocotjiikS5BD",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Jeff Geerling"
+      },
+      {
+        "type": "cours",
+        "nom": "Introduction to Kubernetes (LFS158), cours en ligne gratuit",
+        "url": "https://training.linuxfoundation.org/training/introduction-to-kubernetes/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      },
+      {
+        "type": "cours",
+        "nom": "Killercoda : laboratoires Kubernetes interactifs dans le navigateur",
+        "url": "https://killercoda.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Killercoda"
+      },
+      {
+        "type": "cours",
+        "nom": "Certified Kubernetes Administrator (CKA) : formation et examen",
+        "url": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      },
+      {
+        "type": "cours",
+        "nom": "Certified Kubernetes Administrator (CKA) with Practice Tests",
+        "url": "https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Udemy (Mumshad Mannambeth)"
+      },
+      {
+        "type": "cours",
+        "nom": "Developer Sandbox for Red Hat OpenShift : cluster gratuit pour s'entraîner",
+        "url": "https://developers.redhat.com/developer-sandbox",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ia-agentique-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "k8s-services",
+    "titre": "Services, Ingress, DNS",
+    "domaine": "kubernetes",
+    "niveau": "fondamental",
+    "prerequis": [
+      "k8s-archi",
+      "reseau-ip"
+    ],
+    "resume": "ClusterIP, NodePort, LoadBalancer, Ingress/Route, CoreDNS.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : services, load balancing et réseau",
+        "url": "https://kubernetes.io/docs/concepts/services-networking/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "video",
+        "nom": "Kubernetes v2 : formation et tutoriels pour débuter",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo6wiy2G3SjBubF6zXjksap",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      },
+      {
+        "type": "video",
+        "nom": "La meilleure formation kubernetes en français (LMFK)",
+        "url": "https://www.youtube.com/playlist?list=PL1CpaUw4aBIxTPvr5l_pKoHxI0Tz2qoyK",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "khgcode"
+      },
+      {
+        "type": "cours",
+        "nom": "Killercoda : laboratoires Kubernetes interactifs dans le navigateur",
+        "url": "https://killercoda.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Killercoda"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "k8s-stockage",
+    "titre": "Stockage Kubernetes : PV, PVC, StorageClass",
+    "domaine": "kubernetes",
+    "niveau": "fondamental",
+    "prerequis": [
+      "k8s-archi"
+    ],
+    "resume": "Provisionnement dynamique, modes d'accès, snapshots.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : stockage",
+        "url": "https://kubernetes.io/docs/concepts/storage/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "video",
+        "nom": "Kubernetes v2 : formation et tutoriels pour débuter",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo6wiy2G3SjBubF6zXjksap",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "k8s-rbac",
+    "titre": "RBAC, quotas, multi-tenance",
+    "domaine": "kubernetes",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-workloads"
+    ],
+    "resume": "Rôles, namespaces, ResourceQuota, LimitRange, isolation entre équipes et projets.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : contrôle d'accès RBAC",
+        "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "video",
+        "nom": "Kubernetes Security and Networking",
+        "url": "https://www.youtube.com/playlist?list=PLtO_OYBiEo6klZcU3HVfbrSgolnvnkCCB",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Packet Pushers"
+      },
+      {
+        "type": "cours",
+        "nom": "Killercoda : laboratoires Kubernetes interactifs dans le navigateur",
+        "url": "https://killercoda.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Killercoda"
+      },
+      {
+        "type": "cours",
+        "nom": "Kubernetes Security Essentials (LFS260)",
+        "url": "https://training.linuxfoundation.org/training/kubernetes-security-essentials-lfs260/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      },
+      {
+        "type": "cours",
+        "nom": "Kubernetes Goat : laboratoire de vulnérabilités Kubernetes pour s'entraîner",
+        "url": "https://github.com/madhuakula/kubernetes-goat",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Madhu Akula"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "helm",
+    "titre": "Helm et packaging de CNF",
+    "domaine": "kubernetes",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-workloads"
+    ],
+    "resume": "Charts, values, hooks, gestion de versions. Les CNF sont livrés en charts.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Helm : documentation",
+        "url": "https://helm.sh/docs/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Helm"
+      },
+      {
+        "type": "video",
+        "nom": "La meilleure formation kubernetes en français (LMFK)",
+        "url": "https://www.youtube.com/playlist?list=PL1CpaUw4aBIxTPvr5l_pKoHxI0Tz2qoyK",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "khgcode"
+      },
+      {
+        "type": "video",
+        "nom": "TUTORIALS ET FORMATION HELM",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWqIeLqU1194K-LS1O5m2lDd",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "parcours-sylva",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "gitops",
+    "titre": "GitOps (ArgoCD / Flux)",
+    "domaine": "kubernetes",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "helm"
+    ],
+    "resume": "État désiré dans Git, synchronisation, gestion multi-environnements.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Argo CD : documentation",
+        "url": "https://argo-cd.readthedocs.io/"
+      },
+      {
+        "type": "video",
+        "nom": "GitOps Guide to the Galaxy",
+        "url": "https://www.youtube.com/playlist?list=PLbMP1JcGBmSGKO8UreWpOBOhCqilejhtd",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Argo CD: Basics to Production Course",
+        "url": "https://www.youtube.com/playlist?list=PLmPit9IIdzwSR-4FP65oP3AoZCKBvbwXg",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Cloud With VarJosh"
+      },
+      {
+        "type": "cours",
+        "nom": "OpenGitOps : principes du GitOps",
+        "url": "https://opengitops.dev/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "OpenGitOps (CNCF)"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "parcours-sylva",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "ocp-install",
+    "titre": "Installation OpenShift (bare metal, agent, assisted)",
+    "domaine": "kubernetes",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-archi",
+      "linux",
+      "reseau-ip"
+    ],
+    "resume": "Méthodes d'installation, prérequis réseau, DNS, VIP, certificats.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Installateur OpenShift / OKD (dépôt source)",
+        "url": "https://github.com/openshift/installer"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Installing)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installation_overview/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Ask an OpenShift Expert | Red Hat Livestreaming",
+        "url": "https://www.youtube.com/playlist?list=PLaR6Rq6Z4IqdsG6b09q4QIv_Yq5fNL7zh",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "OpenShift"
+      },
+      {
+        "type": "video",
+        "nom": "OpenShift BootCamp - Free Course",
+        "url": "https://www.youtube.com/playlist?list=PLH5uDiXcw8tRG7_RJOe7leEvDBfC46Bl_",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "techbeatly"
+      },
+      {
+        "type": "cours",
+        "nom": "Developer Sandbox for Red Hat OpenShift : cluster gratuit pour s'entraîner",
+        "url": "https://developers.redhat.com/developer-sandbox",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "cours",
+        "nom": "DO280 : Red Hat OpenShift Administration II",
+        "url": "https://www.redhat.com/en/services/training/red-hat-openshift-administration-ii-configuring-a-production-cluster",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "cours",
+        "nom": "EX280 : examen Red Hat Certified OpenShift Administrator",
+        "url": "https://www.redhat.com/en/services/training/red-hat-certified-openshift-administrator-exam",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "ocp-operators",
+    "titre": "Operators et OLM",
+    "domaine": "kubernetes",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "ocp-install"
+    ],
+    "resume": "Cluster Operators, Operator Lifecycle Manager, catalogues, installation et mises à jour d'opérateurs.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Operator Lifecycle Manager (OLM)",
+        "url": "https://olm.operatorframework.io/docs/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Operators)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/operators/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Ask an OpenShift Expert | Red Hat Livestreaming",
+        "url": "https://www.youtube.com/playlist?list=PLaR6Rq6Z4IqdsG6b09q4QIv_Yq5fNL7zh",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "OpenShift"
+      },
+      {
+        "type": "video",
+        "nom": "OpenShift BootCamp - Free Course",
+        "url": "https://www.youtube.com/playlist?list=PLH5uDiXcw8tRG7_RJOe7leEvDBfC46Bl_",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "techbeatly"
+      },
+      {
+        "type": "cours",
+        "nom": "Developer Sandbox for Red Hat OpenShift : cluster gratuit pour s'entraîner",
+        "url": "https://developers.redhat.com/developer-sandbox",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "cours",
+        "nom": "DO280 : Red Hat OpenShift Administration II",
+        "url": "https://www.redhat.com/en/services/training/red-hat-openshift-administration-ii-configuring-a-production-cluster",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "cours",
+        "nom": "EX280 : examen Red Hat Certified OpenShift Administrator",
+        "url": "https://www.redhat.com/en/services/training/red-hat-certified-openshift-administrator-exam",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "ocp-upgrade",
+    "titre": "Cycle de vie et upgrades de cluster",
+    "domaine": "kubernetes",
+    "niveau": "avance",
+    "prerequis": [
+      "ocp-operators"
+    ],
+    "resume": "Canaux, chemins de mise à jour, MachineConfig, impact sur les CNF, fenêtres de maintenance.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Cluster Version Operator (dépôt source, logique des mises à jour)",
+        "url": "https://github.com/openshift/cluster-version-operator"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Updating clusters)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/updating_clusters/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Ask an OpenShift Expert | Red Hat Livestreaming",
+        "url": "https://www.youtube.com/playlist?list=PLaR6Rq6Z4IqdsG6b09q4QIv_Yq5fNL7zh",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "OpenShift"
+      },
+      {
+        "type": "cours",
+        "nom": "DO280 : Red Hat OpenShift Administration II",
+        "url": "https://www.redhat.com/en/services/training/red-hat-openshift-administration-ii-configuring-a-production-cluster",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "ocp-multicluster",
+    "titre": "Multi-cluster et edge (hub/spoke, ACM)",
+    "domaine": "kubernetes",
+    "niveau": "avance",
+    "prerequis": [
+      "ocp-upgrade"
+    ],
+    "resume": "Gestion centralisée de flottes, politiques, déploiement sur site distant.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Open Cluster Management : gestion multi-clusters",
+        "url": "https://open-cluster-management.io/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation Red Hat Advanced Cluster Management",
+        "url": "https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Advanced Cluster Management for Kubernetes (ACM)",
+        "url": "https://www.youtube.com/playlist?list=PLaR6Rq6Z4IqcKOKT4c0uGkBt3YSRQ9S5v",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "OpenShift"
+      },
+      {
+        "type": "cours",
+        "nom": "Open Cluster Management : guide de démarrage rapide",
+        "url": "https://open-cluster-management.io/docs/getting-started/quick-start/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Open Cluster Management"
+      },
+      {
+        "type": "cours",
+        "nom": "DO432 : Multicluster Management with Red Hat Advanced Cluster Management",
+        "url": "https://www.redhat.com/en/services/training/do432-multicluster-management-red-hat-advanced-cluster-management-kubernetes",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "ztp",
+    "titre": "Déploiement zero-touch des clusters (ZTP)",
+    "domaine": "kubernetes",
+    "niveau": "avance",
+    "prerequis": [
+      "gitops",
+      "ocp-install"
+    ],
+    "resume": "Installer des clusters sans intervention manuelle sur site : inventaire du matériel, démarrage réseau, installation pilotée par un dépôt Git, configuration appliquée à la livraison. Utile pour les sites distants et les parcs de nombreux clusters.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Cluster API : documentation",
+        "url": "https://cluster-api.sigs.k8s.io/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes SIGs"
+      },
+      {
+        "type": "opensource",
+        "nom": "Metal³ : provisionnement bare metal pour Kubernetes",
+        "url": "https://book.metal3.io/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Metal³"
+      },
+      {
+        "type": "doc",
+        "nom": "OpenShift : déployer des sites en périphérie avec GitOps ZTP",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/edge_computing/ztp-deploying-far-edge-clusters-at-scale",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "doc",
+        "nom": "OpenShift : installation avec l'Agent-based Installer",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installing_an_on-premise_cluster_with_the_agent-based_installer/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "ocp-rds",
+    "titre": "Telco reference design (RDS)",
+    "domaine": "kubernetes",
+    "niveau": "avance",
+    "prerequis": [
+      "ocp-install",
+      "perf-profile"
+    ],
+    "resume": "Configurations de référence pour cœur et RAN : ce qui est recommandé pour héberger des CNF.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Telco reference configuration (dépôt openshift-kni)",
+        "url": "https://github.com/openshift-kni/telco-reference"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Telco core reference design)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/scalability_and_performance/telco-core-ref-design-specs",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Ask an OpenShift Expert | Red Hat Livestreaming",
+        "url": "https://www.youtube.com/playlist?list=PLaR6Rq6Z4IqdsG6b09q4QIv_Yq5fNL7zh",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "OpenShift"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "distrib-alt",
+    "titre": "Autres distributions telco (Sylva, Nokia, Ericsson CNIS, Rancher)",
+    "domaine": "kubernetes",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-archi"
+    ],
+    "resume": "Comparer les distributions de CaaS rencontrées chez les opérateurs et les équipementiers, leurs différences d'intégration.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Sylva : pile CaaS telco open source",
+        "url": "https://gitlab.com/sylva-projects/sylva-core"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation Sylva",
+        "url": "https://sylva-projects.gitlab.io/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Sylva"
+      },
+      {
+        "type": "doc",
+        "nom": "Sylva : projet de pile cloud native pour les télécoms (Linux Foundation Europe)",
+        "url": "https://sylvaproject.org/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Sylva"
+      },
+      {
+        "type": "video",
+        "nom": "Sylva presentations",
+        "url": "https://www.youtube.com/playlist?list=PL_KV1BsedfgnHJrQvtVqZHqOMQjip9Gda",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Sylva"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "k8s-troubleshoot",
+    "titre": "Dépannage Kubernetes avancé et RCA",
+    "domaine": "kubernetes",
+    "niveau": "avance",
+    "prerequis": [
+      "k8s-workloads",
+      "k8s-services"
+    ],
+    "resume": "Démarche d'analyse, événements, logs, nœuds NotReady, etcd, rédaction d'un rapport d'analyse de cause racine.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : dépannage et débogage",
+        "url": "https://kubernetes.io/docs/tasks/debug/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "video",
+        "nom": "Troubleshooting Kubernetes",
+        "url": "https://www.youtube.com/playlist?list=PLdpzxOOAlwvIrFBI1farpLS_OSUBXJMLX",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Abhishek.Veeramalla"
+      },
+      {
+        "type": "cours",
+        "nom": "Killercoda : laboratoires Kubernetes interactifs dans le navigateur",
+        "url": "https://killercoda.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Killercoda"
+      },
+      {
+        "type": "cours",
+        "nom": "Certified Kubernetes Administrator (CKA) : formation et examen",
+        "url": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      },
+      {
+        "type": "cours",
+        "nom": "Certified Kubernetes Administrator (CKA) with Practice Tests",
+        "url": "https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Udemy (Mumshad Mannambeth)"
+      }
+    ],
+    "origine": [
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "cnf-exigences",
+    "titre": "Exigences d'infrastructure d'une NF (réseaux, CPU, HugePages, SR-IOV)",
+    "domaine": "kubernetes",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "smf-upf"
+    ],
+    "resume": "Traduire les besoins d'une fonction en besoins de plateforme : interfaces réseau séparées, accélération du plan usager, CPU isolés, stockage, privilèges.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "SR-IOV Network Device Plugin (dépôt source)",
+        "url": "https://github.com/k8snetworkplumbingwg/sriov-network-device-plugin"
+      },
+      {
+        "type": "video",
+        "nom": "Cloud Native Telco Day 2026 - Europe",
+        "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2N_B1HGXUyfn4HjjydZctPA",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF [Cloud Native Computing Foundation]"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "upf-edge",
+    "titre": "UPF distribué et edge (accès local, MEC)",
+    "domaine": "kubernetes",
+    "niveau": "avance",
+    "prerequis": [
+      "smf-upf",
+      "cnf-exigences"
+    ],
+    "resume": "Placer des UPF au plus près des utilisateurs : sélection d'UPF, contraintes réseau et latence, exploitation de sites distants.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "eUPF : UPF open source en eBPF/XDP",
+        "url": "https://github.com/edgecomllc/eupf"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "capacite-noeuds",
+    "titre": "Gestion des nœuds : drain, maintenance et configuration",
+    "domaine": "kubernetes",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-workloads",
+      "ocp-operators"
+    ],
+    "resume": "Cordon et drain sans violer les budgets de disruption, redémarrages contrôlés, évolution de la configuration des nœuds, remplacement d'un nœud en panne.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : drainer un nœud en sécurité",
+        "url": "https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/"
+      }
+    ],
+    "origine": [
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  }
+]

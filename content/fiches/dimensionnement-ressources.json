@@ -58,6 +58,11 @@
       "lien": null
     }
   ],
+  "competences": [
+    "perf-hugepages",
+    "perf-profile",
+    "dimensionnement"
+  ],
   "technos": [
     "kubernetes"
   ],

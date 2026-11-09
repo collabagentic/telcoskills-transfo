@@ -61,6 +61,10 @@
       "lien": null
     }
   ],
+  "competences": [
+    "k8s-rbac",
+    "sec-secrets"
+  ],
   "technos": [
     "kubernetes"
   ],

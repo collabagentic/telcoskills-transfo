@@ -2,14 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { z } from "zod";
 import { verifierContenu } from "./regles";
-import {
-  ficheSchema,
-  metierAVenirSchema,
-  metierSchema,
-  questionSchema,
-  technoSchema,
-  type Contenu,
-} from "./schemas";
+import { competenceSchema, domaineSchema, ficheSchema, orientationSchema, questionSchema, technoSchema, type Contenu } from "./schemas";
 
 /**
  * Chargement du contenu au build, côté serveur uniquement : ne jamais importer ce fichier dans un composant client.
@@ -22,6 +15,11 @@ function lireJson(fichier: string): unknown {
   return JSON.parse(fs.readFileSync(fichier, "utf8"));
 }
 
+function signaler(erreurs: string[], fichier: string, e: z.ZodError, prefixe = "") {
+  for (const p of e.issues) erreurs.push(`content/${fichier} : ${prefixe}champ « ${p.path.join(".") || "(racine)"} » : ${p.message}`);
+}
+
+/** Un dossier de fichiers, chacun contenant un objet. */
 function lireDossier<T extends z.ZodType>(dossier: string, schema: T, erreurs: string[]): z.infer<T>[] {
   const chemin = path.join(RACINE, dossier);
   if (!fs.existsSync(chemin)) return [];
@@ -29,25 +27,29 @@ function lireDossier<T extends z.ZodType>(dossier: string, schema: T, erreurs: s
   for (const nom of fs.readdirSync(chemin).filter((n) => n.endsWith(".json")).sort()) {
     const lu = schema.safeParse(lireJson(path.join(chemin, nom)));
     if (lu.success) resultat.push(lu.data);
-    else for (const p of lu.error.issues) erreurs.push(`content/${dossier}/${nom} : champ « ${p.path.join(".") || "(racine)"} » : ${p.message}`);
+    else signaler(erreurs, `${dossier}/${nom}`, lu.error);
   }
   return resultat;
 }
 
-function lireListe<T extends z.ZodType>(fichier: string, schema: T, erreurs: string[]): z.infer<T>[] {
-  const chemin = path.join(RACINE, fichier);
+/** Une liste d'objets dans un fichier ou dans chaque fichier d'un dossier. */
+function lireListes<T extends z.ZodType>(cible: string, schema: T, erreurs: string[]): z.infer<T>[] {
+  const chemin = path.join(RACINE, cible);
   if (!fs.existsSync(chemin)) return [];
+  const fichiers = fs.statSync(chemin).isDirectory() ? fs.readdirSync(chemin).filter((n) => n.endsWith(".json")).sort().map((n) => path.join(cible, n)) : [cible];
   const resultat: z.infer<T>[] = [];
-  const brut = lireJson(chemin);
-  if (!Array.isArray(brut)) {
-    erreurs.push(`content/${fichier} : une liste est attendue.`);
-    return [];
+  for (const f of fichiers) {
+    const brut = lireJson(path.join(RACINE, f));
+    if (!Array.isArray(brut)) {
+      erreurs.push(`content/${f} : une liste est attendue.`);
+      continue;
+    }
+    brut.forEach((element, i) => {
+      const lu = schema.safeParse(element);
+      if (lu.success) resultat.push(lu.data);
+      else signaler(erreurs, f, lu.error, `élément ${i}, `);
+    });
   }
-  brut.forEach((element, i) => {
-    const lu = schema.safeParse(element);
-    if (lu.success) resultat.push(lu.data);
-    else for (const p of lu.error.issues) erreurs.push(`content/${fichier} : élément ${i}, champ « ${p.path.join(".") || "(racine)"} » : ${p.message}`);
-  });
   return resultat;
 }
 
@@ -56,17 +58,20 @@ let cache: Contenu | null = null;
 export function chargerContenu(): Contenu {
   if (cache) return cache;
   const erreurs: string[] = [];
-  const contenu: Contenu = {
-    metiers: lireDossier("metiers", metierSchema, erreurs),
+  const orientation = orientationSchema.safeParse(lireJson(path.join(RACINE, "orientation.json")));
+  if (!orientation.success) signaler(erreurs, "orientation.json", orientation.error);
+  const contenu = {
+    domaines: lireListes("domaines.json", domaineSchema, erreurs),
+    competences: lireListes("competences", competenceSchema, erreurs),
     fiches: lireDossier("fiches", ficheSchema, erreurs),
     questions: lireDossier("questions", questionSchema, erreurs),
-    technos: lireListe("technos.json", technoSchema, erreurs),
-    aVenir: lireListe("metiers-a-venir.json", metierAVenirSchema, erreurs),
+    technos: lireListes("technos.json", technoSchema, erreurs),
+    orientation: orientation.success ? orientation.data : undefined,
   };
-  if (erreurs.length === 0) erreurs.push(...verifierContenu(contenu));
+  if (erreurs.length === 0 && contenu.orientation) erreurs.push(...verifierContenu(contenu as Contenu));
   if (erreurs.length > 0) {
     throw new Error(`Le contenu est invalide (${erreurs.length} erreur${erreurs.length > 1 ? "s" : ""}) :\n- ${erreurs.join("\n- ")}`);
   }
-  cache = contenu;
-  return contenu;
+  cache = contenu as Contenu;
+  return cache;
 }

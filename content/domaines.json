@@ -1,0 +1,42 @@
+[
+  {
+    "id": "fondations",
+    "nom": "Fondations"
+  },
+  {
+    "id": "kubernetes",
+    "nom": "Kubernetes et OpenShift"
+  },
+  {
+    "id": "reseau",
+    "nom": "Réseau"
+  },
+  {
+    "id": "performance",
+    "nom": "Performance et dimensionnement"
+  },
+  {
+    "id": "stockage",
+    "nom": "Stockage et virtualisation"
+  },
+  {
+    "id": "exploitation",
+    "nom": "Exploitation et fiabilité"
+  },
+  {
+    "id": "securite",
+    "nom": "Sécurité et conformité"
+  },
+  {
+    "id": "coeur-5g",
+    "nom": "Cœur 5G et fonctions réseau"
+  },
+  {
+    "id": "gouvernance",
+    "nom": "Conception et gouvernance"
+  },
+  {
+    "id": "livraison",
+    "nom": "Livraison et automatisation"
+  }
+]

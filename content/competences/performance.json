@@ -1,0 +1,153 @@
+[
+  {
+    "id": "perf-hugepages",
+    "titre": "HugePages et NUMA",
+    "domaine": "performance",
+    "niveau": "avance",
+    "prerequis": [
+      "linux",
+      "k8s-workloads"
+    ],
+    "resume": "Allocation de pages, topologie NUMA, alignement CPU/mémoire/NIC.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Noyau Linux : HugeTLB pages",
+        "url": "https://docs.kernel.org/admin-guide/mm/hugetlbpage.html"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Scalability and performance)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/scalability_and_performance/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "cours",
+        "nom": "RH442 : Red Hat Enterprise Performance Tuning",
+        "url": "https://www.redhat.com/en/services/training/rh442-red-hat-enterprise-performance-tuning",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "parcours-sylva"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "perf-profile",
+    "titre": "Performance Profile et CPU pinning",
+    "domaine": "performance",
+    "niveau": "avance",
+    "prerequis": [
+      "perf-hugepages"
+    ],
+    "resume": "Isolation de CPU, gestionnaire de topologie, noyau temps réel, réglages pour CNF.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : politiques du CPU Manager",
+        "url": "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Performance Addon / Node Tuning)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/scalability_and_performance/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "cours",
+        "nom": "RH442 : Red Hat Enterprise Performance Tuning",
+        "url": "https://www.redhat.com/en/services/training/rh442-red-hat-enterprise-performance-tuning",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "parcours-sylva"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "dimensionnement",
+    "titre": "Dimensionnement d'un cluster telco",
+    "domaine": "performance",
+    "niveau": "avance",
+    "prerequis": [
+      "cnf-onboarding",
+      "ceph",
+      "perf-profile"
+    ],
+    "resume": "Passer des exigences CNF à un nombre de nœuds, un profil CPU/mémoire/stockage et un plan réseau.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : considérations pour les grands clusters",
+        "url": "https://kubernetes.io/docs/setup/best-practices/cluster-large/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "doc",
+        "nom": "OpenShift : planifier son environnement selon les maximums d'objets",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/scalability_and_performance/planning-your-environment-according-to-object-maximums",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "doc",
+        "nom": "OpenShift : spécifications de référence du cœur télécom (Telco core RDS)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/scalability_and_performance/telco-core-ref-design-specs",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "bench-dimensionnement",
+    "titre": "Valider un dimensionnement : tests de charge et marges",
+    "domaine": "performance",
+    "niveau": "avance",
+    "prerequis": [
+      "dimensionnement"
+    ],
+    "resume": "Vérifier par la mesure les hypothèses du dimensionnement, choisir les marges, documenter les limites de la plateforme.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "TRex : générateur de trafic open source",
+        "url": "https://github.com/cisco-system-traffic-generator/trex-core"
+      },
+      {
+        "type": "video",
+        "nom": "Learn k6 Series",
+        "url": "https://www.youtube.com/playlist?list=PLJ9A48W0kpRJKmVeurt7ltKfrOdr8ZBdt",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "QAInsights"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco"
+    ],
+    "statut": "brouillon"
+  }
+]

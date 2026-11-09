@@ -60,6 +60,10 @@
       "lien": null
     }
   ],
+  "competences": [
+    "k8s-services",
+    "lb-bgp"
+  ],
   "technos": [
     "kubernetes",
     "metallb"

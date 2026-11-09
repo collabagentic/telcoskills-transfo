@@ -62,6 +62,10 @@
       "lien": null
     }
   ],
+  "competences": [
+    "sbi-http2",
+    "5g-sba"
+  ],
   "technos": [
     "kubernetes"
   ],

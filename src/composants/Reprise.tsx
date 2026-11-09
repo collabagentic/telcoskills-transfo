@@ -1,22 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { calculerPlan } from "@/lib/bilan";
-import { useBilan } from "@/lib/stockage";
+import { useMemo } from "react";
+import { competenceFaite, prochaineEtape, recombiner, type Avancement } from "@/lib/parcours";
+import { useParcours } from "@/lib/stockage";
 import type { DonneesPubliques } from "@/contenu/publiques";
 
-/** Bandeau « Reprendre » : visible seulement si un bilan existe. La fente a toujours la même hauteur (pas de saut au chargement). */
+const VIDE: Avancement = { maitrisees: [], fiches: {} };
+
+/** Bandeau « Reprendre » : visible seulement si une feuille de route existe. La fente a toujours la même hauteur (pas de saut au chargement). */
 export function Reprise({ donnees }: { donnees: DonneesPubliques }) {
-  const bilan = useBilan();
-  const metier = bilan ? donnees.metiers[bilan.metier] : undefined;
-  const plan = bilan && metier ? calculerPlan(bilan, metier, donnees.fiches) : null;
+  const parcours = useParcours();
+  const reponses = parcours?.reponses;
+  const avancement = parcours ?? VIDE;
+  const feuille = useMemo(() => (reponses && Object.keys(reponses).length > 0 ? recombiner(donnees.graphe, donnees.questions, reponses, donnees.domaines) : null), [donnees, reponses]);
+  const suivante = feuille ? prochaineEtape(feuille, avancement) : null;
+  const faites = feuille ? feuille.etapes.filter((e) => competenceFaite(e, avancement)).length : 0;
   return (
     <div className="fente-reprise carte-reprise">
-      {bilan && metier && plan ? (
-        <Link className="reprise" href={plan.reprise ? `/fiche/${plan.reprise}` : "/plan"}>
-          <span>Reprendre votre plan</span>
+      {feuille ? (
+        <Link className="reprise" href="/roadmap">
+          <span>Reprendre votre feuille de route</span>
           <strong>
-            {metier.nom} · {plan.verifiees} fiche{plan.verifiees > 1 ? "s" : ""} sur {plan.total}
+            {faites} sur {feuille.etapes.length}
+            {suivante ? ` · ensuite : ${suivante.titre}` : ""}
           </strong>
           <span aria-hidden="true">→</span>
         </Link>

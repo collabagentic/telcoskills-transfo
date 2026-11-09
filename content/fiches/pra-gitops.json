@@ -64,6 +64,11 @@
       "lien": null
     }
   ],
+  "competences": [
+    "pra-rpo-rto",
+    "gitops",
+    "stockage-dr"
+  ],
   "technos": [
     "kubernetes",
     "argo-cd"

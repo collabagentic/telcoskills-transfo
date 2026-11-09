@@ -1,0 +1,150 @@
+{
+  "_aide": "BROUILLON à relire par l'auteur. Chaque option a des effets sur la feuille de route : « acquis » (compétences déjà maîtrisées, avec leurs prérequis), « domaines » (poids de priorité), « cible » (compétences à atteindre), « ecarte » (compétences hors de votre parcours). Les effets sont cumulés, jamais cachés : l'étape affiche pourquoi elle est là.",
+  "statut": "brouillon",
+  "questions": [
+    {
+      "id": "metier",
+      "texte": "Quel est votre métier aujourd'hui ?",
+      "aide": "Choisissez ce qui s'en rapproche le plus.",
+      "options": [
+        {
+          "id": "infra",
+          "libelle": "Architecte infra et virtualisation",
+          "detail": "VMware, datacenter, stockage",
+          "raison": "métier d'infrastructure",
+          "effets": { "acquis": ["linux", "reseau-ip"], "domaines": { "kubernetes": 2, "stockage": 2, "reseau": 1, "exploitation": 1 } }
+        },
+        {
+          "id": "coeur",
+          "libelle": "Ingénieur cœur réseau",
+          "detail": "EPC, IMS, VoLTE",
+          "raison": "métier du cœur réseau",
+          "effets": {
+            "acquis": ["telco-101", "tel-reseau-mobile", "tel-vocabulaire", "tel-nf", "traces", "identifiants", "interfonctionnement-4g", "ims-voix"],
+            "domaines": { "kubernetes": 2, "reseau": 2, "exploitation": 1, "performance": 1 }
+          }
+        },
+        {
+          "id": "si",
+          "libelle": "Architecte SI",
+          "detail": "TOGAF, ITIL, PRA",
+          "raison": "métier d'architecture SI",
+          "effets": { "acquis": ["hld-lld"], "domaines": { "gouvernance": 2, "securite": 2, "livraison": 1, "kubernetes": 1 } }
+        },
+        {
+          "id": "avant-vente",
+          "libelle": "Avant-vente technique",
+          "detail": "Chiffrage, appels d'offres",
+          "raison": "métier d'avant-vente",
+          "effets": { "acquis": ["evaluation-fournisseurs", "telco-101"], "domaines": { "gouvernance": 2, "performance": 1, "coeur-5g": 1, "kubernetes": 1 } }
+        }
+      ]
+    },
+    {
+      "id": "kubernetes",
+      "texte": "Où en êtes-vous avec Kubernetes ?",
+      "aide": "Ce que vous maîtrisez déjà ne figurera plus dans votre feuille de route.",
+      "options": [
+        { "id": "jamais", "libelle": "Je n'y ai jamais touché", "raison": "", "effets": {} },
+        { "id": "lu", "libelle": "J'ai lu, pas pratiqué", "raison": "", "effets": { "acquis": ["conteneurs"] } },
+        {
+          "id": "deploye",
+          "libelle": "J'ai déjà déployé des applications",
+          "raison": "",
+          "effets": { "acquis": ["conteneurs", "k8s-archi", "k8s-workloads", "k8s-services"] }
+        },
+        {
+          "id": "opere",
+          "libelle": "J'exploite des clusters",
+          "raison": "",
+          "effets": { "acquis": ["conteneurs", "k8s-archi", "k8s-workloads", "k8s-services", "k8s-stockage", "k8s-rbac", "helm", "gitops", "k8s-troubleshoot"] }
+        }
+      ]
+    },
+    {
+      "id": "objectif",
+      "texte": "Que voulez-vous pouvoir faire ?",
+      "aide": "Votre objectif décide du but de la feuille de route.",
+      "options": [
+        {
+          "id": "operer",
+          "libelle": "Exploiter une plateforme télécom",
+          "raison": "objectif d'exploitation",
+          "effets": { "domaines": { "exploitation": 3, "livraison": 1 }, "cible": ["incident-astreinte", "upgrade-nf"] }
+        },
+        {
+          "id": "concevoir",
+          "libelle": "Concevoir et dimensionner",
+          "raison": "objectif de conception",
+          "effets": { "domaines": { "gouvernance": 2, "reseau": 2, "performance": 2 }, "cible": ["ocp-rds", "dimensionnement", "archi-reseau-support"] }
+        },
+        {
+          "id": "integrer",
+          "libelle": "Intégrer et livrer des fonctions réseau",
+          "raison": "objectif d'intégration",
+          "effets": { "domaines": { "coeur-5g": 3, "livraison": 2 }, "cible": ["cnf-onboarding", "helm-cnf", "recette"] }
+        },
+        {
+          "id": "acheter",
+          "libelle": "Chiffrer, comparer, acheter",
+          "raison": "objectif d'achat et d'évaluation",
+          "effets": { "domaines": { "gouvernance": 3 }, "cible": ["evaluation-fournisseurs", "matrice-exigences"] }
+        }
+      ]
+    },
+    {
+      "id": "depart",
+      "texte": "D'où partez-vous côté infrastructure ?",
+      "options": [
+        { "id": "vmware", "libelle": "VMware", "raison": "départ VMware", "effets": { "domaines": { "kubernetes": 1, "stockage": 1 }, "cible": ["kubevirt"] } },
+        { "id": "openstack", "libelle": "OpenStack", "raison": "départ OpenStack", "effets": { "acquis": ["openstack", "nfv-etsi"], "domaines": { "kubernetes": 1 } } },
+        { "id": "bare-metal", "libelle": "Bare metal", "raison": "départ bare metal", "effets": { "domaines": { "reseau": 1, "performance": 1 } } },
+        { "id": "cloud", "libelle": "Cloud public", "raison": "", "effets": {} }
+      ]
+    },
+    {
+      "id": "coeur-5g",
+      "texte": "Et le cœur 5G ?",
+      "options": [
+        {
+          "id": "bien",
+          "libelle": "Je le connais bien",
+          "raison": "",
+          "effets": { "acquis": ["5g-sba", "archi-5g", "sbi-http2", "amf", "smf-upf", "nrf-scp", "enregistrement", "session-pdu", "udm-udr-ausf"] }
+        },
+        { "id": "peu", "libelle": "Les bases seulement", "raison": "", "effets": { "acquis": ["telco-101", "tel-reseau-mobile", "tel-vocabulaire", "archi-5g"] } },
+        { "id": "pas", "libelle": "Pas du tout", "raison": "", "effets": { "domaines": { "coeur-5g": 1 } } }
+      ]
+    },
+    {
+      "id": "securite",
+      "texte": "Quelle place pour la sécurité et la conformité ?",
+      "options": [
+        { "id": "centrale", "libelle": "Centrale dans mon métier", "raison": "sécurité centrale", "effets": { "domaines": { "securite": 3 } } },
+        { "id": "utile", "libelle": "Utile, sans être mon cœur", "raison": "sécurité utile", "effets": { "domaines": { "securite": 1 } } },
+        {
+          "id": "hors",
+          "libelle": "Pas mon sujet",
+          "raison": "",
+          "effets": {
+            "ecarte": ["reg-cadre-fr", "reg-5g-securite", "reg-nis2", "reg-anssi", "reg-rgpd", "reg-souverainete", "reg-risque", "reglementation-5gc", "reg-oiv", "reg-ue-certif", "reg-cra", "reg-li"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "plateforme",
+      "texte": "Quelle plateforme visez-vous ?",
+      "options": [
+        { "id": "openshift", "libelle": "OpenShift", "raison": "plateforme OpenShift", "effets": { "domaines": { "kubernetes": 2 } } },
+        {
+          "id": "autre",
+          "libelle": "Un autre Kubernetes",
+          "raison": "",
+          "effets": { "ecarte": ["ocp-install", "ocp-operators", "ocp-upgrade", "ocp-multicluster", "ztp", "ocp-rds"] }
+        },
+        { "id": "inconnue", "libelle": "Je ne sais pas encore", "raison": "", "effets": {} }
+      ]
+    }
+  ]
+}

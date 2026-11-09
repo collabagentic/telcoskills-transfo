@@ -62,6 +62,10 @@
       "lien": null
     }
   ],
+  "competences": [
+    "adr",
+    "hld-lld"
+  ],
   "technos": [],
   "questions": [
     "q-dossier-archi-code-1",

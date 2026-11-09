@@ -48,6 +48,9 @@
       "lien": null
     }
   ],
+  "competences": [
+    "obs-telemetry"
+  ],
   "technos": [
     "opentelemetry"
   ],

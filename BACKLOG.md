@@ -700,3 +700,16 @@ L'auteur veut un vrai cockpit, une progression et une carte, à partir du projet
 - **Schémas** (règle 11) : chaque fiche a une chaîne d'étapes « avant » puis « après » (SVG et HTML statique), sauf la nouveauté qui n'a pas d'« avant ».
 - **Ressources** : les ressources d'apprentissage de l'ancien dépôt sont reprises par fiche (`scripts/reprise/ressources.mjs`), le gratuit et le français d'abord ; types `cours` et `video` ajoutés.
 - **Toujours exclus** : heures cumulées, rythme et date d'arrivée estimée (le seul temps affiché est la somme des temps de lecture), parcours complets, rôles cibles, vue Métro, vue Arbre.
+
+---
+
+## 13. Refonte du 2026-11-09 : une seule feuille de route vivante (décision de l'auteur)
+
+L'ancien site (telcoskills.com) était « trop complexe ». Ce projet le **remplace** : on migre ce qui vaut, on élague le reste. Il n'y a plus de parcours fixes ni de métier à choisir en premier.
+
+- **Graphe migré** (`scripts/migration/graphe.mjs`, rapport `reports/migration-graphe.md`) : 131 compétences reliées par leurs prérequis, avec leurs ressources, réparties en 10 domaines (`content/competences/`, `content/domaines.json`). Élagage : les 47 compétences propres aux parcours « IA agentique » et « Sylva » sont retirées (hors périmètre, Q5).
+- **Fiches de transformation** : chacune est rattachée à des compétences (`competences`). Une compétence sans fiche reste dans la feuille de route, avec ses ressources, en attendant sa fiche.
+- **Questions et moteur** : `content/orientation.json` (7 questions, 5 à 10 admises, règle 13) et `src/lib/parcours.ts` (fonctions pures, testées). Les réponses ont des effets cumulés et lisibles (acquis, poids de domaine, cible, écarté) ; chaque étape dit pourquoi elle est là. Sans réponse : la feuille de route complète (vue d'ensemble).
+- **Écran** `/roadmap` : les questions à gauche, la feuille de route recomposée en direct à droite (carte React Flow ou liste), avec le cockpit (où j'en suis, prochaine étape, objectif et chemin restant). `/competence/<id>` : résumé, prérequis, fiches, ressources, « Je maîtrise déjà ».
+- **Retirés** : choix du métier, liste de savoir-faire cochés, bilan à trois tuiles, `/metier`, `/plan` (le cockpit reprend leur rôle).
+- **À faire** (portage depuis l'ancien site) : pratique par compétence (117 questions), landscape des outils, recherche ⌘K, redirections de telcoskills.com, mesure d'audience.

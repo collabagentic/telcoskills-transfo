@@ -1,0 +1,470 @@
+[
+  {
+    "id": "helm-cnf",
+    "titre": "Packaging d'une NF : charts Helm et configuration",
+    "domaine": "livraison",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "helm"
+    ],
+    "resume": "Structure d'un chart, values par environnement, hooks, dépendances ; livrer et rejouer un déploiement.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Helm : documentation",
+        "url": "https://helm.sh/docs/"
+      },
+      {
+        "type": "video",
+        "nom": "TUTORIALS ET FORMATION HELM",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWqIeLqU1194K-LS1O5m2lDd",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "config-nf",
+    "titre": "Configuration d'une NF : API, YANG/NETCONF, ConfigMaps",
+    "domaine": "livraison",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "helm-cnf"
+    ],
+    "resume": "Paramétrage initial et à chaud, modèles de données, cohérence de configuration entre fonctions, versionnement.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "YangModels/yang : modèles YANG de référence",
+        "url": "https://github.com/YangModels/yang"
+      },
+      {
+        "type": "video",
+        "nom": "NETCONF YANG Tutorial with Cisco real time examples",
+        "url": "https://www.youtube.com/playlist?list=PLOocymQm7YWaJX5l5SgfkAvHQYUS-Xr1Q",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "NetworkEvolution"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "etsi-sol",
+    "titre": "Cycle de vie d'une NF selon ETSI NFV (SOL, CSAR, CNF)",
+    "domaine": "livraison",
+    "niveau": "avance",
+    "prerequis": [
+      "helm-cnf"
+    ],
+    "resume": "Descripteurs et paquets de fonctions normalisés, opérations de cycle de vie (instanciation, mise à l'échelle, mise à jour, terminaison), lien avec un orchestrateur.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "OpenStack Tacker : orchestration NFV conforme ETSI",
+        "url": "https://docs.openstack.org/tacker/latest/"
+      },
+      {
+        "type": "video",
+        "nom": "OSM#15 Hackfest Barcelona - June 2023",
+        "url": "https://www.youtube.com/playlist?list=PLFqLBTy_ZDShg1BxNXgpRrma2ULvIAu39",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Open Source MANO"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "onboarding-editeur",
+    "titre": "Onboarding d'une NF éditeur : exigences, livrables, matrice de conformité",
+    "domaine": "livraison",
+    "niveau": "avance",
+    "prerequis": [
+      "etsi-sol",
+      "config-nf"
+    ],
+    "resume": "Lire la documentation d'un éditeur, vérifier les livrables (images, charts, descripteurs), établir la matrice de conformité aux exigences de la plateforme.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "towards5gs-helm : exemple de livrable de NF",
+        "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "dossier-integration",
+    "titre": "Dossier d'intégration : schémas, flux, plan d'adressage",
+    "domaine": "livraison",
+    "niveau": "avance",
+    "prerequis": [
+      "onboarding-editeur"
+    ],
+    "resume": "Livrables d'architecture : schéma applicatif et réseau, matrice de flux entre fonctions, plan d'adressage, hypothèses de dimensionnement.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "arc42 : modèle libre de documentation d'architecture",
+        "url": "https://arc42.org/overview"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "ci-cd-integration",
+    "titre": "CI/CD d'intégration : déploiement et non-régression automatisés",
+    "domaine": "livraison",
+    "niveau": "avance",
+    "prerequis": [
+      "deploiement-lab",
+      "tests-fonctionnels"
+    ],
+    "resume": "Pipelines qui déploient une version, jouent les tests et publient un verdict ; environnements éphémères, gestion des versions.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Tekton : pipelines CI/CD Kubernetes",
+        "url": "https://tekton.dev/docs/"
+      },
+      {
+        "type": "video",
+        "nom": "GITLAB : tutos et formation",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWrRoZZXv0xf71mvT4E0QDOF",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "simulation-ran-ue",
+    "titre": "Simulation de RAN et d'UE",
+    "domaine": "livraison",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "session-pdu"
+    ],
+    "resume": "Utiliser des simulateurs de gNB et d'UE pour exercer le cœur : scénarios d'enregistrement, de session, de mobilité ; limites d'un simulateur.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "gNBsim : simulateur de gNB et d'UE (OMEC)",
+        "url": "https://github.com/omec-project/gnbsim"
+      },
+      {
+        "type": "video",
+        "nom": "Open5GS & UeRANSim",
+        "url": "https://www.youtube.com/playlist?list=PLZqpS76PykwIoqMdUt6noAor7eJw83bbp",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Tech with Mohit"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "tests-fonctionnels",
+    "titre": "Plan de tests fonctionnels et d'interopérabilité",
+    "domaine": "livraison",
+    "niveau": "avance",
+    "prerequis": [
+      "simulation-ran-ue",
+      "enregistrement"
+    ],
+    "resume": "Construire un plan de tests par procédure, critères de réussite, automatisation, traçabilité des exigences vers les cas de test.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Robot Framework : automatisation de tests",
+        "url": "https://robotframework.org/"
+      },
+      {
+        "type": "video",
+        "nom": "Complete Robot Framework Tutorial",
+        "url": "https://www.youtube.com/playlist?list=PL4GZKvvcjS3u9FP3F9zW4ZbZB8pti2k37",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Robot Framework Tutorials"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "tests-perf",
+    "titre": "Tests de performance et de charge",
+    "domaine": "livraison",
+    "niveau": "avance",
+    "prerequis": [
+      "simulation-ran-ue"
+    ],
+    "resume": "Débit, sessions par seconde, latence, saturation : générer du trafic, mesurer, interpréter ; lien avec le dimensionnement.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "TRex : générateur de trafic open source",
+        "url": "https://github.com/cisco-system-traffic-generator/trex-core"
+      },
+      {
+        "type": "video",
+        "nom": "Learn k6 Series",
+        "url": "https://www.youtube.com/playlist?list=PLJ9A48W0kpRJKmVeurt7ltKfrOdr8ZBdt",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "QAInsights"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "lab-as-code",
+    "titre": "Laboratoire reproductible : kind, charts et jeux de données",
+    "domaine": "livraison",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-archi",
+      "helm"
+    ],
+    "resume": "Créer et détruire un banc d'essai à la demande pour intégrer une NF : cluster éphémère, charts, simulateurs, données de test.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "kind : Kubernetes dans Docker",
+        "url": "https://kind.sigs.k8s.io/"
+      },
+      {
+        "type": "video",
+        "nom": "Getting Started with KIND Kubernetes",
+        "url": "https://www.youtube.com/playlist?list=PL1xPpLHBFNWvKPI0ofmFzJn9lrWiqGukT",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "KubeSkills"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "tests-config",
+    "titre": "Tests de configuration et de non-régression d'une NF",
+    "domaine": "livraison",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "config-nf",
+      "tests-fonctionnels"
+    ],
+    "resume": "Valider une configuration avant déploiement (lint des charts, schémas, tests de contrat), détecter les dérives entre environnements.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Helm : tests de charts",
+        "url": "https://helm.sh/docs/topics/chart_tests/"
+      },
+      {
+        "type": "opensource",
+        "nom": "kube-linter : analyse statique des manifestes",
+        "url": "https://github.com/stackrox/kube-linter"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "ansible-python",
+    "titre": "Ansible et Python pour l'exploitation",
+    "domaine": "livraison",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "linux"
+    ],
+    "resume": "Playbooks, inventaires, rôles, scripts d'automatisation des tâches récurrentes.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Ansible : documentation",
+        "url": "https://docs.ansible.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "ANSIBLE - Tutos & Formation : automatiser vos configurations",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWoCpLKOSw3mXCqbRocnhrh-",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      },
+      {
+        "type": "video",
+        "nom": "Ansible 101",
+        "url": "https://www.youtube.com/playlist?list=PL2_OBreMn7FqZkvMYt6ATmgC0KAGGJNAN",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Jeff Geerling"
+      }
+    ],
+    "origine": [
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "operators-dev",
+    "titre": "Développer un opérateur (Go)",
+    "domaine": "livraison",
+    "niveau": "avance",
+    "prerequis": [
+      "ocp-operators"
+    ],
+    "resume": "Controller-runtime, CRD, réconciliation. Un plus recherché dans certaines équipes SRE.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubebuilder : le livre",
+        "url": "https://book.kubebuilder.io/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes SIGs"
+      },
+      {
+        "type": "doc",
+        "nom": "Operator SDK",
+        "url": "https://sdk.operatorframework.io/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Operator Framework"
+      }
+    ],
+    "origine": [
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "gestion-changement",
+    "titre": "Gestion du changement : fenêtres, revues et retour arrière",
+    "domaine": "livraison",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "gitops",
+      "incident-astreinte"
+    ],
+    "resume": "Classer les changements par risque, préparer fenêtre et plan de retour arrière, déployer progressivement, mesurer l'effet sur les SLO.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Google SRE Book : ingénierie des livraisons (accès libre)",
+        "url": "https://sre.google/sre-book/release-engineering/"
+      },
+      {
+        "type": "opensource",
+        "nom": "Argo Rollouts : déploiements progressifs",
+        "url": "https://argoproj.github.io/argo-rollouts/"
+      },
+      {
+        "type": "video",
+        "nom": "SREcon25 Americas",
+        "url": "https://www.youtube.com/playlist?list=PLbRoZ5Rrl5letLDlvWuS1r8CZokFl-Is6",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "USENIX"
+      }
+    ],
+    "origine": [
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "toil",
+    "titre": "Réduire le toil : automatiser le travail répétitif",
+    "domaine": "livraison",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "ansible-python",
+      "runbooks"
+    ],
+    "resume": "Repérer et mesurer le travail manuel répétitif, décider quoi automatiser, éviter l'automatisation fragile.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Google SRE Book : éliminer le toil (accès libre)",
+        "url": "https://sre.google/sre-book/eliminating-toil/"
+      },
+      {
+        "type": "video",
+        "nom": "ANSIBLE - Tutos & Formation : automatiser vos configurations",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWoCpLKOSw3mXCqbRocnhrh-",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      },
+      {
+        "type": "cours",
+        "nom": "Google SRE : ressources, livres gratuits et études de cas",
+        "url": "https://sre.google/resources/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Google"
+      },
+      {
+        "type": "video",
+        "nom": "SREcon25 Americas",
+        "url": "https://www.youtube.com/playlist?list=PLbRoZ5Rrl5letLDlvWuS1r8CZokFl-Is6",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "USENIX"
+      }
+    ],
+    "origine": [
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  }
+]

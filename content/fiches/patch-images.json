@@ -62,6 +62,10 @@
       "lien": null
     }
   ],
+  "competences": [
+    "sec-supply",
+    "gestion-vulns"
+  ],
   "technos": [
     "kubernetes"
   ],

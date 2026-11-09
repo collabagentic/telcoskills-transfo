@@ -1,0 +1,301 @@
+[
+  {
+    "id": "cni",
+    "titre": "CNI et OVN-Kubernetes",
+    "domaine": "reseau",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-services",
+      "reseau-ip"
+    ],
+    "resume": "Réseau de pods, OVN-Kubernetes, Open vSwitch, NetworkPolicy, egress.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "OVN-Kubernetes : documentation",
+        "url": "https://ovn-kubernetes.io/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Networking)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/networking_overview/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Kubernetes Security and Networking",
+        "url": "https://www.youtube.com/playlist?list=PLtO_OYBiEo6klZcU3HVfbrSgolnvnkCCB",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Packet Pushers"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "parcours-sylva",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "multus",
+    "titre": "Multus et réseaux secondaires",
+    "domaine": "reseau",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "cni"
+    ],
+    "resume": "NetworkAttachmentDefinition, macvlan, ipvlan, séparation plan de contrôle / usager / gestion.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Multus CNI (dépôt source)",
+        "url": "https://github.com/k8snetworkplumbingwg/multus-cni",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "K8s Network Plumbing WG"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "parcours-sylva",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sriov",
+    "titre": "SR-IOV",
+    "domaine": "reseau",
+    "niveau": "avance",
+    "prerequis": [
+      "multus"
+    ],
+    "resume": "VF, opérateur SR-IOV, NIC supportées, accès direct pour l'UPF et les fonctions à haut débit.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "SR-IOV Network Operator (dépôt source)",
+        "url": "https://github.com/k8snetworkplumbingwg/sriov-network-operator"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (SR-IOV)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/hardware_networks/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Networking | DPDK / SR-IOV",
+        "url": "https://www.youtube.com/playlist?list=PL-E57_RQ89Wcr8qLKLxPLW6pNVOCzYzFg",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "David Walter"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "parcours-sylva"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "dpdk",
+    "titre": "DPDK et accélération du plan usager",
+    "domaine": "reseau",
+    "niveau": "avance",
+    "prerequis": [
+      "sriov",
+      "perf-hugepages"
+    ],
+    "resume": "Principes de DPDK, polling, exigences côté CaaS (HugePages, CPU isolés).",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "DPDK : guides de la documentation",
+        "url": "https://doc.dpdk.org/guides/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation DPDK (Getting Started)",
+        "url": "https://doc.dpdk.org/guides/linux_gsg/index.html",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "DPDK"
+      },
+      {
+        "type": "video",
+        "nom": "Networking | DPDK / SR-IOV",
+        "url": "https://www.youtube.com/playlist?list=PL-E57_RQ89Wcr8qLKLxPLW6pNVOCzYzFg",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "David Walter"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "lb-bgp",
+    "titre": "Load balancing bare metal et BGP (MetalLB)",
+    "domaine": "reseau",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-services",
+      "reseau-ip"
+    ],
+    "resume": "Annonce d'IP de service, BFD, intégration avec les routeurs de l'opérateur.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "MetalLB : documentation",
+        "url": "https://metallb.io/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "MetalLB"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sctp-flux",
+    "titre": "Flux telco : SCTP, GTP, PFCP, HTTP/2",
+    "domaine": "reseau",
+    "niveau": "avance",
+    "prerequis": [
+      "multus",
+      "telco-101"
+    ],
+    "resume": "Protocoles utilisés par les fonctions 5G et leurs contraintes sur le CaaS (SCTP, ports, pare-feu, MTU).",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Wireshark : analyse des protocoles SCTP, GTP et PFCP",
+        "url": "https://www.wireshark.org/docs/"
+      },
+      {
+        "type": "spec",
+        "nom": "3GPP TS 29.244 (PFCP)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.244/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3GPP"
+      },
+      {
+        "type": "spec",
+        "nom": "3GPP TS 29.281 (GTP-U)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.281/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3GPP"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "archi-reseau-support",
+    "titre": "Architecture réseau d'une plateforme : réseaux de support, VRF et plan d'IP",
+    "domaine": "reseau",
+    "niveau": "avance",
+    "prerequis": [
+      "reseau-ip",
+      "cni",
+      "lb-bgp"
+    ],
+    "resume": "Découper les réseaux (gestion, stockage, contrôle, usager, interconnexion), choisir VLAN et VRF, raccorder à l'IP/MPLS de l'opérateur, plan d'adressage et MTU.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Open vSwitch : documentation",
+        "url": "https://docs.openvswitch.org/"
+      },
+      {
+        "type": "opensource",
+        "nom": "FRRouting : documentation",
+        "url": "https://docs.frrouting.org/"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "pieges-reseau",
+    "titre": "Réseau pour DevOps : interfaces multiples, MTU, VLAN et SR-IOV",
+    "domaine": "reseau",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "reseau-ip",
+      "multus"
+    ],
+    "resume": "Les pièges classiques d'un pod qui a plusieurs interfaces : routes, MTU, VLAN, isolation des plans de contrôle, usager et gestion.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Multus CNI (dépôt source)",
+        "url": "https://github.com/k8snetworkplumbingwg/multus-cni"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "depannage-reseau-telco",
+    "titre": "Dépannage réseau d'une plateforme telco (MTU, VLAN, SR-IOV, multi-interfaces)",
+    "domaine": "reseau",
+    "niveau": "avance",
+    "prerequis": [
+      "cni",
+      "multus"
+    ],
+    "resume": "Isoler une panne réseau : interface, VLAN, MTU, route, politique réseau, capture de paquets au bon endroit. Spécificités des réseaux secondaires et de l'accélération matérielle.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Wireshark : documentation",
+        "url": "https://www.wireshark.org/docs/"
+      },
+      {
+        "type": "opensource",
+        "nom": "tcpdump : manuel",
+        "url": "https://www.tcpdump.org/manpages/tcpdump.1.html"
+      },
+      {
+        "type": "video",
+        "nom": "Wireshark Masterclass",
+        "url": "https://www.youtube.com/playlist?list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Chris Greer"
+      }
+    ],
+    "origine": [
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  }
+]

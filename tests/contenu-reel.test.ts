@@ -6,7 +6,8 @@ import { tempsLecture } from "@/contenu/lecture";
 describe("contenu réel", () => {
   it("se charge sans erreur", () => {
     const c = chargerContenu();
-    expect(c.metiers.length).toBeGreaterThan(0);
+    expect(c.competences.length).toBeGreaterThan(100);
+    expect(c.orientation.questions.length).toBeGreaterThanOrEqual(5);
     expect(c.fiches.every((f) => f.statut === "brouillon" || f.statut === "relu")).toBe(true);
   });
 

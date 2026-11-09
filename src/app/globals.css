@@ -1290,3 +1290,150 @@ a.barre-fleche:hover {
   width: 0.625rem;
   height: 0.625rem;
 }
+
+/* Feuille de route vivante : questions à gauche, carte et cockpit à droite */
+.vivante {
+  display: grid;
+  grid-template-columns: 20rem minmax(0, 1fr);
+  gap: var(--e-8);
+  align-items: start;
+  padding-top: var(--e-4);
+}
+.questions-panneau {
+  position: sticky;
+  top: var(--e-4);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding-right: var(--e-2);
+}
+.questions-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--e-4);
+}
+.question-orientation {
+  border: 0;
+  padding: 0;
+  margin: 0 0 var(--e-6);
+  min-width: 0;
+}
+.question-orientation legend {
+  padding: 0;
+  margin-bottom: var(--e-2);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.question-orientation legend .pastille {
+  display: block;
+  margin-bottom: var(--e-1);
+}
+.options-orientation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  margin-top: var(--e-2);
+}
+.option-pilule {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 2.75rem;
+  padding: var(--e-2) var(--e-4);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  background: var(--surface-3);
+  color: var(--encre-2);
+  font-size: var(--t-s);
+  text-align: left;
+  transition: border-color var(--d-rapide) var(--courbe), background var(--d-rapide) var(--courbe), color var(--d-rapide) var(--courbe);
+}
+.option-pilule small {
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+}
+.option-pilule:hover {
+  border-color: var(--encre-3);
+  color: var(--encre);
+}
+.option-pilule-on {
+  background: var(--surface-2);
+  border-color: var(--accent-filet);
+  color: var(--encre);
+  box-shadow: var(--ombre-1);
+}
+.feuille {
+  min-width: 0;
+}
+.entete-feuille .titre-page {
+  margin-top: 0;
+}
+.cockpit-feuille {
+  margin-top: var(--e-4);
+}
+.liste-etapes {
+  list-style: none;
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  box-shadow: var(--ombre-1);
+  overflow: hidden;
+}
+.rang {
+  flex: none;
+  width: 1.75rem;
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+}
+.pourquoi {
+  display: block;
+  color: var(--encre-3);
+  font-weight: 400;
+  font-size: var(--t-xs);
+  margin-top: 2px;
+}
+.carte-ensemble {
+  height: 28rem;
+}
+.carte .react-flow__node {
+  transition: transform 0.5s var(--courbe);
+}
+.etape.niveau-fondamental::before {
+  background: var(--teinte-decouvrir);
+}
+.etape.niveau-intermediaire::before {
+  background: var(--teinte-forme);
+}
+.etape.niveau-avance::before {
+  background: var(--teinte-nouveau);
+}
+.etape.niveau-transverse::before {
+  background: var(--teinte-ok);
+}
+.etape-ensemble {
+  padding: 0;
+  border-radius: var(--r-s);
+  box-shadow: none;
+}
+.etape-ensemble::before {
+  width: 100%;
+  opacity: 0.55;
+}
+.etape-faite::before {
+  background: var(--teinte-ok);
+}
+.etape-disponible {
+  border-color: var(--encre-3);
+}
+@media (max-width: 899px) {
+  .vivante {
+    grid-template-columns: 1fr;
+    gap: var(--e-4);
+  }
+  .questions-panneau {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+}

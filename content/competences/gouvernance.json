@@ -1,0 +1,286 @@
+[
+  {
+    "id": "hld-lld",
+    "titre": "Documents HLD / LLD et plan d'IP",
+    "domaine": "gouvernance",
+    "niveau": "avance",
+    "prerequis": [
+      "dimensionnement",
+      "reseau-ip"
+    ],
+    "resume": "Rédiger et défendre un design : schémas applicatif et réseau, matrice réseaux × nœuds, flux, hypothèses.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "arc42 : modèle libre de documentation d'architecture",
+        "url": "https://arc42.org/overview"
+      },
+      {
+        "type": "video",
+        "nom": "Software Architecture and Design",
+        "url": "https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "A Dev' Story"
+      },
+      {
+        "type": "cours",
+        "nom": "Le modèle C4 : décrire une architecture logicielle",
+        "url": "https://c4model.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Simon Brown"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "adr",
+    "titre": "Décisions d'architecture (ADR) et compromis",
+    "domaine": "gouvernance",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "hld-lld"
+    ],
+    "resume": "Consigner chaque décision, ses alternatives et ses conséquences ; rendre les compromis visibles et réversibles.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Architecture Decision Records",
+        "url": "https://adr.github.io/"
+      },
+      {
+        "type": "video",
+        "nom": "Software Architecture and Design",
+        "url": "https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "A Dev' Story"
+      },
+      {
+        "type": "cours",
+        "nom": "Le modèle C4 : décrire une architecture logicielle",
+        "url": "https://c4model.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Simon Brown"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "evaluation-fournisseurs",
+    "titre": "Évaluer distributions et fournisseurs (critères, PoC, appels d'offres)",
+    "domaine": "gouvernance",
+    "niveau": "avance",
+    "prerequis": [
+      "distrib-alt",
+      "ocp-rds"
+    ],
+    "resume": "Définir des critères pondérés, cadrer une preuve de concept, comparer les offres, anticiper la dépendance à un fournisseur.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Sylva : pile CaaS telco open source",
+        "url": "https://gitlab.com/sylva-projects/sylva-core"
+      },
+      {
+        "type": "opensource",
+        "nom": "CNCF Landscape",
+        "url": "https://landscape.cncf.io/"
+      },
+      {
+        "type": "doc",
+        "nom": "CNCF : critères de graduation d'un projet",
+        "url": "https://github.com/cncf/toc/blob/main/process/graduation_criteria.md",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF"
+      },
+      {
+        "type": "doc",
+        "nom": "CHAOSS : métriques de santé d'une communauté open source",
+        "url": "https://chaoss.community/kb/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CHAOSS"
+      },
+      {
+        "type": "opensource",
+        "nom": "OpenSSF Scorecard : évaluer la sécurité d'un projet open source",
+        "url": "https://scorecard.dev/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "OpenSSF"
+      },
+      {
+        "type": "doc",
+        "nom": "Sylva : projet de pile cloud native pour les télécoms (Linux Foundation Europe)",
+        "url": "https://sylvaproject.org/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Sylva"
+      },
+      {
+        "type": "video",
+        "nom": "Sylva presentations",
+        "url": "https://www.youtube.com/playlist?list=PL_KV1BsedfgnHJrQvtVqZHqOMQjip9Gda",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Sylva"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "cout-energie",
+    "titre": "Coûts, énergie et efficacité d'une plateforme",
+    "domaine": "gouvernance",
+    "niveau": "avance",
+    "prerequis": [
+      "dimensionnement"
+    ],
+    "resume": "Estimer le coût de possession, mesurer la consommation, arbitrer entre performance, densité et efficacité énergétique.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "OpenCost : coût des ressources Kubernetes",
+        "url": "https://www.opencost.io/"
+      },
+      {
+        "type": "opensource",
+        "nom": "Kepler : métriques énergétiques pour Kubernetes",
+        "url": "https://github.com/sustainable-computing-io/kepler"
+      },
+      {
+        "type": "opensource",
+        "nom": "Kepler : mesurer la consommation énergétique des charges Kubernetes",
+        "url": "https://sustainable-computing.io/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF"
+      },
+      {
+        "type": "doc",
+        "nom": "CNCF TAG Environmental Sustainability",
+        "url": "https://github.com/cncf/tag-env-sustainability",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF"
+      },
+      {
+        "type": "cours",
+        "nom": "Green Software for Practitioners (Green Software Foundation)",
+        "url": "https://learn.greensoftware.foundation/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Green Software Foundation"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ia-agentique-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "cycle-vie-plateforme",
+    "titre": "Cycle de vie : versions, obsolescence et trajectoire",
+    "domaine": "gouvernance",
+    "niveau": "avance",
+    "prerequis": [
+      "ocp-upgrade",
+      "hld-lld"
+    ],
+    "resume": "Planifier les montées de version, gérer les fins de support, garder un chemin de migration compatible avec les fonctions réseau hébergées.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : politique de décalage de versions",
+        "url": "https://kubernetes.io/releases/version-skew-policy/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "opensource",
+        "nom": "endoflife.date : fins de support des produits",
+        "url": "https://endoflife.date/"
+      },
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : calendrier des versions et support",
+        "url": "https://kubernetes.io/releases/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "doc",
+        "nom": "OpenShift : cycle de vie et politique de support",
+        "url": "https://access.redhat.com/support/policy/updates/openshift",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "certifs",
+    "titre": "Certifications utiles",
+    "domaine": "gouvernance",
+    "niveau": "transverse",
+    "prerequis": [],
+    "resume": "CKA (souvent citée), Red Hat Certified OpenShift Administrator ou Architect, certifications 5G éditeurs.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Curriculums des certifications CNCF (CKA, CKAD, CKS)",
+        "url": "https://github.com/cncf/curriculum"
+      },
+      {
+        "type": "cours",
+        "nom": "Certified Kubernetes Administrator (CKA) : formation et examen",
+        "url": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      },
+      {
+        "type": "cours",
+        "nom": "Certified Kubernetes Administrator (CKA) with Practice Tests",
+        "url": "https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Udemy (Mumshad Mannambeth)"
+      },
+      {
+        "type": "cours",
+        "nom": "EX280 : examen Red Hat Certified OpenShift Administrator",
+        "url": "https://www.redhat.com/en/services/training/red-hat-certified-openshift-administrator-exam",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  }
+]

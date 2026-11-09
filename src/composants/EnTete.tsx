@@ -1,19 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useBilan } from "@/lib/stockage";
+import { useParcours } from "@/lib/stockage";
 
-/** « Mon plan » n'apparaît que s'il existe un bilan (lu après hydratation : rien au rendu serveur, pas de saut). */
+/** « Ma feuille de route » apparaît dès qu'il y a une réponse enregistrée (lue après hydratation : rien au rendu serveur, pas de saut). */
 export function EnTete() {
-  const bilan = useBilan();
+  const parcours = useParcours();
+  const actif = parcours !== null && Object.keys(parcours.reponses).length > 0;
   return (
     <header className="entete">
       <Link href="/" className="logo">
         TelcoSkills
       </Link>
-      {bilan ? (
-        <Link href="/plan" className="pilule-lien">
-          Mon plan
+      {actif ? (
+        <Link href="/roadmap" className="pilule-lien">
+          Ma feuille de route
         </Link>
       ) : (
         <span aria-hidden="true" />

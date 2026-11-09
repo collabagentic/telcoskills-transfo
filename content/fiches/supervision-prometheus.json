@@ -62,6 +62,10 @@
       "lien": null
     }
   ],
+  "competences": [
+    "obs-metrics",
+    "alerting-utile"
+  ],
   "technos": [
     "prometheus"
   ],

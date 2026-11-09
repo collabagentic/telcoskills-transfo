@@ -1,26 +1,35 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import type { Bilan } from "./bilan";
+import type { Avancement, Reponses } from "./parcours";
 
 /**
- * Stockage local : une seule clé, « ts:bilan », versionnée. Lu seulement après hydratation : le rendu serveur est l'état vide
+ * Stockage local : une seule clé, « ts:parcours », versionnée. Lu seulement après hydratation : le rendu serveur est l'état vide
  * (getServerSnapshot renvoie null), donc rien ne clignote.
  */
-export const CLE = "ts:bilan";
-const EVENEMENT = "ts:bilan-change";
+export const CLE = "ts:parcours";
+const EVENEMENT = "ts:parcours-change";
 
-export function analyserBilan(brut: string | null): Bilan | null {
+export type Parcours = Avancement & {
+  v: 2;
+  reponses: Reponses;
+  /** Compétence choisie comme objectif : le cockpit montre le chemin restant pour l'atteindre. */
+  objectif?: string;
+};
+
+const VIERGE: Parcours = { v: 2, reponses: {}, maitrisees: [], fiches: {} };
+
+export function analyserParcours(brut: string | null): Parcours | null {
   if (!brut) return null;
   try {
-    const b = JSON.parse(brut) as Partial<Bilan>;
-    if (b?.v !== 1 || typeof b.metier !== "string" || !Array.isArray(b.decoches) || typeof b.fiches !== "object" || b.fiches === null) return null;
+    const p = JSON.parse(brut) as Partial<Parcours>;
+    if (p?.v !== 2 || typeof p.reponses !== "object" || p.reponses === null || !Array.isArray(p.maitrisees) || typeof p.fiches !== "object" || p.fiches === null) return null;
     return {
-      v: 1,
-      metier: b.metier,
-      decoches: b.decoches.filter((x) => typeof x === "string"),
-      fiches: b.fiches,
-      ...(typeof b.objectif === "string" ? { objectif: b.objectif } : {}),
+      v: 2,
+      reponses: Object.fromEntries(Object.entries(p.reponses).filter(([, v]) => typeof v === "string")),
+      maitrisees: p.maitrisees.filter((x) => typeof x === "string"),
+      fiches: p.fiches,
+      ...(typeof p.objectif === "string" ? { objectif: p.objectif } : {}),
     };
   } catch {
     return null;
@@ -28,7 +37,7 @@ export function analyserBilan(brut: string | null): Bilan | null {
 }
 
 let dernierBrut: string | null | undefined;
-let dernierBilan: Bilan | null = null;
+let dernier: Parcours | null = null;
 
 function lireBrut(): string | null {
   try {
@@ -38,13 +47,13 @@ function lireBrut(): string | null {
   }
 }
 
-function instantane(): Bilan | null {
+function instantane(): Parcours | null {
   const brut = lireBrut();
   if (brut !== dernierBrut) {
     dernierBrut = brut;
-    dernierBilan = analyserBilan(brut);
+    dernier = analyserParcours(brut);
   }
-  return dernierBilan;
+  return dernier;
 }
 
 function abonner(rappel: () => void): () => void {
@@ -56,21 +65,25 @@ function abonner(rappel: () => void): () => void {
   };
 }
 
-/** Le bilan enregistré, ou null (toujours null au rendu serveur et au premier rendu client). */
-export function useBilan(): Bilan | null {
+/** Le parcours enregistré, ou null (toujours null au rendu serveur et au premier rendu client). */
+export function useParcours(): Parcours | null {
   return useSyncExternalStore(abonner, instantane, () => null);
 }
 
-export function ecrireBilan(bilan: Bilan): void {
+function ecrire(p: Parcours): void {
   try {
-    window.localStorage.setItem(CLE, JSON.stringify(bilan));
+    window.localStorage.setItem(CLE, JSON.stringify(p));
   } catch {
-    /* stockage indisponible (navigation privée) : le plan ne sera pas conservé */
+    /* stockage indisponible (navigation privée) : le parcours ne sera pas conservé */
   }
   window.dispatchEvent(new Event(EVENEMENT));
 }
 
-export function effacerBilan(): void {
+function courant(): Parcours {
+  return analyserParcours(lireBrut()) ?? VIERGE;
+}
+
+export function effacerParcours(): void {
   try {
     window.localStorage.removeItem(CLE);
   } catch {
@@ -83,21 +96,36 @@ export function aujourdhui(): string {
   return new Date().toLocaleDateString("sv-SE");
 }
 
+/** Enregistre (ou retire, avec null) la réponse à une question : la feuille de route se recalcule aussitôt. */
+export function repondre(question: string, option: string | null): void {
+  const p = courant();
+  const { [question]: _ancienne, ...reste } = p.reponses;
+  ecrire({ ...p, reponses: option ? { ...reste, [question]: option } : reste });
+}
+
+export function recommencer(): void {
+  const p = courant();
+  ecrire({ ...p, reponses: {}, objectif: undefined });
+}
+
+/** Marque (ou retire) une compétence comme déjà maîtrisée. */
+export function basculerMaitrisee(id: string): void {
+  const p = courant();
+  ecrire({ ...p, maitrisees: p.maitrisees.includes(id) ? p.maitrisees.filter((x) => x !== id) : [...p.maitrisees, id] });
+}
+
 /** Marque une fiche « lue » ou « vérifiée » (la date du premier événement est conservée). */
 export function marquerFiche(id: string, etat: "lu" | "verifie"): void {
-  const bilan = analyserBilan(lireBrut());
-  if (!bilan) return;
-  const actuel = bilan.fiches[id] ?? {};
+  const p = courant();
+  const actuel = p.fiches[id] ?? {};
   const jour = aujourdhui();
   const suivant = etat === "verifie" ? { ...actuel, lu: actuel.lu ?? jour, verifie: actuel.verifie ?? jour } : { ...actuel, lu: actuel.lu ?? jour };
   if (suivant.lu === actuel.lu && suivant.verifie === actuel.verifie) return;
-  ecrireBilan({ ...bilan, fiches: { ...bilan.fiches, [id]: suivant } });
+  ecrire({ ...p, fiches: { ...p.fiches, [id]: suivant } });
 }
 
-/** Choisit (ou retire, avec null) la fiche objectif du plan. */
+/** Choisit (ou retire, avec null) la compétence objectif. */
 export function definirObjectif(id: string | null): void {
-  const bilan = analyserBilan(lireBrut());
-  if (!bilan) return;
-  const { objectif: _ancien, ...reste } = bilan;
-  ecrireBilan(id ? { ...reste, objectif: id } : reste);
+  const { objectif: _ancien, ...reste } = courant();
+  ecrire(id ? { ...reste, objectif: id } : reste);
 }

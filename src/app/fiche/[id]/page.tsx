@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AvantApres } from "@/composants/AvantApres";
-import { SchemaFiche } from "@/composants/SchemaFiche";
 import { BarreFiche, HautDeFiche, SuiteFiche } from "@/composants/NavigationFiche";
+import { Ressources } from "@/composants/Ressources";
+import { SchemaFiche } from "@/composants/SchemaFiche";
 import { Verifier } from "@/composants/Verifier";
 import { chargerContenu } from "@/contenu/charger";
 import { preparerQuestion, tempsLecture, titreFiche } from "@/contenu/lecture";
@@ -24,9 +26,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: titreFiche(f), description: f.resume.apres, openGraph: { title: titreFiche(f), description: f.resume.apres } };
 }
 
-const TYPE_LIEN = { cours: "Cours", video: "Vidéos", doc: "Documentation", opensource: "Open source", spec: "Spécifications" } as const;
-const ORDRE_TYPES = ["cours", "video", "doc", "opensource", "spec"] as const;
-const ACCES = { gratuit: 0, freemium: 1, payant: 2 } as const;
 const GENRE = { transposition: "Change de forme", nouveaute: "Vraiment nouveau" } as const;
 
 export default async function PageFiche({ params }: Props) {
@@ -38,11 +37,7 @@ export default async function PageFiche({ params }: Props) {
   const titre = titreFiche(f);
   const questions = f.questions.map((qid) => preparerQuestion(c.questions.find((q) => q.id === qid)!));
   const technos = f.technos.map((t) => c.technos.find((x) => x.id === t)!);
-  const lies: Record<string, string[]> = {};
-  for (const m of c.metiers) {
-    const ids = m.savoirFaire.filter((s) => s.fiche === f.id).map((s) => s.id);
-    if (ids.length) lies[m.id] = ids;
-  }
+  const competences = f.competences.map((cid) => c.competences.find((x) => x.id === cid)!);
   const issue = `https://github.com/${DEPOT}/issues/new?title=${encodeURIComponent(`Erreur dans la fiche « ${titre} »`)}&body=${encodeURIComponent(
     `Fiche : ${f.id}\nSection concernée : \nCe qui est faux ou manque : \nSource : \n`,
   )}`;
@@ -50,11 +45,6 @@ export default async function PageFiche({ params }: Props) {
   const recents = f.historique.slice(0, 3);
   const anciens = f.historique.slice(3);
   const donnees = donneesPubliques();
-  // Ressources groupées par type ; dans chaque groupe, le gratuit d'abord puis le français.
-  const ressources = ORDRE_TYPES.map((type) => [
-    type,
-    f.plusLoin.filter((l) => l.type === type).sort((a, b) => ACCES[a.acces] - ACCES[b.acces] || Number(b.langue === "fr") - Number(a.langue === "fr")),
-  ] as const).filter(([, liens]) => liens.length > 0);
 
   return (
     <article className="fiche lecture">
@@ -66,7 +56,7 @@ export default async function PageFiche({ params }: Props) {
       </div>
       <h1>{titre}</h1>
 
-      <AvantApres genre={f.genre} resume={f.resume} lies={lies} technos={technos.map((t) => ({ id: t.id, nom: t.nom }))} />
+      <AvantApres genre={f.genre} resume={f.resume} technos={technos.map((t) => ({ id: t.id, nom: t.nom }))} />
 
       <BarreFiche ficheId={f.id} donnees={donnees} />
 
@@ -112,30 +102,25 @@ export default async function PageFiche({ params }: Props) {
 
       <Verifier ficheId={f.id} questions={questions} />
 
+      <section className="rubrique">
+        <h2>Compétences de la feuille de route</h2>
+        <ul>
+          {competences.map((x) => (
+            <li key={x.id}>
+              <Link href={`/competence/${x.id}`} style={{ textDecoration: "underline", textUnderlineOffset: 3 }}>
+                {x.titre}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section className="rubrique plus-loin">
         <h2>Pour aller plus loin</h2>
         <p className="sous-titre" style={{ marginBottom: "var(--e-4)" }}>
           Le gratuit d'abord, le français avant l'anglais.
         </p>
-        {ressources.map(([type, liens]) => (
-          <div className="ressources-groupe" key={type}>
-            <h3 className="pastille">{TYPE_LIEN[type]}</h3>
-            <ul className="ressources">
-              {liens.map((l) => (
-                <li key={l.url}>
-                  <a className="ressource" href={l.url} target="_blank" rel="noopener noreferrer">
-                    <span className="ressource-nom">{l.nom}</span>
-                    <span className="ressource-meta">
-                      <span className="badge">{l.langue === "fr" ? "FR" : "EN"}</span>
-                      <span className={`badge${l.acces === "gratuit" ? " badge-gratuit" : ""}`}>{l.acces}</span>
-                      {l.auteur ? <span className="ressource-auteur">{l.auteur}</span> : null}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <Ressources liens={f.plusLoin} />
         <details>
           <summary>Sources de cette fiche</summary>
           <ul>

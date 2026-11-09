@@ -1,0 +1,255 @@
+[
+  {
+    "id": "ceph",
+    "titre": "Ceph / Rook / ODF",
+    "domaine": "stockage",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-stockage"
+    ],
+    "resume": "Architecture Ceph, pools, réplication, performance, dépannage d'un cluster dégradé.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Rook : stockage Ceph pour Kubernetes",
+        "url": "https://rook.io/docs/rook/latest/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation Ceph",
+        "url": "https://docs.ceph.com/en/latest/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Ceph"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation Rook",
+        "url": "https://rook.io/docs/rook/latest-release/Getting-Started/intro/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Rook"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift Data Foundation",
+        "url": "https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.18",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Ceph",
+        "url": "https://www.youtube.com/playlist?list=PLP2v7zU48xOJf5FMYrQepGkEwKHD7m7QA",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Daniel Persson"
+      },
+      {
+        "type": "video",
+        "nom": "Rook Presentations",
+        "url": "https://www.youtube.com/playlist?list=PLP0uDo-ZFnQOCpYx1_uVCrx_bmyq7tdKr",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Rook"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "stockage-dr",
+    "titre": "Sauvegarde et réplication inter-sites",
+    "domaine": "stockage",
+    "niveau": "avance",
+    "prerequis": [
+      "ceph"
+    ],
+    "resume": "Snapshots, réplication asynchrone, RPO/RTO, impact sur la géo-redondance.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Velero : sauvegarde et restauration Kubernetes",
+        "url": "https://velero.io/docs/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation ODF (Disaster Recovery)",
+        "url": "https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/4.18",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "Velero Demos and Deep Dives",
+        "url": "https://www.youtube.com/playlist?list=PL7bmigfV0EqT82eQaVCslWWM4k4d63KyK",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "VMware Cloud Native Apps"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "kubevirt",
+    "titre": "VMs sur Kubernetes (KubeVirt / OpenShift Virtualization)",
+    "domaine": "stockage",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-workloads",
+      "k8s-stockage"
+    ],
+    "resume": "Faire cohabiter VNF stateful et CNF, migration à chaud, réseau des VMs.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "KubeVirt : guide utilisateur",
+        "url": "https://kubevirt.io/user-guide/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift Virtualization",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/virtualization/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "KubeVirt Summit 2025",
+        "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2PHiIU_qr729UCWibWvtcQB",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF [Cloud Native Computing Foundation]"
+      },
+      {
+        "type": "video",
+        "nom": "KubeVirt Summit 2024",
+        "url": "https://www.youtube.com/playlist?list=PLnLpXX8KHIYy8VOalYQ7FnLTOR0eZ5KxD",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "KubeVirt"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "openstack",
+    "titre": "OpenStack et NFVI (culture et migration)",
+    "domaine": "stockage",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "linux",
+      "reseau-ip"
+    ],
+    "resume": "Nova, Neutron, Cinder, rôle du NFVI historique. Utile pour comprendre le parc existant et migrer vers le CaaS.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "OpenStack : documentation",
+        "url": "https://docs.openstack.org/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenStack (Install Guide)",
+        "url": "https://docs.openstack.org/install-guide/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "OpenStack"
+      },
+      {
+        "type": "doc",
+        "nom": "Recommandations de sécurité pour OpenStack (ANSSI-BP-104)",
+        "url": "https://messervices.cyber.gouv.fr/documents-guides/anssi-guide-openstack_v1-0.pdf",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "video",
+        "nom": "OpenStack Administrator's Guide",
+        "url": "https://www.youtube.com/playlist?list=PLT98CRl2KxKHCPoR1nHmG2Tl5Q4r1-aiJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Learn Linux TV"
+      },
+      {
+        "type": "video",
+        "nom": "OPENSTACK",
+        "url": "https://www.youtube.com/playlist?list=PLWL9Oy30PVmUq-iFUlSSGuSJ9EJcbZO3V",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "eazytraining"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "nfv-etsi",
+    "titre": "ETSI NFV, MANO, ONAP/OSM",
+    "domaine": "stockage",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "telco-101"
+    ],
+    "resume": "Modèle NFV (VNF, NFVI, VIM, MANO), évolution vers les CNF.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "ETSI OSM : orchestrateur MANO open source",
+        "url": "https://osm.etsi.org/docs/user-guide/latest/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ETSI OSM"
+      },
+      {
+        "type": "spec",
+        "nom": "ETSI GS NFV 002 (architecture)",
+        "url": "https://www.etsi.org/deliver/etsi_gs/NFV/001_099/002/01.02.01_60/gs_NFV002v010201p.pdf",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ETSI"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation ONAP",
+        "url": "https://docs.onap.org/en/latest/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ONAP"
+      },
+      {
+        "type": "video",
+        "nom": "OSM#15 Hackfest Barcelona - June 2023",
+        "url": "https://www.youtube.com/playlist?list=PLFqLBTy_ZDShg1BxNXgpRrma2ULvIAu39",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Open Source MANO"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  }
+]

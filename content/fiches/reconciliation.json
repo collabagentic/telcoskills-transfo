@@ -48,6 +48,9 @@
       "lien": null
     }
   ],
+  "competences": [
+    "k8s-archi"
+  ],
   "technos": [
     "kubernetes"
   ],

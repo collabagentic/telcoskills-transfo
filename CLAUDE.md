@@ -6,7 +6,7 @@ Le backlog complet, les écrans, le modèle de contenu et l'ordre des lots sont 
 
 ## Comment travailler
 
-- Un lot à la fois (`BACKLOG.md` §9). Aux points d'arrêt, s'arrêter et attendre l'auteur ; ailleurs, enchaîner.
+- Un lot à la fois (`BACKLOG.md` §9). Depuis la refonte du 2026-11-09, `BACKLOG.md` §13 fait foi sur le produit : une feuille de route vivante, plus de métier à choisir. Aux points d'arrêt, s'arrêter et attendre l'auteur ; ailleurs, enchaîner.
 - Fin de lot : lint, types, tests, build verts ; captures (E10-3) ; résumé ≤ 10 lignes dans `reports/lots/<n>.md`.
 - Français partout (interface, commits, docs). Ton direct, pas de jargon. Vouvoiement à l'écran.
 - Ne rouvre pas les principes et l'anti-périmètre (`BACKLOG.md` §2). Une contradiction trouvée : la signaler, chiffre à l'appui.

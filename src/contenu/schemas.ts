@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 /**
- * Schémas du contenu (BACKLOG.md §5). Les longueurs maximales sont des contraintes de design : le build échoue si elles sont dépassées.
+ * Schémas du contenu. Les longueurs maximales sont des contraintes de design : le build échoue si elles sont dépassées.
  * Les types TypeScript sont dérivés des schémas.
  */
 
@@ -16,12 +16,12 @@ export type Source = z.infer<typeof sourceSchema>;
 
 export const lienSchema = z
   .object({
-    type: z.enum(["opensource", "doc", "cours", "video", "spec"]),
-    nom: texte(120),
+    type: z.enum(["opensource", "doc", "cours", "video", "certif", "spec"]),
+    nom: texte(200),
     url,
-    langue: z.enum(["fr", "en"]),
-    acces: z.enum(["gratuit", "freemium", "payant"]),
-    auteur: texte(80).optional(),
+    langue: z.enum(["fr", "en"]).optional(),
+    acces: z.enum(["gratuit", "freemium", "payant"]).optional(),
+    auteur: texte(120).optional(),
   })
   .strict();
 export type Lien = z.infer<typeof lienSchema>;
@@ -48,6 +48,8 @@ export const ficheSchema = z
     piege: texte(600),
     exemple: texte(400),
     schema: schemaFicheSchema,
+    /** Compétences du graphe que cette fiche transforme. */
+    competences: z.array(identifiant).min(1, "au moins une compétence"),
     technos: z.array(identifiant),
     questions: z.array(identifiant).length(2, "exactement 2 questions"),
     plusLoin: z.array(lienSchema).min(1),
@@ -61,33 +63,24 @@ export const ficheSchema = z
   .strict();
 export type Fiche = z.infer<typeof ficheSchema>;
 
-export const savoirFaireSchema = z
-  .object({
-    id: identifiant,
-    texte: texte(90),
-    statut: z.enum(["acquis", "transpose"]),
-    fiche: identifiant.optional(),
-  })
-  .strict();
-export type SavoirFaire = z.infer<typeof savoirFaireSchema>;
+export const domaineSchema = z.object({ id: identifiant, nom: texte(60) }).strict();
+export type Domaine = z.infer<typeof domaineSchema>;
 
-export const metierSchema = z
+/** Une compétence du graphe (migrée de l'ancien site) : reliée à ses prérequis, avec ses ressources. */
+export const competenceSchema = z
   .object({
     id: identifiant,
-    nom: texte(60),
-    accroche: texte(60),
-    amorce: texte(90),
-    portrait: texte(300),
-    savoirFaire: z.array(savoirFaireSchema),
-    nouveautes: z.array(identifiant),
-    ordre: z.array(identifiant).min(1),
-    /** Prérequis conseillés : fiche → fiches à voir avant (la carte les relie). Chaque prérequis précède la fiche dans « ordre ». */
-    dependances: z.record(identifiant, z.array(identifiant)).default({}),
-    sources: z.array(sourceSchema).min(1),
+    titre: texte(160),
+    domaine: identifiant,
+    niveau: z.enum(["fondamental", "intermediaire", "avance", "transverse"]),
+    prerequis: z.array(identifiant),
+    resume: texte(600),
+    ressources: z.array(lienSchema),
+    origine: z.array(identifiant),
     statut,
   })
   .strict();
-export type Metier = z.infer<typeof metierSchema>;
+export type Competence = z.infer<typeof competenceSchema>;
 
 export const questionSchema = z
   .object({
@@ -107,13 +100,45 @@ export type Question = z.infer<typeof questionSchema>;
 export const technoSchema = z.object({ id: identifiant, nom: texte(60), url }).strict();
 export type Techno = z.infer<typeof technoSchema>;
 
-export const metierAVenirSchema = z.object({ id: identifiant, nom: texte(60), accroche: texte(60) }).strict();
-export type MetierAVenir = z.infer<typeof metierAVenirSchema>;
+/** Les questions qui recombinent la feuille de route : chaque option a des effets cumulés et lisibles. */
+export const effetsSchema = z
+  .object({
+    acquis: z.array(identifiant).optional(),
+    domaines: z.record(identifiant, z.number().int().min(1).max(5)).optional(),
+    cible: z.array(identifiant).optional(),
+    ecarte: z.array(identifiant).optional(),
+  })
+  .strict();
+export type Effets = z.infer<typeof effetsSchema>;
+
+export const orientationSchema = z
+  .object({
+    _aide: z.string().optional(),
+    statut,
+    questions: z
+      .array(
+        z
+          .object({
+            id: identifiant,
+            texte: texte(120),
+            aide: texte(160).optional(),
+            options: z
+              .array(z.object({ id: identifiant, libelle: texte(60), detail: texte(60).optional(), raison: z.string().max(60), effets: effetsSchema }).strict())
+              .min(2),
+          })
+          .strict(),
+      )
+      .min(5, "5 questions au minimum")
+      .max(10, "10 questions au maximum"),
+  })
+  .strict();
+export type Orientation = z.infer<typeof orientationSchema>;
 
 export type Contenu = {
-  metiers: Metier[];
+  domaines: Domaine[];
+  competences: Competence[];
   fiches: Fiche[];
   questions: Question[];
   technos: Techno[];
-  aVenir: MetierAVenir[];
+  orientation: Orientation;
 };

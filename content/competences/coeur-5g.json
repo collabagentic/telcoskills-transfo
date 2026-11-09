@@ -1,0 +1,787 @@
+[
+  {
+    "id": "5g-sba",
+    "titre": "Architecture 5G Core (SBA)",
+    "domaine": "coeur-5g",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "telco-101"
+    ],
+    "resume": "Fonctions AMF, SMF, UPF, NRF, SCP, SEPP, interfaces et rôle de chacune.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "free5GC : cœur 5G open source (guide)",
+        "url": "https://free5gc.org/guide/"
+      },
+      {
+        "type": "spec",
+        "nom": "3GPP TS 23.501 (architecture système 5G)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3GPP"
+      },
+      {
+        "type": "spec",
+        "nom": "3GPP TS 23.502 (procédures)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3GPP"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Network Fundamentals (Institut Mines-Télécom, Coursera, audit gratuit)",
+        "url": "https://www.coursera.org/learn/5g-network-fundamentals",
+        "acces": "freemium",
+        "langue": "en",
+        "auteur": "Institut Mines-Télécom"
+      },
+      {
+        "type": "video",
+        "nom": "5G Mobile Core Network Fundamentals",
+        "url": "https://www.youtube.com/playlist?list=PLRbUOpXOpZ2rTpT7xcaeCse8hbWbvV9bJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Hamidreza Bolhasani"
+      },
+      {
+        "type": "cours",
+        "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+        "url": "https://www.sharetechnote.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ShareTechnote"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Service Based Architecture (Mpirical, accès en ligne)",
+        "url": "https://www.mpirical.com/courses/5g-service-based-architecture",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Mpirical"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Service Based Architecture and Core Network, à la demande (Wray Castle)",
+        "url": "https://wraycastle.com/products/5g-service-based-architecture-and-core-network-on-demand",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Wray Castle"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "cnf-onboarding",
+    "titre": "Onboarding et exigences d'infra d'un CNF",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "5g-sba",
+      "helm",
+      "multus"
+    ],
+    "resume": "Lire la fiche d'exigences d'un éditeur, la traduire en besoins de plateforme (réseaux, CPU, stockage, privilèges).",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "towards5gs-helm : charts Helm free5GC",
+        "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
+      },
+      {
+        "type": "video",
+        "nom": "Cloud Native Telco Day 2026 - Europe",
+        "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2N_B1HGXUyfn4HjjydZctPA",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF [Cloud Native Computing Foundation]"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "cnf-ops",
+    "titre": "Exploitation de CNF : scaling, upgrade, panne",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "cnf-onboarding"
+    ],
+    "resume": "Mise à l'échelle, mises à jour sans coupure, analyse du comportement du CNF lors d'une défaillance de plateforme.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "OpenAirInterface : cœur 5G open source (déploiement)",
+        "url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed"
+      },
+      {
+        "type": "video",
+        "nom": "Cloud Native Telco Day 2026 - Europe",
+        "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2N_B1HGXUyfn4HjjydZctPA",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF [Cloud Native Computing Foundation]"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sec-5g",
+    "titre": "Sécurité du cœur 5G",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "5g-sba",
+      "sec-reseau"
+    ],
+    "resume": "Architecture de sécurité 5G : authentification, chiffrement, TLS et OAuth2 entre fonctions du SBA, rôle du SEPP à l'interconnexion, isolation des tranches, exigences que cela pose à la plateforme.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Open5GS : code source du cœur 5G open source",
+        "url": "https://github.com/open5gs/open5gs"
+      },
+      {
+        "type": "spec",
+        "nom": "3GPP TS 33.501 (architecture et procédures de sécurité 5G)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3GPP"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "matrice-exigences",
+    "titre": "Matrice d'exigences : de la NF aux ressources de la plateforme",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "cnf-onboarding",
+      "dimensionnement"
+    ],
+    "resume": "Pour chaque fonction réseau, relever réseaux, CPU, mémoire, stockage, privilèges et contraintes de placement, puis les agréger en besoins de plateforme.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "towards5gs-helm : exemple de livrable de NF",
+        "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
+      },
+      {
+        "type": "spec",
+        "nom": "Anuket RA2 : architecture de référence Kubernetes pour les télécoms",
+        "url": "https://cntt.readthedocs.io/projects/ra2/en/latest/chapters/chapter01.html",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Anuket (Linux Foundation Networking)"
+      },
+      {
+        "type": "spec",
+        "nom": "GSMA NG.126 : Cloud Infrastructure Reference Model",
+        "url": "https://www.gsma.com/newsroom/gsma_resources/ng-126-cloud-infrastructure-reference-model-v4-0/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "GSMA"
+      },
+      {
+        "type": "doc",
+        "nom": "OpenShift : spécifications de référence du cœur télécom (Telco core RDS)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/scalability_and_performance/telco-core-ref-design-specs",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "identifiants",
+    "titre": "Identifiants et numérotation (SUPI, SUCI, GUTI, PLMN, DNN)",
+    "domaine": "coeur-5g",
+    "niveau": "fondamental",
+    "prerequis": [
+      "archi-5g"
+    ],
+    "resume": "Comment un abonné, un réseau et une session sont identifiés ; protection de l'identité par le SUCI ; lire les identifiants dans une trace.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "3GPP TS 23.003 : numérotation, adressage et identification (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.003/"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sbi-http2",
+    "titre": "Interfaces de service (SBI) : HTTP/2, JSON, OpenAPI",
+    "domaine": "coeur-5g",
+    "niveau": "fondamental",
+    "prerequis": [
+      "archi-5g"
+    ],
+    "resume": "Les fonctions réseau dialoguent en HTTP/2 et JSON ; une spécification OpenAPI par service, codes de retour, en-têtes. Savoir lire un appel et sa réponse.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "5GC_APIs : spécifications OpenAPI des interfaces SBI 3GPP",
+        "url": "https://github.com/jdegre/5GC_APIs"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Service Based Architecture (Mpirical, accès en ligne)",
+        "url": "https://www.mpirical.com/courses/5g-service-based-architecture",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Mpirical"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Service Based Architecture and Core Network, à la demande (Wray Castle)",
+        "url": "https://wraycastle.com/products/5g-service-based-architecture-and-core-network-on-demand",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Wray Castle"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "traces",
+    "titre": "Capture et lecture de traces (Wireshark : NGAP, PFCP, HTTP/2, GTP-U)",
+    "domaine": "coeur-5g",
+    "niveau": "fondamental",
+    "prerequis": [
+      "archi-5g"
+    ],
+    "resume": "Où capturer, quels filtres appliquer, comment suivre une procédure message par message.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Wireshark : documentation",
+        "url": "https://www.wireshark.org/docs/"
+      },
+      {
+        "type": "video",
+        "nom": "Wireshark Masterclass",
+        "url": "https://www.youtube.com/playlist?list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Chris Greer"
+      },
+      {
+        "type": "cours",
+        "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+        "url": "https://www.sharetechnote.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ShareTechnote"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "amf",
+    "titre": "AMF : enregistrement, mobilité et signalisation NAS/NGAP",
+    "domaine": "coeur-5g",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "archi-5g",
+      "identifiants"
+    ],
+    "resume": "Rôle de l'AMF, interfaces N1, N2 et Namf, gestion de l'état de l'UE, sélection et redondance de l'AMF.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "free5GC : AMF (code source)",
+        "url": "https://github.com/free5gc/amf"
+      },
+      {
+        "type": "video",
+        "nom": "5G Mobile Core Network Fundamentals",
+        "url": "https://www.youtube.com/playlist?list=PLRbUOpXOpZ2rTpT7xcaeCse8hbWbvV9bJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Hamidreza Bolhasani"
+      },
+      {
+        "type": "cours",
+        "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+        "url": "https://www.sharetechnote.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ShareTechnote"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "smf-upf",
+    "titre": "SMF et UPF : sessions PDU, PFCP, interfaces N4, N3 et N6",
+    "domaine": "coeur-5g",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "archi-5g",
+      "traces"
+    ],
+    "resume": "Séparation de la gestion de session (SMF) et du plan usager (UPF), règles PFCP (PDR, FAR, QER, URR), sélection d'UPF, adressage des UE.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "free5GC : UPF en Go (code source)",
+        "url": "https://github.com/free5gc/go-upf"
+      },
+      {
+        "type": "video",
+        "nom": "5G Mobile Core Network Fundamentals",
+        "url": "https://www.youtube.com/playlist?list=PLRbUOpXOpZ2rTpT7xcaeCse8hbWbvV9bJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Hamidreza Bolhasani"
+      },
+      {
+        "type": "cours",
+        "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+        "url": "https://www.sharetechnote.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ShareTechnote"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "nrf-scp",
+    "titre": "NRF et SCP : enregistrement, découverte et routage des services",
+    "domaine": "coeur-5g",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "sbi-http2"
+    ],
+    "resume": "Profil et enregistrement des fonctions, découverte, jetons d'accès, communication directe ou indirecte via le SCP.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "free5GC : NRF (code source)",
+        "url": "https://github.com/free5gc/nrf"
+      },
+      {
+        "type": "video",
+        "nom": "5G Mobile Core Network Fundamentals",
+        "url": "https://www.youtube.com/playlist?list=PLRbUOpXOpZ2rTpT7xcaeCse8hbWbvV9bJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Hamidreza Bolhasani"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Service Based Architecture (Mpirical, accès en ligne)",
+        "url": "https://www.mpirical.com/courses/5g-service-based-architecture",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Mpirical"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Service Based Architecture and Core Network, à la demande (Wray Castle)",
+        "url": "https://wraycastle.com/products/5g-service-based-architecture-and-core-network-on-demand",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Wray Castle"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "enregistrement",
+    "titre": "Procédures d'enregistrement et d'authentification",
+    "domaine": "coeur-5g",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "amf"
+    ],
+    "resume": "Déroulé complet de l'enregistrement initial d'un UE : identité, authentification, sécurité NAS, contexte ; messages et fonctions impliquées.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "3GPP TS 23.502 : procédures du système 5G (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/"
+      },
+      {
+        "type": "video",
+        "nom": "5G Call Flows & KPIs",
+        "url": "https://www.youtube.com/playlist?list=PL4OXTttOk9WhvApKwJBcZx0G4a2m8N-z6",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Our Technology Planet"
+      },
+      {
+        "type": "cours",
+        "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+        "url": "https://www.sharetechnote.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ShareTechnote"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "session-pdu",
+    "titre": "Établissement de session PDU et chemin de données",
+    "domaine": "coeur-5g",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "smf-upf",
+      "enregistrement"
+    ],
+    "resume": "Demande de session, sélection du SMF et de l'UPF, règles PFCP, allocation d'adresse, premier paquet utilisateur ; où diagnostiquer une session qui ne s'établit pas.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "UERANSIM : simulateur d'UE et de gNB 5G",
+        "url": "https://github.com/aligungr/UERANSIM"
+      },
+      {
+        "type": "video",
+        "nom": "5G Call Flows & KPIs",
+        "url": "https://www.youtube.com/playlist?list=PL4OXTttOk9WhvApKwJBcZx0G4a2m8N-z6",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Our Technology Planet"
+      },
+      {
+        "type": "cours",
+        "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+        "url": "https://www.sharetechnote.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ShareTechnote"
+      },
+      {
+        "type": "video",
+        "nom": "free5GC installation",
+        "url": "https://www.youtube.com/playlist?list=PLeDUIabcS2_rQd3yVJrBAYb-MbcqNgjC9",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "free5GC"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "deploiement-lab",
+    "titre": "Déployer un cœur 5G open source en lab",
+    "domaine": "coeur-5g",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "helm-cnf",
+      "session-pdu"
+    ],
+    "resume": "Mettre en pratique : déploiement, vérification de l'enregistrement des fonctions auprès de la NRF, premier test de bout en bout.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "towards5gs-helm : charts Helm free5GC",
+        "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
+      },
+      {
+        "type": "video",
+        "nom": "free5GC installation",
+        "url": "https://www.youtube.com/playlist?list=PLeDUIabcS2_rQd3yVJrBAYb-MbcqNgjC9",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "free5GC"
+      },
+      {
+        "type": "video",
+        "nom": "Open5GS & UeRANSim",
+        "url": "https://www.youtube.com/playlist?list=PLZqpS76PykwIoqMdUt6noAor7eJw83bbp",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Tech with Mohit"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "udm-udr-ausf",
+    "titre": "UDM, UDR et AUSF : abonnés et authentification 5G-AKA",
+    "domaine": "coeur-5g",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "identifiants"
+    ],
+    "resume": "Stockage et exposition des données d'abonnement, vecteurs d'authentification, désanonymisation du SUCI, cohérence avec le HSS de la 4G.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Open5GS : cœur 4G/5G open source (code source)",
+        "url": "https://github.com/open5gs/open5gs"
+      },
+      {
+        "type": "video",
+        "nom": "5G Mobile Core Network Fundamentals",
+        "url": "https://www.youtube.com/playlist?list=PLRbUOpXOpZ2rTpT7xcaeCse8hbWbvV9bJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Hamidreza Bolhasani"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "pcf-chf",
+    "titre": "PCF et CHF : politiques de service et facturation",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "smf-upf",
+      "nrf-scp"
+    ],
+    "resume": "Règles de politique (QoS, usage), interaction entre SMF et PCF, facturation convergente via le CHF, dépendances entre fonctions et impact sur les performances.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "free5GC : CHF (code source)",
+        "url": "https://github.com/free5gc/chf"
+      },
+      {
+        "type": "video",
+        "nom": "5G Mobile Core Network Fundamentals",
+        "url": "https://www.youtube.com/playlist?list=PLRbUOpXOpZ2rTpT7xcaeCse8hbWbvV9bJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Hamidreza Bolhasani"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "slicing",
+    "titre": "Network slicing : S-NSSAI, NSSF et sélection de tranche",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "amf",
+      "nrf-scp"
+    ],
+    "resume": "Définition d'une tranche, sélection par l'AMF et le NSSF, découpage des fonctions et des ressources, conséquences sur le déploiement.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "free5GC : NSSF (code source)",
+        "url": "https://github.com/free5gc/nssf"
+      },
+      {
+        "type": "cours",
+        "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+        "url": "https://www.sharetechnote.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ShareTechnote"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sepp",
+    "titre": "SEPP et itinérance 5G (interface N32)",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "nrf-scp"
+    ],
+    "resume": "Interconnexion entre opérateurs : rôle du SEPP, protection des messages entre PLMN, cas d'itinérance.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "3GPP TS 29.573 : interconnexion de PLMN en 5G (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.573/"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "interfonctionnement-4g",
+    "titre": "Interfonctionnement 4G/5G (EPC, N26, SMF+PGW-C)",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "amf",
+      "smf-upf"
+    ],
+    "resume": "Cohabitation avec le cœur 4G : mobilité entre systèmes, nœuds combinés (SMF+PGW-C, UPF+PGW-U, UDM+HSS), modes d'interfonctionnement.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Open5GS : documentation (EPC et 5GC)",
+        "url": "https://open5gs.org/open5gs/docs/"
+      },
+      {
+        "type": "video",
+        "nom": "VoLTE - Complete IMS SIP Architecture and Call Flow - VoLTE Webinar , Course , Training and Tutorial",
+        "url": "https://www.youtube.com/playlist?list=PLAsc7YcX8FIdOReT6_DUXROf2XB6uB_ij",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "TelecomTutorial info"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "ims-voix",
+    "titre": "IMS et voix sur 5G (VoNR, repli, P-CSCF)",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "session-pdu"
+    ],
+    "resume": "Voix en 5G autonome et solutions de repli, rôle de l'IMS, signalisation SIP, exigences de qualité de service côté cœur.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kamailio : serveur SIP open source utilisé en IMS",
+        "url": "https://www.kamailio.org/"
+      },
+      {
+        "type": "video",
+        "nom": "VoLTE - Complete IMS SIP Architecture and Call Flow - VoLTE Webinar , Course , Training and Tutorial",
+        "url": "https://www.youtube.com/playlist?list=PLAsc7YcX8FIdOReT6_DUXROf2XB6uB_ij",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "TelecomTutorial info"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "recette",
+    "titre": "Recette, critères d'acceptation et rapports",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "tests-fonctionnels",
+      "tests-perf"
+    ],
+    "resume": "Définir les critères d'acceptation avec l'éditeur et le client, dérouler la recette, tracer les anomalies, rédiger un rapport de décision.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Robot Framework : guide utilisateur",
+        "url": "https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html"
+      },
+      {
+        "type": "video",
+        "nom": "Complete Robot Framework Tutorial",
+        "url": "https://www.youtube.com/playlist?list=PL4GZKvvcjS3u9FP3F9zW4ZbZB8pti2k37",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Robot Framework Tutorials"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "multi-editeurs",
+    "titre": "Intégration multi-éditeurs et interopérabilité",
+    "domaine": "coeur-5g",
+    "niveau": "avance",
+    "prerequis": [
+      "onboarding-editeur",
+      "tests-fonctionnels"
+    ],
+    "resume": "Faire fonctionner ensemble des fonctions de fournisseurs différents : écarts d'interprétation des spécifications, options 3GPP, résolution des désaccords.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "OpenAirInterface : cœur 5G d'une autre implémentation, pour l'interopérabilité",
+        "url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed"
+      }
+    ],
+    "origine": [
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  }
+]

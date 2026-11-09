@@ -1,0 +1,623 @@
+[
+  {
+    "id": "linux",
+    "titre": "Linux avancé (RHEL/CentOS)",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [],
+    "resume": "Systemd, processus, namespaces/cgroups, SELinux, diagnostic système. Base de tout le reste.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Documentation du noyau Linux",
+        "url": "https://docs.kernel.org/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation RHEL (administration)",
+        "url": "https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "certif",
+        "nom": "RHCSA (curriculum)",
+        "url": "https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "doc",
+        "nom": "Recommandations de configuration d'un système GNU/Linux",
+        "url": "https://cyber.gouv.fr/publications/recommandations-de-securite-relatives-un-systeme-gnulinux",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "video",
+        "nom": "LINUX/Debian : devenir sysadmin",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWp1yRsq3-PyyisSIDg94ct9",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      },
+      {
+        "type": "video",
+        "nom": "Débuter en administration système et réseau",
+        "url": "https://www.youtube.com/playlist?list=PLSuzYIVSEUT6SE-5dSZq-zbtItfHqWdqv",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "IT-Connect - Florian"
+      },
+      {
+        "type": "video",
+        "nom": "Linux Commands for Beginners",
+        "url": "https://www.youtube.com/playlist?list=PLT98CRl2KxKHaKA9-4_I38sLzK134p4GJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Learn Linux TV"
+      },
+      {
+        "type": "cours",
+        "nom": "Introduction to Linux (LFS101), cours en ligne gratuit",
+        "url": "https://training.linuxfoundation.org/training/introduction-to-linux/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      },
+      {
+        "type": "cours",
+        "nom": "Linux Journey : apprendre Linux pas à pas",
+        "url": "https://linuxjourney.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Linux Journey"
+      },
+      {
+        "type": "cours",
+        "nom": "RH124 : Red Hat System Administration I",
+        "url": "https://www.redhat.com/en/services/training/rh124-red-hat-system-administration-i",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Red Hat"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "parcours-sylva",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reseau-ip",
+    "titre": "Réseau IP, VLAN, routage, VPN",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [],
+    "resume": "Adressage, VLAN, trunk, routage statique/BGP, MTU, VRF, tunnels. Exigé pour supporter le plan d'IP des projets.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "FRRouting : suite de routage open source (BGP, OSPF, BFD)",
+        "url": "https://docs.frrouting.org/"
+      },
+      {
+        "type": "cours",
+        "nom": "Fondamentaux réseau (CCNA, curriculum)",
+        "url": "https://www.cisco.com/site/us/en/learn/training-certifications/exams/ccna.html",
+        "langue": "en",
+        "auteur": "Cisco"
+      },
+      {
+        "type": "video",
+        "nom": "Débuter en administration système et réseau",
+        "url": "https://www.youtube.com/playlist?list=PLSuzYIVSEUT6SE-5dSZq-zbtItfHqWdqv",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "IT-Connect - Florian"
+      },
+      {
+        "type": "video",
+        "nom": "Networking Fundamentals",
+        "url": "https://www.youtube.com/playlist?list=PLIFyRwBY_4bRLmKfP1KnZA6rZbRHtxmXi",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Practical Networking"
+      },
+      {
+        "type": "video",
+        "nom": "Réseaux : Ethernet, TCP/IP",
+        "url": "https://www.youtube.com/playlist?list=PLKGPGznq6a-X2J8dTThYPsnshJmiYbZy2",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "MOOC NSI : Numérique et Sciences Informatiques"
+      },
+      {
+        "type": "video",
+        "nom": "Free CCNA 200-301 Complete Practical Course v1.1",
+        "url": "https://www.youtube.com/playlist?list=PLw6kwOJVj3MbMZ8B72ZgUryj8OSETC0ds",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "David Bombal Tech"
+      },
+      {
+        "type": "cours",
+        "nom": "Networking Basics (Cisco Networking Academy)",
+        "url": "https://www.netacad.com/courses/networking-basics",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Cisco Networking Academy"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "conteneurs",
+    "titre": "Conteneurs (OCI, Podman, CRI-O)",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [
+      "linux"
+    ],
+    "resume": "Images, registries, runtime, différences Docker/Podman/CRI-O.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Podman : documentation",
+        "url": "https://podman.io/docs"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation Podman",
+        "url": "https://docs.podman.io/en/latest/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Podman"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation CRI-O",
+        "url": "https://cri-o.io/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CRI-O"
+      },
+      {
+        "type": "video",
+        "nom": "Docker formation de A à Z",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWq0iz59-px2z-qjDdZKEvWd",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      },
+      {
+        "type": "video",
+        "nom": "Podman : Tutoriels et Formation",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWo_IZ1s2v1Ijf-SnPQY8J57",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      },
+      {
+        "type": "video",
+        "nom": "Containers with Podman and UBI",
+        "url": "https://www.youtube.com/playlist?list=PLXJyD2dL4oqdPQ9VjgT2gj9q_HLZGPvUz",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat Enterprise Linux"
+      },
+      {
+        "type": "cours",
+        "nom": "Play with Docker : ateliers interactifs dans le navigateur",
+        "url": "https://training.play-with-docker.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Docker"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "parcours-sylva",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "telco-101",
+    "titre": "Télécoms 101 (4G/5G, cœur de réseau)",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [],
+    "resume": "RAN, cœur, plan usager/plan de contrôle, vocabulaire opérateur. Distingue un ingénieur telco d'un ingénieur K8s généraliste.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Open5GS : cœur 4G/5G open source, documentation",
+        "url": "https://open5gs.org/open5gs/docs/"
+      },
+      {
+        "type": "spec",
+        "nom": "3GPP TS 23.501 (architecture système 5G), lecture guidée",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3GPP"
+      },
+      {
+        "type": "video",
+        "nom": "4G : Principes des réseaux mobiles MOOC",
+        "url": "https://www.youtube.com/playlist?list=PLjXls-kqM6JCu5jYPrRzX3glSfX6Bev3m",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "MOOC de l'IMT"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Network Fundamentals (Institut Mines-Télécom, Coursera, audit gratuit)",
+        "url": "https://www.coursera.org/learn/5g-network-fundamentals",
+        "acces": "freemium",
+        "langue": "en",
+        "auteur": "Institut Mines-Télécom"
+      },
+      {
+        "type": "cours",
+        "nom": "MOOC de l'IMT Atlantique : 5G, réseaux mobiles",
+        "url": "https://www.imt-atlantique.fr/en/study/pedagogical-innovation/moocs",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "IMT Atlantique"
+      },
+      {
+        "type": "video",
+        "nom": "Free 5G Training: 5G for Absolute Beginners",
+        "url": "https://www.youtube.com/playlist?list=PLBC3G7CyizTqRsMpP9dqv6MR7jbBiPXEm",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3G4G"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "tel-reseau-mobile",
+    "titre": "Le réseau mobile en un schéma : abonné, radio, cœur, Internet",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [],
+    "resume": "Terminal, antenne, cœur de réseau, Internet : ce qui ressemble à l'IT (IP, HTTP, conteneurs) et ce qui est propre au télécom (identité d'abonné, mobilité, qualité de service, continuité de service).",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Open5GS : démarrage rapide",
+        "url": "https://open5gs.org/open5gs/docs/guide/01-quickstart/"
+      },
+      {
+        "type": "video",
+        "nom": "4G : Principes des réseaux mobiles MOOC",
+        "url": "https://www.youtube.com/playlist?list=PLjXls-kqM6JCu5jYPrRzX3glSfX6Bev3m",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "MOOC de l'IMT"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Network Fundamentals (Institut Mines-Télécom, Coursera, audit gratuit)",
+        "url": "https://www.coursera.org/learn/5g-network-fundamentals",
+        "acces": "freemium",
+        "langue": "en",
+        "auteur": "Institut Mines-Télécom"
+      },
+      {
+        "type": "cours",
+        "nom": "MOOC de l'IMT Atlantique : 5G, réseaux mobiles",
+        "url": "https://www.imt-atlantique.fr/en/study/pedagogical-innovation/moocs",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "IMT Atlantique"
+      },
+      {
+        "type": "video",
+        "nom": "Free 5G Training: 5G for Absolute Beginners",
+        "url": "https://www.youtube.com/playlist?list=PLBC3G7CyizTqRsMpP9dqv6MR7jbBiPXEm",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3G4G"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "tel-vocabulaire",
+    "titre": "Vocabulaire opérateur : NF, PLMN, UE, gNB, DN, SLA",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [
+      "tel-reseau-mobile"
+    ],
+    "resume": "Les sigles qu'on entend dès le premier jour et ce qu'ils désignent ; constituer un glossaire d'équipe.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "3GPP TR 21.905 : vocabulaire (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/21_series/21.905/"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "tel-nf",
+    "titre": "Qu'est-ce qu'une NF : VNF, CNF et cycle de vie",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [
+      "tel-vocabulaire"
+    ],
+    "resume": "Une fonction réseau est un logiciel qui remplit un rôle (AMF, UPF…) ; du boîtier dédié à la VNF puis à la CNF ; ce que livre l'éditeur et ce qu'exploite l'opérateur.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "ETSI : technologies NFV (accès libre)",
+        "url": "https://www.etsi.org/technologies/nfv"
+      },
+      {
+        "type": "opensource",
+        "nom": "ETSI OSM : orchestrateur MANO open source",
+        "url": "https://osm.etsi.org/docs/user-guide/latest/"
+      },
+      {
+        "type": "video",
+        "nom": "OSM#15 Hackfest Barcelona - June 2023",
+        "url": "https://www.youtube.com/playlist?list=PLFqLBTy_ZDShg1BxNXgpRrma2ULvIAu39",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Open Source MANO"
+      },
+      {
+        "type": "video",
+        "nom": "Cloud Native Telco Day 2026 - Europe",
+        "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2N_B1HGXUyfn4HjjydZctPA",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF [Cloud Native Computing Foundation]"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "tel-exigences-continuite",
+    "titre": "Exigences telco : haute disponibilité, latence et continuité de service",
+    "domaine": "fondations",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "tel-nf"
+    ],
+    "resume": "Disponibilité très élevée, sessions à ne pas couper, latence du plan usager, maintenance sans interruption : pourquoi un déploiement applicatif classique ne suffit pas.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Google SRE Book : objectifs de niveau de service (accès libre)",
+        "url": "https://sre.google/sre-book/service-level-objectives/"
+      },
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : PodDisruptionBudget",
+        "url": "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+      },
+      {
+        "type": "video",
+        "nom": "Cloud Native Telco Day 2026 - Europe",
+        "url": "https://www.youtube.com/playlist?list=PLj6h78yzYM2N_B1HGXUyfn4HjjydZctPA",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "CNCF [Cloud Native Computing Foundation]"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "archi-5g",
+    "titre": "Architecture 5G : NG-RAN, 5GC et SBA",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [
+      "tel-nf"
+    ],
+    "resume": "Rôle du RAN et du cœur, séparation plan de contrôle et plan usager, architecture orientée services (SBA), points de référence N1 à N6 et interfaces de service.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "3GPP TS 23.501 : architecture du système 5G (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Network Fundamentals (Institut Mines-Télécom, Coursera, audit gratuit)",
+        "url": "https://www.coursera.org/learn/5g-network-fundamentals",
+        "acces": "freemium",
+        "langue": "en",
+        "auteur": "Institut Mines-Télécom"
+      },
+      {
+        "type": "cours",
+        "nom": "MOOC de l'IMT Atlantique : 5G, réseaux mobiles",
+        "url": "https://www.imt-atlantique.fr/en/study/pedagogical-innovation/moocs",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "IMT Atlantique"
+      },
+      {
+        "type": "video",
+        "nom": "Free 5G Training: 5G for Absolute Beginners",
+        "url": "https://www.youtube.com/playlist?list=PLBC3G7CyizTqRsMpP9dqv6MR7jbBiPXEm",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3G4G"
+      },
+      {
+        "type": "video",
+        "nom": "5G Mobile Core Network Fundamentals",
+        "url": "https://www.youtube.com/playlist?list=PLRbUOpXOpZ2rTpT7xcaeCse8hbWbvV9bJ",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Hamidreza Bolhasani"
+      },
+      {
+        "type": "cours",
+        "nom": "ShareTechnote : références détaillées 4G/5G (procédures, messages)",
+        "url": "https://www.sharetechnote.com/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ShareTechnote"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Service Based Architecture (Mpirical, accès en ligne)",
+        "url": "https://www.mpirical.com/courses/5g-service-based-architecture",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Mpirical"
+      },
+      {
+        "type": "cours",
+        "nom": "5G Service Based Architecture and Core Network, à la demande (Wray Castle)",
+        "url": "https://wraycastle.com/products/5g-service-based-architecture-and-core-network-on-demand",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Wray Castle"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "dialogue-experts",
+    "titre": "Travailler avec les experts réseau et les éditeurs",
+    "domaine": "fondations",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "tel-vocabulaire"
+    ],
+    "resume": "Poser les bonnes questions, lire une fiche d'exigences, formuler un incident de façon exploitable, partager un vocabulaire commun.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "3GPP TR 21.905 : vocabulaire (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/21_series/21.905/"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "git-ci",
+    "titre": "Git et CI/CD",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [],
+    "resume": "Branches, revues, pipelines GitLab CI, artefacts.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Pro Git (livre libre, en français)",
+        "url": "https://git-scm.com/book/fr/v2"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation GitLab CI",
+        "url": "https://docs.gitlab.com/ci/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "GitLab"
+      },
+      {
+        "type": "video",
+        "nom": "GITLAB : tutos et formation",
+        "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWrRoZZXv0xf71mvT4E0QDOF",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "xavki"
+      },
+      {
+        "type": "cours",
+        "nom": "Learn Git Branching : apprendre Git en visualisant les branches",
+        "url": "https://learngitbranching.js.org/?locale=fr_FR",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "Learn Git Branching"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sre-slo",
+    "titre": "Fondamentaux SRE : SLI, SLO et budget d'erreur",
+    "domaine": "fondations",
+    "niveau": "fondamental",
+    "prerequis": [],
+    "resume": "Définir ce que l'on mesure (SLI), l'objectif (SLO) et le budget d'erreur, et s'en servir pour arbitrer entre changement et stabilité. Application aux services télécoms : disponibilité, taux de succès des procédures.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Google SRE Book : objectifs de niveau de service (accès libre)",
+        "url": "https://sre.google/sre-book/service-level-objectives/"
+      },
+      {
+        "type": "opensource",
+        "nom": "Sloth : générateur de SLO pour Prometheus",
+        "url": "https://github.com/slok/sloth"
+      },
+      {
+        "type": "cours",
+        "nom": "Google SRE : ressources, livres gratuits et études de cas",
+        "url": "https://sre.google/resources/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Google"
+      }
+    ],
+    "origine": [
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  }
+]

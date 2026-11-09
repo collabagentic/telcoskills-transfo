@@ -48,6 +48,10 @@
       "lien": null
     }
   ],
+  "competences": [
+    "cycle-vie-plateforme",
+    "toil"
+  ],
   "technos": [
     "kubernetes"
   ],

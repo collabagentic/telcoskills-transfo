@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { verifierContenu } from "@/contenu/regles";
-import { ficheSchema, questionSchema } from "@/contenu/schemas";
+import { competenceSchema, ficheSchema, orientationSchema, questionSchema } from "@/contenu/schemas";
 import { contenuValide, fiche } from "./fixtures/contenu";
 
 const erreursDeRegle = (c: ReturnType<typeof contenuValide>, n: number) => verifierContenu(c).filter((e) => e.startsWith(`Règle ${n} `));
@@ -18,34 +18,8 @@ describe("règles du contenu", () => {
     d.fiches[0].technos = ["inconnue"];
     expect(erreursDeRegle(d, 1).join()).toContain("n'existe pas");
     const e = contenuValide();
-    e.metiers[0].savoirFaire[0].fiche = "fantome";
+    e.fiches[0].competences = ["fantome"];
     expect(erreursDeRegle(e, 1).join()).toContain("fantome");
-  });
-
-  it("règle 1 : un identifiant de savoir-faire en double dans un même métier", () => {
-    const c = contenuValide();
-    c.metiers[0].savoirFaire[1].id = c.metiers[0].savoirFaire[0].id;
-    expect(erreursDeRegle(c, 1).join()).toContain("savoir-faire en double");
-    const d = contenuValide();
-    d.metiers.push({ ...d.metiers[0], id: "m2" });
-    expect(erreursDeRegle(d, 1)).toEqual([]);
-  });
-
-  it("règle 2 : un acquis sans fiche, un transpose vers une nouveauté", () => {
-    const c = contenuValide();
-    c.metiers[0].savoirFaire[5].fiche = "f1";
-    expect(erreursDeRegle(c, 2).join()).toContain("acquis");
-    const d = contenuValide();
-    d.metiers[0].savoirFaire[0].fiche = "n1";
-    expect(erreursDeRegle(d, 2).join()).toContain("pas une transposition");
-  });
-
-  it("règle 3 : l'ordre doit être exactement l'ensemble des fiches", () => {
-    const c = contenuValide();
-    c.metiers[0].ordre = ["f1", "f1", "f2", "f3", "f4", "n1"];
-    const e = erreursDeRegle(c, 3).join();
-    expect(e).toContain("deux fois");
-    expect(e).toContain("« f5 » manque");
   });
 
   it("règle 4 : réflexe et pourquoi-nouveau selon le genre", () => {
@@ -53,8 +27,8 @@ describe("règles du contenu", () => {
     c.fiches[0].reflexe = null;
     expect(erreursDeRegle(c, 4).join()).toContain("réflexe");
     const d = contenuValide();
-    d.fiches[5].reflexe = "Un réflexe.";
-    d.fiches[5].pourquoiNouveau = null;
+    d.fiches[1].reflexe = "Un réflexe.";
+    d.fiches[1].pourquoiNouveau = null;
     expect(erreursDeRegle(d, 4).length).toBe(2);
   });
 
@@ -64,6 +38,7 @@ describe("règles du contenu", () => {
     expect(erreursDeRegle(c, 5).join()).toContain("libre");
     expect(ficheSchema.safeParse({ ...fiche("x"), sources: [] }).success).toBe(false);
     expect(ficheSchema.safeParse({ ...fiche("x"), questions: ["q-x-1"] }).success).toBe(false);
+    expect(ficheSchema.safeParse({ ...fiche("x"), competences: [] }).success).toBe(false);
   });
 
   it("règle 6 : les longueurs maximales sont imposées", () => {
@@ -72,24 +47,10 @@ describe("règles du contenu", () => {
     expect(questionSchema.safeParse({ id: "q", fiche: "x", enonce: "?", options: ["a", "b"], bonne: 2, explication: "e", source: "s", statut: "brouillon" }).success).toBe(false);
   });
 
-  it("règle 7 : fiche orpheline, techno non citée", () => {
-    const c = contenuValide();
-    c.fiches.push(fiche("orpheline"));
-    c.questions.push(...contenuValide().questions.slice(0, 0));
-    expect(erreursDeRegle(c, 7).join()).toContain("orpheline");
+  it("règle 7 : techno non citée", () => {
     const d = contenuValide();
     d.technos.push({ id: "inutile", nom: "Inutile", url: "https://exemple.org" });
     expect(erreursDeRegle(d, 7).join()).toContain("inutile");
-  });
-
-  it("règle 8 : nombre de savoir-faire et d'acquis", () => {
-    const c = contenuValide();
-    c.metiers[0].savoirFaire = c.metiers[0].savoirFaire.slice(0, 6);
-    expect(erreursDeRegle(c, 8).length).toBeGreaterThan(0);
-    const d = contenuValide();
-    d.metiers[0].savoirFaire[5].statut = "transpose";
-    d.metiers[0].savoirFaire[5].fiche = "f1";
-    expect(erreursDeRegle(d, 8).join()).toContain("3 savoir-faire acquis");
   });
 
   it("règle 9 : historique trié, première date = mise à jour", () => {
@@ -104,20 +65,39 @@ describe("règles du contenu", () => {
     expect(erreursDeRegle(d, 9).join()).toContain("trié");
   });
 
-  it("règle 10 : un prérequis doit précéder la fiche dans l'ordre", () => {
-    const c = contenuValide();
-    c.metiers[0].dependances = { f2: ["f1"], f3: ["f2"] };
-    expect(erreursDeRegle(c, 10)).toEqual([]);
-    c.metiers[0].dependances = { f1: ["f2"] };
-    expect(erreursDeRegle(c, 10).join()).toContain("précéder");
-    c.metiers[0].dependances = { f2: ["fantome"] };
-    expect(erreursDeRegle(c, 10).join()).toContain("n'est pas dans l'ordre");
-  });
-
   it("règle 11 : une transposition a un schéma avant, une nouveauté non", () => {
     const c = contenuValide();
     c.fiches[0].schema.avant = null;
-    c.fiches[5].schema.avant = [{ texte: "A" }, { texte: "B" }];
+    c.fiches[1].schema.avant = [{ texte: "A" }, { texte: "B" }];
     expect(erreursDeRegle(c, 11).length).toBe(2);
+  });
+
+  it("règle 12 : prérequis inconnu, auto-référence, boucle, domaine inconnu", () => {
+    const a = contenuValide();
+    a.competences[1].prerequis = ["fantome"];
+    expect(erreursDeRegle(a, 12).join()).toContain("n'existe pas");
+    const b = contenuValide();
+    b.competences[0].prerequis = ["c1"];
+    expect(erreursDeRegle(b, 12).join()).toContain("son propre prérequis");
+    const c = contenuValide();
+    c.competences[0].prerequis = ["c3"]; // c1 → c3 → c2 → c1
+    expect(erreursDeRegle(c, 12).join()).toContain("boucle");
+    const d = contenuValide();
+    d.competences[0].domaine = "inconnu";
+    expect(erreursDeRegle(d, 12).join()).toContain("domaine");
+  });
+
+  it("règle 13 : les effets des questions d'orientation référencent des compétences et des domaines existants", () => {
+    const a = contenuValide();
+    a.orientation.questions[0].options[0].effets = { acquis: ["fantome"] };
+    expect(erreursDeRegle(a, 13).join()).toContain("fantome");
+    const b = contenuValide();
+    b.orientation.questions[0].options[0].effets = { domaines: { inconnu: 2 } };
+    expect(erreursDeRegle(b, 13).join()).toContain("domaine");
+    const c = contenuValide();
+    c.orientation.questions[0].options[0].effets = { cible: ["c1"], acquis: ["c1"] };
+    expect(erreursDeRegle(c, 13).join()).toContain("à la fois");
+    expect(orientationSchema.safeParse({ ...contenuValide().orientation, questions: contenuValide().orientation.questions.slice(0, 4) }).success).toBe(false);
+    expect(competenceSchema.safeParse({ id: "x" }).success).toBe(false);
   });
 });

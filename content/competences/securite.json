@@ -1,0 +1,876 @@
+[
+  {
+    "id": "sec-durcissement",
+    "titre": "Durcissement du cluster et des nœuds",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-rbac"
+    ],
+    "resume": "Politiques de sécurité des pods, SELinux, SCC, référentiels CIS.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "kube-bench : contrôle des bonnes pratiques CIS Kubernetes",
+        "url": "https://github.com/aquasecurity/kube-bench"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Security)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/security_and_compliance/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "doc",
+        "nom": "CIS Kubernetes Benchmark",
+        "url": "https://www.cisecurity.org/benchmark/kubernetes",
+        "langue": "en",
+        "auteur": "CIS"
+      },
+      {
+        "type": "doc",
+        "nom": "Guide d'hygiène informatique",
+        "url": "https://cyber.gouv.fr/publications/guide-dhygiene-informatique",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "doc",
+        "nom": "Recommandations de configuration d'un système GNU/Linux",
+        "url": "https://cyber.gouv.fr/publications/recommandations-de-securite-relatives-un-systeme-gnulinux",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "doc",
+        "nom": "Recommandations de sécurité pour OpenStack (ANSSI-BP-104)",
+        "url": "https://messervices.cyber.gouv.fr/documents-guides/anssi-guide-openstack_v1-0.pdf",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "cours",
+        "nom": "Kubernetes Security Essentials (LFS260)",
+        "url": "https://training.linuxfoundation.org/training/kubernetes-security-essentials-lfs260/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      },
+      {
+        "type": "cours",
+        "nom": "SecNumAcadémie : MOOC gratuit de sensibilisation à la sécurité du numérique",
+        "url": "https://secnumacademie.gouv.fr/",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "cours",
+        "nom": "Kubernetes Goat : laboratoire de vulnérabilités Kubernetes pour s'entraîner",
+        "url": "https://github.com/madhuakula/kubernetes-goat",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Madhu Akula"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sec-reseau",
+    "titre": "Segmentation et NetworkPolicy",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "cni"
+    ],
+    "resume": "Isolation entre CNF, flux autorisés, audit des règles.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : Network Policies",
+        "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Kubernetes"
+      },
+      {
+        "type": "video",
+        "nom": "Kubernetes Security and Networking",
+        "url": "https://www.youtube.com/playlist?list=PLtO_OYBiEo6klZcU3HVfbrSgolnvnkCCB",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Packet Pushers"
+      },
+      {
+        "type": "cours",
+        "nom": "Kubernetes Security Essentials (LFS260)",
+        "url": "https://training.linuxfoundation.org/training/kubernetes-security-essentials-lfs260/",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "Linux Foundation"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sec-supply",
+    "titre": "Sécurité de la chaîne d'approvisionnement",
+    "domaine": "securite",
+    "niveau": "avance",
+    "prerequis": [
+      "conteneurs",
+      "sec-durcissement"
+    ],
+    "resume": "Scan d'images (Trivy), signature, politiques d'admission, SBOM.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Trivy : scanner de vulnérabilités et de SBOM",
+        "url": "https://trivy.dev/"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation Trivy",
+        "url": "https://trivy.dev/docs/latest/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Aqua Security"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation Sigstore",
+        "url": "https://docs.sigstore.dev/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Sigstore"
+      },
+      {
+        "type": "cours",
+        "nom": "Kubernetes Goat : laboratoire de vulnérabilités Kubernetes pour s'entraîner",
+        "url": "https://github.com/madhuakula/kubernetes-goat",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Madhu Akula"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ia-agentique-telco",
+      "ingenieur-caas-telco",
+      "parcours-sylva"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sec-secrets",
+    "titre": "Secrets, PKI et certificats",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "sec-durcissement"
+    ],
+    "resume": "Gestion des secrets (Vault, secrets chiffrés), autorité de certification interne, cert-manager, rotation et expiration des certificats, HSM.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "cert-manager : documentation",
+        "url": "https://cert-manager.io/docs/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "cert-manager"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation HashiCorp Vault",
+        "url": "https://developer.hashicorp.com/vault/docs",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "HashiCorp"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Security : certificats)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/security_and_compliance/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "cours",
+        "nom": "Parcours d'apprentissage HashiCorp Vault",
+        "url": "https://developer.hashicorp.com/vault/tutorials",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "HashiCorp"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "devops-integrateur-nf",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-cadre-fr",
+    "titre": "Cadre français des communications électroniques (CPCE, ARCEP)",
+    "domaine": "securite",
+    "niveau": "fondamental",
+    "prerequis": [
+      "telco-101"
+    ],
+    "resume": "Obligations des opérateurs en matière de sécurité et d'intégrité des réseaux, notification des incidents, rôle de l'ARCEP et de l'ANSSI. Sert à traduire une obligation légale en exigence sur la plateforme.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Légifrance : CPCE, texte officiel en accès libre",
+        "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006070987/",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "Légifrance"
+      },
+      {
+        "type": "doc",
+        "nom": "La 5G sur le site de l'ARCEP : régulation et déploiement",
+        "url": "https://www.arcep.fr/la-regulation/grands-dossiers-reseaux-mobiles/la-5g.html",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ARCEP"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-5g-securite",
+    "titre": "Sécurité des réseaux 5G : loi du 1er août 2019 et boîte à outils UE",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "telco-101",
+      "reg-cadre-fr"
+    ],
+    "resume": "Régime d'autorisation d'exploitation des équipements de réseau mobile (loi n° 2019-810, article L.34-11 du CPCE), instruit par l'ANSSI, et mesures de la boîte à outils européenne pour la cybersécurité 5G, dont la diversification des fournisseurs.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Boîte à outils de l'UE pour la cybersécurité 5G (texte en accès libre)",
+        "url": "https://digital-strategy.ec.europa.eu/en/library/cybersecurity-5g-networks-eu-toolbox-risk-mitigating-measures",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Commission européenne"
+      },
+      {
+        "type": "doc",
+        "nom": "La 5G sur le site de l'ARCEP : régulation et déploiement",
+        "url": "https://www.arcep.fr/la-regulation/grands-dossiers-reseaux-mobiles/la-5g.html",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ARCEP"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-nis2",
+    "titre": "Directive NIS 2 et sa transposition française",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "sec-durcissement",
+      "reg-cadre-fr"
+    ],
+    "resume": "Entités essentielles et importantes, mesures de gestion des risques, notification des incidents significatifs, responsabilité de la direction. Suivre le texte français de transposition dans sa version en vigueur.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Directive (UE) 2022/2555 sur EUR-Lex (accès libre)",
+        "url": "https://eur-lex.europa.eu/eli/dir/2022/2555/oj",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "EUR-Lex"
+      },
+      {
+        "type": "doc",
+        "nom": "Publications de l'ANSSI sur NIS 2",
+        "url": "https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformation/directives-nis-nis2-et-dispositif-saiv/",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "cours",
+        "nom": "SecNumAcadémie : MOOC gratuit de sensibilisation à la sécurité du numérique",
+        "url": "https://secnumacademie.gouv.fr/",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "cours",
+        "nom": "La directive NIS 2 (page de l'ANSSI)",
+        "url": "https://cyber.gouv.fr/la-directive-nis-2",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-anssi",
+    "titre": "Référentiels et guides de l'ANSSI",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "sec-durcissement"
+    ],
+    "resume": "Guide d'hygiène informatique, recommandations de configuration GNU/Linux, qualification SecNumCloud, certification de sécurité de premier niveau (CSPN) : les références utilisées en France pour cadrer un design et justifier des choix.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "ComplianceAsCode : profils de conformité automatisés, dont ANSSI BP-028",
+        "url": "https://github.com/ComplianceAsCode/content"
+      },
+      {
+        "type": "doc",
+        "nom": "Guide d'hygiène informatique (ANSSI)",
+        "url": "https://messervices.cyber.gouv.fr/guides/en-guideline-healthy-information-system-42-measures",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "doc",
+        "nom": "Recommandations de configuration d'un système GNU/Linux (ANSSI)",
+        "url": "https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-relatives-un-systeme-gnulinux",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "doc",
+        "nom": "Référentiel SecNumCloud (ANSSI)",
+        "url": "https://cyber.gouv.fr/sites/default/files/document/secnumcloud-referentiel-exigences-v3.2.pdf",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "doc",
+        "nom": "Guide d'hygiène informatique",
+        "url": "https://cyber.gouv.fr/publications/guide-dhygiene-informatique",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "doc",
+        "nom": "Recommandations de configuration d'un système GNU/Linux",
+        "url": "https://cyber.gouv.fr/publications/recommandations-de-securite-relatives-un-systeme-gnulinux",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "cours",
+        "nom": "SecNumAcadémie : MOOC gratuit de sensibilisation à la sécurité du numérique",
+        "url": "https://secnumacademie.gouv.fr/",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-rgpd",
+    "titre": "RGPD, ePrivacy et données de connexion",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "telco-101"
+    ],
+    "resume": "Données personnelles des abonnés : minimisation, durées de conservation, sous-traitance, transferts hors UE. Règles propres aux communications électroniques (directive ePrivacy, conservation des données de connexion) et rôle de la CNIL.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Logiciel PIA de la CNIL (analyse d'impact, open source)",
+        "url": "https://github.com/LINCnil/pia"
+      },
+      {
+        "type": "spec",
+        "nom": "Règlement (UE) 2016/679 (RGPD)",
+        "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "EUR-Lex"
+      },
+      {
+        "type": "spec",
+        "nom": "Directive 2002/58/CE (ePrivacy)",
+        "url": "https://eur-lex.europa.eu/eli/dir/2002/58/oj",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "EUR-Lex"
+      },
+      {
+        "type": "doc",
+        "nom": "Guide de la sécurité des données personnelles (CNIL, édition 2024)",
+        "url": "https://www.cnil.fr/fr/guide-de-la-securite-des-donnees-personnelles-nouvelle-edition-2024",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "CNIL"
+      },
+      {
+        "type": "cours",
+        "nom": "L'atelier RGPD de la CNIL : formation en ligne gratuite",
+        "url": "https://atelier-rgpd.cnil.fr/",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "CNIL"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-souverainete",
+    "titre": "Souveraineté et protection des données hors UE",
+    "domaine": "securite",
+    "niveau": "avance",
+    "prerequis": [
+      "reg-anssi",
+      "reg-rgpd"
+    ],
+    "resume": "SecNumCloud, exposition aux lois extraterritoriales, transferts de données hors UE, règlement sur les données (Data Act) et portabilité entre fournisseurs cloud. Impact sur le choix de l'hébergement et des services managés.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Règlement (UE) 2023/2854 (Data Act) sur EUR-Lex (accès libre)",
+        "url": "https://eur-lex.europa.eu/eli/reg/2023/2854/oj",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "EUR-Lex"
+      },
+      {
+        "type": "doc",
+        "nom": "Référentiel SecNumCloud (ANSSI)",
+        "url": "https://cyber.gouv.fr/sites/default/files/document/secnumcloud-referentiel-exigences-v3.2.pdf",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "doc",
+        "nom": "Data Act : présentation par la Commission européenne",
+        "url": "https://digital-strategy.ec.europa.eu/en/policies/data-act",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Commission européenne"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ia-agentique-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-risque",
+    "titre": "Analyse de risques et assurance sécurité (EBIOS RM, ISO 27001, NESAS)",
+    "domaine": "securite",
+    "niveau": "avance",
+    "prerequis": [
+      "reg-anssi"
+    ],
+    "resume": "Mener une analyse de risques (EBIOS Risk Manager), situer ISO/IEC 27001 et 27011, comprendre les évaluations d'équipements GSMA NESAS et 3GPP SCAS, constituer un dossier de conformité et ses preuves.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "MONARC : analyse de risques open source",
+        "url": "https://www.monarc.lu/"
+      },
+      {
+        "type": "doc",
+        "nom": "EBIOS Risk Manager (ANSSI)",
+        "url": "https://cyber.gouv.fr/securisation/analyse-des-risques/methode-ebios-rm/",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "spec",
+        "nom": "ISO/IEC 27001",
+        "url": "https://www.iso.org/standard/27001",
+        "acces": "payant",
+        "langue": "en",
+        "auteur": "ISO"
+      },
+      {
+        "type": "spec",
+        "nom": "3GPP SCAS (TS 33.117)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.117/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3GPP"
+      },
+      {
+        "type": "doc",
+        "nom": "La méthode EBIOS Risk Manager",
+        "url": "https://cyber.gouv.fr/la-methode-ebios-risk-manager",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      },
+      {
+        "type": "cours",
+        "nom": "SecNumAcadémie : MOOC gratuit de sensibilisation à la sécurité du numérique",
+        "url": "https://secnumacademie.gouv.fr/",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      }
+    ],
+    "origine": [
+      "architecte-caas-telco",
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sec-sba",
+    "titre": "Sécurité du SBA : TLS, OAuth2 et autorisation entre NF",
+    "domaine": "securite",
+    "niveau": "avance",
+    "prerequis": [
+      "nrf-scp",
+      "sbi-http2"
+    ],
+    "resume": "Authentification mutuelle entre fonctions, jetons d'accès émis par la NRF, certificats et leur rotation, exigences de l'architecture de sécurité 5G.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "3GPP TS 33.501 : sécurité du système 5G (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sec-plateforme",
+    "titre": "Isolation et privilèges d'une NF sur la plateforme",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "k8s-workloads"
+    ],
+    "resume": "Capacités Linux, contextes de sécurité, politiques réseau entre fonctions, cloisonnement des plans de contrôle, usager et gestion.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Kubernetes : contexte de sécurité d'un pod",
+        "url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reglementation-5gc",
+    "titre": "Réglementation France et Europe applicable au 5GC",
+    "domaine": "securite",
+    "niveau": "avance",
+    "prerequis": [
+      "sec-sba"
+    ],
+    "resume": "Ce qui s'applique à un cœur 5G hébergé : sécurité et intégrité des réseaux, données personnelles, interception légale, exigences sur les équipements. Voir le bloc dédié de la roadmap Ingénieur CaaS telco.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "OpenLI : interception légale open source conforme ETSI",
+        "url": "https://github.com/OpenLI-NZ/openli"
+      }
+    ],
+    "origine": [
+      "devops-integrateur-nf",
+      "integrateur-nf-5gc"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "sec-detection",
+    "titre": "Journalisation de sécurité et détection",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "sec-durcissement",
+      "obs-logs"
+    ],
+    "resume": "Audit Kubernetes et des nœuds, journaux de sécurité, intégration à un SIEM, détection d'anomalies à l'exécution (Falco), conservation des traces utile aux enquêtes et aux audits.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Falco : détection à l'exécution",
+        "url": "https://falco.org/docs/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Falco"
+      },
+      {
+        "type": "doc",
+        "nom": "Documentation OpenShift (Audit log, Compliance Operator)",
+        "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/security_and_compliance/index",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Red Hat"
+      },
+      {
+        "type": "video",
+        "nom": "CNCF | Falco Talks",
+        "url": "https://www.youtube.com/playlist?list=PLgVVUpW8NIJCTTM0PH5Xecp_gO85IyvMf",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Falco"
+      }
+    ],
+    "origine": [
+      "ingenieur-caas-telco",
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-oiv",
+    "titre": "OIV, SIIV et résilience des entités critiques",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "reg-cadre-fr",
+      "sec-durcissement"
+    ],
+    "resume": "Régime français des opérateurs d'importance vitale et de leurs systèmes d'information d'importance vitale, et directive européenne sur la résilience des entités critiques. Exigences de détection, d'homologation et de continuité qui touchent la plateforme.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Directive (UE) 2022/2557 sur EUR-Lex (accès libre)",
+        "url": "https://eur-lex.europa.eu/eli/dir/2022/2557/oj",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "EUR-Lex"
+      },
+      {
+        "type": "doc",
+        "nom": "Dispositif de sécurité des activités d'importance vitale (ANSSI)",
+        "url": "https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformation/directives-nis-nis2-et-dispositif-saiv/dispositif-saiv/",
+        "acces": "gratuit",
+        "langue": "fr",
+        "auteur": "ANSSI"
+      }
+    ],
+    "origine": [
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-ue-certif",
+    "titre": "Certification européenne : Cybersecurity Act, EUCC, Critères Communs",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "reg-anssi"
+    ],
+    "resume": "Cadre européen de certification de cybersécurité, schéma EUCC fondé sur les Critères Communs, évaluation de produits ; savoir lire un certificat dans un appel d'offres.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Règlement (UE) 2019/881 sur EUR-Lex (accès libre)",
+        "url": "https://eur-lex.europa.eu/eli/reg/2019/881/oj",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "EUR-Lex"
+      },
+      {
+        "type": "spec",
+        "nom": "Règlement d'exécution (UE) 2024/482 (EUCC)",
+        "url": "https://eur-lex.europa.eu/eli/reg_impl/2024/482/oj",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "EUR-Lex"
+      }
+    ],
+    "origine": [
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-cra",
+    "titre": "Cyber Resilience Act",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "sec-supply"
+    ],
+    "resume": "Exigences de cybersécurité pour les produits comportant des éléments numériques : gestion des vulnérabilités, nomenclature logicielle (SBOM), mises à jour de sécurité, notification. Impact sur le choix et la recette des CNF et des logiciels tiers.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "CycloneDX : standard ouvert de SBOM",
+        "url": "https://cyclonedx.org/"
+      },
+      {
+        "type": "spec",
+        "nom": "Règlement (UE) 2024/2847 (Cyber Resilience Act)",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "EUR-Lex"
+      },
+      {
+        "type": "cours",
+        "nom": "Understanding the EU Cyber Resilience Act (LFEL1001), cours gratuit de 90 minutes",
+        "url": "https://training.linuxfoundation.org/training/understanding-the-eu-cyber-resilience-act-cra-lfel1001/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Linux Foundation / OpenSSF"
+      },
+      {
+        "type": "doc",
+        "nom": "Cyber Resilience Act : présentation par la Commission européenne",
+        "url": "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "Commission européenne"
+      }
+    ],
+    "origine": [
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "reg-li",
+    "titre": "Interceptions légales et réquisitions",
+    "domaine": "securite",
+    "niveau": "avance",
+    "prerequis": [
+      "telco-101",
+      "reg-cadre-fr"
+    ],
+    "resume": "Fonctions d'interception légale hébergées sur la plateforme : architecture ETSI et 3GPP, exigences de cloisonnement, de traçabilité et de confidentialité. Le cadre légal applicable se valide avec le service juridique.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "OpenLI : interception légale open source conforme ETSI",
+        "url": "https://github.com/OpenLI-NZ/openli"
+      },
+      {
+        "type": "spec",
+        "nom": "3GPP TS 33.126 (interception légale, exigences)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.126/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3GPP"
+      },
+      {
+        "type": "spec",
+        "nom": "3GPP TS 33.127 (interception légale, architecture)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.127/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "3GPP"
+      },
+      {
+        "type": "spec",
+        "nom": "ETSI TS 102 232 (interface de remise des données interceptées)",
+        "url": "https://www.etsi.org/deliver/etsi_ts/102200_102299/10223201/",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ETSI"
+      },
+      {
+        "type": "doc",
+        "nom": "Interception légale : technologies et normes ETSI",
+        "url": "https://www.etsi.org/technologies/lawful-interception",
+        "acces": "gratuit",
+        "langue": "en",
+        "auteur": "ETSI"
+      }
+    ],
+    "origine": [
+      "ingenieur-caas-telco"
+    ],
+    "statut": "brouillon"
+  },
+  {
+    "id": "gestion-vulns",
+    "titre": "Gestion des vulnérabilités et des correctifs",
+    "domaine": "securite",
+    "niveau": "intermediaire",
+    "prerequis": [
+      "sec-durcissement",
+      "ocp-upgrade"
+    ],
+    "resume": "Suivre les vulnérabilités des images et des nœuds, prioriser, tester et déployer les correctifs dans les fenêtres de maintenance.",
+    "ressources": [
+      {
+        "type": "opensource",
+        "nom": "Trivy : scanner de vulnérabilités",
+        "url": "https://trivy.dev/"
+      },
+      {
+        "type": "opensource",
+        "nom": "OpenSCAP : audit de conformité et de correctifs",
+        "url": "https://www.open-scap.org/"
+      }
+    ],
+    "origine": [
+      "sre-exploitation-telco"
+    ],
+    "statut": "brouillon"
+  }
+]

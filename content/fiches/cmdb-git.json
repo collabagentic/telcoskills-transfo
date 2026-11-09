@@ -61,6 +61,9 @@
       "lien": null
     }
   ],
+  "competences": [
+    "config-nf"
+  ],
   "technos": [
     "kubernetes",
     "argo-cd"
