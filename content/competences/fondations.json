@@ -233,7 +233,90 @@
       "parcours-sylva",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Un conteneur : un processus isolé par le noyau",
+      "largeur": 800,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "c",
+          "texte": "Conteneur",
+          "detail": "un processus, pas une VM",
+          "ton": "chaud",
+          "x": 310,
+          "y": 176,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "ns",
+          "texte": "Namespaces",
+          "detail": "vue isolée du système",
+          "ton": "froid",
+          "x": 320,
+          "y": 30,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "rt",
+          "texte": "Runtime",
+          "detail": "CRI-O, containerd",
+          "x": 335,
+          "y": 322,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "cg",
+          "texte": "cgroups",
+          "detail": "limitent CPU et mémoire",
+          "ton": "froid",
+          "x": 20,
+          "y": 176,
+          "w": 180,
+          "h": 56
+        },
+        {
+          "id": "img",
+          "texte": "Image en couches",
+          "detail": "fichiers en lecture seule",
+          "ton": "ok",
+          "x": 590,
+          "y": 176,
+          "w": 190,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ns",
+          "vers": "c",
+          "texte": "isolent"
+        },
+        {
+          "de": "c",
+          "vers": "rt",
+          "texte": "lance"
+        },
+        {
+          "de": "cg",
+          "vers": "c",
+          "texte": "limitent"
+        },
+        {
+          "de": "img",
+          "vers": "c",
+          "texte": "démarre depuis"
+        }
+      ],
+      "source": {
+        "nom": "Podman : documentation",
+        "url": "https://podman.io/docs"
+      }
+    }
   },
   {
     "id": "telco-101",
@@ -294,7 +377,90 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Le réseau mobile en une ligne : du terminal au service",
+      "largeur": 786,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ue",
+          "texte": "Terminal",
+          "detail": "téléphone, objet",
+          "w": 140,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ran",
+          "texte": "Accès radio",
+          "detail": "antennes, gNB",
+          "w": 120,
+          "x": 232,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "transport",
+          "texte": "Transport",
+          "detail": "fibre, routeurs",
+          "w": 130,
+          "x": 424,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "core",
+          "texte": "Cœur de réseau",
+          "detail": "sessions, abonnés",
+          "ton": "chaud",
+          "w": 140,
+          "x": 626,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "svc",
+          "texte": "Services",
+          "detail": "Internet, voix",
+          "ton": "ok",
+          "w": 120,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ue",
+          "vers": "ran",
+          "texte": "radio"
+        },
+        {
+          "de": "ran",
+          "vers": "transport",
+          "texte": "backhaul"
+        },
+        {
+          "de": "transport",
+          "vers": "core",
+          "texte": "N2, N3"
+        },
+        {
+          "de": "core",
+          "vers": "svc",
+          "texte": "N6",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Open5GS : cœur 4G/5G open source, documentation",
+        "url": "https://open5gs.org/open5gs/docs/"
+      }
+    }
   },
   {
     "id": "tel-reseau-mobile",
@@ -345,7 +511,104 @@
     "origine": [
       "devops-integrateur-nf"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Le réseau mobile en un schéma : abonné, radio, transport, cœur, services",
+      "largeur": 702,
+      "hauteur": 274,
+      "zones": [
+        {
+          "id": "operateur",
+          "titre": "Réseau de l'opérateur",
+          "x": 4,
+          "y": 24,
+          "w": 678,
+          "h": 230
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "ab",
+          "texte": "Abonné",
+          "detail": "terminal",
+          "w": 90,
+          "x": 20,
+          "y": 62,
+          "h": 56,
+          "zone": "operateur"
+        },
+        {
+          "id": "rad",
+          "texte": "Radio",
+          "detail": "accès",
+          "w": 90,
+          "x": 182,
+          "y": 62,
+          "h": 56,
+          "zone": "operateur"
+        },
+        {
+          "id": "tr",
+          "texte": "Transport",
+          "detail": "IP, MPLS",
+          "w": 100,
+          "x": 344,
+          "y": 62,
+          "h": 56,
+          "zone": "operateur"
+        },
+        {
+          "id": "co",
+          "texte": "Cœur",
+          "detail": "contrôle et données",
+          "ton": "chaud",
+          "w": 150,
+          "x": 516,
+          "y": 62,
+          "h": 56,
+          "zone": "operateur"
+        },
+        {
+          "id": "sv",
+          "texte": "Services",
+          "detail": "voix, données",
+          "ton": "ok",
+          "w": 120,
+          "x": 20,
+          "y": 182,
+          "h": 56,
+          "zone": "operateur"
+        }
+      ],
+      "liens": [
+        {
+          "de": "ab",
+          "vers": "rad",
+          "texte": "se connecte"
+        },
+        {
+          "de": "rad",
+          "vers": "tr",
+          "texte": "backhaul"
+        },
+        {
+          "de": "tr",
+          "vers": "co",
+          "texte": "signalisation"
+        },
+        {
+          "de": "co",
+          "vers": "sv",
+          "texte": "livre",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Open5GS : démarrage rapide",
+        "url": "https://open5gs.org/open5gs/docs/guide/01-quickstart/"
+      }
+    }
   },
   {
     "id": "tel-vocabulaire",
@@ -408,7 +671,60 @@
     "origine": [
       "devops-integrateur-nf"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "De la boîte au conteneur : trois générations de fonctions réseau",
+      "largeur": 714,
+      "hauteur": 120,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "pnf",
+          "texte": "PNF",
+          "detail": "boîtier physique",
+          "ton": "faible",
+          "w": 140,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "vnf",
+          "texte": "VNF",
+          "detail": "fonction en machine virtuelle",
+          "w": 220,
+          "x": 232,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cnf",
+          "texte": "CNF",
+          "detail": "fonction en conteneurs",
+          "ton": "chaud",
+          "w": 170,
+          "x": 524,
+          "y": 30,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "pnf",
+          "vers": "vnf",
+          "texte": "virtualisation"
+        },
+        {
+          "de": "vnf",
+          "vers": "cnf",
+          "texte": "conteneurisation"
+        }
+      ],
+      "source": {
+        "nom": "ETSI : technologies NFV (accès libre)",
+        "url": "https://www.etsi.org/technologies/nfv"
+      }
+    }
   },
   {
     "id": "tel-exigences-continuite",
@@ -520,7 +836,98 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "L'architecture 5G : NG-RAN, 5GC, SBA",
+      "largeur": 786,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ue",
+          "texte": "UE",
+          "detail": "terminal",
+          "w": 90,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ng",
+          "texte": "NG-RAN",
+          "detail": "gNB, radio",
+          "w": 100,
+          "x": 182,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cp",
+          "texte": "5GC plan de contrôle",
+          "detail": "fonctions en SBA",
+          "ton": "chaud",
+          "w": 190,
+          "x": 354,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "up",
+          "texte": "5GC plan usager",
+          "detail": "UPF",
+          "w": 150,
+          "x": 616,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "dn",
+          "texte": "Réseau de données",
+          "detail": "Internet, entreprise",
+          "ton": "ok",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ue",
+          "vers": "ng",
+          "texte": "radio"
+        },
+        {
+          "de": "ng",
+          "vers": "cp",
+          "texte": "N2"
+        },
+        {
+          "de": "cp",
+          "vers": "up",
+          "texte": "N4"
+        },
+        {
+          "de": "up",
+          "vers": "dn",
+          "texte": "N6",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "ng",
+          "vers": "up",
+          "texte": "N3",
+          "style": "pointille",
+          "sortie": "b",
+          "entree": "b"
+        }
+      ],
+      "source": {
+        "nom": "3GPP TS 23.501 : architecture du système 5G (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+      }
+    }
   },
   {
     "id": "dialogue-experts",
@@ -586,7 +993,76 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Git et CI/CD : du commit à la livraison",
+      "largeur": 644,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "git",
+          "texte": "Dépôt Git",
+          "detail": "historique et revue",
+          "w": 150,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ci",
+          "texte": "Intégration continue",
+          "detail": "build et tests",
+          "ton": "chaud",
+          "w": 190,
+          "x": 242,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "art",
+          "texte": "Artefacts",
+          "detail": "images, charts",
+          "w": 120,
+          "x": 504,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cd",
+          "texte": "Livraison continue",
+          "detail": "déploiement piloté",
+          "ton": "ok",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "git",
+          "vers": "ci",
+          "texte": "déclenche"
+        },
+        {
+          "de": "ci",
+          "vers": "art",
+          "texte": "produit"
+        },
+        {
+          "de": "art",
+          "vers": "cd",
+          "texte": "alimente",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Pro Git (livre libre, en français)",
+        "url": "https://git-scm.com/book/fr/v2"
+      }
+    }
   },
   {
     "id": "sre-slo",
@@ -618,6 +1094,73 @@
     "origine": [
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Le SLI, le SLO et le budget d'erreur",
+      "largeur": 856,
+      "hauteur": 120,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "sli",
+          "texte": "SLI",
+          "detail": "ce qu'on mesure",
+          "w": 130,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "slo",
+          "texte": "SLO",
+          "detail": "l'objectif visé",
+          "ton": "chaud",
+          "w": 130,
+          "x": 222,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "bud",
+          "texte": "Budget d'erreur",
+          "detail": "marge d'indisponibilité",
+          "w": 180,
+          "x": 424,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "dec",
+          "texte": "Décisions",
+          "detail": "livrer ou stabiliser",
+          "ton": "ok",
+          "w": 160,
+          "x": 676,
+          "y": 30,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "sli",
+          "vers": "slo",
+          "texte": "alimente"
+        },
+        {
+          "de": "slo",
+          "vers": "bud",
+          "texte": "fixe"
+        },
+        {
+          "de": "bud",
+          "vers": "dec",
+          "texte": "guide"
+        }
+      ],
+      "source": {
+        "nom": "Google SRE Book : objectifs de niveau de service (accès libre)",
+        "url": "https://sre.google/sre-book/service-level-objectives/"
+      }
+    }
   }
 ]

@@ -36,7 +36,76 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Du HLD au LLD : de la vision aux détails d'installation",
+      "largeur": 734,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "hld",
+          "texte": "HLD",
+          "detail": "composants, choix, flux",
+          "ton": "chaud",
+          "w": 180,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "lld",
+          "texte": "LLD",
+          "detail": "paramètres, ports, adresses",
+          "w": 210,
+          "x": 272,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ip",
+          "texte": "Plan d'adressage",
+          "detail": "VLAN, sous-réseaux",
+          "w": 160,
+          "x": 554,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "proc",
+          "texte": "Procédure d'installation",
+          "detail": "exécutable par un autre",
+          "ton": "ok",
+          "w": 220,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "hld",
+          "vers": "lld",
+          "texte": "se détaille en"
+        },
+        {
+          "de": "lld",
+          "vers": "ip",
+          "texte": "fixe"
+        },
+        {
+          "de": "ip",
+          "vers": "proc",
+          "texte": "pilote",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "arc42 : modèle libre de documentation d'architecture",
+        "url": "https://arc42.org/overview"
+      }
+    }
   },
   {
     "id": "adr",
@@ -140,7 +209,90 @@
     "origine": [
       "architecte-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Comparer des fournisseurs : critères pondérés, preuve de concept, décision",
+      "largeur": 826,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "crit",
+          "texte": "Critères",
+          "detail": "pondérés d'avance",
+          "w": 140,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "rep",
+          "texte": "Réponses",
+          "detail": "offres reçues",
+          "w": 120,
+          "x": 232,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "poc",
+          "texte": "Preuve de concept",
+          "detail": "tests sur vos cas",
+          "ton": "chaud",
+          "w": 170,
+          "x": 424,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "note",
+          "texte": "Notation",
+          "detail": "grille et écarts",
+          "w": 140,
+          "x": 666,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "dec",
+          "texte": "Décision",
+          "detail": "tracée et justifiée",
+          "ton": "ok",
+          "w": 150,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "crit",
+          "vers": "rep",
+          "texte": "servent à lire"
+        },
+        {
+          "de": "rep",
+          "vers": "poc",
+          "texte": "présélectionnées pour"
+        },
+        {
+          "de": "poc",
+          "vers": "note",
+          "texte": "alimente"
+        },
+        {
+          "de": "note",
+          "vers": "dec",
+          "texte": "conduit à",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Sylva : pile CaaS telco open source",
+        "url": "https://gitlab.com/sylva-projects/sylva-core"
+      }
+    }
   },
   {
     "id": "cout-energie",
@@ -191,7 +343,76 @@
       "architecte-caas-telco",
       "ia-agentique-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Coût et énergie : mesurer ce que consomme un service",
+      "largeur": 684,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "res",
+          "texte": "Ressources",
+          "detail": "CPU, mémoire, stockage",
+          "w": 170,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "conso",
+          "texte": "Consommation",
+          "detail": "puissance, charge",
+          "w": 140,
+          "x": 262,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cout",
+          "texte": "Coût",
+          "detail": "par service et par équipe",
+          "ton": "chaud",
+          "w": 190,
+          "x": 474,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "opt",
+          "texte": "Optimisation",
+          "detail": "dimensionnement, extinction",
+          "ton": "ok",
+          "w": 210,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "res",
+          "vers": "conso",
+          "texte": "entraînent"
+        },
+        {
+          "de": "conso",
+          "vers": "cout",
+          "texte": "se traduit en"
+        },
+        {
+          "de": "cout",
+          "vers": "opt",
+          "texte": "oriente",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "OpenCost : coût des ressources Kubernetes",
+        "url": "https://www.opencost.io/"
+      }
+    }
   },
   {
     "id": "cycle-vie-plateforme",
@@ -237,7 +458,76 @@
     "origine": [
       "architecte-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Le cycle de vie : suivre les versions avant la fin du support",
+      "largeur": 684,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "nouv",
+          "texte": "Nouvelle version",
+          "detail": "annoncée",
+          "w": 160,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "qual",
+          "texte": "Qualification",
+          "detail": "en lab, sur vos fonctions",
+          "ton": "chaud",
+          "w": 190,
+          "x": 252,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "maj",
+          "texte": "Mise à jour",
+          "detail": "cluster par cluster",
+          "w": 150,
+          "x": 514,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "fin",
+          "texte": "Fin de support",
+          "detail": "date à anticiper",
+          "ton": "faible",
+          "w": 140,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "nouv",
+          "vers": "qual",
+          "texte": "testée"
+        },
+        {
+          "de": "qual",
+          "vers": "maj",
+          "texte": "si validée"
+        },
+        {
+          "de": "maj",
+          "vers": "fin",
+          "texte": "avant",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : politique de décalage de versions",
+        "url": "https://kubernetes.io/releases/version-skew-policy/"
+      }
+    }
   },
   {
     "id": "certifs",

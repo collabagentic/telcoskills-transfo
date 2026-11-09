@@ -27,7 +27,76 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Packager une fonction réseau : un chart, des sous-charts, des valeurs par environnement",
+      "largeur": 844,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "chart",
+          "texte": "Chart de la fonction",
+          "detail": "templates, valeurs par défaut",
+          "ton": "chaud",
+          "w": 220,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "sub",
+          "texte": "Sous-charts",
+          "detail": "base de données, configuration",
+          "w": 220,
+          "x": 312,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "env",
+          "texte": "Valeurs d'environnement",
+          "detail": "lab, préproduction, production",
+          "w": 220,
+          "x": 604,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "rel",
+          "texte": "Release",
+          "detail": "installée et suivie",
+          "ton": "ok",
+          "w": 150,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "chart",
+          "vers": "sub",
+          "texte": "dépend de"
+        },
+        {
+          "de": "sub",
+          "vers": "env",
+          "texte": "surchargées par"
+        },
+        {
+          "de": "env",
+          "vers": "rel",
+          "texte": "produit",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Helm : documentation",
+        "url": "https://helm.sh/docs/"
+      }
+    }
   },
   {
     "id": "config-nf",
@@ -57,7 +126,76 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Configurer une fonction par API : un modèle, un protocole, des datastores",
+      "largeur": 744,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "outil",
+          "texte": "Outil d'automatisation",
+          "detail": "Ansible, pipeline",
+          "w": 200,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "mod",
+          "texte": "Modèle YANG",
+          "detail": "décrit la configuration",
+          "ton": "chaud",
+          "w": 180,
+          "x": 292,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "proto",
+          "texte": "NETCONF ou RESTCONF",
+          "detail": "protocole d'accès",
+          "w": 180,
+          "x": 544,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "nf",
+          "texte": "Fonction réseau",
+          "detail": "candidate puis running",
+          "ton": "ok",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "outil",
+          "vers": "mod",
+          "texte": "s'appuie sur"
+        },
+        {
+          "de": "mod",
+          "vers": "proto",
+          "texte": "transporte"
+        },
+        {
+          "de": "proto",
+          "vers": "nf",
+          "texte": "applique",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "YangModels/yang : modèles YANG de référence",
+        "url": "https://github.com/YangModels/yang"
+      }
+    }
   },
   {
     "id": "etsi-sol",
@@ -87,7 +225,76 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Le cycle de vie selon ETSI : du paquet à l'instance",
+      "largeur": 684,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "pkg",
+          "texte": "Paquet de la fonction",
+          "detail": "descripteur, artefacts",
+          "w": 200,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "nfvo",
+          "texte": "NFVO",
+          "detail": "intègre au catalogue",
+          "ton": "chaud",
+          "w": 160,
+          "x": 292,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "vnfm",
+          "texte": "VNFM",
+          "detail": "pilote l'instance",
+          "w": 140,
+          "x": 524,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "inst",
+          "texte": "Instance",
+          "detail": "instanciée, mise à l'échelle",
+          "ton": "ok",
+          "w": 210,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "pkg",
+          "vers": "nfvo",
+          "texte": "onboarding"
+        },
+        {
+          "de": "nfvo",
+          "vers": "vnfm",
+          "texte": "délègue"
+        },
+        {
+          "de": "vnfm",
+          "vers": "inst",
+          "texte": "instancie",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "OpenStack Tacker : orchestration NFV conforme ETSI",
+        "url": "https://docs.openstack.org/tacker/latest/"
+      }
+    }
   },
   {
     "id": "onboarding-editeur",
@@ -110,7 +317,90 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Accueillir un éditeur : de l'exigence à la qualification",
+      "largeur": 694,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ex",
+          "texte": "Exigences",
+          "detail": "formats de livraison",
+          "w": 160,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "liv",
+          "texte": "Livraison",
+          "detail": "charts, images, doc",
+          "w": 150,
+          "x": 252,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ctrl",
+          "texte": "Contrôle de réception",
+          "detail": "conformité aux exigences",
+          "ton": "chaud",
+          "w": 200,
+          "x": 474,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "int",
+          "texte": "Intégration",
+          "detail": "tests dans votre lab",
+          "w": 160,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "qual",
+          "texte": "Qualification",
+          "detail": "accord de mise en service",
+          "ton": "ok",
+          "w": 190,
+          "x": 252,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ex",
+          "vers": "liv",
+          "texte": "cadrent"
+        },
+        {
+          "de": "liv",
+          "vers": "ctrl",
+          "texte": "est contrôlée"
+        },
+        {
+          "de": "ctrl",
+          "vers": "int",
+          "texte": "si conforme",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "int",
+          "vers": "qual",
+          "texte": "valide"
+        }
+      ],
+      "source": {
+        "nom": "towards5gs-helm : exemple de livrable de NF",
+        "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
+      }
+    }
   },
   {
     "id": "dossier-integration",
@@ -132,7 +422,89 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Le dossier d'intégration : de l'architecture à la procédure",
+      "largeur": 664,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "sch",
+          "texte": "Schémas",
+          "detail": "architecture, réseaux",
+          "w": 170,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "flux",
+          "texte": "Matrice de flux",
+          "detail": "qui parle à qui",
+          "w": 150,
+          "x": 262,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ip",
+          "texte": "Plan d'adressage",
+          "detail": "VLAN, sous-réseaux",
+          "w": 160,
+          "x": 484,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "proc",
+          "texte": "Procédures",
+          "detail": "installation, mise à jour",
+          "w": 190,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "liv",
+          "texte": "Dossier livré",
+          "detail": "relu et versionné",
+          "ton": "ok",
+          "w": 140,
+          "x": 282,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "sch",
+          "vers": "flux",
+          "texte": "détaillent"
+        },
+        {
+          "de": "flux",
+          "vers": "ip",
+          "texte": "s'appuient sur"
+        },
+        {
+          "de": "ip",
+          "vers": "proc",
+          "texte": "décrivent",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "proc",
+          "vers": "liv",
+          "texte": "assemblés en"
+        }
+      ],
+      "source": {
+        "nom": "arc42 : modèle libre de documentation d'architecture",
+        "url": "https://arc42.org/overview"
+      }
+    }
   },
   {
     "id": "ci-cd-integration",
@@ -163,7 +535,90 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "CI/CD d'intégration : chaque version passe par les mêmes tests",
+      "largeur": 674,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "git",
+          "texte": "Dépôt",
+          "detail": "charts et configuration",
+          "w": 180,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ci",
+          "texte": "Pipeline CI",
+          "detail": "contrôles, build",
+          "ton": "chaud",
+          "w": 140,
+          "x": 272,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "lab",
+          "texte": "Déploiement en lab",
+          "detail": "environnement jetable",
+          "w": 170,
+          "x": 484,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "test",
+          "texte": "Non-régression",
+          "detail": "tests de bout en bout",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "promo",
+          "texte": "Promotion",
+          "detail": "vers l'environnement suivant",
+          "ton": "ok",
+          "w": 210,
+          "x": 262,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "git",
+          "vers": "ci",
+          "texte": "déclenche"
+        },
+        {
+          "de": "ci",
+          "vers": "lab",
+          "texte": "déploie"
+        },
+        {
+          "de": "lab",
+          "vers": "test",
+          "texte": "lance",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "test",
+          "vers": "promo",
+          "texte": "si vert"
+        }
+      ],
+      "source": {
+        "nom": "Tekton : pipelines CI/CD Kubernetes",
+        "url": "https://tekton.dev/docs/"
+      }
+    }
   },
   {
     "id": "simulation-ran-ue",
@@ -284,7 +739,90 @@
     "origine": [
       "devops-integrateur-nf"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Un laboratoire reproductible : tout se recrée depuis le dépôt",
+      "largeur": 744,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "git",
+          "texte": "Dépôt",
+          "detail": "charts, scripts, jeux de tests",
+          "w": 220,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "kind",
+          "texte": "Cluster éphémère",
+          "detail": "kind",
+          "ton": "chaud",
+          "w": 160,
+          "x": 312,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "deploy",
+          "texte": "Déploiement",
+          "detail": "charts de la plateforme",
+          "w": 180,
+          "x": 544,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "tests",
+          "texte": "Tests",
+          "detail": "scénarios automatisés",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "detr",
+          "texte": "Destruction",
+          "detail": "rien ne traîne",
+          "ton": "faible",
+          "w": 120,
+          "x": 262,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "git",
+          "vers": "kind",
+          "texte": "crée"
+        },
+        {
+          "de": "kind",
+          "vers": "deploy",
+          "texte": "installe"
+        },
+        {
+          "de": "deploy",
+          "vers": "tests",
+          "texte": "exécute",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "tests",
+          "vers": "detr",
+          "texte": "nettoie"
+        }
+      ],
+      "source": {
+        "nom": "kind : Kubernetes dans Docker",
+        "url": "https://kind.sigs.k8s.io/"
+      }
+    }
   },
   {
     "id": "tests-config",
@@ -384,7 +922,100 @@
     "origine": [
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Développer un opérateur : un type d'objet, une boucle de réconciliation",
+      "largeur": 747,
+      "hauteur": 302,
+      "zones": [
+        {
+          "id": "api",
+          "titre": "API Kubernetes",
+          "x": 20,
+          "y": 22,
+          "w": 492,
+          "h": 110
+        },
+        {
+          "id": "operateur",
+          "titre": "Opérateur",
+          "x": 295,
+          "y": 172,
+          "w": 432,
+          "h": 110,
+          "ton": "chaud"
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "crd",
+          "texte": "CRD",
+          "detail": "définit un type d'objet",
+          "ton": "froid",
+          "x": 36,
+          "y": 60,
+          "w": 180,
+          "h": 56,
+          "zone": "api"
+        },
+        {
+          "id": "cr",
+          "texte": "Ressource personnalisée",
+          "detail": "ce que l'utilisateur déclare",
+          "ton": "chaud",
+          "x": 286,
+          "y": 60,
+          "w": 210,
+          "h": 56,
+          "zone": "api"
+        },
+        {
+          "id": "rec",
+          "texte": "Boucle reconcile",
+          "detail": "écrite en Go",
+          "ton": "chaud",
+          "x": 311,
+          "y": 210,
+          "w": 160,
+          "h": 56,
+          "zone": "operateur"
+        },
+        {
+          "id": "res",
+          "texte": "Ressources créées",
+          "detail": "Deployment, Service",
+          "ton": "ok",
+          "x": 541,
+          "y": 210,
+          "w": 170,
+          "h": 56,
+          "zone": "operateur"
+        }
+      ],
+      "liens": [
+        {
+          "de": "crd",
+          "vers": "cr",
+          "texte": "décrit"
+        },
+        {
+          "de": "cr",
+          "vers": "rec",
+          "texte": "observe",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "rec",
+          "vers": "res",
+          "texte": "crée, met à jour"
+        }
+      ],
+      "source": {
+        "nom": "Kubebuilder : le livre",
+        "url": "https://book.kubebuilder.io/"
+      }
+    }
   },
   {
     "id": "gestion-changement",
@@ -419,7 +1050,90 @@
     "origine": [
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Gérer le changement : demande, revue, fenêtre, retour d'expérience",
+      "largeur": 796,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "dem",
+          "texte": "Demande",
+          "detail": "pull request",
+          "w": 110,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "rev",
+          "texte": "Revue",
+          "detail": "pairs, vérifications",
+          "ton": "chaud",
+          "w": 160,
+          "x": 202,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "fen",
+          "texte": "Fenêtre",
+          "detail": "quand l'appliquer",
+          "w": 140,
+          "x": 434,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "exe",
+          "texte": "Exécution",
+          "detail": "par le pipeline",
+          "w": 130,
+          "x": 646,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ret",
+          "texte": "Retour",
+          "detail": "ce qui a marché",
+          "ton": "ok",
+          "w": 130,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "dem",
+          "vers": "rev",
+          "texte": "relue"
+        },
+        {
+          "de": "rev",
+          "vers": "fen",
+          "texte": "planifiée"
+        },
+        {
+          "de": "fen",
+          "vers": "exe",
+          "texte": "appliquée"
+        },
+        {
+          "de": "exe",
+          "vers": "ret",
+          "texte": "analysée",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Google SRE Book : ingénierie des livraisons (accès libre)",
+        "url": "https://sre.google/sre-book/release-engineering/"
+      }
+    }
   },
   {
     "id": "toil",
@@ -465,6 +1179,76 @@
     "origine": [
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Réduire le toil : repérer, automatiser, mesurer le gain",
+      "largeur": 714,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "toil",
+          "texte": "Travail répétitif",
+          "detail": "manuel, sans valeur durable",
+          "ton": "faible",
+          "w": 210,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "mes",
+          "texte": "Mesure",
+          "detail": "temps passé par semaine",
+          "w": 180,
+          "x": 302,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "auto",
+          "texte": "Automatisation",
+          "detail": "script, opérateur",
+          "ton": "chaud",
+          "w": 140,
+          "x": 554,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "gain",
+          "texte": "Temps libéré",
+          "detail": "pour l'ingénierie",
+          "ton": "ok",
+          "w": 140,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "toil",
+          "vers": "mes",
+          "texte": "se compte"
+        },
+        {
+          "de": "mes",
+          "vers": "auto",
+          "texte": "justifie"
+        },
+        {
+          "de": "auto",
+          "vers": "gain",
+          "texte": "libère",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Google SRE Book : éliminer le toil (accès libre)",
+        "url": "https://sre.google/sre-book/eliminating-toil/"
+      }
+    }
   }
 ]

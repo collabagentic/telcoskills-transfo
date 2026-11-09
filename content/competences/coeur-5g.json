@@ -75,7 +75,167 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "L'architecture 5G Core : des fonctions qui se parlent par le bus de services, un plan usager séparé",
+      "largeur": 840,
+      "hauteur": 436,
+      "zones": [
+        {
+          "id": "sba",
+          "titre": "Bus de services (SBA, HTTP/2)",
+          "x": 324,
+          "y": 32,
+          "w": 410,
+          "h": 270
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "ue",
+          "texte": "UE",
+          "detail": "terminal",
+          "x": 20,
+          "y": 230,
+          "w": 90,
+          "h": 56
+        },
+        {
+          "id": "ran",
+          "texte": "RAN (gNB)",
+          "detail": "radio",
+          "x": 150,
+          "y": 230,
+          "w": 110,
+          "h": 56
+        },
+        {
+          "id": "nssf",
+          "texte": "NSSF",
+          "detail": "slices",
+          "x": 340,
+          "y": 70,
+          "w": 110,
+          "h": 56,
+          "zone": "sba"
+        },
+        {
+          "id": "ausf",
+          "texte": "AUSF",
+          "detail": "authentifie",
+          "x": 474,
+          "y": 70,
+          "w": 110,
+          "h": 56,
+          "zone": "sba"
+        },
+        {
+          "id": "udm",
+          "texte": "UDM",
+          "detail": "abonnés",
+          "x": 608,
+          "y": 70,
+          "w": 110,
+          "h": 56,
+          "zone": "sba"
+        },
+        {
+          "id": "pcf",
+          "texte": "PCF",
+          "detail": "politiques",
+          "x": 340,
+          "y": 150,
+          "w": 110,
+          "h": 56,
+          "zone": "sba"
+        },
+        {
+          "id": "nrf",
+          "texte": "NRF",
+          "detail": "annuaire",
+          "ton": "froid",
+          "x": 474,
+          "y": 150,
+          "w": 110,
+          "h": 56,
+          "zone": "sba"
+        },
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "accès, mobilité",
+          "ton": "chaud",
+          "x": 340,
+          "y": 230,
+          "w": 110,
+          "h": 56,
+          "zone": "sba"
+        },
+        {
+          "id": "smf",
+          "texte": "SMF",
+          "detail": "sessions",
+          "ton": "chaud",
+          "x": 474,
+          "y": 230,
+          "w": 110,
+          "h": 56,
+          "zone": "sba"
+        },
+        {
+          "id": "upf",
+          "texte": "UPF",
+          "detail": "plan usager",
+          "ton": "chaud",
+          "x": 474,
+          "y": 360,
+          "w": 110,
+          "h": 56
+        },
+        {
+          "id": "dn",
+          "texte": "Réseau de données",
+          "detail": "Internet, entreprise",
+          "x": 640,
+          "y": 360,
+          "w": 180,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ue",
+          "vers": "ran",
+          "texte": "radio"
+        },
+        {
+          "de": "ran",
+          "vers": "amf",
+          "texte": "N2"
+        },
+        {
+          "de": "smf",
+          "vers": "upf",
+          "texte": "N4"
+        },
+        {
+          "de": "ran",
+          "vers": "upf",
+          "texte": "N3",
+          "sortie": "b",
+          "entree": "g"
+        },
+        {
+          "de": "upf",
+          "vers": "dn",
+          "texte": "N6"
+        }
+      ],
+      "source": {
+        "nom": "free5GC : cœur 5G open source (guide)",
+        "url": "https://free5gc.org/guide/"
+      }
+    }
   },
   {
     "id": "cnf-onboarding",
@@ -107,7 +267,104 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Accueillir une fonction réseau : de l'exigence à la mise en production",
+      "largeur": 714,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ex",
+          "texte": "Exigences",
+          "detail": "réseau, CPU, stockage",
+          "w": 170,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "liv",
+          "texte": "Livraison éditeur",
+          "detail": "charts, images, doc",
+          "w": 170,
+          "x": 262,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "rev",
+          "texte": "Revue de réception",
+          "detail": "contrôle des artefacts",
+          "ton": "chaud",
+          "w": 170,
+          "x": 504,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "lab",
+          "texte": "Intégration en lab",
+          "detail": "tests, non-régression",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "qual",
+          "texte": "Qualification",
+          "detail": "critères d'acceptation",
+          "w": 170,
+          "x": 262,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "prod",
+          "texte": "Production",
+          "detail": "déploiement par pipeline",
+          "ton": "ok",
+          "w": 190,
+          "x": 504,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ex",
+          "vers": "liv",
+          "texte": "cadrent"
+        },
+        {
+          "de": "liv",
+          "vers": "rev",
+          "texte": "arrive"
+        },
+        {
+          "de": "rev",
+          "vers": "lab",
+          "texte": "valide",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "lab",
+          "vers": "qual",
+          "texte": "passe"
+        },
+        {
+          "de": "qual",
+          "vers": "prod",
+          "texte": "autorise"
+        }
+      ],
+      "source": {
+        "nom": "towards5gs-helm : charts Helm free5GC",
+        "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
+      }
+    }
   },
   {
     "id": "cnf-ops",
@@ -138,7 +395,87 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Exploiter une fonction réseau : monter en charge, mettre à jour, résister aux pannes",
+      "largeur": 820,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "cnf",
+          "texte": "Fonction réseau",
+          "detail": "en production",
+          "ton": "chaud",
+          "x": 350,
+          "y": 176,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "scale",
+          "texte": "Scaling",
+          "detail": "ajoute ou retire des pods",
+          "x": 330,
+          "y": 30,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "sauv",
+          "texte": "Données",
+          "detail": "sauvegarde et restauration",
+          "x": 325,
+          "y": 322,
+          "w": 200,
+          "h": 56
+        },
+        {
+          "id": "upg",
+          "texte": "Mise à jour",
+          "detail": "sans coupure, retour possible",
+          "x": 20,
+          "y": 176,
+          "w": 220,
+          "h": 56
+        },
+        {
+          "id": "panne",
+          "texte": "Panne",
+          "detail": "sondes, redémarrage, bascule",
+          "x": 590,
+          "y": 176,
+          "w": 210,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "cnf",
+          "vers": "scale",
+          "texte": "charge"
+        },
+        {
+          "de": "cnf",
+          "vers": "sauv",
+          "texte": "état"
+        },
+        {
+          "de": "cnf",
+          "vers": "upg",
+          "texte": "version"
+        },
+        {
+          "de": "cnf",
+          "vers": "panne",
+          "texte": "défaut"
+        }
+      ],
+      "source": {
+        "nom": "OpenAirInterface : cœur 5G open source (déploiement)",
+        "url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed"
+      }
+    }
   },
   {
     "id": "sec-5g",
@@ -169,7 +506,92 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Sécurité du cœur 5G : quatre protections qui se complètent",
+      "largeur": 810,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "core",
+          "texte": "Cœur 5G",
+          "detail": "fonctions et interfaces",
+          "ton": "chaud",
+          "x": 330,
+          "y": 176,
+          "w": 180,
+          "h": 56
+        },
+        {
+          "id": "tls",
+          "texte": "TLS entre fonctions",
+          "detail": "chiffre les interfaces SBI",
+          "ton": "froid",
+          "x": 320,
+          "y": 30,
+          "w": 200,
+          "h": 56
+        },
+        {
+          "id": "suci",
+          "texte": "SUCI",
+          "detail": "identité chiffrée de l'abonné",
+          "ton": "froid",
+          "x": 310,
+          "y": 322,
+          "w": 220,
+          "h": 56
+        },
+        {
+          "id": "oauth",
+          "texte": "OAuth2",
+          "detail": "jetons délivrés par le NRF",
+          "ton": "froid",
+          "x": 20,
+          "y": 176,
+          "w": 200,
+          "h": 56
+        },
+        {
+          "id": "sepp",
+          "texte": "SEPP",
+          "detail": "protège l'interconnexion",
+          "ton": "froid",
+          "x": 600,
+          "y": 176,
+          "w": 190,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "core",
+          "vers": "tls",
+          "texte": "protège",
+          "sens": "double"
+        },
+        {
+          "de": "core",
+          "vers": "suci",
+          "texte": "cache"
+        },
+        {
+          "de": "core",
+          "vers": "oauth",
+          "texte": "autorise"
+        },
+        {
+          "de": "core",
+          "vers": "sepp",
+          "texte": "N32"
+        }
+      ],
+      "source": {
+        "nom": "Open5GS : code source du cœur 5G open source",
+        "url": "https://github.com/open5gs/open5gs"
+      }
+    }
   },
   {
     "id": "matrice-exigences",
@@ -215,7 +637,91 @@
     "origine": [
       "architecte-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "De la fonction réseau aux ressources de la plateforme",
+      "largeur": 704,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "nf",
+          "texte": "Fonction réseau",
+          "detail": "par éditeur",
+          "ton": "chaud",
+          "w": 150,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ex",
+          "texte": "Exigences",
+          "detail": "CPU, mémoire, interfaces",
+          "w": 190,
+          "x": 242,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "mat",
+          "texte": "Matrice d'exigences",
+          "detail": "une ligne par fonction",
+          "ton": "chaud",
+          "w": 180,
+          "x": 504,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "plat",
+          "texte": "Plateforme",
+          "detail": "capacités disponibles",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "ecart",
+          "texte": "Écarts",
+          "detail": "à combler ou à négocier",
+          "ton": "faible",
+          "w": 180,
+          "x": 262,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "nf",
+          "vers": "ex",
+          "texte": "déclare"
+        },
+        {
+          "de": "ex",
+          "vers": "mat",
+          "texte": "alimentent"
+        },
+        {
+          "de": "mat",
+          "vers": "plat",
+          "texte": "comparée à",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "plat",
+          "vers": "ecart",
+          "texte": "révèle"
+        }
+      ],
+      "source": {
+        "nom": "towards5gs-helm : exemple de livrable de NF",
+        "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
+      }
+    }
   },
   {
     "id": "identifiants",
@@ -237,7 +743,76 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Les identités d'un abonné : permanente, chiffrée, temporaire",
+      "largeur": 694,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "supi",
+          "texte": "SUPI",
+          "detail": "identité permanente",
+          "w": 150,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "suci",
+          "texte": "SUCI",
+          "detail": "SUPI chiffré, envoyé par radio",
+          "ton": "chaud",
+          "w": 220,
+          "x": 242,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "udm",
+          "texte": "UDM",
+          "detail": "retrouve le SUPI",
+          "w": 140,
+          "x": 534,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "guti",
+          "texte": "5G-GUTI",
+          "detail": "identité temporaire",
+          "ton": "ok",
+          "w": 150,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "supi",
+          "vers": "suci",
+          "texte": "chiffré en"
+        },
+        {
+          "de": "suci",
+          "vers": "udm",
+          "texte": "déchiffré par"
+        },
+        {
+          "de": "udm",
+          "vers": "guti",
+          "texte": "attribue",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "3GPP TS 23.003 : numérotation, adressage et identification (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.003/"
+      }
+    }
   },
   {
     "id": "sbi-http2",
@@ -275,7 +850,61 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Une interface de service : un client, un NRF, un fournisseur, en HTTP/2",
+      "largeur": 770,
+      "hauteur": 120,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "nrf",
+          "texte": "NRF",
+          "detail": "annuaire des services",
+          "ton": "froid",
+          "x": 290,
+          "y": 30,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "cons",
+          "texte": "Fonction cliente",
+          "detail": "consomme un service",
+          "x": 20,
+          "y": 30,
+          "w": 160,
+          "h": 56
+        },
+        {
+          "id": "prod",
+          "texte": "Fonction fournisseuse",
+          "detail": "expose le service OpenAPI",
+          "ton": "chaud",
+          "x": 550,
+          "y": 30,
+          "w": 200,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "nrf",
+          "vers": "cons",
+          "texte": "découvre",
+          "sens": "double"
+        },
+        {
+          "de": "prod",
+          "vers": "nrf",
+          "texte": "s'enregistre"
+        }
+      ],
+      "source": {
+        "nom": "5GC_APIs : spécifications OpenAPI des interfaces SBI 3GPP",
+        "url": "https://github.com/jdegre/5GC_APIs"
+      }
+    }
   },
   {
     "id": "traces",
@@ -313,7 +942,90 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Lire un échange 5G : capturer, décoder, suivre la procédure",
+      "largeur": 654,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "tap",
+          "texte": "Point de capture",
+          "detail": "interface N2, N4, SBI",
+          "w": 170,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "pcap",
+          "texte": "Capture",
+          "detail": "fichier pcap",
+          "w": 110,
+          "x": 262,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "wire",
+          "texte": "Wireshark",
+          "detail": "décode NGAP, PFCP, HTTP/2",
+          "ton": "chaud",
+          "w": 190,
+          "x": 444,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "proc",
+          "texte": "Procédure",
+          "detail": "suite de messages",
+          "w": 140,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "cause",
+          "texte": "Cause",
+          "detail": "message en échec",
+          "ton": "faible",
+          "w": 140,
+          "x": 232,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "tap",
+          "vers": "pcap",
+          "texte": "enregistre"
+        },
+        {
+          "de": "pcap",
+          "vers": "wire",
+          "texte": "ouvert dans"
+        },
+        {
+          "de": "wire",
+          "vers": "proc",
+          "texte": "reconstitue",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "proc",
+          "vers": "cause",
+          "texte": "désigne"
+        }
+      ],
+      "source": {
+        "nom": "Wireshark : documentation",
+        "url": "https://www.wireshark.org/docs/"
+      }
+    }
   },
   {
     "id": "amf",
@@ -352,7 +1064,89 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "L'AMF : terminaison de la signalisation du terminal et de la radio",
+      "largeur": 570,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "accès et mobilité",
+          "ton": "chaud",
+          "x": 230,
+          "y": 176,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "udm",
+          "texte": "UDM",
+          "detail": "abonnés",
+          "x": 255,
+          "y": 30,
+          "w": 90,
+          "h": 56
+        },
+        {
+          "id": "ausf",
+          "texte": "AUSF",
+          "detail": "authentification",
+          "x": 230,
+          "y": 322,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "ran",
+          "texte": "RAN (gNB)",
+          "detail": "radio",
+          "x": 20,
+          "y": 176,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "smf",
+          "texte": "SMF",
+          "detail": "sessions",
+          "x": 460,
+          "y": 176,
+          "w": 90,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "amf",
+          "vers": "udm",
+          "texte": "N8"
+        },
+        {
+          "de": "amf",
+          "vers": "ausf",
+          "texte": "N12"
+        },
+        {
+          "de": "amf",
+          "vers": "ran",
+          "texte": "N2 · NGAP",
+          "sens": "double"
+        },
+        {
+          "de": "amf",
+          "vers": "smf",
+          "texte": "N11",
+          "sens": "double"
+        }
+      ],
+      "source": {
+        "nom": "free5GC : AMF (code source)",
+        "url": "https://github.com/free5gc/amf"
+      }
+    }
   },
   {
     "id": "smf-upf",
@@ -391,7 +1185,90 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "La SMF pilote l'UPF : le plan de contrôle décide, le plan usager exécute",
+      "largeur": 660,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "upf",
+          "texte": "UPF",
+          "detail": "achemine le trafic",
+          "ton": "chaud",
+          "x": 230,
+          "y": 176,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "smf",
+          "texte": "SMF",
+          "detail": "décide des règles",
+          "x": 235,
+          "y": 30,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "upf2",
+          "texte": "Autre UPF",
+          "detail": "chaînage",
+          "x": 255,
+          "y": 322,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "ran",
+          "texte": "RAN (gNB)",
+          "detail": "radio",
+          "x": 20,
+          "y": 176,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "dn",
+          "texte": "Réseau de données",
+          "detail": "Internet, entreprise",
+          "x": 470,
+          "y": 176,
+          "w": 170,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "smf",
+          "vers": "upf",
+          "texte": "N4 · PFCP"
+        },
+        {
+          "de": "upf",
+          "vers": "upf2",
+          "texte": "N9",
+          "sens": "double"
+        },
+        {
+          "de": "upf",
+          "vers": "ran",
+          "texte": "N3 · GTP-U",
+          "sens": "double"
+        },
+        {
+          "de": "upf",
+          "vers": "dn",
+          "texte": "N6",
+          "sens": "double"
+        }
+      ],
+      "source": {
+        "nom": "free5GC : UPF en Go (code source)",
+        "url": "https://github.com/free5gc/go-upf"
+      }
+    }
   },
   {
     "id": "nrf-scp",
@@ -437,7 +1314,75 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "NRF et SCP : enregistrer, découvrir, router",
+      "largeur": 690,
+      "hauteur": 252,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "nrf",
+          "texte": "NRF",
+          "detail": "annuaire",
+          "ton": "froid",
+          "x": 330,
+          "y": 30,
+          "w": 90,
+          "h": 56
+        },
+        {
+          "id": "scp",
+          "texte": "SCP",
+          "detail": "route et équilibre",
+          "ton": "chaud",
+          "x": 300,
+          "y": 176,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "prod",
+          "texte": "Fonction fournisseuse",
+          "detail": "s'enregistre",
+          "x": 20,
+          "y": 30,
+          "w": 200,
+          "h": 56
+        },
+        {
+          "id": "cons",
+          "texte": "Fonction cliente",
+          "detail": "cherche un service",
+          "x": 510,
+          "y": 30,
+          "w": 160,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "scp",
+          "vers": "nrf",
+          "texte": "demande"
+        },
+        {
+          "de": "prod",
+          "vers": "nrf",
+          "texte": "enregistre"
+        },
+        {
+          "de": "nrf",
+          "vers": "cons",
+          "texte": "découvre",
+          "sens": "double"
+        }
+      ],
+      "source": {
+        "nom": "free5GC : NRF (code source)",
+        "url": "https://github.com/free5gc/nrf"
+      }
+    }
   },
   {
     "id": "enregistrement",
@@ -475,7 +1420,104 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "L'enregistrement d'un terminal : radio, AMF, authentification, abonné",
+      "largeur": 716,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ue",
+          "texte": "Terminal",
+          "detail": "envoie son SUCI",
+          "w": 130,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ran",
+          "texte": "RAN",
+          "detail": "relaie",
+          "w": 90,
+          "x": 222,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "orchestre",
+          "ton": "chaud",
+          "w": 90,
+          "x": 384,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ausf",
+          "texte": "AUSF",
+          "detail": "vérifie l'identité",
+          "w": 150,
+          "x": 546,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "udm",
+          "texte": "UDM",
+          "detail": "fournit les clés",
+          "w": 140,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "ok",
+          "texte": "Enregistré",
+          "detail": "5G-GUTI attribué",
+          "ton": "ok",
+          "w": 140,
+          "x": 232,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ue",
+          "vers": "ran",
+          "texte": "N1"
+        },
+        {
+          "de": "ran",
+          "vers": "amf",
+          "texte": "N2"
+        },
+        {
+          "de": "amf",
+          "vers": "ausf",
+          "texte": "N12"
+        },
+        {
+          "de": "ausf",
+          "vers": "udm",
+          "texte": "N13",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "udm",
+          "vers": "ok",
+          "texte": "accepte"
+        }
+      ],
+      "source": {
+        "nom": "3GPP TS 23.502 : procédures du système 5G (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/"
+      }
+    }
   },
   {
     "id": "session-pdu",
@@ -522,7 +1564,105 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "L'établissement d'une session PDU : de la demande au chemin de données",
+      "largeur": 826,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ue",
+          "texte": "Terminal",
+          "detail": "demande une session",
+          "w": 150,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "choisit une SMF",
+          "w": 130,
+          "x": 242,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "smf",
+          "texte": "SMF",
+          "detail": "crée la session",
+          "ton": "chaud",
+          "w": 130,
+          "x": 444,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "pcf",
+          "texte": "PCF",
+          "detail": "fournit la politique",
+          "w": 160,
+          "x": 646,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "upf",
+          "texte": "UPF",
+          "detail": "ouvre le chemin",
+          "ton": "chaud",
+          "w": 130,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "data",
+          "texte": "Session active",
+          "detail": "trafic usager",
+          "ton": "ok",
+          "w": 140,
+          "x": 222,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ue",
+          "vers": "amf",
+          "texte": "N1"
+        },
+        {
+          "de": "amf",
+          "vers": "smf",
+          "texte": "N11"
+        },
+        {
+          "de": "smf",
+          "vers": "pcf",
+          "texte": "N7"
+        },
+        {
+          "de": "pcf",
+          "vers": "upf",
+          "texte": "N4",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "upf",
+          "vers": "data",
+          "texte": "établit"
+        }
+      ],
+      "source": {
+        "nom": "UERANSIM : simulateur d'UE et de gNB 5G",
+        "url": "https://github.com/aligungr/UERANSIM"
+      }
+    }
   },
   {
     "id": "deploiement-lab",
@@ -561,7 +1701,90 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Un cœur 5G open source en lab : du cluster au test",
+      "largeur": 856,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "cl",
+          "texte": "Cluster de lab",
+          "detail": "kind ou Kubernetes",
+          "w": 150,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "helm",
+          "texte": "Charts Helm",
+          "detail": "cœur open source",
+          "ton": "chaud",
+          "w": 140,
+          "x": 242,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "core",
+          "texte": "Cœur 5G",
+          "detail": "AMF, SMF, UPF",
+          "w": 120,
+          "x": 454,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "sim",
+          "texte": "Simulateur RAN et UE",
+          "detail": "génère du trafic",
+          "w": 190,
+          "x": 646,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "test",
+          "texte": "Test de bout en bout",
+          "detail": "enregistrement, session",
+          "ton": "ok",
+          "w": 190,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "cl",
+          "vers": "helm",
+          "texte": "héberge"
+        },
+        {
+          "de": "helm",
+          "vers": "core",
+          "texte": "déploie"
+        },
+        {
+          "de": "core",
+          "vers": "sim",
+          "texte": "relié à"
+        },
+        {
+          "de": "sim",
+          "vers": "test",
+          "texte": "valide",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "towards5gs-helm : charts Helm free5GC",
+        "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
+      }
+    }
   },
   {
     "id": "udm-udr-ausf",
@@ -590,7 +1813,76 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Authentifier un abonné : AUSF, UDM, UDR",
+      "largeur": 664,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "demande l'authentification",
+          "w": 200,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ausf",
+          "texte": "AUSF",
+          "detail": "valide la preuve",
+          "ton": "chaud",
+          "w": 140,
+          "x": 292,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "udm",
+          "texte": "UDM",
+          "detail": "génère le vecteur",
+          "w": 140,
+          "x": 504,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "udr",
+          "texte": "UDR",
+          "detail": "stocke les données abonné",
+          "ton": "froid",
+          "w": 190,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "amf",
+          "vers": "ausf",
+          "texte": "N12"
+        },
+        {
+          "de": "ausf",
+          "vers": "udm",
+          "texte": "N13"
+        },
+        {
+          "de": "udm",
+          "vers": "udr",
+          "texte": "Nudr",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Open5GS : cœur 4G/5G open source (code source)",
+        "url": "https://github.com/open5gs/open5gs"
+      }
+    }
   },
   {
     "id": "pcf-chf",
@@ -620,7 +1912,60 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "La SMF consulte la PCF pour la politique et la CHF pour la facturation",
+      "largeur": 690,
+      "hauteur": 120,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "smf",
+          "texte": "SMF",
+          "detail": "session PDU",
+          "ton": "chaud",
+          "x": 300,
+          "y": 30,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "pcf",
+          "texte": "PCF",
+          "detail": "QoS, règles de service",
+          "x": 20,
+          "y": 30,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "chf",
+          "texte": "CHF",
+          "detail": "facturation convergente",
+          "x": 490,
+          "y": 30,
+          "w": 180,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "smf",
+          "vers": "pcf",
+          "texte": "N7 · politique",
+          "sens": "double"
+        },
+        {
+          "de": "smf",
+          "vers": "chf",
+          "texte": "N40 · tarifs"
+        }
+      ],
+      "source": {
+        "nom": "free5GC : CHF (code source)",
+        "url": "https://github.com/free5gc/chf"
+      }
+    }
   },
   {
     "id": "slicing",
@@ -650,7 +1995,129 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Network slicing : le terminal demande une slice, le NSSF choisit les fonctions dédiées",
+      "largeur": 766,
+      "hauteur": 304,
+      "zones": [
+        {
+          "id": "s1",
+          "titre": "Slice 1 : S-NSSAI haut débit",
+          "x": 424,
+          "y": 24,
+          "w": 282,
+          "h": 110
+        },
+        {
+          "id": "s2",
+          "titre": "Slice 2 : S-NSSAI faible latence",
+          "x": 424,
+          "y": 174,
+          "w": 322,
+          "h": 110
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "reçoit la demande",
+          "ton": "chaud",
+          "x": 20,
+          "y": 130,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "nssf",
+          "texte": "NSSF",
+          "detail": "choisit la slice",
+          "ton": "froid",
+          "x": 230,
+          "y": 130,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "smf1",
+          "texte": "SMF eMBB",
+          "detail": "haut débit",
+          "x": 440,
+          "y": 62,
+          "w": 100,
+          "h": 56,
+          "zone": "s1"
+        },
+        {
+          "id": "upf1",
+          "texte": "UPF eMBB",
+          "detail": "capacité",
+          "ton": "ok",
+          "x": 590,
+          "y": 62,
+          "w": 100,
+          "h": 56,
+          "zone": "s1"
+        },
+        {
+          "id": "smf2",
+          "texte": "SMF URLLC",
+          "detail": "faible latence",
+          "x": 440,
+          "y": 212,
+          "w": 120,
+          "h": 56,
+          "zone": "s2"
+        },
+        {
+          "id": "upf2",
+          "texte": "UPF URLLC",
+          "detail": "près du client",
+          "ton": "ok",
+          "x": 610,
+          "y": 212,
+          "w": 120,
+          "h": 56,
+          "zone": "s2"
+        }
+      ],
+      "liens": [
+        {
+          "de": "amf",
+          "vers": "nssf",
+          "texte": "N22"
+        },
+        {
+          "de": "nssf",
+          "vers": "smf1",
+          "texte": "slice 1",
+          "sortie": "d",
+          "entree": "g"
+        },
+        {
+          "de": "nssf",
+          "vers": "smf2",
+          "texte": "slice 2",
+          "sortie": "d",
+          "entree": "g"
+        },
+        {
+          "de": "smf1",
+          "vers": "upf1",
+          "texte": "N4"
+        },
+        {
+          "de": "smf2",
+          "vers": "upf2",
+          "texte": "N4"
+        }
+      ],
+      "source": {
+        "nom": "free5GC : NSSF (code source)",
+        "url": "https://github.com/free5gc/nssf"
+      }
+    }
   },
   {
     "id": "sepp",
@@ -671,7 +2138,96 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "L'itinérance 5G : deux SEPP protègent l'interface N32 entre opérateurs",
+      "largeur": 876,
+      "hauteur": 162,
+      "zones": [
+        {
+          "id": "a",
+          "titre": "Opérateur A",
+          "x": 20,
+          "y": 32,
+          "w": 402,
+          "h": 110
+        },
+        {
+          "id": "b",
+          "titre": "Opérateur B",
+          "x": 454,
+          "y": 32,
+          "w": 402,
+          "h": 110
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "nfa",
+          "texte": "Cœur de l'opérateur A",
+          "detail": "AMF, SMF, UDM",
+          "x": 36,
+          "y": 70,
+          "w": 190,
+          "h": 56,
+          "zone": "a"
+        },
+        {
+          "id": "seppa",
+          "texte": "SEPP A",
+          "detail": "protège la sortie",
+          "ton": "chaud",
+          "x": 276,
+          "y": 70,
+          "w": 130,
+          "h": 56,
+          "zone": "a"
+        },
+        {
+          "id": "seppb",
+          "texte": "SEPP B",
+          "detail": "protège l'entrée",
+          "ton": "chaud",
+          "x": 470,
+          "y": 70,
+          "w": 130,
+          "h": 56,
+          "zone": "b"
+        },
+        {
+          "id": "nfb",
+          "texte": "Cœur de l'opérateur B",
+          "detail": "AMF, SMF, UDM",
+          "x": 650,
+          "y": 70,
+          "w": 190,
+          "h": 56,
+          "zone": "b"
+        }
+      ],
+      "liens": [
+        {
+          "de": "nfa",
+          "vers": "seppa",
+          "texte": "SBI"
+        },
+        {
+          "de": "seppa",
+          "vers": "seppb",
+          "texte": "N32 · TLS",
+          "sens": "double"
+        },
+        {
+          "de": "seppb",
+          "vers": "nfb",
+          "texte": "SBI"
+        }
+      ],
+      "source": {
+        "nom": "3GPP TS 29.573 : interconnexion de PLMN en 5G (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.573/"
+      }
+    }
   },
   {
     "id": "interfonctionnement-4g",
@@ -701,7 +2257,136 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "4G et 5G ensemble : N26 entre MME et AMF, une SMF et une UPF communes",
+      "largeur": 700,
+      "hauteur": 322,
+      "zones": [
+        {
+          "id": "epc",
+          "titre": "Accès et cœur 4G",
+          "x": 20,
+          "y": 32,
+          "w": 442,
+          "h": 110
+        },
+        {
+          "id": "c5",
+          "titre": "Accès et cœur 5G",
+          "x": 20,
+          "y": 192,
+          "w": 302,
+          "h": 110
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "enb",
+          "texte": "eNodeB",
+          "detail": "radio 4G",
+          "x": 36,
+          "y": 70,
+          "w": 90,
+          "h": 56,
+          "zone": "epc"
+        },
+        {
+          "id": "mme",
+          "texte": "MME",
+          "detail": "mobilité 4G",
+          "x": 176,
+          "y": 70,
+          "w": 100,
+          "h": 56,
+          "zone": "epc"
+        },
+        {
+          "id": "pgw",
+          "texte": "SMF + PGW-C",
+          "detail": "sessions",
+          "ton": "chaud",
+          "x": 326,
+          "y": 70,
+          "w": 120,
+          "h": 56,
+          "zone": "epc"
+        },
+        {
+          "id": "gnb",
+          "texte": "gNodeB",
+          "detail": "radio 5G",
+          "x": 36,
+          "y": 230,
+          "w": 90,
+          "h": 56,
+          "zone": "c5"
+        },
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "mobilité 5G",
+          "x": 206,
+          "y": 230,
+          "w": 100,
+          "h": 56,
+          "zone": "c5"
+        },
+        {
+          "id": "upf",
+          "texte": "UPF + PGW-U",
+          "detail": "plan usager",
+          "ton": "chaud",
+          "x": 560,
+          "y": 230,
+          "w": 120,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "enb",
+          "vers": "mme",
+          "texte": "S1-MME"
+        },
+        {
+          "de": "mme",
+          "vers": "pgw",
+          "texte": "S5-C"
+        },
+        {
+          "de": "gnb",
+          "vers": "amf",
+          "texte": "N2"
+        },
+        {
+          "de": "mme",
+          "vers": "amf",
+          "texte": "N26",
+          "sens": "double",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "amf",
+          "vers": "pgw",
+          "texte": "N11",
+          "sortie": "d",
+          "entree": "b"
+        },
+        {
+          "de": "pgw",
+          "vers": "upf",
+          "texte": "Sx",
+          "sortie": "d",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Open5GS : documentation (EPC et 5GC)",
+        "url": "https://open5gs.org/open5gs/docs/"
+      }
+    }
   },
   {
     "id": "ims-voix",
@@ -730,7 +2415,89 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "La voix sur 5G : le cœur 5G porte la session, l'IMS établit l'appel",
+      "largeur": 776,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ue",
+          "texte": "Terminal",
+          "detail": "VoNR",
+          "w": 100,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "pdu",
+          "texte": "Session PDU",
+          "detail": "DNN « ims »",
+          "w": 120,
+          "x": 192,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "pcscf",
+          "texte": "P-CSCF",
+          "detail": "point d'entrée IMS",
+          "ton": "chaud",
+          "w": 150,
+          "x": 384,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "scscf",
+          "texte": "S-CSCF",
+          "detail": "enregistre et route",
+          "w": 150,
+          "x": 606,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "tas",
+          "texte": "Serveur d'applications",
+          "detail": "services de voix",
+          "w": 200,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ue",
+          "vers": "pdu",
+          "texte": "ouvre"
+        },
+        {
+          "de": "pdu",
+          "vers": "pcscf",
+          "texte": "atteint"
+        },
+        {
+          "de": "pcscf",
+          "vers": "scscf",
+          "texte": "SIP"
+        },
+        {
+          "de": "scscf",
+          "vers": "tas",
+          "texte": "SIP",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Kamailio : serveur SIP open source utilisé en IMS",
+        "url": "https://www.kamailio.org/"
+      }
+    }
   },
   {
     "id": "recette",
@@ -760,7 +2527,90 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "La recette : du critère d'acceptation au rapport",
+      "largeur": 694,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "crit",
+          "texte": "Critères",
+          "detail": "ce qui doit être vrai",
+          "w": 170,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "plan",
+          "texte": "Plan de tests",
+          "detail": "fonctionnels, performance",
+          "w": 190,
+          "x": 262,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "exec",
+          "texte": "Exécution",
+          "detail": "en lab puis en site",
+          "ton": "chaud",
+          "w": 150,
+          "x": 524,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "rap",
+          "texte": "Rapport",
+          "detail": "résultats, écarts",
+          "w": 140,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "dec",
+          "texte": "Décision",
+          "detail": "accepté ou réserve",
+          "ton": "ok",
+          "w": 150,
+          "x": 232,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "crit",
+          "vers": "plan",
+          "texte": "se traduisent en"
+        },
+        {
+          "de": "plan",
+          "vers": "exec",
+          "texte": "pilote"
+        },
+        {
+          "de": "exec",
+          "vers": "rap",
+          "texte": "produit",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "rap",
+          "vers": "dec",
+          "texte": "conduit à"
+        }
+      ],
+      "source": {
+        "nom": "Robot Framework : guide utilisateur",
+        "url": "https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html"
+      }
+    }
   },
   {
     "id": "multi-editeurs",
@@ -782,6 +2632,90 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Plusieurs éditeurs, un même cœur : les interfaces 3GPP font le lien",
+      "largeur": 590,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "int",
+          "texte": "Interfaces 3GPP",
+          "detail": "N2, N4, SBI",
+          "ton": "chaud",
+          "x": 230,
+          "y": 176,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "ea",
+          "texte": "Éditeur A",
+          "detail": "AMF",
+          "x": 255,
+          "y": 30,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "ed",
+          "texte": "Intégrateur",
+          "detail": "valide l'ensemble",
+          "ton": "ok",
+          "x": 235,
+          "y": 322,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "eb",
+          "texte": "Éditeur B",
+          "detail": "SMF",
+          "x": 20,
+          "y": 176,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "ec",
+          "texte": "Éditeur C",
+          "detail": "UPF",
+          "x": 470,
+          "y": 176,
+          "w": 100,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "int",
+          "vers": "ea",
+          "texte": "conforme",
+          "sens": "double"
+        },
+        {
+          "de": "ed",
+          "vers": "int",
+          "texte": "teste"
+        },
+        {
+          "de": "int",
+          "vers": "eb",
+          "texte": "conforme",
+          "sens": "double"
+        },
+        {
+          "de": "int",
+          "vers": "ec",
+          "texte": "conforme",
+          "sens": "double"
+        }
+      ],
+      "source": {
+        "nom": "OpenAirInterface : cœur 5G d'une autre implémentation, pour l'interopérabilité",
+        "url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed"
+      }
+    }
   }
 ]

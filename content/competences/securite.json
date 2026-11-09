@@ -83,7 +83,153 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Durcir en trois couches : le nœud, le cluster, le pod",
+      "largeur": 712,
+      "hauteur": 432,
+      "zones": [
+        {
+          "id": "noeud",
+          "titre": "Nœud",
+          "x": 20,
+          "y": 22,
+          "w": 572,
+          "h": 110
+        },
+        {
+          "id": "cluster",
+          "titre": "Cluster",
+          "x": 20,
+          "y": 162,
+          "w": 592,
+          "h": 110,
+          "ton": "froid"
+        },
+        {
+          "id": "pod",
+          "titre": "Pod",
+          "x": 20,
+          "y": 302,
+          "w": 672,
+          "h": 110,
+          "ton": "chaud"
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "selinux",
+          "texte": "SELinux",
+          "detail": "confine les processus",
+          "x": 36,
+          "y": 60,
+          "w": 170,
+          "h": 56,
+          "zone": "noeud"
+        },
+        {
+          "id": "noyau",
+          "texte": "Noyau et système",
+          "detail": "réduit, à jour",
+          "x": 246,
+          "y": 60,
+          "w": 160,
+          "h": 56,
+          "zone": "noeud"
+        },
+        {
+          "id": "acces",
+          "texte": "Accès au nœud",
+          "detail": "SSH limité",
+          "ton": "faible",
+          "x": 446,
+          "y": 60,
+          "w": 130,
+          "h": 56,
+          "zone": "noeud"
+        },
+        {
+          "id": "rbac",
+          "texte": "RBAC",
+          "detail": "moindre privilège",
+          "x": 36,
+          "y": 200,
+          "w": 140,
+          "h": 56,
+          "zone": "cluster"
+        },
+        {
+          "id": "psa",
+          "texte": "Pod Security Admission",
+          "detail": "baseline, restricted",
+          "x": 216,
+          "y": 200,
+          "w": 200,
+          "h": 56,
+          "zone": "cluster"
+        },
+        {
+          "id": "audit",
+          "texte": "Audit de l'API",
+          "detail": "qui a fait quoi",
+          "x": 456,
+          "y": 200,
+          "w": 140,
+          "h": 56,
+          "zone": "cluster"
+        },
+        {
+          "id": "nonroot",
+          "texte": "Utilisateur non root",
+          "detail": "pas d'élévation",
+          "x": 36,
+          "y": 340,
+          "w": 190,
+          "h": 56,
+          "zone": "pod"
+        },
+        {
+          "id": "caps",
+          "texte": "Capacités",
+          "detail": "retirées par défaut",
+          "x": 266,
+          "y": 340,
+          "w": 150,
+          "h": 56,
+          "zone": "pod"
+        },
+        {
+          "id": "fs",
+          "texte": "Système en lecture seule",
+          "detail": "écritures limitées",
+          "x": 456,
+          "y": 340,
+          "w": 220,
+          "h": 56,
+          "zone": "pod"
+        }
+      ],
+      "liens": [
+        {
+          "de": "noyau",
+          "vers": "psa",
+          "texte": "porte",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "psa",
+          "vers": "caps",
+          "texte": "impose",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "kube-bench : contrôle des bonnes pratiques CIS Kubernetes",
+        "url": "https://github.com/aquasecurity/kube-bench"
+      }
+    }
   },
   {
     "id": "sec-reseau",
@@ -124,7 +270,106 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Segmenter : tout refuser d'abord, autoriser ensuite flux par flux",
+      "largeur": 766,
+      "hauteur": 258,
+      "zones": [
+        {
+          "id": "ns",
+          "titre": "Namespace protégé",
+          "x": 284,
+          "y": 32,
+          "w": 462,
+          "h": 206,
+          "ton": "chaud"
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "ok",
+          "texte": "Pods autorisés",
+          "detail": "bon label",
+          "ton": "ok",
+          "x": 20,
+          "y": 70,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "ko",
+          "texte": "Autres pods",
+          "detail": "sans label",
+          "ton": "faible",
+          "x": 20,
+          "y": 166,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "allow",
+          "texte": "Règle explicite",
+          "detail": "par labels et port",
+          "ton": "chaud",
+          "x": 300,
+          "y": 70,
+          "w": 190,
+          "h": 56,
+          "zone": "ns"
+        },
+        {
+          "id": "deny",
+          "texte": "Default deny",
+          "detail": "tout refusé en entrée",
+          "ton": "froid",
+          "x": 300,
+          "y": 166,
+          "w": 190,
+          "h": 56,
+          "zone": "ns"
+        },
+        {
+          "id": "cible",
+          "texte": "Pods protégés",
+          "detail": "namespace dédié",
+          "ton": "ok",
+          "x": 600,
+          "y": 118,
+          "w": 130,
+          "h": 56,
+          "zone": "ns"
+        }
+      ],
+      "liens": [
+        {
+          "de": "ok",
+          "vers": "allow",
+          "texte": "autorisé"
+        },
+        {
+          "de": "ko",
+          "vers": "deny",
+          "texte": "refusé",
+          "style": "pointille"
+        },
+        {
+          "de": "allow",
+          "vers": "cible",
+          "texte": "ouvre"
+        },
+        {
+          "de": "deny",
+          "vers": "cible",
+          "texte": "protège",
+          "style": "pointille"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : Network Policies",
+        "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+      }
+    }
   },
   {
     "id": "sec-supply",
@@ -174,7 +419,105 @@
       "ingenieur-caas-telco",
       "parcours-sylva"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "La chaîne d'approvisionnement : du code au pod, chaque étape se vérifie",
+      "largeur": 714,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "src",
+          "texte": "Code source",
+          "detail": "revue, branche protégée",
+          "w": 180,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "build",
+          "texte": "Build reproductible",
+          "detail": "dépendances épinglées",
+          "ton": "chaud",
+          "w": 180,
+          "x": 272,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "sbom",
+          "texte": "SBOM et signature",
+          "detail": "contenu et origine",
+          "w": 170,
+          "x": 524,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "reg",
+          "texte": "Registre",
+          "detail": "images signées",
+          "w": 120,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "adm",
+          "texte": "Admission",
+          "detail": "refuse l'image non signée",
+          "ton": "froid",
+          "w": 190,
+          "x": 212,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "pod",
+          "texte": "Pod",
+          "detail": "image par digest",
+          "ton": "ok",
+          "w": 140,
+          "x": 474,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "src",
+          "vers": "build",
+          "texte": "construit"
+        },
+        {
+          "de": "build",
+          "vers": "sbom",
+          "texte": "produit"
+        },
+        {
+          "de": "sbom",
+          "vers": "reg",
+          "texte": "publie",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "reg",
+          "vers": "adm",
+          "texte": "vérifie"
+        },
+        {
+          "de": "adm",
+          "vers": "pod",
+          "texte": "autorise"
+        }
+      ],
+      "source": {
+        "nom": "Trivy : scanner de vulnérabilités et de SBOM",
+        "url": "https://trivy.dev/"
+      }
+    }
   },
   {
     "id": "sec-secrets",
@@ -224,7 +567,122 @@
       "devops-integrateur-nf",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Secrets et certificats : les secrets vivent dans un coffre, les certificats se renouvellent seuls",
+      "largeur": 850,
+      "hauteur": 286,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "coffre",
+          "texte": "Coffre",
+          "detail": "Vault, OpenBao",
+          "ton": "chaud",
+          "x": 20,
+          "y": 40,
+          "w": 120,
+          "h": 56
+        },
+        {
+          "id": "eso",
+          "texte": "External Secrets",
+          "detail": "synchronise",
+          "x": 200,
+          "y": 40,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "secret",
+          "texte": "Secret Kubernetes",
+          "detail": "chiffré au repos",
+          "x": 410,
+          "y": 40,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "ca",
+          "texte": "Autorité",
+          "detail": "interne ou ACME",
+          "ton": "chaud",
+          "x": 20,
+          "y": 210,
+          "w": 130,
+          "h": 56
+        },
+        {
+          "id": "cm",
+          "texte": "cert-manager",
+          "detail": "émet et renouvelle",
+          "x": 210,
+          "y": 210,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "cert",
+          "texte": "Certificat TLS",
+          "detail": "durée courte",
+          "ton": "froid",
+          "x": 420,
+          "y": 210,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "pod",
+          "texte": "Pod",
+          "detail": "monte les deux",
+          "ton": "ok",
+          "x": 710,
+          "y": 125,
+          "w": 120,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "coffre",
+          "vers": "eso",
+          "texte": "lit"
+        },
+        {
+          "de": "eso",
+          "vers": "secret",
+          "texte": "crée"
+        },
+        {
+          "de": "ca",
+          "vers": "cm",
+          "texte": "signe"
+        },
+        {
+          "de": "cm",
+          "vers": "cert",
+          "texte": "émet"
+        },
+        {
+          "de": "secret",
+          "vers": "pod",
+          "texte": "monté",
+          "sortie": "d",
+          "entree": "g"
+        },
+        {
+          "de": "cert",
+          "vers": "pod",
+          "texte": "monté",
+          "sortie": "d",
+          "entree": "g"
+        }
+      ],
+      "source": {
+        "nom": "cert-manager : documentation",
+        "url": "https://cert-manager.io/docs/"
+      }
+    }
   },
   {
     "id": "reg-cadre-fr",
@@ -594,7 +1052,84 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Sécuriser le bus de services : TLS mutuel et jeton OAuth2",
+      "largeur": 674,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "cons",
+          "texte": "Fonction cliente",
+          "detail": "veut un service",
+          "w": 160,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "nrf",
+          "texte": "NRF",
+          "detail": "délivre un jeton",
+          "ton": "chaud",
+          "w": 140,
+          "x": 252,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "jeton",
+          "texte": "Jeton OAuth2",
+          "detail": "portée et durée limitées",
+          "w": 190,
+          "x": 464,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "prod",
+          "texte": "Fonction fournisseuse",
+          "detail": "vérifie le jeton",
+          "ton": "ok",
+          "w": 200,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "cons",
+          "vers": "nrf",
+          "texte": "demande"
+        },
+        {
+          "de": "nrf",
+          "vers": "jeton",
+          "texte": "émet"
+        },
+        {
+          "de": "jeton",
+          "vers": "prod",
+          "texte": "présenté à",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "cons",
+          "vers": "prod",
+          "texte": "TLS mutuel",
+          "style": "pointille",
+          "sortie": "b",
+          "entree": "b"
+        }
+      ],
+      "source": {
+        "nom": "3GPP TS 33.501 : sécurité du système 5G (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/"
+      }
+    }
   },
   {
     "id": "sec-plateforme",
@@ -616,7 +1151,91 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Isoler une fonction réseau sur la plateforme",
+      "largeur": 740,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "pod",
+          "texte": "Pod de la fonction",
+          "detail": "privilèges minimaux",
+          "ton": "chaud",
+          "x": 330,
+          "y": 176,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "ns",
+          "texte": "Namespace dédié",
+          "detail": "une équipe, un périmètre",
+          "ton": "froid",
+          "x": 320,
+          "y": 30,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "sel",
+          "texte": "SELinux",
+          "detail": "confinement",
+          "ton": "froid",
+          "x": 365,
+          "y": 322,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "scc",
+          "texte": "Contrainte de sécurité",
+          "detail": "SCC restreinte",
+          "ton": "froid",
+          "x": 20,
+          "y": 176,
+          "w": 200,
+          "h": 56
+        },
+        {
+          "id": "np",
+          "texte": "NetworkPolicy",
+          "detail": "flux déclarés",
+          "ton": "froid",
+          "x": 590,
+          "y": 176,
+          "w": 130,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ns",
+          "vers": "pod",
+          "texte": "contient"
+        },
+        {
+          "de": "sel",
+          "vers": "pod",
+          "texte": "confine"
+        },
+        {
+          "de": "scc",
+          "vers": "pod",
+          "texte": "limite"
+        },
+        {
+          "de": "np",
+          "vers": "pod",
+          "texte": "filtre"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : contexte de sécurité d'un pod",
+        "url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+      }
+    }
   },
   {
     "id": "reglementation-5gc",
@@ -680,7 +1299,90 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Détecter : journaliser, collecter, corréler, alerter",
+      "largeur": 744,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "src",
+          "texte": "Sources",
+          "detail": "audit de l'API, hôtes, réseau",
+          "w": 220,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "coll",
+          "texte": "Collecte",
+          "detail": "agents, transfert sûr",
+          "w": 170,
+          "x": 312,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "siem",
+          "texte": "SIEM",
+          "detail": "centralise et corrèle",
+          "ton": "chaud",
+          "w": 170,
+          "x": 554,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "regle",
+          "texte": "Règles de détection",
+          "detail": "comportements anormaux",
+          "w": 180,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "al",
+          "texte": "Alerte",
+          "detail": "vers l'équipe sécurité",
+          "ton": "faible",
+          "w": 170,
+          "x": 272,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "src",
+          "vers": "coll",
+          "texte": "émettent"
+        },
+        {
+          "de": "coll",
+          "vers": "siem",
+          "texte": "envoie"
+        },
+        {
+          "de": "siem",
+          "vers": "regle",
+          "texte": "appliquent",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "regle",
+          "vers": "al",
+          "texte": "déclenchent"
+        }
+      ],
+      "source": {
+        "nom": "Falco : détection à l'exécution",
+        "url": "https://falco.org/docs/"
+      }
+    }
   },
   {
     "id": "reg-oiv",
@@ -871,6 +1573,89 @@
     "origine": [
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Gérer les vulnérabilités : scanner, trier, corriger, redéployer",
+      "largeur": 836,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "scan",
+          "texte": "Analyse",
+          "detail": "images et nœuds",
+          "w": 130,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "rap",
+          "texte": "Rapport",
+          "detail": "failles connues",
+          "w": 130,
+          "x": 222,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "prio",
+          "texte": "Priorisation",
+          "detail": "exposition et gravité",
+          "ton": "chaud",
+          "w": 170,
+          "x": 424,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "fix",
+          "texte": "Correctif",
+          "detail": "image reconstruite",
+          "w": 150,
+          "x": 666,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "dep",
+          "texte": "Redéploiement",
+          "detail": "par pipeline",
+          "ton": "ok",
+          "w": 130,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "scan",
+          "vers": "rap",
+          "texte": "produit"
+        },
+        {
+          "de": "rap",
+          "vers": "prio",
+          "texte": "classée par"
+        },
+        {
+          "de": "prio",
+          "vers": "fix",
+          "texte": "décide"
+        },
+        {
+          "de": "fix",
+          "vers": "dep",
+          "texte": "livré par",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Trivy : scanner de vulnérabilités",
+        "url": "https://trivy.dev/"
+      }
+    }
   }
 ]
