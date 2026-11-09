@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BoutonRessources } from "@/composants/BoutonRessources";
 import { Maitrise } from "@/composants/Maitrise";
+import { SchemaFiche } from "@/composants/SchemaFiche";
 import { Ressources } from "@/composants/Ressources";
 import { chargerContenu } from "@/contenu/charger";
 import { titreFiche } from "@/contenu/lecture";
@@ -46,6 +48,47 @@ export default async function PageCompetence({ params }: Props) {
       <div className="corriger" style={{ marginTop: 0, marginBottom: "var(--e-8)" }}>
         <Maitrise id={x.id} />
       </div>
+
+      {x.schemaBase ? (
+        <section className="rubrique">
+          <h2>Le schéma de base</h2>
+          <SchemaFiche schema={x.schemaBase} />
+        </section>
+      ) : null}
+
+      {x.chronologie && x.chronologie.length > 0 ? (
+        <section className="rubrique">
+          <h2>Historique</h2>
+          <ol className="chronologie">
+            {x.chronologie.map((j) => (
+              <li key={j.periode + j.evenement} className="jalon">
+                <span className="jalon-periode mono">{j.periode}</span>
+                <p>{j.evenement}</p>
+                <a className="jalon-source" href={j.source.url} target="_blank" rel="noopener noreferrer">
+                  {j.source.nom}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
+
+      {x.casUsage && x.casUsage.length > 0 ? (
+        <section className="rubrique">
+          <h2>Cas d'usage</h2>
+          <ul className="cas-usage">
+            {x.casUsage.map((cas) => (
+              <li key={cas.titre} className="couche cas">
+                <h3>{cas.titre}</h3>
+                <p>{cas.texte}</p>
+                <a className="jalon-source" href={cas.source.url} target="_blank" rel="noopener noreferrer">
+                  {cas.source.nom}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {fiches.length > 0 ? (
         <section className="rubrique">
@@ -95,13 +138,14 @@ export default async function PageCompetence({ params }: Props) {
         </section>
       ) : null}
 
-      <section className="rubrique plus-loin">
+      <section className="rubrique plus-loin" id="ressources">
         <h2>Ressources</h2>
         <p className="sous-titre" style={{ marginBottom: "var(--e-4)" }}>
           Le gratuit d'abord, le français avant l'anglais.
         </p>
         <Ressources liens={x.ressources} />
       </section>
+      {x.ressources.length > 0 ? <BoutonRessources cible="ressources" /> : null}
     </article>
   );
 }

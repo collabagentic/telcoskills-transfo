@@ -76,6 +76,10 @@ export const competenceSchema = z
     prerequis: z.array(identifiant),
     resume: texte(600),
     ressources: z.array(lienSchema),
+    /** Enrichissements facultatifs d'une compétence : son histoire, des cas d'usage, un schéma de base. Chaque élément a sa source. */
+    chronologie: z.array(z.object({ periode: texte(30), evenement: texte(240), source: sourceSchema }).strict()).optional(),
+    casUsage: z.array(z.object({ titre: texte(90), texte: texte(320), source: sourceSchema }).strict()).optional(),
+    schemaBase: schemaFicheSchema.optional(),
     origine: z.array(identifiant),
     statut,
   })

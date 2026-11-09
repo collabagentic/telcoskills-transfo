@@ -1776,3 +1776,107 @@ a.barre-fleche:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* Historique, cas d usage, bouton vers les ressources */
+.chronologie {
+  position: relative;
+  margin-left: var(--e-2);
+  padding-left: var(--e-6);
+  border-left: 1px solid var(--filet-fort);
+}
+.chronologie .jalon {
+  position: relative;
+  padding: 0 0 var(--e-6);
+  margin: 0;
+}
+.chronologie .jalon::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--e-6) - 5px);
+  top: 0.4rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--fond);
+  border: 2px solid var(--accent);
+}
+.chronologie .jalon:last-child {
+  padding-bottom: 0;
+}
+.rubrique .chronologie li {
+  padding-left: 0;
+}
+.rubrique .chronologie li::after {
+  display: none;
+}
+.jalon-periode {
+  display: block;
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-texte);
+  margin-bottom: var(--e-1);
+}
+.jalon-source {
+  display: inline-block;
+  margin-top: var(--e-1);
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.jalon-source:hover {
+  color: var(--encre);
+}
+.cas-usage {
+  display: grid;
+  gap: var(--e-3);
+}
+.rubrique .cas-usage li {
+  padding-left: var(--e-6);
+}
+.rubrique .cas-usage li::before {
+  display: none;
+}
+.cas h3 {
+  font-size: var(--t-m);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--e-2);
+}
+.cas p {
+  color: var(--encre-2);
+  font-size: var(--t-s);
+}
+.bouton-ressources {
+  position: fixed;
+  right: var(--e-6);
+  bottom: var(--e-6);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: 2.75rem;
+  padding: 0 var(--e-4);
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-pilule);
+  background: var(--surface-2);
+  color: var(--encre);
+  font-size: var(--t-s);
+  font-weight: 500;
+  box-shadow: var(--ombre-1);
+  animation: entree var(--d-lente) var(--courbe) both;
+  transition: border-color var(--d-rapide) var(--courbe), transform var(--d-rapide) var(--courbe);
+}
+.bouton-ressources:hover {
+  border-color: var(--encre-3);
+  transform: translateY(-1px);
+}
+@media (max-width: 479px) {
+  .bouton-ressources {
+    right: var(--e-4);
+    bottom: var(--e-4);
+    left: var(--e-4);
+    justify-content: center;
+  }
+}

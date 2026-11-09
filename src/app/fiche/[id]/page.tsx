@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AvantApres } from "@/composants/AvantApres";
+import { BoutonRessources } from "@/composants/BoutonRessources";
 import { BarreFiche, HautDeFiche, SuiteFiche } from "@/composants/NavigationFiche";
 import { Ressources } from "@/composants/Ressources";
 import { SchemaFiche } from "@/composants/SchemaFiche";
@@ -115,7 +116,7 @@ export default async function PageFiche({ params }: Props) {
         </ul>
       </section>
 
-      <section className="rubrique plus-loin">
+      <section className="rubrique plus-loin" id="plus-loin">
         <h2>Pour aller plus loin</h2>
         <p className="sous-titre" style={{ marginBottom: "var(--e-4)" }}>
           Le gratuit d'abord, le français avant l'anglais.
@@ -167,6 +168,7 @@ export default async function PageFiche({ params }: Props) {
       </section>
 
       <SuiteFiche ficheId={f.id} donnees={donnees} />
+      <BoutonRessources cible="plus-loin" />
     </article>
   );
 }
