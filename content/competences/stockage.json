@@ -60,7 +60,104 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Ceph piloté par Rook : de l'opérateur au volume du pod",
+      "largeur": 772,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "rook",
+          "texte": "Rook",
+          "detail": "déploie et surveille",
+          "ton": "chaud",
+          "w": 160,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "ceph",
+          "texte": "Cluster Ceph",
+          "detail": "MON, MGR, OSD",
+          "w": 130,
+          "x": 244,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "pool",
+          "texte": "Pool",
+          "detail": "réplication ×3",
+          "w": 120,
+          "x": 438,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "sc",
+          "texte": "StorageClass",
+          "detail": "RBD, CephFS",
+          "w": 130,
+          "x": 622,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "pvc",
+          "texte": "PVC",
+          "detail": "demande du pod",
+          "w": 120,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "pod",
+          "texte": "Pod",
+          "detail": "monte le volume",
+          "ton": "ok",
+          "w": 130,
+          "x": 204,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "rook",
+          "vers": "ceph",
+          "texte": "crée"
+        },
+        {
+          "de": "ceph",
+          "vers": "pool",
+          "texte": "stocke"
+        },
+        {
+          "de": "pool",
+          "vers": "sc",
+          "texte": "expose"
+        },
+        {
+          "de": "sc",
+          "vers": "pvc",
+          "texte": "répond à",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "pvc",
+          "vers": "pod",
+          "texte": "monté par"
+        }
+      ],
+      "source": {
+        "nom": "Rook : stockage Ceph pour Kubernetes",
+        "url": "https://rook.io/docs/rook/latest/"
+      }
+    }
   },
   {
     "id": "stockage-dr",
@@ -99,7 +196,122 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Deux sites : réplication des volumes, sauvegardes hors site",
+      "largeur": 826,
+      "hauteur": 306,
+      "zones": [
+        {
+          "id": "sa",
+          "titre": "Site A",
+          "x": 20,
+          "y": 22,
+          "w": 312,
+          "h": 110
+        },
+        {
+          "id": "sb",
+          "titre": "Site B",
+          "x": 464,
+          "y": 22,
+          "w": 342,
+          "h": 110
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "ca",
+          "texte": "Cluster A",
+          "detail": "applications",
+          "ton": "ok",
+          "x": 36,
+          "y": 60,
+          "w": 110,
+          "h": 56,
+          "zone": "sa"
+        },
+        {
+          "id": "va",
+          "texte": "Volumes A",
+          "detail": "données",
+          "ton": "chaud",
+          "x": 216,
+          "y": 60,
+          "w": 100,
+          "h": 56,
+          "zone": "sa"
+        },
+        {
+          "id": "vb",
+          "texte": "Volumes B",
+          "detail": "réplicas",
+          "ton": "chaud",
+          "x": 480,
+          "y": 60,
+          "w": 100,
+          "h": 56,
+          "zone": "sb"
+        },
+        {
+          "id": "cb",
+          "texte": "Cluster B",
+          "detail": "prêt à reprendre",
+          "ton": "faible",
+          "x": 650,
+          "y": 60,
+          "w": 140,
+          "h": 56,
+          "zone": "sb"
+        },
+        {
+          "id": "obj",
+          "texte": "Stockage objet",
+          "detail": "sauvegardes hors site",
+          "ton": "froid",
+          "x": 270,
+          "y": 230,
+          "w": 170,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "va",
+          "vers": "vb",
+          "texte": "réplication"
+        },
+        {
+          "de": "ca",
+          "vers": "va",
+          "texte": "écrit"
+        },
+        {
+          "de": "vb",
+          "vers": "cb",
+          "texte": "reprise"
+        },
+        {
+          "de": "va",
+          "vers": "obj",
+          "texte": "sauvegarde",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "obj",
+          "vers": "vb",
+          "texte": "restaure",
+          "style": "pointille",
+          "sortie": "h",
+          "entree": "b"
+        }
+      ],
+      "source": {
+        "nom": "Velero : sauvegarde et restauration Kubernetes",
+        "url": "https://velero.io/docs/"
+      }
+    }
   },
   {
     "id": "kubevirt",
@@ -146,7 +358,109 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "KubeVirt : une VM tourne dans un pod, avec un disque et un réseau Kubernetes",
+      "largeur": 816,
+      "hauteur": 332,
+      "zones": [
+        {
+          "id": "launcher",
+          "titre": "Pod virt-launcher",
+          "x": 544,
+          "y": 42,
+          "w": 252,
+          "h": 270,
+          "ton": "chaud"
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "vmcr",
+          "texte": "VirtualMachine",
+          "detail": "objet décrivant la VM",
+          "ton": "chaud",
+          "x": 20,
+          "y": 60,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "virt",
+          "texte": "virt-controller",
+          "detail": "crée le pod",
+          "x": 250,
+          "y": 60,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "pvc",
+          "texte": "PVC",
+          "detail": "disque de la VM",
+          "ton": "froid",
+          "x": 560,
+          "y": 80,
+          "w": 220,
+          "h": 56,
+          "zone": "launcher"
+        },
+        {
+          "id": "qemu",
+          "texte": "QEMU / KVM",
+          "detail": "exécute la VM",
+          "ton": "ok",
+          "x": 560,
+          "y": 160,
+          "w": 220,
+          "h": 56,
+          "zone": "launcher"
+        },
+        {
+          "id": "net",
+          "texte": "Réseau secondaire",
+          "detail": "Multus, VLAN",
+          "ton": "froid",
+          "x": 560,
+          "y": 240,
+          "w": 220,
+          "h": 56,
+          "zone": "launcher"
+        }
+      ],
+      "liens": [
+        {
+          "de": "vmcr",
+          "vers": "virt",
+          "texte": "observe"
+        },
+        {
+          "de": "virt",
+          "vers": "qemu",
+          "texte": "lance",
+          "sortie": "d",
+          "entree": "g"
+        },
+        {
+          "de": "pvc",
+          "vers": "qemu",
+          "texte": "disque",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "net",
+          "vers": "qemu",
+          "texte": "réseau",
+          "sortie": "h",
+          "entree": "b"
+        }
+      ],
+      "source": {
+        "nom": "KubeVirt : guide utilisateur",
+        "url": "https://kubevirt.io/user-guide/"
+      }
+    }
   },
   {
     "id": "openstack",
@@ -201,7 +515,114 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "OpenStack : des services pour héberger des VNF, avant la migration vers des CNF",
+      "largeur": 868,
+      "hauteur": 286,
+      "zones": [
+        {
+          "id": "openstack",
+          "titre": "OpenStack",
+          "x": 20,
+          "y": 22,
+          "w": 828,
+          "h": 110
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "keystone",
+          "texte": "Keystone",
+          "detail": "identité",
+          "x": 36,
+          "y": 60,
+          "w": 140,
+          "h": 56,
+          "zone": "openstack"
+        },
+        {
+          "id": "nova",
+          "texte": "Nova",
+          "detail": "machines virtuelles",
+          "ton": "chaud",
+          "x": 200,
+          "y": 60,
+          "w": 140,
+          "h": 56,
+          "zone": "openstack"
+        },
+        {
+          "id": "neutron",
+          "texte": "Neutron",
+          "detail": "réseau",
+          "x": 364,
+          "y": 60,
+          "w": 140,
+          "h": 56,
+          "zone": "openstack"
+        },
+        {
+          "id": "cinder",
+          "texte": "Cinder",
+          "detail": "volumes",
+          "x": 528,
+          "y": 60,
+          "w": 140,
+          "h": 56,
+          "zone": "openstack"
+        },
+        {
+          "id": "glance",
+          "texte": "Glance",
+          "detail": "images",
+          "x": 692,
+          "y": 60,
+          "w": 140,
+          "h": 56,
+          "zone": "openstack"
+        },
+        {
+          "id": "vnf",
+          "texte": "VNF",
+          "detail": "fonction réseau en VM",
+          "ton": "faible",
+          "x": 185,
+          "y": 210,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "cnf",
+          "texte": "CNF sur Kubernetes",
+          "detail": "fonction réseau en conteneurs",
+          "ton": "ok",
+          "x": 548,
+          "y": 210,
+          "w": 220,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "nova",
+          "vers": "vnf",
+          "texte": "héberge",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "vnf",
+          "vers": "cnf",
+          "texte": "migration",
+          "style": "pointille"
+        }
+      ],
+      "source": {
+        "nom": "OpenStack : documentation",
+        "url": "https://docs.openstack.org/"
+      }
+    }
   },
   {
     "id": "nfv-etsi",
@@ -250,6 +671,99 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "L'architecture ETSI NFV : orchestration, gestion de VNF, gestion d'infrastructure",
+      "largeur": 761,
+      "hauteur": 296,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "nfvo",
+          "texte": "NFVO",
+          "detail": "orchestre les services",
+          "ton": "chaud",
+          "x": 36,
+          "y": 60,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "vnfm",
+          "texte": "VNFM",
+          "detail": "gère le cycle de vie des VNF",
+          "x": 276,
+          "y": 60,
+          "w": 210,
+          "h": 56
+        },
+        {
+          "id": "vim",
+          "texte": "VIM",
+          "detail": "OpenStack ou Kubernetes",
+          "x": 556,
+          "y": 60,
+          "w": 180,
+          "h": 56
+        },
+        {
+          "id": "vnf",
+          "texte": "VNF ou CNF",
+          "detail": "la fonction réseau",
+          "ton": "ok",
+          "x": 306,
+          "y": 220,
+          "w": 150,
+          "h": 56
+        },
+        {
+          "id": "nfvi",
+          "texte": "NFVI",
+          "detail": "calcul, réseau, stockage",
+          "ton": "froid",
+          "x": 551,
+          "y": 220,
+          "w": 190,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "nfvo",
+          "vers": "vnfm",
+          "texte": "Or-Vnfm"
+        },
+        {
+          "de": "vnfm",
+          "vers": "vim",
+          "texte": "Vi-Vnfm"
+        },
+        {
+          "de": "vnfm",
+          "vers": "vnf",
+          "texte": "Ve-Vnfm",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "vim",
+          "vers": "nfvi",
+          "texte": "Nf-Vi",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "nfvo",
+          "vers": "vim",
+          "texte": "Or-Vi",
+          "sortie": "h",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "ETSI OSM : orchestrateur MANO open source",
+        "url": "https://osm.etsi.org/docs/user-guide/latest/"
+      }
+    }
   }
 ]

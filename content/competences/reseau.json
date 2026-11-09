@@ -39,7 +39,114 @@
       "parcours-sylva",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Le CNI donne une interface et une IP à chaque pod, et applique les NetworkPolicy",
+      "largeur": 876,
+      "hauteur": 286,
+      "zones": [
+        {
+          "id": "na",
+          "titre": "Nœud A",
+          "x": 20,
+          "y": 22,
+          "w": 392,
+          "h": 110
+        },
+        {
+          "id": "nb",
+          "titre": "Nœud B",
+          "x": 464,
+          "y": 22,
+          "w": 392,
+          "h": 110
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "poda",
+          "texte": "Pod A",
+          "detail": "eth0, IP éphémère",
+          "x": 36,
+          "y": 60,
+          "w": 140,
+          "h": 56,
+          "zone": "na"
+        },
+        {
+          "id": "ovna",
+          "texte": "OVN-Kubernetes",
+          "detail": "CNI : IP, routes, ACL",
+          "ton": "chaud",
+          "x": 226,
+          "y": 60,
+          "w": 170,
+          "h": 56,
+          "zone": "na"
+        },
+        {
+          "id": "ovnb",
+          "texte": "OVN-Kubernetes",
+          "detail": "CNI : IP, routes, ACL",
+          "ton": "chaud",
+          "x": 480,
+          "y": 60,
+          "w": 170,
+          "h": 56,
+          "zone": "nb"
+        },
+        {
+          "id": "podb",
+          "texte": "Pod B",
+          "detail": "eth0, IP éphémère",
+          "x": 700,
+          "y": 60,
+          "w": 140,
+          "h": 56,
+          "zone": "nb"
+        },
+        {
+          "id": "np",
+          "texte": "NetworkPolicy",
+          "detail": "traduite en règles OVN",
+          "ton": "froid",
+          "x": 270,
+          "y": 210,
+          "w": 170,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "poda",
+          "vers": "ovna",
+          "texte": "veth"
+        },
+        {
+          "de": "ovna",
+          "vers": "ovnb",
+          "texte": "Geneve",
+          "sens": "double"
+        },
+        {
+          "de": "ovnb",
+          "vers": "podb",
+          "texte": "veth"
+        },
+        {
+          "de": "np",
+          "vers": "ovna",
+          "texte": "ACL",
+          "style": "pointille",
+          "sortie": "h",
+          "entree": "b"
+        }
+      ],
+      "source": {
+        "nom": "OVN-Kubernetes : documentation",
+        "url": "https://ovn-kubernetes.io/"
+      }
+    }
   },
   {
     "id": "multus",
@@ -67,7 +174,92 @@
       "parcours-sylva",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Multus attache plusieurs interfaces à un pod",
+      "largeur": 820,
+      "hauteur": 426,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "pod",
+          "texte": "Pod CNF",
+          "detail": "annotation k8s.v1.cni…",
+          "ton": "chaud",
+          "x": 20,
+          "y": 160,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "multus",
+          "texte": "Multus",
+          "detail": "méta-plugin CNI",
+          "x": 290,
+          "y": 160,
+          "w": 130,
+          "h": 56
+        },
+        {
+          "id": "ovn",
+          "texte": "CNI par défaut",
+          "detail": "eth0 : réseau du cluster",
+          "x": 560,
+          "y": 90,
+          "w": 230,
+          "h": 56
+        },
+        {
+          "id": "sriov",
+          "texte": "CNI secondaire",
+          "detail": "net1 : macvlan, SR-IOV",
+          "ton": "froid",
+          "x": 560,
+          "y": 246,
+          "w": 230,
+          "h": 56
+        },
+        {
+          "id": "nad",
+          "texte": "NetworkAttachmentDefinition",
+          "detail": "décrit le réseau secondaire",
+          "ton": "froid",
+          "x": 470,
+          "y": 350,
+          "w": 330,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "pod",
+          "vers": "multus",
+          "texte": "demande"
+        },
+        {
+          "de": "multus",
+          "vers": "ovn",
+          "texte": "eth0"
+        },
+        {
+          "de": "multus",
+          "vers": "sriov",
+          "texte": "net1"
+        },
+        {
+          "de": "nad",
+          "vers": "sriov",
+          "texte": "configure",
+          "style": "pointille",
+          "sortie": "h",
+          "entree": "b"
+        }
+      ],
+      "source": {
+        "nom": "Multus CNI (dépôt source)",
+        "url": "https://github.com/k8snetworkplumbingwg/multus-cni"
+      }
+    }
   },
   {
     "id": "sriov",
@@ -107,7 +299,135 @@
       "ingenieur-caas-telco",
       "parcours-sylva"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "SR-IOV : une carte physique, des fonctions virtuelles données directement aux pods",
+      "largeur": 786,
+      "hauteur": 416,
+      "zones": [
+        {
+          "id": "serveur",
+          "titre": "Serveur",
+          "x": 4,
+          "y": 112,
+          "w": 762,
+          "h": 206
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "op",
+          "texte": "Opérateur SR-IOV",
+          "detail": "configure les VF",
+          "ton": "chaud",
+          "x": 20,
+          "y": 30,
+          "w": 160,
+          "h": 56
+        },
+        {
+          "id": "sw",
+          "texte": "Commutateur",
+          "detail": "VLAN du plan data",
+          "x": 20,
+          "y": 340,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "pf",
+          "texte": "Carte réseau (PF)",
+          "detail": "fonction physique",
+          "x": 20,
+          "y": 200,
+          "w": 170,
+          "h": 56,
+          "zone": "serveur"
+        },
+        {
+          "id": "vf1",
+          "texte": "VF 1",
+          "detail": "fonction virtuelle",
+          "ton": "froid",
+          "x": 300,
+          "y": 150,
+          "w": 170,
+          "h": 56,
+          "zone": "serveur"
+        },
+        {
+          "id": "vf2",
+          "texte": "VF 2",
+          "detail": "fonction virtuelle",
+          "ton": "froid",
+          "x": 300,
+          "y": 246,
+          "w": 170,
+          "h": 56,
+          "zone": "serveur"
+        },
+        {
+          "id": "upf",
+          "texte": "Pod UPF",
+          "detail": "accès direct à la VF",
+          "ton": "chaud",
+          "x": 560,
+          "y": 150,
+          "w": 190,
+          "h": 56,
+          "zone": "serveur"
+        },
+        {
+          "id": "autre",
+          "texte": "Autre pod",
+          "detail": "VF dédiée",
+          "ton": "ok",
+          "x": 560,
+          "y": 246,
+          "w": 190,
+          "h": 56,
+          "zone": "serveur"
+        }
+      ],
+      "liens": [
+        {
+          "de": "op",
+          "vers": "pf",
+          "texte": "configure",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "pf",
+          "vers": "vf1",
+          "texte": "crée"
+        },
+        {
+          "de": "pf",
+          "vers": "vf2"
+        },
+        {
+          "de": "vf1",
+          "vers": "upf",
+          "texte": "sans noyau"
+        },
+        {
+          "de": "vf2",
+          "vers": "autre"
+        },
+        {
+          "de": "sw",
+          "vers": "pf",
+          "texte": "VLAN",
+          "sortie": "h",
+          "entree": "b"
+        }
+      ],
+      "source": {
+        "nom": "SR-IOV Network Operator (dépôt source)",
+        "url": "https://github.com/k8snetworkplumbingwg/sriov-network-operator"
+      }
+    }
   },
   {
     "id": "dpdk",
@@ -146,7 +466,147 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Deux chemins pour un paquet : par le noyau, ou directement dans l'application avec DPDK",
+      "largeur": 842,
+      "hauteur": 312,
+      "zones": [
+        {
+          "id": "chemin-noyau",
+          "titre": "Chemin noyau",
+          "x": 20,
+          "y": 22,
+          "w": 772,
+          "h": 110
+        },
+        {
+          "id": "chemin-dpdk",
+          "titre": "Chemin DPDK",
+          "x": 20,
+          "y": 182,
+          "w": 802,
+          "h": 110,
+          "ton": "chaud"
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "p1",
+          "texte": "Paquet",
+          "detail": "arrive sur la carte",
+          "x": 36,
+          "y": 60,
+          "w": 150,
+          "h": 56,
+          "zone": "chemin-noyau"
+        },
+        {
+          "id": "drv",
+          "texte": "Pilote noyau",
+          "detail": "interruptions",
+          "x": 236,
+          "y": 60,
+          "w": 130,
+          "h": 56,
+          "zone": "chemin-noyau"
+        },
+        {
+          "id": "pile",
+          "texte": "Pile réseau Linux",
+          "detail": "copies mémoire",
+          "x": 416,
+          "y": 60,
+          "w": 170,
+          "h": 56,
+          "zone": "chemin-noyau"
+        },
+        {
+          "id": "app1",
+          "texte": "Application",
+          "detail": "reçoit le paquet",
+          "ton": "faible",
+          "x": 636,
+          "y": 60,
+          "w": 140,
+          "h": 56,
+          "zone": "chemin-noyau"
+        },
+        {
+          "id": "p2",
+          "texte": "Paquet",
+          "detail": "arrive sur la carte",
+          "x": 36,
+          "y": 220,
+          "w": 150,
+          "h": 56,
+          "zone": "chemin-dpdk"
+        },
+        {
+          "id": "vf",
+          "texte": "VF SR-IOV",
+          "detail": "accès direct",
+          "x": 236,
+          "y": 220,
+          "w": 110,
+          "h": 56,
+          "zone": "chemin-dpdk"
+        },
+        {
+          "id": "dpdk",
+          "texte": "DPDK",
+          "detail": "interrogation en continu",
+          "ton": "chaud",
+          "x": 396,
+          "y": 220,
+          "w": 190,
+          "h": 56,
+          "zone": "chemin-dpdk"
+        },
+        {
+          "id": "app2",
+          "texte": "Application",
+          "detail": "hugepages, CPU isolés",
+          "ton": "ok",
+          "x": 636,
+          "y": 220,
+          "w": 170,
+          "h": 56,
+          "zone": "chemin-dpdk"
+        }
+      ],
+      "liens": [
+        {
+          "de": "p1",
+          "vers": "drv"
+        },
+        {
+          "de": "drv",
+          "vers": "pile"
+        },
+        {
+          "de": "pile",
+          "vers": "app1"
+        },
+        {
+          "de": "p2",
+          "vers": "vf"
+        },
+        {
+          "de": "vf",
+          "vers": "dpdk",
+          "texte": "poll mode"
+        },
+        {
+          "de": "dpdk",
+          "vers": "app2"
+        }
+      ],
+      "source": {
+        "nom": "DPDK : guides de la documentation",
+        "url": "https://doc.dpdk.org/guides/"
+      }
+    }
   },
   {
     "id": "lb-bgp",
@@ -172,7 +632,125 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "MetalLB annonce l'adresse du Service en BGP : le routeur répartit entre les nœuds",
+      "largeur": 890,
+      "hauteur": 314,
+      "zones": [
+        {
+          "id": "cluster",
+          "titre": "Cluster",
+          "x": 454,
+          "y": 24,
+          "w": 222,
+          "h": 270
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "client",
+          "texte": "Client",
+          "detail": "vers 10.20.0.10",
+          "x": 20,
+          "y": 150,
+          "w": 130,
+          "h": 56
+        },
+        {
+          "id": "routeur",
+          "texte": "Routeur ToR",
+          "detail": "BGP, ECMP",
+          "ton": "chaud",
+          "x": 220,
+          "y": 150,
+          "w": 120,
+          "h": 56
+        },
+        {
+          "id": "sp1",
+          "texte": "Speaker MetalLB",
+          "detail": "nœud 1",
+          "ton": "froid",
+          "x": 470,
+          "y": 62,
+          "w": 190,
+          "h": 56,
+          "zone": "cluster"
+        },
+        {
+          "id": "sp2",
+          "texte": "Speaker MetalLB",
+          "detail": "nœud 2",
+          "ton": "froid",
+          "x": 470,
+          "y": 142,
+          "w": 190,
+          "h": 56,
+          "zone": "cluster"
+        },
+        {
+          "id": "sp3",
+          "texte": "Speaker MetalLB",
+          "detail": "nœud 3",
+          "ton": "froid",
+          "x": 470,
+          "y": 222,
+          "w": 190,
+          "h": 56,
+          "zone": "cluster"
+        },
+        {
+          "id": "svc",
+          "texte": "Service LoadBalancer",
+          "detail": "10.20.0.10",
+          "ton": "ok",
+          "x": 700,
+          "y": 150,
+          "w": 170,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "client",
+          "vers": "routeur",
+          "texte": "trafic"
+        },
+        {
+          "de": "sp1",
+          "vers": "routeur",
+          "texte": "annonce l'IP",
+          "sortie": "g",
+          "entree": "d",
+          "decalageEntree": -20
+        },
+        {
+          "de": "sp2",
+          "vers": "routeur",
+          "sortie": "g",
+          "entree": "d"
+        },
+        {
+          "de": "sp3",
+          "vers": "routeur",
+          "sortie": "g",
+          "entree": "d",
+          "decalageEntree": 20
+        },
+        {
+          "de": "sp2",
+          "vers": "svc",
+          "texte": "vers les pods",
+          "sortie": "d",
+          "entree": "g"
+        }
+      ],
+      "source": {
+        "nom": "MetalLB : documentation",
+        "url": "https://metallb.io/"
+      }
+    }
   },
   {
     "id": "sctp-flux",
@@ -211,7 +789,78 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Quatre protocoles de transport, quatre besoins réseau différents",
+      "largeur": 810,
+      "hauteur": 336,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ran",
+          "texte": "RAN (gNB)",
+          "detail": "radio",
+          "x": 20,
+          "y": 150,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "signalisation",
+          "x": 360,
+          "y": 40,
+          "w": 120,
+          "h": 56
+        },
+        {
+          "id": "smf",
+          "texte": "SMF",
+          "detail": "sessions",
+          "x": 700,
+          "y": 150,
+          "w": 90,
+          "h": 56
+        },
+        {
+          "id": "upf",
+          "texte": "UPF",
+          "detail": "plan usager",
+          "ton": "chaud",
+          "x": 360,
+          "y": 260,
+          "w": 100,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ran",
+          "vers": "amf",
+          "texte": "N2 · SCTP 38412"
+        },
+        {
+          "de": "ran",
+          "vers": "upf",
+          "texte": "N3 · GTP-U UDP 2152"
+        },
+        {
+          "de": "amf",
+          "vers": "smf",
+          "texte": "HTTP/2 · TCP"
+        },
+        {
+          "de": "smf",
+          "vers": "upf",
+          "texte": "N4 · PFCP UDP 8805"
+        }
+      ],
+      "source": {
+        "nom": "Wireshark : analyse des protocoles SCTP, GTP et PFCP",
+        "url": "https://www.wireshark.org/docs/"
+      }
+    }
   },
   {
     "id": "archi-reseau-support",
@@ -239,7 +888,125 @@
     "origine": [
       "architecte-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Les réseaux d'une plateforme telco : un nœud, plusieurs interfaces, un réseau par usage",
+      "largeur": 680,
+      "hauteur": 410,
+      "zones": [
+        {
+          "id": "noeud",
+          "titre": "Nœud de calcul",
+          "x": 20,
+          "y": 22,
+          "w": 252,
+          "h": 368
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "nic1",
+          "texte": "Interface 1",
+          "detail": "gestion et API",
+          "x": 36,
+          "y": 60,
+          "w": 220,
+          "h": 56,
+          "zone": "noeud"
+        },
+        {
+          "id": "nic2",
+          "texte": "Interface 2",
+          "detail": "stockage",
+          "x": 36,
+          "y": 146,
+          "w": 220,
+          "h": 56,
+          "zone": "noeud"
+        },
+        {
+          "id": "nic3",
+          "texte": "Interface 3 (SR-IOV)",
+          "detail": "plan data",
+          "ton": "chaud",
+          "x": 36,
+          "y": 232,
+          "w": 220,
+          "h": 56,
+          "zone": "noeud"
+        },
+        {
+          "id": "bmc",
+          "texte": "BMC",
+          "detail": "pilotage hors bande",
+          "x": 36,
+          "y": 318,
+          "w": 220,
+          "h": 56,
+          "zone": "noeud"
+        },
+        {
+          "id": "r1",
+          "texte": "Réseau de gestion",
+          "detail": "API, nœuds",
+          "x": 440,
+          "y": 60,
+          "w": 220,
+          "h": 56
+        },
+        {
+          "id": "r2",
+          "texte": "Réseau de stockage",
+          "detail": "Ceph, réplication",
+          "x": 440,
+          "y": 146,
+          "w": 220,
+          "h": 56
+        },
+        {
+          "id": "r3",
+          "texte": "Réseau de données",
+          "detail": "VLAN des CNF",
+          "ton": "chaud",
+          "x": 440,
+          "y": 232,
+          "w": 220,
+          "h": 56
+        },
+        {
+          "id": "r4",
+          "texte": "Réseau hors bande",
+          "detail": "OOB",
+          "x": 440,
+          "y": 318,
+          "w": 220,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "nic1",
+          "vers": "r1"
+        },
+        {
+          "de": "nic2",
+          "vers": "r2"
+        },
+        {
+          "de": "nic3",
+          "vers": "r3",
+          "texte": "VLAN"
+        },
+        {
+          "de": "bmc",
+          "vers": "r4"
+        }
+      ],
+      "source": {
+        "nom": "Open vSwitch : documentation",
+        "url": "https://docs.openvswitch.org/"
+      }
+    }
   },
   {
     "id": "pieges-reseau",
@@ -261,7 +1028,76 @@
     "origine": [
       "devops-integrateur-nf"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Le piège de la MTU : une encapsulation ajoute des octets, le paquet ne passe plus",
+      "largeur": 728,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "pod",
+          "texte": "Pod",
+          "detail": "paquet de la taille de sa MTU",
+          "w": 220,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "enc",
+          "texte": "Encapsulation",
+          "detail": "ajoute un en-tête",
+          "ton": "chaud",
+          "w": 140,
+          "x": 304,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "nic",
+          "texte": "Carte et commutateurs",
+          "detail": "MTU du support",
+          "w": 200,
+          "x": 508,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "res",
+          "texte": "Résultat",
+          "detail": "fragmentation ou perte",
+          "ton": "faible",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "pod",
+          "vers": "enc",
+          "texte": "envoie"
+        },
+        {
+          "de": "enc",
+          "vers": "nic",
+          "texte": "traverse"
+        },
+        {
+          "de": "nic",
+          "vers": "res",
+          "texte": "si trop grand",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Multus CNI (dépôt source)",
+        "url": "https://github.com/k8snetworkplumbingwg/multus-cni"
+      }
+    }
   },
   {
     "id": "depannage-reseau-telco",
@@ -296,6 +1132,89 @@
     "origine": [
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Dépanner le réseau d'une plateforme telco : du lien jusqu'au protocole",
+      "largeur": 658,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "sympt",
+          "texte": "Symptôme",
+          "detail": "l'association N2 ne monte pas",
+          "ton": "faible",
+          "w": 220,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "lien",
+          "texte": "Interface",
+          "detail": "ip link : VLAN, MTU",
+          "w": 150,
+          "x": 304,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "route",
+          "texte": "Routage",
+          "detail": "ip route, BGP",
+          "w": 120,
+          "x": 518,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "pod",
+          "texte": "Pod",
+          "detail": "NetworkPolicy, Multus",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "proto",
+          "texte": "Protocole",
+          "detail": "tcpdump, association SCTP",
+          "ton": "chaud",
+          "w": 190,
+          "x": 254,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "sympt",
+          "vers": "lien",
+          "texte": "d'abord"
+        },
+        {
+          "de": "lien",
+          "vers": "route",
+          "texte": "puis"
+        },
+        {
+          "de": "route",
+          "vers": "pod",
+          "texte": "puis",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "pod",
+          "vers": "proto",
+          "texte": "enfin"
+        }
+      ],
+      "source": {
+        "nom": "Wireshark : documentation",
+        "url": "https://www.wireshark.org/docs/"
+      }
+    }
   }
 ]

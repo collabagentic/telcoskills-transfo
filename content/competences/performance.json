@@ -37,7 +37,111 @@
       "ingenieur-caas-telco",
       "parcours-sylva"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "NUMA : tout ce que le plan usager utilise doit rester sur le même nœud NUMA",
+      "largeur": 562,
+      "hauteur": 312,
+      "zones": [
+        {
+          "id": "numa0",
+          "titre": "NUMA 0 : plan usager",
+          "x": 20,
+          "y": 22,
+          "w": 522,
+          "h": 110,
+          "ton": "chaud"
+        },
+        {
+          "id": "numa1",
+          "titre": "NUMA 1 : reste du nœud",
+          "x": 20,
+          "y": 182,
+          "w": 422,
+          "h": 110
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "cpu0",
+          "texte": "CPU exclusifs",
+          "detail": "cœurs 0 à 15",
+          "ton": "chaud",
+          "x": 36,
+          "y": 60,
+          "w": 130,
+          "h": 56,
+          "zone": "numa0"
+        },
+        {
+          "id": "hp0",
+          "texte": "Hugepages",
+          "detail": "1 Gio réservées",
+          "ton": "ok",
+          "x": 206,
+          "y": 60,
+          "w": 130,
+          "h": 56,
+          "zone": "numa0"
+        },
+        {
+          "id": "nic0",
+          "texte": "Carte SR-IOV",
+          "detail": "branchée sur NUMA 0",
+          "ton": "froid",
+          "x": 376,
+          "y": 60,
+          "w": 150,
+          "h": 56,
+          "zone": "numa0"
+        },
+        {
+          "id": "cpu1",
+          "texte": "CPU partagés",
+          "detail": "cœurs 16 à 31",
+          "x": 36,
+          "y": 220,
+          "w": 130,
+          "h": 56,
+          "zone": "numa1"
+        },
+        {
+          "id": "mem1",
+          "texte": "Mémoire",
+          "detail": "accès plus lent depuis NUMA 0",
+          "ton": "faible",
+          "x": 206,
+          "y": 220,
+          "w": 220,
+          "h": 56,
+          "zone": "numa1"
+        }
+      ],
+      "liens": [
+        {
+          "de": "cpu0",
+          "vers": "hp0",
+          "texte": "mémoire locale"
+        },
+        {
+          "de": "hp0",
+          "vers": "nic0",
+          "texte": "même NUMA"
+        },
+        {
+          "de": "cpu0",
+          "vers": "mem1",
+          "texte": "accès distant",
+          "style": "pointille",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Noyau Linux : HugeTLB pages",
+        "url": "https://docs.kernel.org/admin-guide/mm/hugetlbpage.html"
+      }
+    }
   },
   {
     "id": "perf-profile",
@@ -76,7 +180,93 @@
       "ingenieur-caas-telco",
       "parcours-sylva"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Un seul objet décrit le réglage du nœud ; l'opérateur le traduit en configuration",
+      "largeur": 870,
+      "hauteur": 310,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "pp",
+          "texte": "PerformanceProfile",
+          "detail": "isolés, réservés, hugepages",
+          "ton": "chaud",
+          "x": 20,
+          "y": 150,
+          "w": 210,
+          "h": 56
+        },
+        {
+          "id": "nto",
+          "texte": "Node Tuning Operator",
+          "detail": "génère la configuration",
+          "x": 310,
+          "y": 150,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "mc",
+          "texte": "MachineConfig",
+          "detail": "noyau temps réel, hugepages",
+          "x": 580,
+          "y": 62,
+          "w": 270,
+          "h": 56
+        },
+        {
+          "id": "kub",
+          "texte": "Kubelet",
+          "detail": "CPU Manager static, Topology Manager",
+          "x": 580,
+          "y": 148,
+          "w": 270,
+          "h": 56
+        },
+        {
+          "id": "tuned",
+          "texte": "Tuned",
+          "detail": "réglages du noyau",
+          "x": 580,
+          "y": 234,
+          "w": 270,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "pp",
+          "vers": "nto",
+          "texte": "lit"
+        },
+        {
+          "de": "nto",
+          "vers": "mc",
+          "texte": "crée",
+          "sortie": "d",
+          "entree": "g"
+        },
+        {
+          "de": "nto",
+          "vers": "kub",
+          "texte": "crée",
+          "sortie": "d",
+          "entree": "g"
+        },
+        {
+          "de": "nto",
+          "vers": "tuned",
+          "texte": "crée",
+          "sortie": "d",
+          "entree": "g"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : politiques du CPU Manager",
+        "url": "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/"
+      }
+    }
   },
   {
     "id": "dimensionnement",
@@ -119,7 +309,90 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Dimensionner : du besoin de trafic au nombre de nœuds, puis validation par un test de charge",
+      "largeur": 728,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "besoin",
+          "texte": "Besoin",
+          "detail": "abonnés, débit, sessions",
+          "w": 190,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "modele",
+          "texte": "Modèle par fonction",
+          "detail": "capacité d'une instance",
+          "ton": "chaud",
+          "w": 180,
+          "x": 274,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "res",
+          "texte": "Ressources",
+          "detail": "vCPU, mémoire, hugepages",
+          "w": 190,
+          "x": 518,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "noeuds",
+          "texte": "Nombre de nœuds",
+          "detail": "plus la marge N+1",
+          "w": 150,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "test",
+          "texte": "Test de charge",
+          "detail": "valide ou corrige",
+          "ton": "ok",
+          "w": 140,
+          "x": 234,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "besoin",
+          "vers": "modele",
+          "texte": "se traduit en"
+        },
+        {
+          "de": "modele",
+          "vers": "res",
+          "texte": "donne"
+        },
+        {
+          "de": "res",
+          "vers": "noeuds",
+          "texte": "multiplié par",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "noeuds",
+          "vers": "test",
+          "texte": "vérifié par"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : considérations pour les grands clusters",
+        "url": "https://kubernetes.io/docs/setup/best-practices/cluster-large/"
+      }
+    }
   },
   {
     "id": "bench-dimensionnement",
@@ -148,6 +421,97 @@
     "origine": [
       "architecte-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Valider un dimensionnement : générer du trafic, mesurer, comparer aux seuils",
+      "largeur": 638,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "gen",
+          "texte": "Générateur",
+          "detail": "RAN et UE simulés",
+          "w": 140,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cnf",
+          "texte": "Fonction sous test",
+          "detail": "la charge réelle",
+          "ton": "chaud",
+          "w": 170,
+          "x": 224,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "mesure",
+          "texte": "Mesures",
+          "detail": "latence, pertes, CPU",
+          "w": 160,
+          "x": 458,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "seuils",
+          "texte": "Seuils (SLO)",
+          "detail": "ce qui est acceptable",
+          "w": 170,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "verdict",
+          "texte": "Verdict",
+          "detail": "ajuster les ressources",
+          "ton": "ok",
+          "w": 170,
+          "x": 254,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "gen",
+          "vers": "cnf",
+          "texte": "envoie du trafic"
+        },
+        {
+          "de": "cnf",
+          "vers": "mesure",
+          "texte": "exporte"
+        },
+        {
+          "de": "mesure",
+          "vers": "seuils",
+          "texte": "comparées à",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "seuils",
+          "vers": "verdict",
+          "texte": "décide"
+        },
+        {
+          "de": "verdict",
+          "vers": "cnf",
+          "texte": "nouveau test",
+          "style": "pointille",
+          "sortie": "h",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "TRex : générateur de trafic open source",
+        "url": "https://github.com/cisco-system-traffic-generator/trex-core"
+      }
+    }
   }
 ]

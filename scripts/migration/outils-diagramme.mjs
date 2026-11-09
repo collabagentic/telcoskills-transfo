@@ -106,3 +106,70 @@ export function competence(id, d) {
   }
   throw new Error(`Compétence introuvable : ${id}`);
 }
+
+/**
+ * Flux : une suite de composants reliés dans l'ordre, qui passe à la ligne quand elle déborde.
+ * `etiquettes[i]` nomme la flèche entre le composant i et le suivant (texte, ou [texte, options], ou null).
+ * `extra` ajoute d'autres flèches ; `cadre` entoure tout d'une zone ({ id, titre, ton }).
+ */
+export function flux({ legende, noeuds, etiquettes = [], extra = [], cadre, largeurMax = 840, ecartY = 120, gap = 64, x = 20, y, source }) {
+  const y0 = y ?? (cadre ? 62 : 30);
+  const lignes = [[]];
+  let cx = x;
+  for (const it of noeuds) {
+    const w = it.largeur ?? mesure(it.texte, it.detail);
+    if (cx + w > largeurMax && lignes[lignes.length - 1].length > 0) {
+      lignes.push([]);
+      cx = x;
+    }
+    lignes[lignes.length - 1].push({ ...it, w, ligne: lignes.length - 1, x: cx });
+    cx += w + gap;
+  }
+  const places = [];
+  lignes.forEach((ligne, i) => {
+    for (const it of ligne) {
+      const { largeur: _l, ligne: li, ...reste } = it;
+      places.push({ ...reste, y: y0 + li * ecartY, h: hauteurPar(it, undefined) });
+    }
+  });
+  const liens = [];
+  places.slice(0, -1).forEach((a, i) => {
+    const b = places[i + 1];
+    const [texte, options = {}] = Array.isArray(etiquettes[i]) ? etiquettes[i] : [etiquettes[i]];
+    const options2 = a.y === b.y ? options : { sortie: "b", entree: "h", ...options };
+    liens.push([a.id, b.id, texte ?? undefined, options2]);
+  });
+  const zones = cadre ? [zone(cadre.id, cadre.titre, places, cadre.ton)] : [];
+  return diagramme({ legende, source, zones, noeuds: places, liens: [...liens, ...extra] });
+}
+
+/**
+ * Étoile : un composant central et jusqu'à quatre voisins (h, b, g, d). `sens: "depuis"` inverse la flèche, "double" la rend bidirectionnelle.
+ */
+export function etoile({ legende, centre, voisins, source, ecart = 90 }) {
+  const par = Object.fromEntries(voisins.map((v) => [v.cote, v]));
+  const larg = (k) => k.largeur ?? mesure(k.texte, k.detail);
+  const wc = larg(centre);
+  const wg = par.g ? larg(par.g.noeud) : 0;
+  const wd = par.d ? larg(par.d.noeud) : 0;
+  const hc = hauteurPar(centre);
+  const yHaut = 30;
+  const hHaut = par.h ? hauteurPar(par.h.noeud) : 0;
+  const yCentre = par.h ? yHaut + hHaut + ecart : 30;
+  const xCentre = 20 + (par.g ? wg + ecart + 20 : 0);
+  const cxC = xCentre + wc / 2;
+  const noeuds = [{ ...centre, x: xCentre, y: yCentre, w: wc, h: hc }];
+  const liens = [];
+  const poser = (v, x, y) => {
+    const { largeur: _l, ...reste } = v.noeud;
+    const w = larg(v.noeud);
+    noeuds.push({ ...reste, x, y, w, h: hauteurPar(v.noeud) });
+    const [de, vers] = v.sens === "depuis" ? [v.noeud.id, centre.id] : [centre.id, v.noeud.id];
+    liens.push([de, vers, v.texte, { ...(v.style ? { style: v.style } : {}), ...(v.sens === "double" ? { sens: "double" } : {}) }]);
+  };
+  if (par.h) poser(par.h, cxC - larg(par.h.noeud) / 2, yHaut);
+  if (par.b) poser(par.b, cxC - larg(par.b.noeud) / 2, yCentre + hc + ecart);
+  if (par.g) poser(par.g, 20, yCentre + hc / 2 - hauteurPar(par.g.noeud) / 2);
+  if (par.d) poser(par.d, xCentre + wc + ecart, yCentre + hc / 2 - hauteurPar(par.d.noeud) / 2);
+  return diagramme({ legende, source, noeuds, liens });
+}

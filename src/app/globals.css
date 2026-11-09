@@ -1990,3 +1990,29 @@ a.barre-fleche:hover {
   width: min(calc(100vw - 3rem), 56rem);
   transform: translateX(-50%);
 }
+
+/* Accueil : slogan */
+.slogan {
+  font-size: var(--t-xxl);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: var(--e-3) auto 0;
+  max-width: 14em;
+  background: linear-gradient(180deg, var(--encre), var(--encre-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: entree var(--d-lente) var(--courbe) both;
+}
+.accroche {
+  max-width: 34rem;
+  margin: var(--e-6) auto 0;
+  color: var(--encre-2);
+  font-size: var(--t-l);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+.accueil .action-accueil {
+  margin-top: var(--e-8);
+}

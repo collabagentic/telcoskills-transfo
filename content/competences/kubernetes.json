@@ -414,7 +414,146 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Quel contrôleur pour quelle charge de travail",
+      "largeur": 730,
+      "hauteur": 416,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "dep",
+          "texte": "Deployment",
+          "detail": "sans état",
+          "x": 20,
+          "y": 40,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "rs",
+          "texte": "ReplicaSet",
+          "detail": "N réplicas",
+          "x": 270,
+          "y": 40,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "p1",
+          "texte": "Pods",
+          "detail": "interchangeables",
+          "ton": "ok",
+          "x": 520,
+          "y": 40,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "sts",
+          "texte": "StatefulSet",
+          "detail": "identité stable",
+          "x": 20,
+          "y": 140,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "p2",
+          "texte": "Pods nommés",
+          "detail": "db-0, db-1, db-2",
+          "ton": "ok",
+          "x": 270,
+          "y": 140,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "vol",
+          "texte": "Volumes",
+          "detail": "un PVC par pod",
+          "ton": "froid",
+          "x": 520,
+          "y": 140,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "ds",
+          "texte": "DaemonSet",
+          "detail": "un pod par nœud",
+          "x": 20,
+          "y": 240,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "p3",
+          "texte": "Pods d'agent",
+          "detail": "logs, métriques",
+          "ton": "ok",
+          "x": 270,
+          "y": 240,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "job",
+          "texte": "Job, CronJob",
+          "detail": "tâche jusqu'à la fin",
+          "x": 20,
+          "y": 340,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "p4",
+          "texte": "Pod éphémère",
+          "detail": "termine puis s'arrête",
+          "ton": "ok",
+          "x": 270,
+          "y": 340,
+          "w": 190,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "dep",
+          "vers": "rs",
+          "texte": "gère"
+        },
+        {
+          "de": "rs",
+          "vers": "p1",
+          "texte": "crée"
+        },
+        {
+          "de": "sts",
+          "vers": "p2",
+          "texte": "ordonne"
+        },
+        {
+          "de": "p2",
+          "vers": "vol",
+          "texte": "monte"
+        },
+        {
+          "de": "ds",
+          "vers": "p3",
+          "texte": "place"
+        },
+        {
+          "de": "job",
+          "vers": "p4",
+          "texte": "lance"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : workloads",
+        "url": "https://kubernetes.io/docs/concepts/workloads/"
+      }
+    }
   },
   {
     "id": "k8s-services",
@@ -466,7 +605,105 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Un Service donne une adresse stable à des pods qui changent",
+      "largeur": 870,
+      "hauteur": 296,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ci",
+          "texte": "Client du cluster",
+          "detail": "un autre pod",
+          "x": 20,
+          "y": 40,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "dns",
+          "texte": "CoreDNS",
+          "detail": "résout le nom du Service",
+          "x": 260,
+          "y": 40,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "ce",
+          "texte": "Client externe",
+          "detail": "navigateur, API",
+          "x": 20,
+          "y": 220,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "ing",
+          "texte": "Ingress ou Route",
+          "detail": "HTTP, HTTPS, TLS",
+          "ton": "chaud",
+          "x": 230,
+          "y": 220,
+          "w": 160,
+          "h": 56
+        },
+        {
+          "id": "svc",
+          "texte": "Service",
+          "detail": "adresse stable (ClusterIP)",
+          "ton": "chaud",
+          "x": 440,
+          "y": 130,
+          "w": 200,
+          "h": 56
+        },
+        {
+          "id": "pods",
+          "texte": "Pods prêts",
+          "detail": "endpoints à jour",
+          "ton": "ok",
+          "x": 710,
+          "y": 130,
+          "w": 140,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ci",
+          "vers": "dns",
+          "texte": "nom"
+        },
+        {
+          "de": "dns",
+          "vers": "svc",
+          "texte": "IP stable",
+          "decalageEntree": -12
+        },
+        {
+          "de": "ce",
+          "vers": "ing",
+          "texte": "HTTPS"
+        },
+        {
+          "de": "ing",
+          "vers": "svc",
+          "texte": "route",
+          "decalageEntree": 12
+        },
+        {
+          "de": "svc",
+          "vers": "pods",
+          "texte": "répartit"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : services, load balancing et réseau",
+        "url": "https://kubernetes.io/docs/concepts/services-networking/"
+      }
+    }
   },
   {
     "id": "k8s-stockage",
@@ -501,7 +738,92 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Du pod au disque : PVC, PV, StorageClass",
+      "largeur": 812,
+      "hauteur": 216,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "pod",
+          "texte": "Pod",
+          "detail": "monte le volume",
+          "w": 130,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "pvc",
+          "texte": "PVC",
+          "detail": "demande : 10 Gio, RWO",
+          "ton": "chaud",
+          "w": 170,
+          "x": 214,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "pv",
+          "texte": "PV",
+          "detail": "volume lié",
+          "ton": "chaud",
+          "w": 100,
+          "x": 448,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "backend",
+          "texte": "Stockage",
+          "detail": "Ceph, SAN, disque local",
+          "ton": "froid",
+          "w": 180,
+          "x": 612,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "sc",
+          "texte": "StorageClass",
+          "detail": "provisionne à la demande",
+          "x": 398,
+          "y": 140,
+          "w": 200,
+          "h": 56,
+          "ton": "froid"
+        }
+      ],
+      "liens": [
+        {
+          "de": "pod",
+          "vers": "pvc",
+          "texte": "réclame"
+        },
+        {
+          "de": "pvc",
+          "vers": "pv",
+          "texte": "se lie à"
+        },
+        {
+          "de": "pv",
+          "vers": "backend",
+          "texte": "adossé à"
+        },
+        {
+          "de": "sc",
+          "vers": "pv",
+          "texte": "crée à la demande",
+          "sortie": "h",
+          "entree": "b"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : stockage",
+        "url": "https://kubernetes.io/docs/concepts/storage/"
+      }
+    }
   },
   {
     "id": "k8s-rbac",
@@ -559,7 +881,126 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Un cluster partagé : un namespace par équipe, avec ses droits, son quota, son isolation",
+      "largeur": 806,
+      "hauteur": 322,
+      "zones": [
+        {
+          "id": "nsa",
+          "titre": "Namespace équipe A",
+          "x": 214,
+          "y": 32,
+          "w": 572,
+          "h": 110,
+          "ton": "chaud"
+        },
+        {
+          "id": "nsb",
+          "titre": "Namespace équipe B",
+          "x": 214,
+          "y": 192,
+          "w": 572,
+          "h": 110,
+          "ton": "chaud"
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "ea",
+          "texte": "Équipe A",
+          "x": 20,
+          "y": 70,
+          "w": 100,
+          "h": 40
+        },
+        {
+          "id": "eb",
+          "texte": "Équipe B",
+          "x": 20,
+          "y": 230,
+          "w": 100,
+          "h": 40
+        },
+        {
+          "id": "ra",
+          "texte": "Role",
+          "detail": "droits de l'équipe",
+          "x": 230,
+          "y": 70,
+          "w": 150,
+          "h": 56,
+          "zone": "nsa"
+        },
+        {
+          "id": "qa",
+          "texte": "ResourceQuota",
+          "detail": "plafonne CPU et mémoire",
+          "x": 420,
+          "y": 70,
+          "w": 180,
+          "h": 56,
+          "zone": "nsa"
+        },
+        {
+          "id": "npa",
+          "texte": "NetworkPolicy",
+          "detail": "isole le trafic",
+          "x": 640,
+          "y": 70,
+          "w": 130,
+          "h": 56,
+          "zone": "nsa"
+        },
+        {
+          "id": "rb",
+          "texte": "Role",
+          "detail": "droits de l'équipe",
+          "x": 230,
+          "y": 230,
+          "w": 150,
+          "h": 56,
+          "zone": "nsb"
+        },
+        {
+          "id": "qb",
+          "texte": "ResourceQuota",
+          "detail": "plafonne CPU et mémoire",
+          "x": 420,
+          "y": 230,
+          "w": 180,
+          "h": 56,
+          "zone": "nsb"
+        },
+        {
+          "id": "npb",
+          "texte": "NetworkPolicy",
+          "detail": "isole le trafic",
+          "x": 640,
+          "y": 230,
+          "w": 130,
+          "h": 56,
+          "zone": "nsb"
+        }
+      ],
+      "liens": [
+        {
+          "de": "ea",
+          "vers": "ra",
+          "texte": "travaille dans"
+        },
+        {
+          "de": "eb",
+          "vers": "rb",
+          "texte": "travaille dans"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : contrôle d'accès RBAC",
+        "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+      }
+    }
   },
   {
     "id": "helm",
@@ -603,7 +1044,109 @@
       "parcours-sylva",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Helm : un chart, vos valeurs, une release versionnée",
+      "largeur": 825,
+      "hauteur": 266,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "reg",
+          "texte": "Registre de charts",
+          "detail": "OCI, versionnés",
+          "x": 20,
+          "y": 40,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "chart",
+          "texte": "Chart",
+          "detail": "templates + values.yaml",
+          "ton": "chaud",
+          "x": 240,
+          "y": 40,
+          "w": 180,
+          "h": 56
+        },
+        {
+          "id": "up",
+          "texte": "helm upgrade",
+          "detail": "fusionne les valeurs",
+          "ton": "chaud",
+          "x": 470,
+          "y": 40,
+          "w": 160,
+          "h": 56
+        },
+        {
+          "id": "cl",
+          "texte": "Cluster",
+          "detail": "release n",
+          "ton": "ok",
+          "x": 680,
+          "y": 40,
+          "w": 90,
+          "h": 56
+        },
+        {
+          "id": "vals",
+          "texte": "Vos valeurs",
+          "detail": "values.yaml dans Git",
+          "x": 470,
+          "y": 190,
+          "w": 160,
+          "h": 56
+        },
+        {
+          "id": "hist",
+          "texte": "Révisions",
+          "detail": "historique, rollback",
+          "ton": "faible",
+          "x": 645,
+          "y": 190,
+          "w": 160,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "reg",
+          "vers": "chart",
+          "texte": "tire"
+        },
+        {
+          "de": "chart",
+          "vers": "up",
+          "texte": "templates"
+        },
+        {
+          "de": "vals",
+          "vers": "up",
+          "texte": "paramètre",
+          "sortie": "h",
+          "entree": "b"
+        },
+        {
+          "de": "up",
+          "vers": "cl",
+          "texte": "applique"
+        },
+        {
+          "de": "cl",
+          "vers": "hist",
+          "texte": "rollback",
+          "style": "pointille",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Helm : documentation",
+        "url": "https://helm.sh/docs/"
+      }
+    }
   },
   {
     "id": "gitops",
@@ -652,7 +1195,81 @@
       "parcours-sylva",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "GitOps : le dépôt décrit l'état voulu, l'outil réconcilie les clusters",
+      "largeur": 820,
+      "hauteur": 282,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "git",
+          "texte": "Dépôt Git",
+          "detail": "manifests par environnement",
+          "ton": "chaud",
+          "x": 20,
+          "y": 130,
+          "w": 210,
+          "h": 56
+        },
+        {
+          "id": "argo",
+          "texte": "Argo CD",
+          "detail": "compare voulu et réel",
+          "ton": "chaud",
+          "x": 300,
+          "y": 130,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "prod",
+          "texte": "Cluster de production",
+          "detail": "état réel",
+          "ton": "ok",
+          "x": 580,
+          "y": 60,
+          "w": 220,
+          "h": 56
+        },
+        {
+          "id": "secours",
+          "texte": "Cluster de secours",
+          "detail": "état réel",
+          "ton": "ok",
+          "x": 580,
+          "y": 206,
+          "w": 220,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "argo",
+          "vers": "git",
+          "texte": "lit",
+          "style": "pointille"
+        },
+        {
+          "de": "argo",
+          "vers": "prod",
+          "texte": "applique",
+          "sortie": "d",
+          "entree": "g"
+        },
+        {
+          "de": "argo",
+          "vers": "secours",
+          "texte": "self-heal",
+          "sortie": "d",
+          "entree": "g"
+        }
+      ],
+      "source": {
+        "nom": "Argo CD : documentation",
+        "url": "https://argo-cd.readthedocs.io/"
+      }
+    }
   },
   {
     "id": "ocp-install",
@@ -724,7 +1341,91 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Installation OpenShift sans connexion (agent) : de la description au cluster",
+      "largeur": 668,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "conf",
+          "texte": "install-config.yaml",
+          "detail": "décrit le cluster",
+          "ton": "chaud",
+          "w": 180,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "inst",
+          "texte": "openshift-install",
+          "detail": "génère l'ISO agent",
+          "w": 170,
+          "x": 264,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "srv",
+          "texte": "Serveurs",
+          "detail": "démarrent sur l'ISO",
+          "w": 150,
+          "x": 498,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cp",
+          "texte": "Plan de contrôle",
+          "detail": "3 nœuds, etcd",
+          "ton": "chaud",
+          "w": 160,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "wk",
+          "texte": "Workers",
+          "detail": "rejoignent le cluster",
+          "ton": "ok",
+          "w": 170,
+          "x": 244,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "conf",
+          "vers": "inst",
+          "texte": "lit"
+        },
+        {
+          "de": "inst",
+          "vers": "srv",
+          "texte": "ISO"
+        },
+        {
+          "de": "srv",
+          "vers": "cp",
+          "texte": "forment",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "cp",
+          "vers": "wk",
+          "texte": "ajoutent"
+        }
+      ],
+      "source": {
+        "nom": "Installateur OpenShift / OKD (dépôt source)",
+        "url": "https://github.com/openshift/installer"
+      }
+    }
   },
   {
     "id": "ocp-operators",
@@ -795,7 +1496,111 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "OpenShift : des opérateurs de plateforme et des opérateurs installés par OLM",
+      "largeur": 840,
+      "hauteur": 292,
+      "zones": [
+        {
+          "id": "socle",
+          "titre": "Socle OpenShift",
+          "x": 20,
+          "y": 22,
+          "w": 542,
+          "h": 110
+        },
+        {
+          "id": "ajoutes",
+          "titre": "Ajoutés par vous",
+          "x": 20,
+          "y": 162,
+          "w": 472,
+          "h": 110,
+          "ton": "chaud"
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "cvo",
+          "texte": "Cluster Version Operator",
+          "detail": "pilote la plateforme",
+          "ton": "chaud",
+          "x": 36,
+          "y": 60,
+          "w": 220,
+          "h": 56,
+          "zone": "socle"
+        },
+        {
+          "id": "ops",
+          "texte": "Opérateurs de plateforme",
+          "detail": "réseau, console, etcd",
+          "x": 326,
+          "y": 60,
+          "w": 220,
+          "h": 56,
+          "zone": "socle"
+        },
+        {
+          "id": "olm",
+          "texte": "OLM",
+          "detail": "catalogue, abonnements",
+          "ton": "chaud",
+          "x": 36,
+          "y": 200,
+          "w": 170,
+          "h": 56,
+          "zone": "ajoutes"
+        },
+        {
+          "id": "opt",
+          "texte": "Opérateurs optionnels",
+          "detail": "SR-IOV, MetalLB, NMState",
+          "x": 276,
+          "y": 200,
+          "w": 200,
+          "h": 56,
+          "zone": "ajoutes"
+        },
+        {
+          "id": "cl",
+          "texte": "Cluster",
+          "detail": "état conforme",
+          "ton": "ok",
+          "x": 700,
+          "y": 130,
+          "w": 120,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "cvo",
+          "vers": "ops",
+          "texte": "met à jour"
+        },
+        {
+          "de": "olm",
+          "vers": "opt",
+          "texte": "installe"
+        },
+        {
+          "de": "ops",
+          "vers": "cl",
+          "texte": "configure"
+        },
+        {
+          "de": "opt",
+          "vers": "cl",
+          "texte": "configure"
+        }
+      ],
+      "source": {
+        "nom": "Operator Lifecycle Manager (OLM)",
+        "url": "https://olm.operatorframework.io/docs/"
+      }
+    }
   },
   {
     "id": "ocp-upgrade",
@@ -842,7 +1647,91 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Mise à jour d'un cluster : un chemin sûr, le plan de contrôle d'abord, les workers par lots",
+      "largeur": 842,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "canal",
+          "texte": "Canal",
+          "detail": "stable, EUS",
+          "w": 100,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cvo",
+          "texte": "CVO",
+          "detail": "choisit un chemin sûr",
+          "ton": "chaud",
+          "w": 170,
+          "x": 184,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cp",
+          "texte": "Plan de contrôle",
+          "detail": "mis à jour en premier",
+          "w": 170,
+          "x": 418,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "mcp",
+          "texte": "MachineConfigPool",
+          "detail": "workers par lots",
+          "ton": "chaud",
+          "w": 170,
+          "x": 652,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "noeud",
+          "texte": "Nœud",
+          "detail": "drain, redémarrage, retour",
+          "ton": "ok",
+          "w": 200,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "canal",
+          "vers": "cvo",
+          "texte": "propose"
+        },
+        {
+          "de": "cvo",
+          "vers": "cp",
+          "texte": "lance"
+        },
+        {
+          "de": "cp",
+          "vers": "mcp",
+          "texte": "puis"
+        },
+        {
+          "de": "mcp",
+          "vers": "noeud",
+          "texte": "un lot à la fois",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Cluster Version Operator (dépôt source, logique des mises à jour)",
+        "url": "https://github.com/openshift/cluster-version-operator"
+      }
+    }
   },
   {
     "id": "ocp-multicluster",
@@ -896,7 +1785,108 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Un hub gouverne des clusters distants : politiques, applications, santé",
+      "largeur": 696,
+      "hauteur": 326,
+      "zones": [
+        {
+          "id": "sites",
+          "titre": "Sites distants (edge)",
+          "x": 454,
+          "y": 24,
+          "w": 222,
+          "h": 282
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "git",
+          "texte": "Git",
+          "detail": "source de vérité",
+          "x": 20,
+          "y": 40,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "hub",
+          "texte": "Cluster hub",
+          "detail": "ACM, politiques, placement",
+          "ton": "chaud",
+          "x": 20,
+          "y": 160,
+          "w": 200,
+          "h": 56
+        },
+        {
+          "id": "s1",
+          "texte": "Site 1",
+          "detail": "cluster géré",
+          "ton": "ok",
+          "x": 470,
+          "y": 62,
+          "w": 190,
+          "h": 56,
+          "zone": "sites"
+        },
+        {
+          "id": "s2",
+          "texte": "Site 2",
+          "detail": "cluster géré",
+          "ton": "ok",
+          "x": 470,
+          "y": 148,
+          "w": 190,
+          "h": 56,
+          "zone": "sites"
+        },
+        {
+          "id": "s3",
+          "texte": "Site 3",
+          "detail": "cluster géré",
+          "ton": "ok",
+          "x": 470,
+          "y": 234,
+          "w": 190,
+          "h": 56,
+          "zone": "sites"
+        }
+      ],
+      "liens": [
+        {
+          "de": "git",
+          "vers": "hub",
+          "texte": "lit",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "hub",
+          "vers": "s1",
+          "texte": "politiques",
+          "sortie": "d",
+          "entree": "g"
+        },
+        {
+          "de": "hub",
+          "vers": "s2",
+          "sortie": "d",
+          "entree": "g"
+        },
+        {
+          "de": "hub",
+          "vers": "s3",
+          "sortie": "d",
+          "entree": "g"
+        }
+      ],
+      "source": {
+        "nom": "Open Cluster Management : gestion multi-clusters",
+        "url": "https://open-cluster-management.io/"
+      }
+    }
   },
   {
     "id": "ztp",
@@ -945,7 +1935,105 @@
     "origine": [
       "architecte-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Zero-touch : du dépôt Git à un cluster edge configuré, sans intervention sur place",
+      "largeur": 698,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "git",
+          "texte": "Git",
+          "detail": "SiteConfig, politiques",
+          "ton": "chaud",
+          "w": 170,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "argo",
+          "texte": "Argo CD",
+          "detail": "sur le hub",
+          "w": 100,
+          "x": 254,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "as",
+          "texte": "Assisted Service",
+          "detail": "prépare l'installation",
+          "w": 170,
+          "x": 418,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "bmc",
+          "texte": "BMC",
+          "detail": "démarre le serveur (Redfish)",
+          "w": 210,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "edge",
+          "texte": "Serveur edge",
+          "detail": "installe le cluster",
+          "ton": "ok",
+          "w": 150,
+          "x": 294,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "pol",
+          "texte": "Politiques",
+          "detail": "appliquées au cluster",
+          "ton": "chaud",
+          "w": 170,
+          "x": 508,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "git",
+          "vers": "argo",
+          "texte": "surveille"
+        },
+        {
+          "de": "argo",
+          "vers": "as",
+          "texte": "demande"
+        },
+        {
+          "de": "as",
+          "vers": "bmc",
+          "texte": "pilote",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "bmc",
+          "vers": "edge",
+          "texte": "boote"
+        },
+        {
+          "de": "edge",
+          "vers": "pol",
+          "texte": "configure"
+        }
+      ],
+      "source": {
+        "nom": "Cluster API : documentation",
+        "url": "https://cluster-api.sigs.k8s.io/"
+      }
+    }
   },
   {
     "id": "ocp-rds",
@@ -984,7 +2072,153 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Le telco reference design : trois couches au-dessus du matériel",
+      "largeur": 882,
+      "hauteur": 412,
+      "zones": [
+        {
+          "id": "cnf",
+          "titre": "Fonctions réseau (CNF)",
+          "x": 20,
+          "y": 22,
+          "w": 462,
+          "h": 110,
+          "ton": "chaud"
+        },
+        {
+          "id": "reglages",
+          "titre": "Réglages telco",
+          "x": 20,
+          "y": 152,
+          "w": 842,
+          "h": 110
+        },
+        {
+          "id": "plateforme",
+          "titre": "Plateforme",
+          "x": 20,
+          "y": 282,
+          "w": 412,
+          "h": 110
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "upf",
+          "texte": "UPF",
+          "detail": "plan usager",
+          "x": 36,
+          "y": 60,
+          "w": 100,
+          "h": 56,
+          "zone": "cnf"
+        },
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "signalisation",
+          "x": 196,
+          "y": 60,
+          "w": 120,
+          "h": 56,
+          "zone": "cnf"
+        },
+        {
+          "id": "smf",
+          "texte": "SMF",
+          "detail": "sessions",
+          "x": 376,
+          "y": 60,
+          "w": 90,
+          "h": 56,
+          "zone": "cnf"
+        },
+        {
+          "id": "perf",
+          "texte": "Performance Profile",
+          "detail": "CPU isolés, hugepages",
+          "ton": "chaud",
+          "x": 36,
+          "y": 190,
+          "w": 180,
+          "h": 56,
+          "zone": "reglages"
+        },
+        {
+          "id": "sriov",
+          "texte": "SR-IOV",
+          "detail": "accès direct à la carte",
+          "x": 256,
+          "y": 190,
+          "w": 180,
+          "h": 56,
+          "zone": "reglages"
+        },
+        {
+          "id": "metal",
+          "texte": "MetalLB",
+          "detail": "adresses de service",
+          "x": 476,
+          "y": 190,
+          "w": 150,
+          "h": 56,
+          "zone": "reglages"
+        },
+        {
+          "id": "ptp",
+          "texte": "PTP",
+          "detail": "synchronisation horaire",
+          "x": 666,
+          "y": 190,
+          "w": 180,
+          "h": 56,
+          "zone": "reglages"
+        },
+        {
+          "id": "ocp",
+          "texte": "OpenShift",
+          "detail": "noyau temps réel, CRI-O",
+          "ton": "chaud",
+          "x": 36,
+          "y": 320,
+          "w": 180,
+          "h": 56,
+          "zone": "plateforme"
+        },
+        {
+          "id": "nmstate",
+          "texte": "NMState",
+          "detail": "réseau des nœuds",
+          "x": 276,
+          "y": 320,
+          "w": 140,
+          "h": 56,
+          "zone": "plateforme"
+        }
+      ],
+      "liens": [
+        {
+          "de": "upf",
+          "vers": "sriov",
+          "texte": "repose sur",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "perf",
+          "vers": "ocp",
+          "texte": "configure",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Telco reference configuration (dépôt openshift-kni)",
+        "url": "https://github.com/openshift-kni/telco-reference"
+      }
+    }
   },
   {
     "id": "distrib-alt",
@@ -1030,7 +2264,87 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Plusieurs distributions, une même API Kubernetes",
+      "largeur": 570,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "k8s",
+          "texte": "Kubernetes",
+          "detail": "API conforme CNCF",
+          "ton": "chaud",
+          "x": 230,
+          "y": 176,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "sylva",
+          "texte": "Sylva",
+          "detail": "pile télécom ouverte",
+          "x": 220,
+          "y": 30,
+          "w": 160,
+          "h": 56
+        },
+        {
+          "id": "edit",
+          "texte": "Distributions d'éditeurs",
+          "detail": "Nokia, Ericsson",
+          "x": 190,
+          "y": 322,
+          "w": 220,
+          "h": 56
+        },
+        {
+          "id": "ocp",
+          "texte": "OpenShift",
+          "detail": "Red Hat",
+          "x": 20,
+          "y": 176,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "ran",
+          "texte": "Rancher",
+          "detail": "SUSE",
+          "x": 460,
+          "y": 176,
+          "w": 90,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "sylva",
+          "vers": "k8s",
+          "texte": "distribution"
+        },
+        {
+          "de": "edit",
+          "vers": "k8s",
+          "texte": "distribution"
+        },
+        {
+          "de": "ocp",
+          "vers": "k8s",
+          "texte": "distribution"
+        },
+        {
+          "de": "ran",
+          "vers": "k8s",
+          "texte": "distribution"
+        }
+      ],
+      "source": {
+        "nom": "Sylva : pile CaaS telco open source",
+        "url": "https://gitlab.com/sylva-projects/sylva-core"
+      }
+    }
   },
   {
     "id": "k8s-troubleshoot",
@@ -1088,7 +2402,104 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Dépanner Kubernetes : du symptôme à la cause, couche par couche",
+      "largeur": 688,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "sympt",
+          "texte": "Symptôme",
+          "detail": "Pending, CrashLoopBackOff",
+          "ton": "faible",
+          "w": 190,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "desc",
+          "texte": "Événements",
+          "detail": "kubectl describe",
+          "w": 140,
+          "x": 274,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "logs",
+          "texte": "Journaux",
+          "detail": "kubectl logs --previous",
+          "w": 180,
+          "x": 478,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "noeud",
+          "texte": "Nœud",
+          "detail": "conditions, kubelet",
+          "w": 150,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "reseau",
+          "texte": "Réseau",
+          "detail": "DNS, Service, NetworkPolicy",
+          "w": 210,
+          "x": 234,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "cp",
+          "texte": "Plan de contrôle",
+          "detail": "API, etcd, scheduler",
+          "ton": "chaud",
+          "w": 160,
+          "x": 508,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "sympt",
+          "vers": "desc",
+          "texte": "d'abord"
+        },
+        {
+          "de": "desc",
+          "vers": "logs",
+          "texte": "puis"
+        },
+        {
+          "de": "logs",
+          "vers": "noeud",
+          "texte": "si sain",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "noeud",
+          "vers": "reseau",
+          "texte": "si sain"
+        },
+        {
+          "de": "reseau",
+          "vers": "cp",
+          "texte": "en dernier"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : dépannage et débogage",
+        "url": "https://kubernetes.io/docs/tasks/debug/"
+      }
+    }
   },
   {
     "id": "cnf-exigences",
@@ -1117,7 +2528,87 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Ce qu'une fonction réseau exige de la plateforme",
+      "largeur": 780,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "cnf",
+          "texte": "Fonction réseau (CNF)",
+          "detail": "UPF, SMF, AMF…",
+          "ton": "chaud",
+          "x": 320,
+          "y": 176,
+          "w": 200,
+          "h": 56
+        },
+        {
+          "id": "reseau",
+          "texte": "Réseau",
+          "detail": "interfaces secondaires, SCTP",
+          "x": 315,
+          "y": 30,
+          "w": 210,
+          "h": 56
+        },
+        {
+          "id": "expl",
+          "texte": "Exploitation",
+          "detail": "sondes, budget d'interruption",
+          "x": 310,
+          "y": 322,
+          "w": 220,
+          "h": 56
+        },
+        {
+          "id": "res",
+          "texte": "Ressources",
+          "detail": "CPU exclusifs, hugepages",
+          "x": 20,
+          "y": 176,
+          "w": 190,
+          "h": 56
+        },
+        {
+          "id": "secu",
+          "texte": "Sécurité",
+          "detail": "privilèges, droits",
+          "x": 610,
+          "y": 176,
+          "w": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "cnf",
+          "vers": "reseau",
+          "texte": "exige"
+        },
+        {
+          "de": "cnf",
+          "vers": "expl",
+          "texte": "exige"
+        },
+        {
+          "de": "res",
+          "vers": "cnf",
+          "texte": "exige"
+        },
+        {
+          "de": "cnf",
+          "vers": "secu",
+          "texte": "exige"
+        }
+      ],
+      "source": {
+        "nom": "SR-IOV Network Device Plugin (dépôt source)",
+        "url": "https://github.com/k8snetworkplumbingwg/sriov-network-device-plugin"
+      }
+    }
   },
   {
     "id": "upf-edge",
@@ -1139,7 +2630,114 @@
     "origine": [
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "UPF distribué : la signalisation reste au centre, le trafic utilisateur reste local",
+      "largeur": 716,
+      "hauteur": 312,
+      "zones": [
+        {
+          "id": "central",
+          "titre": "Cœur central (région)",
+          "x": 284,
+          "y": 22,
+          "w": 322,
+          "h": 110
+        },
+        {
+          "id": "site",
+          "titre": "Site edge",
+          "x": 284,
+          "y": 182,
+          "w": 412,
+          "h": 110,
+          "ton": "chaud"
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "ran",
+          "texte": "RAN (gNB)",
+          "detail": "radio locale",
+          "x": 20,
+          "y": 200,
+          "w": 110,
+          "h": 56
+        },
+        {
+          "id": "amf",
+          "texte": "AMF",
+          "detail": "accès, mobilité",
+          "x": 300,
+          "y": 60,
+          "w": 130,
+          "h": 56,
+          "zone": "central"
+        },
+        {
+          "id": "smf",
+          "texte": "SMF",
+          "detail": "sessions",
+          "x": 500,
+          "y": 60,
+          "w": 90,
+          "h": 56,
+          "zone": "central"
+        },
+        {
+          "id": "upf",
+          "texte": "UPF edge",
+          "detail": "plan usager local",
+          "ton": "chaud",
+          "x": 300,
+          "y": 220,
+          "w": 140,
+          "h": 56,
+          "zone": "site"
+        },
+        {
+          "id": "mec",
+          "texte": "Application locale",
+          "detail": "MEC, accès local",
+          "ton": "ok",
+          "x": 510,
+          "y": 220,
+          "w": 170,
+          "h": 56,
+          "zone": "site"
+        }
+      ],
+      "liens": [
+        {
+          "de": "ran",
+          "vers": "amf",
+          "texte": "N2",
+          "sortie": "h",
+          "entree": "g"
+        },
+        {
+          "de": "smf",
+          "vers": "upf",
+          "texte": "N4 · PFCP",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "ran",
+          "vers": "upf",
+          "texte": "N3 · GTP-U"
+        },
+        {
+          "de": "upf",
+          "vers": "mec",
+          "texte": "N6"
+        }
+      ],
+      "source": {
+        "nom": "eUPF : UPF open source en eBPF/XDP",
+        "url": "https://github.com/edgecomllc/eupf"
+      }
+    }
   },
   {
     "id": "capacite-noeuds",
@@ -1161,6 +2759,75 @@
     "origine": [
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Maintenance d'un nœud : cordon, drain, intervention, retour",
+      "largeur": 658,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "cordon",
+          "texte": "Cordon",
+          "detail": "plus de nouveaux pods",
+          "w": 170,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "drain",
+          "texte": "Drain",
+          "detail": "évince les pods",
+          "ton": "chaud",
+          "w": 130,
+          "x": 254,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "maint",
+          "texte": "Intervention",
+          "detail": "mise à jour, redémarrage",
+          "w": 190,
+          "x": 448,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "uncordon",
+          "texte": "Uncordon",
+          "detail": "le nœud reprend la charge",
+          "ton": "ok",
+          "w": 190,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "cordon",
+          "vers": "drain",
+          "texte": "puis"
+        },
+        {
+          "de": "drain",
+          "vers": "maint",
+          "texte": "puis"
+        },
+        {
+          "de": "maint",
+          "vers": "uncordon",
+          "texte": "puis",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "Kubernetes : drainer un nœud en sécurité",
+        "url": "https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/"
+      }
+    }
   }
 ]

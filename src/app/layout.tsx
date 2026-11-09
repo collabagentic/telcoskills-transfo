@@ -9,7 +9,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--police-mono", di
 
 export const metadata: Metadata = {
   title: { default: "TelcoSkills · Transformation", template: "%s · TelcoSkills" },
-  description: "Votre métier télécom, version cloud natif : ce qui change de forme, ce qui est vraiment nouveau, ce qu'il faut lâcher.",
+  description: "Le telco cloud : par où commencer ? Une feuille de route qui se resserre sur ce qui change pour votre métier.",
   // Pas d'indexation tant que l'auteur n'a pas dit « on ouvre » (BACKLOG.md E0-4, lot 8).
   robots: { index: false, follow: false },
 };
