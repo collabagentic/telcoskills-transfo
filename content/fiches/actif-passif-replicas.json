@@ -52,6 +52,183 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Haute disponibilité : un nœud qui attend contre des réplicas qui servent",
+    "largeur": 836,
+    "hauteur": 446,
+    "zones": [
+      {
+        "id": "avant",
+        "titre": "Avant : actif/passif",
+        "x": 20,
+        "y": 22,
+        "w": 522,
+        "h": 110
+      },
+      {
+        "id": "apres",
+        "titre": "Après : réplicas et sondes",
+        "x": 20,
+        "y": 172,
+        "w": 796,
+        "h": 254,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "client",
+        "texte": "Client",
+        "x": 36,
+        "y": 60,
+        "w": 90,
+        "h": 40,
+        "zone": "avant"
+      },
+      {
+        "id": "actif",
+        "texte": "Nœud actif",
+        "detail": "sert le trafic",
+        "x": 206,
+        "y": 60,
+        "w": 120,
+        "h": 56,
+        "zone": "avant"
+      },
+      {
+        "id": "passif",
+        "texte": "Nœud passif",
+        "detail": "attend",
+        "ton": "faible",
+        "x": 406,
+        "y": 60,
+        "w": 120,
+        "h": 56,
+        "zone": "avant"
+      },
+      {
+        "id": "pod-a",
+        "texte": "Pod",
+        "detail": "réplica 1",
+        "ton": "ok",
+        "x": 380,
+        "y": 210,
+        "w": 130,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "pod-b",
+        "texte": "Pod",
+        "detail": "réplica 2",
+        "ton": "ok",
+        "x": 380,
+        "y": 282,
+        "w": 130,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "pod-c",
+        "texte": "Pod",
+        "detail": "réplica 3",
+        "ton": "ok",
+        "x": 380,
+        "y": 354,
+        "w": 130,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "service",
+        "texte": "Service",
+        "detail": "répartit le trafic",
+        "ton": "chaud",
+        "x": 200,
+        "y": 282,
+        "w": 150,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "client2",
+        "texte": "Client",
+        "x": 36,
+        "y": 290,
+        "w": 90,
+        "h": 40,
+        "zone": "apres"
+      },
+      {
+        "id": "sonde",
+        "texte": "Sonde readiness",
+        "detail": "retire un pod en échec",
+        "ton": "froid",
+        "x": 600,
+        "y": 240,
+        "w": 200,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "pdb",
+        "texte": "PodDisruptionBudget",
+        "detail": "limite les arrêts planifiés",
+        "ton": "froid",
+        "x": 600,
+        "y": 336,
+        "w": 200,
+        "h": 56,
+        "zone": "apres"
+      }
+    ],
+    "liens": [
+      {
+        "de": "client",
+        "vers": "actif",
+        "texte": "trafic"
+      },
+      {
+        "de": "actif",
+        "vers": "passif",
+        "texte": "heartbeat",
+        "style": "pointille",
+        "sens": "double"
+      },
+      {
+        "de": "client2",
+        "vers": "service"
+      },
+      {
+        "de": "service",
+        "vers": "pod-a"
+      },
+      {
+        "de": "service",
+        "vers": "pod-b"
+      },
+      {
+        "de": "service",
+        "vers": "pod-c"
+      },
+      {
+        "de": "sonde",
+        "vers": "pod-b",
+        "texte": "teste",
+        "style": "pointille"
+      },
+      {
+        "de": "pdb",
+        "vers": "pod-c",
+        "texte": "garde ≥ 2",
+        "style": "pointille"
+      }
+    ],
+    "source": {
+      "nom": "Kubernetes : sondes liveness, readiness, startup",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-08",
   "historique": [

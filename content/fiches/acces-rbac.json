@@ -51,6 +51,132 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Qui peut faire quoi, et où : sujets, liaisons, rôles, ressources",
+    "largeur": 886,
+    "hauteur": 346,
+    "zones": [
+      {
+        "id": "ns",
+        "titre": "Namespace 5gc",
+        "x": 224,
+        "y": 80,
+        "w": 642,
+        "h": 110,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "user",
+        "texte": "Utilisateur",
+        "detail": "identité OIDC",
+        "x": 20,
+        "y": 70,
+        "w": 120,
+        "h": 56
+      },
+      {
+        "id": "sa",
+        "texte": "Compte de service",
+        "detail": "identité d'un pod",
+        "x": 20,
+        "y": 186,
+        "w": 170,
+        "h": 56
+      },
+      {
+        "id": "rb",
+        "texte": "RoleBinding",
+        "detail": "lie sujet et rôle",
+        "x": 240,
+        "y": 118,
+        "w": 140,
+        "h": 56,
+        "zone": "ns"
+      },
+      {
+        "id": "role",
+        "texte": "Role",
+        "detail": "verbes sur des ressources",
+        "ton": "chaud",
+        "x": 430,
+        "y": 118,
+        "w": 190,
+        "h": 56,
+        "zone": "ns"
+      },
+      {
+        "id": "res",
+        "texte": "Ressources",
+        "detail": "pods, secrets, services",
+        "ton": "ok",
+        "x": 670,
+        "y": 118,
+        "w": 180,
+        "h": 56,
+        "zone": "ns"
+      },
+      {
+        "id": "crb",
+        "texte": "ClusterRoleBinding",
+        "detail": "portée : tout le cluster",
+        "ton": "faible",
+        "x": 240,
+        "y": 270,
+        "w": 190,
+        "h": 56
+      },
+      {
+        "id": "cr",
+        "texte": "ClusterRole",
+        "detail": "droits sur tout le cluster",
+        "ton": "faible",
+        "x": 480,
+        "y": 270,
+        "w": 200,
+        "h": 56
+      }
+    ],
+    "liens": [
+      {
+        "de": "user",
+        "vers": "rb",
+        "texte": "sujet"
+      },
+      {
+        "de": "sa",
+        "vers": "rb",
+        "texte": "sujet"
+      },
+      {
+        "de": "rb",
+        "vers": "role",
+        "texte": "référence"
+      },
+      {
+        "de": "role",
+        "vers": "res",
+        "texte": "get, list"
+      },
+      {
+        "de": "sa",
+        "vers": "crb",
+        "texte": "piège : tout le cluster",
+        "style": "pointille"
+      },
+      {
+        "de": "crb",
+        "vers": "cr",
+        "texte": "référence",
+        "style": "pointille"
+      }
+    ],
+    "source": {
+      "nom": "Kubernetes : contrôle d'accès RBAC",
+      "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-08",
   "historique": [

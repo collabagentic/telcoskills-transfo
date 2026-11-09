@@ -52,6 +52,88 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Chiffrer un niveau de service : de l'indicateur au coût de l'architecture",
+    "largeur": 670,
+    "hauteur": 276,
+    "zones": [],
+    "noeuds": [
+      {
+        "id": "sli",
+        "texte": "SLI",
+        "detail": "taux de requêtes réussies",
+        "x": 20,
+        "y": 60,
+        "w": 190,
+        "h": 56
+      },
+      {
+        "id": "slo",
+        "texte": "SLO",
+        "detail": "99,9 % sur 30 jours",
+        "ton": "chaud",
+        "x": 280,
+        "y": 60,
+        "w": 150,
+        "h": 56
+      },
+      {
+        "id": "budget",
+        "texte": "Budget d'erreur",
+        "detail": "43 min par mois",
+        "ton": "ok",
+        "x": 500,
+        "y": 60,
+        "w": 150,
+        "h": 56
+      },
+      {
+        "id": "archi",
+        "texte": "Architecture",
+        "detail": "réplicas, sites",
+        "x": 290,
+        "y": 200,
+        "w": 130,
+        "h": 56
+      },
+      {
+        "id": "cout",
+        "texte": "Coût",
+        "detail": "par niveau de service",
+        "ton": "chaud",
+        "x": 476,
+        "y": 200,
+        "w": 170,
+        "h": 56
+      }
+    ],
+    "liens": [
+      {
+        "de": "sli",
+        "vers": "slo",
+        "texte": "mesure"
+      },
+      {
+        "de": "slo",
+        "vers": "budget",
+        "texte": "tolère"
+      },
+      {
+        "de": "slo",
+        "vers": "archi",
+        "texte": "impose"
+      },
+      {
+        "de": "archi",
+        "vers": "cout",
+        "texte": "FinOps"
+      }
+    ],
+    "source": {
+      "nom": "Google SRE : objectifs de niveau de service",
+      "url": "https://sre.google/sre-book/service-level-objectives/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [

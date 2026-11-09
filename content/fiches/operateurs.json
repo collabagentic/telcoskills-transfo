@@ -38,6 +38,126 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Un opérateur installé par OLM exploite l'application à votre place",
+    "largeur": 872,
+    "hauteur": 312,
+    "zones": [
+      {
+        "id": "olm",
+        "titre": "OLM (OpenShift)",
+        "x": 20,
+        "y": 22,
+        "w": 632,
+        "h": 110
+      },
+      {
+        "id": "cluster",
+        "titre": "Cluster",
+        "x": 260,
+        "y": 182,
+        "w": 592,
+        "h": 110,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "catalogue",
+        "texte": "Catalogue",
+        "detail": "opérateurs disponibles",
+        "x": 36,
+        "y": 60,
+        "w": 170,
+        "h": 56,
+        "zone": "olm"
+      },
+      {
+        "id": "sub",
+        "texte": "Subscription",
+        "detail": "canal suivi",
+        "x": 266,
+        "y": 60,
+        "w": 130,
+        "h": 56,
+        "zone": "olm"
+      },
+      {
+        "id": "plan",
+        "texte": "InstallPlan",
+        "detail": "changements à approuver",
+        "x": 456,
+        "y": 60,
+        "w": 180,
+        "h": 56,
+        "zone": "olm"
+      },
+      {
+        "id": "cr",
+        "texte": "Ressource perso",
+        "detail": "UPF : 3 instances",
+        "ton": "chaud",
+        "x": 276,
+        "y": 220,
+        "w": 150,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "op",
+        "texte": "Opérateur",
+        "detail": "contrôleur dédié",
+        "ton": "chaud",
+        "x": 476,
+        "y": 220,
+        "w": 140,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "res",
+        "texte": "Ressources gérées",
+        "detail": "StatefulSet, Service",
+        "ton": "ok",
+        "x": 666,
+        "y": 220,
+        "w": 170,
+        "h": 56,
+        "zone": "cluster"
+      }
+    ],
+    "liens": [
+      {
+        "de": "catalogue",
+        "vers": "sub",
+        "texte": "choisit"
+      },
+      {
+        "de": "sub",
+        "vers": "plan",
+        "texte": "génère"
+      },
+      {
+        "de": "plan",
+        "vers": "op",
+        "texte": "installe"
+      },
+      {
+        "de": "cr",
+        "vers": "op",
+        "texte": "décrit"
+      },
+      {
+        "de": "op",
+        "vers": "res",
+        "texte": "crée"
+      }
+    ],
+    "source": {
+      "nom": "Kubernetes : le motif Operator",
+      "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/operator/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-08",
   "historique": [

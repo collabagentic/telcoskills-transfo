@@ -52,6 +52,136 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "De la machine qu'on soigne au pod qu'on remplace",
+    "largeur": 852,
+    "hauteur": 302,
+    "zones": [
+      {
+        "id": "avant",
+        "titre": "Avant : machine virtuelle",
+        "x": 20,
+        "y": 22,
+        "w": 582,
+        "h": 110
+      },
+      {
+        "id": "apres",
+        "titre": "Après : conteneurs",
+        "x": 20,
+        "y": 172,
+        "w": 812,
+        "h": 110,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "template",
+        "texte": "Template",
+        "detail": "VM de référence",
+        "x": 36,
+        "y": 60,
+        "w": 130,
+        "h": 56,
+        "zone": "avant"
+      },
+      {
+        "id": "vm",
+        "texte": "VM",
+        "detail": "patchée sur place",
+        "x": 236,
+        "y": 60,
+        "w": 140,
+        "h": 56,
+        "zone": "avant"
+      },
+      {
+        "id": "ssh",
+        "texte": "Correction",
+        "detail": "connexion en SSH",
+        "ton": "faible",
+        "x": 446,
+        "y": 60,
+        "w": 140,
+        "h": 56,
+        "zone": "avant"
+      },
+      {
+        "id": "image",
+        "texte": "Image",
+        "detail": "construite, versionnée",
+        "x": 36,
+        "y": 210,
+        "w": 170,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "registre",
+        "texte": "Registre",
+        "detail": "stocke l'image",
+        "x": 266,
+        "y": 210,
+        "w": 120,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "deployment",
+        "texte": "Deployment",
+        "detail": "N pods voulus",
+        "ton": "chaud",
+        "x": 446,
+        "y": 210,
+        "w": 120,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "pods",
+        "texte": "Pods",
+        "detail": "remplacés, jamais réparés",
+        "ton": "ok",
+        "x": 626,
+        "y": 210,
+        "w": 190,
+        "h": 56,
+        "zone": "apres"
+      }
+    ],
+    "liens": [
+      {
+        "de": "template",
+        "vers": "vm",
+        "texte": "clone"
+      },
+      {
+        "de": "vm",
+        "vers": "ssh",
+        "texte": "soigne"
+      },
+      {
+        "de": "image",
+        "vers": "registre",
+        "texte": "push"
+      },
+      {
+        "de": "registre",
+        "vers": "deployment",
+        "texte": "tire"
+      },
+      {
+        "de": "deployment",
+        "vers": "pods",
+        "texte": "crée"
+      }
+    ],
+    "source": {
+      "nom": "Kubernetes : Pods",
+      "url": "https://kubernetes.io/docs/concepts/workloads/pods/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-08",
   "historique": [

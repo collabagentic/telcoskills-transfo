@@ -48,6 +48,134 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Un nœud, deux types de pods : CPU exclusifs pour le plan usager, pool partagé pour le reste",
+    "largeur": 828,
+    "hauteur": 362,
+    "zones": [
+      {
+        "id": "noeud",
+        "titre": "Nœud de calcul (64 vCPU)",
+        "x": 254,
+        "y": 32,
+        "w": 554,
+        "h": 310
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "sched",
+        "texte": "Scheduler",
+        "detail": "selon les requests",
+        "x": 20,
+        "y": 170,
+        "w": 150,
+        "h": 56
+      },
+      {
+        "id": "outils",
+        "texte": "Pod d'outils",
+        "detail": "Burstable",
+        "x": 270,
+        "y": 70,
+        "w": 130,
+        "h": 56,
+        "zone": "noeud"
+      },
+      {
+        "id": "partage",
+        "texte": "Pool partagé",
+        "detail": "CPU restants",
+        "x": 456,
+        "y": 70,
+        "w": 130,
+        "h": 56,
+        "zone": "noeud"
+      },
+      {
+        "id": "upf",
+        "texte": "Pod UPF",
+        "detail": "requests = limits",
+        "ton": "chaud",
+        "x": 270,
+        "y": 170,
+        "w": 140,
+        "h": 56,
+        "zone": "noeud"
+      },
+      {
+        "id": "excl",
+        "texte": "CPU exclusifs",
+        "detail": "politique static",
+        "ton": "chaud",
+        "x": 466,
+        "y": 170,
+        "w": 140,
+        "h": 56,
+        "zone": "noeud"
+      },
+      {
+        "id": "nic",
+        "texte": "Carte SR-IOV",
+        "detail": "même NUMA",
+        "ton": "froid",
+        "x": 662,
+        "y": 170,
+        "w": 130,
+        "h": 56,
+        "zone": "noeud"
+      },
+      {
+        "id": "hp",
+        "texte": "Hugepages",
+        "detail": "1 Gio réservées",
+        "ton": "ok",
+        "x": 270,
+        "y": 270,
+        "w": 130,
+        "h": 56,
+        "zone": "noeud"
+      }
+    ],
+    "liens": [
+      {
+        "de": "sched",
+        "vers": "outils",
+        "texte": "place"
+      },
+      {
+        "de": "sched",
+        "vers": "upf",
+        "texte": "place"
+      },
+      {
+        "de": "outils",
+        "vers": "partage",
+        "texte": "utilise"
+      },
+      {
+        "de": "upf",
+        "vers": "excl",
+        "texte": "obtient"
+      },
+      {
+        "de": "excl",
+        "vers": "nic",
+        "texte": "NUMA",
+        "style": "pointille",
+        "sens": "double"
+      },
+      {
+        "de": "upf",
+        "vers": "hp",
+        "texte": "mémoire"
+      }
+    ],
+    "source": {
+      "nom": "Kubernetes : gérer les ressources des conteneurs",
+      "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [

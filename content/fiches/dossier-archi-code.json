@@ -52,6 +52,103 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Du dossier validé en comité à la décision versionnée dans le dépôt",
+    "largeur": 864,
+    "hauteur": 282,
+    "zones": [
+      {
+        "id": "depot",
+        "titre": "Dépôt d'architecture",
+        "x": 190,
+        "y": 22,
+        "w": 654,
+        "h": 240,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "besoin",
+        "texte": "À décider",
+        "detail": "choix structurant",
+        "x": 20,
+        "y": 60,
+        "w": 140,
+        "h": 56
+      },
+      {
+        "id": "adr",
+        "texte": "ADR",
+        "detail": "contexte, décision, effets",
+        "ton": "chaud",
+        "x": 206,
+        "y": 60,
+        "w": 200,
+        "h": 56,
+        "zone": "depot"
+      },
+      {
+        "id": "pr",
+        "texte": "Pull request",
+        "detail": "relue par pairs et comité",
+        "x": 452,
+        "y": 60,
+        "w": 190,
+        "h": 56,
+        "zone": "depot"
+      },
+      {
+        "id": "accepte",
+        "texte": "ADR accepté",
+        "detail": "statut et date",
+        "ton": "ok",
+        "x": 688,
+        "y": 60,
+        "w": 120,
+        "h": 56,
+        "zone": "depot"
+      },
+      {
+        "id": "rempl",
+        "texte": "ADR remplacé",
+        "detail": "lien vers le nouveau",
+        "ton": "faible",
+        "x": 668,
+        "y": 190,
+        "w": 160,
+        "h": 56,
+        "zone": "depot"
+      }
+    ],
+    "liens": [
+      {
+        "de": "besoin",
+        "vers": "adr",
+        "texte": "rédige"
+      },
+      {
+        "de": "adr",
+        "vers": "pr",
+        "texte": "propose"
+      },
+      {
+        "de": "pr",
+        "vers": "accepte",
+        "texte": "fusion"
+      },
+      {
+        "de": "accepte",
+        "vers": "rempl",
+        "texte": "remplacé par",
+        "style": "pointille"
+      }
+    ],
+    "source": {
+      "nom": "Michael Nygard : Documenting Architecture Decisions",
+      "url": "https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [

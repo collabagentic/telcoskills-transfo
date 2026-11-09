@@ -52,6 +52,98 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Supervision : métriques ouvertes, règles sur symptômes, alertes regroupées",
+    "largeur": 898,
+    "hauteur": 286,
+    "zones": [
+      {
+        "id": "cluster",
+        "titre": "Cluster",
+        "x": 20,
+        "y": 22,
+        "w": 452,
+        "h": 110
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "pods",
+        "texte": "Pods",
+        "detail": "exposent /metrics",
+        "x": 36,
+        "y": 60,
+        "w": 140,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "prom",
+        "texte": "Prometheus",
+        "detail": "règles d'alerte, clause for",
+        "ton": "chaud",
+        "x": 246,
+        "y": 60,
+        "w": 210,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "am",
+        "texte": "Alertmanager",
+        "detail": "regroupe et route",
+        "x": 512,
+        "y": 60,
+        "w": 140,
+        "h": 56
+      },
+      {
+        "id": "astreinte",
+        "texte": "Astreinte",
+        "detail": "mail, chat, téléphone",
+        "ton": "ok",
+        "x": 708,
+        "y": 60,
+        "w": 170,
+        "h": 56
+      },
+      {
+        "id": "graf",
+        "texte": "Grafana",
+        "detail": "tableaux de bord",
+        "x": 281,
+        "y": 210,
+        "w": 140,
+        "h": 56
+      }
+    ],
+    "liens": [
+      {
+        "de": "prom",
+        "vers": "pods",
+        "texte": "scrape"
+      },
+      {
+        "de": "prom",
+        "vers": "am",
+        "texte": "alertes"
+      },
+      {
+        "de": "am",
+        "vers": "astreinte",
+        "texte": "notifie"
+      },
+      {
+        "de": "graf",
+        "vers": "prom",
+        "texte": "PromQL"
+      }
+    ],
+    "source": {
+      "nom": "Prometheus : règles d'alerte",
+      "url": "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [

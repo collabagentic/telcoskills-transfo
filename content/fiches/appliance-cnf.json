@@ -52,6 +52,142 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Cycle de vie d'une CNF : livraison, valeurs versionnées, helm upgrade, rollback",
+    "largeur": 887,
+    "hauteur": 302,
+    "zones": [
+      {
+        "id": "editeur",
+        "titre": "Éditeur",
+        "x": 20,
+        "y": 22,
+        "w": 202,
+        "h": 110
+      },
+      {
+        "id": "vous",
+        "titre": "Chez vous",
+        "x": 270,
+        "y": 22,
+        "w": 372,
+        "h": 110
+      },
+      {
+        "id": "plateforme",
+        "titre": "Plateforme",
+        "x": 385,
+        "y": 172,
+        "w": 482,
+        "h": 110,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "ed",
+        "texte": "Éditeur",
+        "detail": "livre chart et images",
+        "x": 36,
+        "y": 60,
+        "w": 170,
+        "h": 56,
+        "zone": "editeur"
+      },
+      {
+        "id": "reg",
+        "texte": "Registre",
+        "detail": "images signées",
+        "x": 286,
+        "y": 60,
+        "w": 120,
+        "h": 56,
+        "zone": "vous"
+      },
+      {
+        "id": "vals",
+        "texte": "Valeurs",
+        "detail": "values.yaml dans Git",
+        "ton": "chaud",
+        "x": 466,
+        "y": 60,
+        "w": 160,
+        "h": 56,
+        "zone": "vous"
+      },
+      {
+        "id": "pipe",
+        "texte": "Pipeline",
+        "detail": "helm upgrade",
+        "ton": "chaud",
+        "x": 401,
+        "y": 210,
+        "w": 110,
+        "h": 56,
+        "zone": "plateforme"
+      },
+      {
+        "id": "cl",
+        "texte": "Cluster",
+        "detail": "release n",
+        "ton": "ok",
+        "x": 571,
+        "y": 210,
+        "w": 90,
+        "h": 56,
+        "zone": "plateforme"
+      },
+      {
+        "id": "prev",
+        "texte": "Révision n−1",
+        "detail": "retour possible",
+        "ton": "faible",
+        "x": 721,
+        "y": 210,
+        "w": 130,
+        "h": 56,
+        "zone": "plateforme"
+      }
+    ],
+    "liens": [
+      {
+        "de": "ed",
+        "vers": "reg",
+        "texte": "livre"
+      },
+      {
+        "de": "reg",
+        "vers": "pipe",
+        "texte": "tire",
+        "sortie": "b",
+        "entree": "h",
+        "decalageEntree": -30
+      },
+      {
+        "de": "vals",
+        "vers": "pipe",
+        "texte": "paramètre",
+        "sortie": "b",
+        "entree": "h",
+        "decalageEntree": 30
+      },
+      {
+        "de": "pipe",
+        "vers": "cl",
+        "texte": "déploie"
+      },
+      {
+        "de": "cl",
+        "vers": "prev",
+        "texte": "rollback",
+        "style": "pointille"
+      }
+    ],
+    "source": {
+      "nom": "Helm : helm upgrade",
+      "url": "https://helm.sh/docs/helm/helm_upgrade/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [

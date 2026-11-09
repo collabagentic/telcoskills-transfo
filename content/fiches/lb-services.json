@@ -50,6 +50,139 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Deux chemins vers les pods : L4 (SCTP) avec MetalLB, HTTP avec Ingress",
+    "largeur": 886,
+    "hauteur": 302,
+    "zones": [
+      {
+        "id": "cluster",
+        "titre": "Cluster",
+        "x": 424,
+        "y": 32,
+        "w": 442,
+        "h": 250,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "ran",
+        "texte": "RAN",
+        "detail": "N2 · SCTP",
+        "x": 20,
+        "y": 70,
+        "w": 130,
+        "h": 56
+      },
+      {
+        "id": "routeur",
+        "texte": "Routeur",
+        "detail": "reçoit l'IP en BGP",
+        "x": 210,
+        "y": 70,
+        "w": 170,
+        "h": 56
+      },
+      {
+        "id": "svclb",
+        "texte": "Service LoadBalancer",
+        "detail": "IP annoncée par MetalLB",
+        "ton": "chaud",
+        "x": 440,
+        "y": 70,
+        "w": 210,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "amf",
+        "texte": "Pods AMF",
+        "detail": "SCTP 38412",
+        "ton": "ok",
+        "x": 710,
+        "y": 70,
+        "w": 140,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "web",
+        "texte": "Client",
+        "detail": "HTTPS",
+        "x": 20,
+        "y": 210,
+        "w": 130,
+        "h": 56
+      },
+      {
+        "id": "ing",
+        "texte": "Ingress ou Route",
+        "detail": "HTTP, HTTPS, TLS",
+        "x": 210,
+        "y": 210,
+        "w": 170,
+        "h": 56
+      },
+      {
+        "id": "svc",
+        "texte": "Service ClusterIP",
+        "detail": "répartit",
+        "x": 440,
+        "y": 210,
+        "w": 210,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "pw",
+        "texte": "Pods web",
+        "detail": "répliqués",
+        "ton": "ok",
+        "x": 710,
+        "y": 210,
+        "w": 140,
+        "h": 56,
+        "zone": "cluster"
+      }
+    ],
+    "liens": [
+      {
+        "de": "ran",
+        "vers": "routeur",
+        "texte": "SCTP"
+      },
+      {
+        "de": "routeur",
+        "vers": "svclb",
+        "texte": "BGP"
+      },
+      {
+        "de": "svclb",
+        "vers": "amf",
+        "texte": "répartit"
+      },
+      {
+        "de": "web",
+        "vers": "ing",
+        "texte": "HTTPS"
+      },
+      {
+        "de": "ing",
+        "vers": "svc",
+        "texte": "route"
+      },
+      {
+        "de": "svc",
+        "vers": "pw",
+        "texte": "répartit"
+      }
+    ],
+    "source": {
+      "nom": "Kubernetes : Services",
+      "url": "https://kubernetes.io/docs/concepts/services-networking/service/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [

@@ -52,6 +52,133 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Du changement à la production : pull request, pipeline, fusion, GitOps",
+    "largeur": 886,
+    "hauteur": 302,
+    "zones": [
+      {
+        "id": "poste",
+        "titre": "Votre poste",
+        "x": 20,
+        "y": 22,
+        "w": 382,
+        "h": 110
+      },
+      {
+        "id": "forge",
+        "titre": "Forge (GitLab, GitHub)",
+        "x": 454,
+        "y": 22,
+        "w": 412,
+        "h": 110
+      },
+      {
+        "id": "plateforme",
+        "titre": "Plateforme",
+        "x": 539,
+        "y": 172,
+        "w": 322,
+        "h": 110
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "branche",
+        "texte": "Branche",
+        "detail": "vous poussez",
+        "x": 36,
+        "y": 60,
+        "w": 110,
+        "h": 56,
+        "zone": "poste"
+      },
+      {
+        "id": "pr",
+        "texte": "Pull request",
+        "detail": "diff relu par un pair",
+        "ton": "chaud",
+        "x": 216,
+        "y": 60,
+        "w": 170,
+        "h": 56,
+        "zone": "poste"
+      },
+      {
+        "id": "pipeline",
+        "texte": "Pipeline CI",
+        "detail": "tests, lint, sécurité",
+        "x": 470,
+        "y": 60,
+        "w": 170,
+        "h": 56,
+        "zone": "forge"
+      },
+      {
+        "id": "fusion",
+        "texte": "Fusion",
+        "detail": "branche protégée",
+        "x": 710,
+        "y": 60,
+        "w": 140,
+        "h": 56,
+        "zone": "forge"
+      },
+      {
+        "id": "cluster",
+        "texte": "Cluster",
+        "detail": "état réel",
+        "ton": "ok",
+        "x": 555,
+        "y": 210,
+        "w": 90,
+        "h": 56,
+        "zone": "plateforme"
+      },
+      {
+        "id": "gitops",
+        "texte": "Outil GitOps",
+        "detail": "Argo CD, Flux",
+        "x": 715,
+        "y": 210,
+        "w": 130,
+        "h": 56,
+        "zone": "plateforme"
+      }
+    ],
+    "liens": [
+      {
+        "de": "branche",
+        "vers": "pr",
+        "texte": "ouvre"
+      },
+      {
+        "de": "pr",
+        "vers": "pipeline",
+        "texte": "déclenche"
+      },
+      {
+        "de": "pipeline",
+        "vers": "fusion",
+        "texte": "si vert"
+      },
+      {
+        "de": "gitops",
+        "vers": "fusion",
+        "texte": "lit main",
+        "style": "pointille"
+      },
+      {
+        "de": "gitops",
+        "vers": "cluster",
+        "texte": "applique"
+      }
+    ],
+    "source": {
+      "nom": "GitHub : à propos des branches protégées",
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-08",
   "historique": [

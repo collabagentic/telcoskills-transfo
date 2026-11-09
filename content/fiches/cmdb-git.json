@@ -51,6 +51,136 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "L'inventaire se lit dans le cluster, il n'est plus ressaisi",
+    "largeur": 812,
+    "hauteur": 302,
+    "zones": [
+      {
+        "id": "avant",
+        "titre": "Avant : CMDB",
+        "x": 20,
+        "y": 22,
+        "w": 632,
+        "h": 110
+      },
+      {
+        "id": "apres",
+        "titre": "Après : Git et labels",
+        "x": 20,
+        "y": 172,
+        "w": 772,
+        "h": 110,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "saisie",
+        "texte": "Saisie",
+        "detail": "à la main, par lots",
+        "x": 36,
+        "y": 60,
+        "w": 150,
+        "h": 56,
+        "zone": "avant"
+      },
+      {
+        "id": "cmdb",
+        "texte": "CMDB",
+        "detail": "inventaire séparé",
+        "x": 256,
+        "y": 60,
+        "w": 140,
+        "h": 56,
+        "zone": "avant"
+      },
+      {
+        "id": "ecart",
+        "texte": "Écart",
+        "detail": "retard sur la réalité",
+        "ton": "faible",
+        "x": 466,
+        "y": 60,
+        "w": 170,
+        "h": 56,
+        "zone": "avant"
+      },
+      {
+        "id": "git",
+        "texte": "Git",
+        "detail": "état voulu",
+        "ton": "chaud",
+        "x": 36,
+        "y": 210,
+        "w": 100,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "gitops",
+        "texte": "Outil GitOps",
+        "detail": "réapplique",
+        "x": 196,
+        "y": 210,
+        "w": 130,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "cluster",
+        "texte": "Cluster",
+        "detail": "objets avec labels",
+        "ton": "ok",
+        "x": 386,
+        "y": 210,
+        "w": 150,
+        "h": 56,
+        "zone": "apres"
+      },
+      {
+        "id": "req",
+        "texte": "Requête",
+        "detail": "par owner, app, version",
+        "x": 596,
+        "y": 210,
+        "w": 180,
+        "h": 56,
+        "zone": "apres"
+      }
+    ],
+    "liens": [
+      {
+        "de": "saisie",
+        "vers": "cmdb",
+        "texte": "alimente"
+      },
+      {
+        "de": "cmdb",
+        "vers": "ecart",
+        "texte": "dérive"
+      },
+      {
+        "de": "git",
+        "vers": "gitops",
+        "texte": "lit"
+      },
+      {
+        "de": "gitops",
+        "vers": "cluster",
+        "texte": "applique"
+      },
+      {
+        "de": "cluster",
+        "vers": "req",
+        "texte": "labels"
+      }
+    ],
+    "source": {
+      "nom": "Kubernetes : labels et sélecteurs",
+      "url": "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [

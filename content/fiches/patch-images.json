@@ -52,6 +52,141 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Corriger une faille : interroger le SBOM, reconstruire, signer, déployer par digest",
+    "largeur": 862,
+    "hauteur": 302,
+    "zones": [
+      {
+        "id": "chaine",
+        "titre": "Chaîne d'approvisionnement",
+        "x": 230,
+        "y": 22,
+        "w": 602,
+        "h": 110
+      },
+      {
+        "id": "cluster",
+        "titre": "Cluster",
+        "x": 210,
+        "y": 172,
+        "w": 632,
+        "h": 110,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "faille",
+        "texte": "Faille publiée",
+        "detail": "CVE sur une lib",
+        "ton": "faible",
+        "x": 36,
+        "y": 60,
+        "w": 140,
+        "h": 56
+      },
+      {
+        "id": "sbom",
+        "texte": "SBOM",
+        "detail": "quelles images ?",
+        "x": 246,
+        "y": 60,
+        "w": 140,
+        "h": 56,
+        "zone": "chaine"
+      },
+      {
+        "id": "build",
+        "texte": "Build CI",
+        "detail": "image reconstruite",
+        "ton": "chaud",
+        "x": 456,
+        "y": 60,
+        "w": 150,
+        "h": 56,
+        "zone": "chaine"
+      },
+      {
+        "id": "reg",
+        "texte": "Registre",
+        "detail": "signature, digest",
+        "x": 676,
+        "y": 60,
+        "w": 140,
+        "h": 56,
+        "zone": "chaine"
+      },
+      {
+        "id": "pods",
+        "texte": "Pods",
+        "detail": "ancien état récupérable",
+        "ton": "ok",
+        "x": 226,
+        "y": 210,
+        "w": 180,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "dep",
+        "texte": "Déploiement",
+        "detail": "par digest sha256",
+        "x": 466,
+        "y": 210,
+        "w": 140,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "adm",
+        "texte": "Admission",
+        "detail": "vérifie la signature",
+        "ton": "froid",
+        "x": 666,
+        "y": 210,
+        "w": 160,
+        "h": 56,
+        "zone": "cluster"
+      }
+    ],
+    "liens": [
+      {
+        "de": "faille",
+        "vers": "sbom",
+        "texte": "interroge"
+      },
+      {
+        "de": "sbom",
+        "vers": "build",
+        "texte": "cible"
+      },
+      {
+        "de": "build",
+        "vers": "reg",
+        "texte": "publie"
+      },
+      {
+        "de": "reg",
+        "vers": "adm",
+        "texte": "tire"
+      },
+      {
+        "de": "adm",
+        "vers": "dep",
+        "texte": "autorise"
+      },
+      {
+        "de": "dep",
+        "vers": "pods",
+        "texte": "crée"
+      }
+    ],
+    "source": {
+      "nom": "Kubernetes : images de conteneurs",
+      "url": "https://kubernetes.io/docs/concepts/containers/images/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [

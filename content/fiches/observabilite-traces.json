@@ -38,6 +38,151 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Une requête traverse trois services : le Collector rassemble ce qu'ils émettent",
+    "largeur": 682,
+    "hauteur": 412,
+    "zones": [
+      {
+        "id": "apps",
+        "titre": "Applications (SDK OpenTelemetry)",
+        "x": 20,
+        "y": 22,
+        "w": 472,
+        "h": 110
+      },
+      {
+        "id": "analyse",
+        "titre": "Outils d'analyse",
+        "x": 440,
+        "y": 138,
+        "w": 222,
+        "h": 254,
+        "ton": "froid"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "a",
+        "texte": "Service A",
+        "detail": "instrumenté",
+        "x": 36,
+        "y": 60,
+        "w": 100,
+        "h": 56,
+        "zone": "apps"
+      },
+      {
+        "id": "b",
+        "texte": "Service B",
+        "detail": "instrumenté",
+        "x": 206,
+        "y": 60,
+        "w": 100,
+        "h": 56,
+        "zone": "apps"
+      },
+      {
+        "id": "c",
+        "texte": "Service C",
+        "detail": "instrumenté",
+        "x": 376,
+        "y": 60,
+        "w": 100,
+        "h": 56,
+        "zone": "apps"
+      },
+      {
+        "id": "collector",
+        "texte": "Collector",
+        "detail": "reçoit, filtre, échantillonne",
+        "ton": "chaud",
+        "x": 146,
+        "y": 242,
+        "w": 220,
+        "h": 56
+      },
+      {
+        "id": "bt",
+        "texte": "Traces",
+        "detail": "stockage et recherche",
+        "x": 456,
+        "y": 176,
+        "w": 190,
+        "h": 56,
+        "zone": "analyse"
+      },
+      {
+        "id": "bm",
+        "texte": "Métriques",
+        "detail": "stockage",
+        "x": 456,
+        "y": 248,
+        "w": 190,
+        "h": 56,
+        "zone": "analyse"
+      },
+      {
+        "id": "bl",
+        "texte": "Journaux",
+        "detail": "stockage",
+        "x": 456,
+        "y": 320,
+        "w": 190,
+        "h": 56,
+        "zone": "analyse"
+      }
+    ],
+    "liens": [
+      {
+        "de": "a",
+        "vers": "b",
+        "texte": "requête"
+      },
+      {
+        "de": "b",
+        "vers": "c",
+        "texte": "requête"
+      },
+      {
+        "de": "a",
+        "vers": "collector",
+        "texte": "OTLP",
+        "sortie": "b",
+        "entree": "h",
+        "decalageEntree": -70
+      },
+      {
+        "de": "b",
+        "vers": "collector",
+        "sortie": "b",
+        "entree": "h"
+      },
+      {
+        "de": "c",
+        "vers": "collector",
+        "sortie": "b",
+        "entree": "h",
+        "decalageEntree": 70
+      },
+      {
+        "de": "collector",
+        "vers": "bt"
+      },
+      {
+        "de": "collector",
+        "vers": "bm"
+      },
+      {
+        "de": "collector",
+        "vers": "bl"
+      }
+    ],
+    "source": {
+      "nom": "OpenTelemetry : signaux",
+      "url": "https://opentelemetry.io/docs/concepts/signals/"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [

@@ -52,6 +52,136 @@
       }
     ]
   },
+  "diagramme": {
+    "legende": "Un appel d'offres cloud natif : des exigences que l'on peut vérifier",
+    "largeur": 780,
+    "hauteur": 368,
+    "zones": [
+      {
+        "id": "exigences",
+        "titre": "Exigences vérifiables",
+        "x": 234,
+        "y": 22,
+        "w": 242,
+        "h": 326,
+        "ton": "chaud"
+      }
+    ],
+    "noeuds": [
+      {
+        "id": "ao",
+        "texte": "Appel d'offres",
+        "detail": "cahier des charges",
+        "x": 20,
+        "y": 170,
+        "w": 150,
+        "h": 56
+      },
+      {
+        "id": "e1",
+        "texte": "Livraison",
+        "detail": "images signées, charts",
+        "x": 250,
+        "y": 60,
+        "w": 210,
+        "h": 56,
+        "zone": "exigences"
+      },
+      {
+        "id": "e2",
+        "texte": "Plateforme",
+        "detail": "Kubernetes certifiée CNCF",
+        "x": 250,
+        "y": 132,
+        "w": 210,
+        "h": 56,
+        "zone": "exigences"
+      },
+      {
+        "id": "e3",
+        "texte": "Exploitation",
+        "detail": "mises à jour déclaratives",
+        "x": 250,
+        "y": 204,
+        "w": 210,
+        "h": 56,
+        "zone": "exigences"
+      },
+      {
+        "id": "e4",
+        "texte": "Interopérabilité",
+        "detail": "API standard, portabilité",
+        "x": 250,
+        "y": 276,
+        "w": 210,
+        "h": 56,
+        "zone": "exigences"
+      },
+      {
+        "id": "preuves",
+        "texte": "Preuves",
+        "detail": "tests, démonstration, recette",
+        "ton": "chaud",
+        "x": 540,
+        "y": 160,
+        "w": 220,
+        "h": 56
+      },
+      {
+        "id": "verdict",
+        "texte": "Éligibilité",
+        "detail": "grille pondérée",
+        "ton": "ok",
+        "x": 585,
+        "y": 280,
+        "w": 130,
+        "h": 56
+      }
+    ],
+    "liens": [
+      {
+        "de": "ao",
+        "vers": "e1"
+      },
+      {
+        "de": "ao",
+        "vers": "e2"
+      },
+      {
+        "de": "ao",
+        "vers": "e3"
+      },
+      {
+        "de": "ao",
+        "vers": "e4"
+      },
+      {
+        "de": "e1",
+        "vers": "preuves"
+      },
+      {
+        "de": "e2",
+        "vers": "preuves"
+      },
+      {
+        "de": "e3",
+        "vers": "preuves"
+      },
+      {
+        "de": "e4",
+        "vers": "preuves"
+      },
+      {
+        "de": "preuves",
+        "vers": "verdict",
+        "texte": "note"
+      }
+    ],
+    "source": {
+      "nom": "CNCF : micro-enquête telco",
+      "url": "https://www.cncf.io/blog/2022/08/02/cncf-telco-microsurvey-cloud-native-network-functions-with-kubernetes-are-coming-but-interoperability-and-portability-are-priorities"
+    }
+  },
   "statut": "brouillon",
   "misAJour": "2026-11-09",
   "historique": [
