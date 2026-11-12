@@ -142,7 +142,90 @@
     "origine": [
       "architecte-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Une décision d'architecture : contexte, options, décision, conséquences",
+      "largeur": 705,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ctx",
+          "texte": "Contexte",
+          "detail": "contraintes et besoins",
+          "w": 170,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "opt",
+          "texte": "Options",
+          "detail": "alternatives étudiées",
+          "w": 170,
+          "x": 262,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "dec",
+          "texte": "Décision",
+          "detail": "choix et raison",
+          "ton": "chaud",
+          "w": 130,
+          "x": 555,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cons",
+          "texte": "Conséquences",
+          "detail": "gains et compromis",
+          "w": 150,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "stat",
+          "texte": "Statut",
+          "detail": "accepté, remplacé",
+          "ton": "ok",
+          "w": 140,
+          "x": 242,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ctx",
+          "vers": "opt",
+          "texte": "pose"
+        },
+        {
+          "de": "opt",
+          "vers": "dec",
+          "texte": "comparées dans"
+        },
+        {
+          "de": "dec",
+          "vers": "cons",
+          "texte": "entraîne",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "cons",
+          "vers": "stat",
+          "texte": "porte"
+        }
+      ],
+      "source": {
+        "nom": "Architecture Decision Records",
+        "url": "https://adr.github.io/"
+      }
+    }
   },
   {
     "id": "evaluation-fournisseurs",

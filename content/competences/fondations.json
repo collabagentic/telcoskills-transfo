@@ -91,7 +91,91 @@
       "parcours-sylva",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Linux, base de tout le reste : quatre mécanismes que Kubernetes réutilise",
+      "largeur": 830,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "proc",
+          "texte": "Processus Linux",
+          "detail": "ce que fait tourner un conteneur",
+          "ton": "chaud",
+          "x": 300,
+          "y": 176,
+          "w": 240,
+          "h": 56
+        },
+        {
+          "id": "systemd",
+          "texte": "systemd",
+          "detail": "démarre et supervise",
+          "ton": "froid",
+          "x": 340,
+          "y": 30,
+          "w": 160,
+          "h": 56
+        },
+        {
+          "id": "sel",
+          "texte": "SELinux",
+          "detail": "confinement des accès",
+          "ton": "froid",
+          "x": 335,
+          "y": 322,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "ns",
+          "texte": "Namespaces",
+          "detail": "vue isolée du système",
+          "ton": "froid",
+          "x": 20,
+          "y": 176,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "cg",
+          "texte": "cgroups",
+          "detail": "limitent CPU et mémoire",
+          "ton": "froid",
+          "x": 630,
+          "y": 176,
+          "w": 180,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "systemd",
+          "vers": "proc",
+          "texte": "lance"
+        },
+        {
+          "de": "sel",
+          "vers": "proc",
+          "texte": "confine"
+        },
+        {
+          "de": "ns",
+          "vers": "proc",
+          "texte": "isolent"
+        },
+        {
+          "de": "cg",
+          "vers": "proc",
+          "texte": "limitent"
+        }
+      ],
+      "source": {
+        "nom": "Documentation du noyau Linux",
+        "url": "https://docs.kernel.org/"
+      }
+    }
   },
   {
     "id": "reseau-ip",
@@ -160,7 +244,90 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Du VLAN au tunnel : ce que le réseau d'une plateforme suppose",
+      "largeur": 808,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "hote",
+          "texte": "Hôte",
+          "detail": "VLAN 10, 20",
+          "w": 100,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "sw",
+          "texte": "Commutateur",
+          "detail": "trunk 802.1Q",
+          "ton": "chaud",
+          "w": 120,
+          "x": 214,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "rout",
+          "texte": "Routeur",
+          "detail": "routage statique, BGP",
+          "w": 170,
+          "x": 406,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "tun",
+          "texte": "VPN ou tunnel",
+          "detail": "IPsec, GRE",
+          "w": 130,
+          "x": 658,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "site",
+          "texte": "Site distant",
+          "detail": "autre réseau",
+          "ton": "ok",
+          "w": 130,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "hote",
+          "vers": "sw",
+          "texte": "étiquette"
+        },
+        {
+          "de": "sw",
+          "vers": "rout",
+          "texte": "relie"
+        },
+        {
+          "de": "rout",
+          "vers": "tun",
+          "texte": "chiffre"
+        },
+        {
+          "de": "tun",
+          "vers": "site",
+          "texte": "atteint",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "FRRouting : suite de routage open source (BGP, OSPF, BFD)",
+        "url": "https://docs.frrouting.org/"
+      }
+    }
   },
   {
     "id": "conteneurs",
@@ -629,7 +796,85 @@
     "origine": [
       "devops-integrateur-nf"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Les sigles dès le premier jour : UE, gNB, NF, PLMN, DN",
+      "largeur": 890,
+      "hauteur": 182,
+      "zones": [
+        {
+          "id": "plmn",
+          "titre": "PLMN : le réseau d'un opérateur",
+          "x": 234,
+          "y": 52,
+          "w": 432,
+          "h": 110
+        }
+      ],
+      "noeuds": [
+        {
+          "id": "ue",
+          "texte": "UE",
+          "detail": "le terminal",
+          "x": 20,
+          "y": 90,
+          "w": 100,
+          "h": 56
+        },
+        {
+          "id": "gnb",
+          "texte": "gNB",
+          "detail": "station radio 5G",
+          "x": 250,
+          "y": 90,
+          "w": 140,
+          "h": 56,
+          "zone": "plmn"
+        },
+        {
+          "id": "nf",
+          "texte": "NF",
+          "detail": "fonction réseau du cœur",
+          "ton": "chaud",
+          "x": 470,
+          "y": 90,
+          "w": 180,
+          "h": 56,
+          "zone": "plmn"
+        },
+        {
+          "id": "dn",
+          "texte": "DN",
+          "detail": "réseau de données",
+          "ton": "ok",
+          "x": 730,
+          "y": 90,
+          "w": 140,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ue",
+          "vers": "gnb",
+          "texte": "radio"
+        },
+        {
+          "de": "gnb",
+          "vers": "nf",
+          "texte": "N2, N3"
+        },
+        {
+          "de": "nf",
+          "vers": "dn",
+          "texte": "N6"
+        }
+      ],
+      "source": {
+        "nom": "3GPP TR 21.905 : vocabulaire (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/21_series/21.905/"
+      }
+    }
   },
   {
     "id": "tel-nf",
@@ -758,7 +1003,91 @@
     "origine": [
       "devops-integrateur-nf"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Ce que le métier exige d'un service télécom",
+      "largeur": 730,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "svc",
+          "texte": "Service télécom",
+          "detail": "disponible en continu",
+          "ton": "chaud",
+          "x": 330,
+          "y": 176,
+          "w": 170,
+          "h": 56
+        },
+        {
+          "id": "dispo",
+          "texte": "Disponibilité",
+          "detail": "très élevée",
+          "ton": "froid",
+          "x": 350,
+          "y": 30,
+          "w": 130,
+          "h": 56
+        },
+        {
+          "id": "maint",
+          "texte": "Maintenance",
+          "detail": "sans interruption",
+          "ton": "froid",
+          "x": 345,
+          "y": 322,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "sess",
+          "texte": "Continuité de session",
+          "detail": "ne pas couper",
+          "ton": "froid",
+          "x": 20,
+          "y": 176,
+          "w": 200,
+          "h": 56
+        },
+        {
+          "id": "lat",
+          "texte": "Latence",
+          "detail": "du plan usager",
+          "ton": "froid",
+          "x": 590,
+          "y": 176,
+          "w": 120,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "svc",
+          "vers": "dispo",
+          "texte": "exige"
+        },
+        {
+          "de": "svc",
+          "vers": "maint",
+          "texte": "exige"
+        },
+        {
+          "de": "sess",
+          "vers": "svc",
+          "texte": "exige"
+        },
+        {
+          "de": "svc",
+          "vers": "lat",
+          "texte": "exige"
+        }
+      ],
+      "source": {
+        "nom": "Google SRE Book : objectifs de niveau de service (accès libre)",
+        "url": "https://sre.google/sre-book/service-level-objectives/"
+      }
+    }
   },
   {
     "id": "archi-5g",
@@ -948,7 +1277,90 @@
     "origine": [
       "devops-integrateur-nf"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Dialoguer avec les experts réseau et les éditeurs : de la question au retour utile",
+      "largeur": 839,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "besoin",
+          "texte": "Besoin",
+          "detail": "ce que vous cherchez à savoir",
+          "w": 220,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "q",
+          "texte": "Question précise",
+          "detail": "contexte, version, symptôme",
+          "ton": "chaud",
+          "w": 210,
+          "x": 357,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "fiche",
+          "texte": "Fiche d'exigences",
+          "detail": "lue ligne à ligne",
+          "w": 170,
+          "x": 649,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "inc",
+          "texte": "Incident formulé",
+          "detail": "impact, traces, chronologie",
+          "w": 210,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "rep",
+          "texte": "Réponse exploitable",
+          "detail": "action ou décision",
+          "ton": "ok",
+          "w": 180,
+          "x": 312,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "besoin",
+          "vers": "q",
+          "texte": "se formule en"
+        },
+        {
+          "de": "q",
+          "vers": "fiche",
+          "texte": "appelle"
+        },
+        {
+          "de": "fiche",
+          "vers": "inc",
+          "texte": "alimente",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "inc",
+          "vers": "rep",
+          "texte": "obtient"
+        }
+      ],
+      "source": {
+        "nom": "3GPP TR 21.905 : vocabulaire (accès libre)",
+        "url": "https://www.3gpp.org/ftp/Specs/archive/21_series/21.905/"
+      }
+    }
   },
   {
     "id": "git-ci",

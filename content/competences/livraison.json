@@ -648,7 +648,76 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Exercer le cœur sans radio réelle : des simulateurs de terminal et de station",
+      "largeur": 723,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "ue",
+          "texte": "Simulateur d'UE",
+          "detail": "terminaux virtuels",
+          "w": 150,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "gnb",
+          "texte": "Simulateur de gNB",
+          "detail": "radio simulée",
+          "ton": "chaud",
+          "w": 170,
+          "x": 287,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "core",
+          "texte": "Cœur 5G sous test",
+          "detail": "AMF, SMF, UPF",
+          "w": 170,
+          "x": 533,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "res",
+          "texte": "Résultats",
+          "detail": "enregistrement, session, trafic",
+          "ton": "ok",
+          "w": 230,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "ue",
+          "vers": "gnb",
+          "texte": "se connecte à"
+        },
+        {
+          "de": "gnb",
+          "vers": "core",
+          "texte": "N2, N3"
+        },
+        {
+          "de": "core",
+          "vers": "res",
+          "texte": "produit",
+          "sortie": "b",
+          "entree": "h"
+        }
+      ],
+      "source": {
+        "nom": "gNBsim : simulateur de gNB et d'UE (OMEC)",
+        "url": "https://github.com/omec-project/gnbsim"
+      }
+    }
   },
   {
     "id": "tests-fonctionnels",
@@ -679,7 +748,90 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Un plan de tests par procédure, automatisé et tracé",
+      "largeur": 816,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "proc",
+          "texte": "Procédure",
+          "detail": "enregistrement, session",
+          "w": 180,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cas",
+          "texte": "Cas de test",
+          "detail": "critère de réussite",
+          "ton": "chaud",
+          "w": 150,
+          "x": 317,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "auto",
+          "texte": "Automatisation",
+          "detail": "rejouable à chaque version",
+          "w": 200,
+          "x": 596,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "res",
+          "texte": "Résultat tracé",
+          "detail": "preuve conservée",
+          "w": 140,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "couv",
+          "texte": "Couverture",
+          "detail": "ce qui reste non testé",
+          "ton": "ok",
+          "w": 170,
+          "x": 236,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "proc",
+          "vers": "cas",
+          "texte": "se découpe en"
+        },
+        {
+          "de": "cas",
+          "vers": "auto",
+          "texte": "est scripté par"
+        },
+        {
+          "de": "auto",
+          "vers": "res",
+          "texte": "produit",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "res",
+          "vers": "couv",
+          "texte": "mesure"
+        }
+      ],
+      "source": {
+        "nom": "Robot Framework : automatisation de tests",
+        "url": "https://robotframework.org/"
+      }
+    }
   },
   {
     "id": "tests-perf",
@@ -709,7 +861,91 @@
       "devops-integrateur-nf",
       "integrateur-nf-5gc"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Tester la performance : générer, mesurer, interpréter jusqu'à la saturation",
+      "largeur": 752,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "gen",
+          "texte": "Générateur de trafic",
+          "detail": "montée en charge",
+          "w": 190,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "cnf",
+          "texte": "Fonction sous test",
+          "detail": "ressources fixées",
+          "ton": "chaud",
+          "w": 170,
+          "x": 286,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "mes",
+          "texte": "Mesures",
+          "detail": "débit, sessions/s, latence",
+          "w": 200,
+          "x": 532,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "sat",
+          "texte": "Point de saturation",
+          "detail": "où ça casse",
+          "ton": "faible",
+          "w": 180,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "lec",
+          "texte": "Interprétation",
+          "detail": "marge et dimensionnement",
+          "ton": "ok",
+          "w": 190,
+          "x": 294,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "gen",
+          "vers": "cnf",
+          "texte": "charge"
+        },
+        {
+          "de": "cnf",
+          "vers": "mes",
+          "texte": "expose"
+        },
+        {
+          "de": "mes",
+          "vers": "sat",
+          "texte": "révèle",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "sat",
+          "vers": "lec",
+          "texte": "conduit à"
+        }
+      ],
+      "source": {
+        "nom": "TRex : générateur de trafic open source",
+        "url": "https://github.com/cisco-system-traffic-generator/trex-core"
+      }
+    }
   },
   {
     "id": "lab-as-code",
@@ -849,7 +1085,90 @@
     "origine": [
       "devops-integrateur-nf"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Valider une configuration avant de la déployer",
+      "largeur": 696,
+      "hauteur": 226,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "conf",
+          "texte": "Configuration",
+          "detail": "chart et valeurs",
+          "w": 140,
+          "x": 20,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "lint",
+          "texte": "Lint",
+          "detail": "forme et conventions",
+          "w": 160,
+          "x": 254,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "schema",
+          "texte": "Validation de schéma",
+          "detail": "types et champs",
+          "w": 190,
+          "x": 486,
+          "y": 30,
+          "h": 56
+        },
+        {
+          "id": "contrat",
+          "texte": "Tests de contrat",
+          "detail": "comportement attendu",
+          "ton": "chaud",
+          "w": 160,
+          "x": 20,
+          "y": 150,
+          "h": 56
+        },
+        {
+          "id": "dep",
+          "texte": "Déploiement",
+          "detail": "si tout est vert",
+          "ton": "ok",
+          "w": 140,
+          "x": 268,
+          "y": 150,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "conf",
+          "vers": "lint",
+          "texte": "relue par"
+        },
+        {
+          "de": "lint",
+          "vers": "schema",
+          "texte": "puis"
+        },
+        {
+          "de": "schema",
+          "vers": "contrat",
+          "texte": "puis",
+          "sortie": "b",
+          "entree": "h"
+        },
+        {
+          "de": "contrat",
+          "vers": "dep",
+          "texte": "autorise"
+        }
+      ],
+      "source": {
+        "nom": "Helm : tests de charts",
+        "url": "https://helm.sh/docs/topics/chart_tests/"
+      }
+    }
   },
   {
     "id": "ansible-python",
@@ -890,7 +1209,89 @@
       "ingenieur-caas-telco",
       "sre-exploitation-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "diagramme": {
+      "legende": "Automatiser l'exploitation : un playbook, un inventaire, des rôles, des scripts",
+      "largeur": 720,
+      "hauteur": 398,
+      "zones": [],
+      "noeuds": [
+        {
+          "id": "pb",
+          "texte": "Playbook Ansible",
+          "detail": "décrit les tâches",
+          "ton": "chaud",
+          "x": 290,
+          "y": 176,
+          "w": 160,
+          "h": 56
+        },
+        {
+          "id": "inv",
+          "texte": "Inventaire",
+          "detail": "quelles machines",
+          "x": 300,
+          "y": 30,
+          "w": 140,
+          "h": 56
+        },
+        {
+          "id": "py",
+          "texte": "Script Python",
+          "detail": "appelle les API",
+          "ton": "froid",
+          "x": 305,
+          "y": 322,
+          "w": 130,
+          "h": 56
+        },
+        {
+          "id": "roles",
+          "texte": "Rôles",
+          "detail": "tâches réutilisables",
+          "x": 20,
+          "y": 176,
+          "w": 160,
+          "h": 56
+        },
+        {
+          "id": "noeuds",
+          "texte": "Nœuds et cluster",
+          "detail": "résultat appliqué",
+          "ton": "ok",
+          "x": 540,
+          "y": 176,
+          "w": 160,
+          "h": 56
+        }
+      ],
+      "liens": [
+        {
+          "de": "inv",
+          "vers": "pb",
+          "texte": "cible"
+        },
+        {
+          "de": "py",
+          "vers": "pb",
+          "texte": "complète"
+        },
+        {
+          "de": "roles",
+          "vers": "pb",
+          "texte": "assemble"
+        },
+        {
+          "de": "pb",
+          "vers": "noeuds",
+          "texte": "applique"
+        }
+      ],
+      "source": {
+        "nom": "Ansible : documentation",
+        "url": "https://docs.ansible.com/"
+      }
+    }
   },
   {
     "id": "operators-dev",
