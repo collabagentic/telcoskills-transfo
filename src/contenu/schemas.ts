@@ -191,7 +191,16 @@ export const orientationSchema = z
   .strict();
 export type Orientation = z.infer<typeof orientationSchema>;
 
+export const contexteSchema = z
+  .object({
+    chiffres: z.array(z.object({ texte: texte(240), source: sourceSchema }).strict()).min(1),
+    limites: z.array(texte(240)).min(1),
+  })
+  .strict();
+export type Contexte = z.infer<typeof contexteSchema>;
+
 export type Contenu = {
+  contexte: Contexte;
   domaines: Domaine[];
   competences: Competence[];
   fiches: Fiche[];

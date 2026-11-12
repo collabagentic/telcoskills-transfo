@@ -41,6 +41,7 @@ const competence = (id: string, prerequis: string[] = []) => ({
 export function contenuValide(): Contenu {
   const fiches = [fiche("f1"), fiche("n1", "nouveaute", ["c2"])];
   return {
+    contexte: { chiffres: [{ texte: "Un chiffre.", source: { nom: "Source", url: "https://exemple.org" } }], limites: ["Une limite."] },
     domaines: [{ id: "d1", nom: "Domaine" }],
     competences: [competence("c1"), competence("c2", ["c1"]), competence("c3", ["c2"])],
     fiches,

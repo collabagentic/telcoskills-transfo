@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { z } from "zod";
 import { verifierContenu } from "./regles";
-import { competenceSchema, domaineSchema, ficheSchema, orientationSchema, questionSchema, technoSchema, type Contenu } from "./schemas";
+import { competenceSchema, contexteSchema, domaineSchema, ficheSchema, orientationSchema, questionSchema, technoSchema, type Contenu } from "./schemas";
 
 /**
  * Chargement du contenu au build, côté serveur uniquement : ne jamais importer ce fichier dans un composant client.
@@ -60,7 +60,10 @@ export function chargerContenu(): Contenu {
   const erreurs: string[] = [];
   const orientation = orientationSchema.safeParse(lireJson(path.join(RACINE, "orientation.json")));
   if (!orientation.success) signaler(erreurs, "orientation.json", orientation.error);
+  const contexte = contexteSchema.safeParse(lireJson(path.join(RACINE, "contexte.json")));
+  if (!contexte.success) signaler(erreurs, "contexte.json", contexte.error);
   const contenu = {
+    contexte: contexte.success ? contexte.data : undefined,
     domaines: lireListes("domaines.json", domaineSchema, erreurs),
     competences: lireListes("competences", competenceSchema, erreurs),
     fiches: lireDossier("fiches", ficheSchema, erreurs),
@@ -68,7 +71,7 @@ export function chargerContenu(): Contenu {
     technos: lireListes("technos.json", technoSchema, erreurs),
     orientation: orientation.success ? orientation.data : undefined,
   };
-  if (erreurs.length === 0 && contenu.orientation) erreurs.push(...verifierContenu(contenu as Contenu));
+  if (erreurs.length === 0 && contenu.orientation && contenu.contexte) erreurs.push(...verifierContenu(contenu as Contenu));
   if (erreurs.length > 0) {
     throw new Error(`Le contenu est invalide (${erreurs.length} erreur${erreurs.length > 1 ? "s" : ""}) :\n- ${erreurs.join("\n- ")}`);
   }

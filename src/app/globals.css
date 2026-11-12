@@ -2027,3 +2027,121 @@ a.barre-fleche:hover {
     display: block;
   }
 }
+
+/* Pages de texte (à propos, sources, contribuer, confidentialité, mentions) */
+.texte-page {
+  padding: var(--e-8) 0 var(--e-4);
+}
+.texte-page h1 {
+  font-size: var(--t-xl);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: var(--e-2) 0 var(--e-6);
+}
+.texte-page h2 {
+  font-size: var(--t-l);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: var(--e-8) 0 var(--e-3);
+}
+.texte-page p,
+.texte-page li {
+  color: var(--encre-2);
+  line-height: 1.65;
+}
+.texte-page p + p {
+  margin-top: var(--e-3);
+}
+.texte-page .chapeau {
+  font-size: var(--t-l);
+  color: var(--encre);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+}
+.texte-page ul,
+.texte-page ol {
+  display: grid;
+  gap: var(--e-3);
+  padding-left: var(--e-6);
+}
+.texte-page ul {
+  list-style: disc;
+}
+.texte-page ol {
+  list-style: decimal;
+}
+.texte-page strong {
+  color: var(--encre);
+  font-weight: 600;
+}
+.texte-page a {
+  color: var(--encre);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.texte-page code {
+  font-family: var(--police-mono), ui-monospace, monospace;
+  font-size: 0.9em;
+  background: var(--surface-3);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-s);
+  padding: 0 var(--e-1);
+}
+.gabarit {
+  overflow-x: auto;
+  padding: var(--e-4) var(--e-6);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-m);
+  background: var(--surface-3);
+  font-size: var(--t-xs);
+  line-height: 1.6;
+  color: var(--encre-2);
+}
+.gabarit code {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.chiffres {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-3);
+  margin: var(--e-4) 0;
+}
+.chiffres div {
+  padding: var(--e-4);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-m);
+  background: var(--surface-3);
+}
+.chiffres dt {
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+}
+.chiffres dd {
+  margin: var(--e-1) 0 0;
+  font-size: var(--t-xl);
+  letter-spacing: -0.04em;
+  color: var(--encre);
+}
+.pied-liens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2) var(--e-6);
+  margin-bottom: var(--e-4);
+}
+.pied-liens a {
+  color: var(--encre-2);
+  min-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+}
+.pied-liens a:hover {
+  color: var(--encre);
+}
+@media (max-width: 599px) {
+  .chiffres {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

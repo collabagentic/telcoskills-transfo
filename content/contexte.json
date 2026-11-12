@@ -1,0 +1,30 @@
+{
+  "chiffres": [
+    {
+      "texte": "Orange France compte environ 65 000 salariés, pour un âge moyen entre 45 et 50 ans.",
+      "source": { "nom": "Le Monde Informatique", "url": "https://www.lemondeinformatique.fr/actualites/lire-les-syndicats-d-orange-craignent-un-plan-de-departs-des-seniors-95320.html" }
+    },
+    {
+      "texte": "Les seniors ne représentent que 10 % des cadres du secteur informatique.",
+      "source": { "nom": "Apec, communiqué « Élan seniors »", "url": "https://corporate.apec.fr/files/live/sites/corporate/files/Espace%20M%c3%a9dias/pdf/CP%20Apec%20-%20E%cc%81lan%20seniors%20et%20e%cc%81tude%20portrait%20statistique_2709.pdf" }
+    },
+    {
+      "texte": "En 2026, la montée en compétences interne (57 %) devance le recrutement externe (49 %).",
+      "source": { "nom": "Linux Foundation, Tech Talent Report 2026", "url": "https://www.linuxfoundation.org/hubfs/Research%20Reports/LFTraining_Tech_Talent_Report_Global_2026_webversion_061226.pdf" }
+    },
+    {
+      "texte": "Écarts de compétences mondiaux en 2025 : IA/ML 68 %, cybersécurité 65 %, FinOps 61 %, cloud 59 %, platform engineering 56 %.",
+      "source": { "nom": "Linux Foundation, Tech Talent Report 2025", "url": "https://www.linuxfoundation.org/hubfs/Research%20Reports/LFTraining_Tech_Talent_Report_Global_2025_060525.pdf" }
+    },
+    {
+      "texte": "Les postes cloud natifs juniors représentent moins de 4 % des offres.",
+      "source": { "nom": "Cloud Native Now", "url": "https://cloudnativenow.com/tag/cloud-native-talent-shortage/" }
+    }
+  ],
+  "limites": [
+    "Les métiers sont des archétypes construits à partir de CV et d'offres publics : ce n'est pas une étude statistique.",
+    "Les profils de départ sur-représentent les seniors encore mobiles : le biais est connu.",
+    "Aucune étude ne croise âge et maîtrise du réseau Kubernetes : ce site ne prétend pas mesurer un niveau, seulement orienter.",
+    "Les fiches et les schémas sont des brouillons tant qu'ils ne portent pas la mention « relu »."
+  ]
+}
