@@ -10,11 +10,11 @@
   },
   "resteVrai": [
     "Un point de départ reproductible (le template) a son équivalent : l'image.",
-    "Dimensionner reste nécessaire : CPU et mémoire se demandent explicitement.",
+    "Dimensionner reste d'actualité : CPU et mémoire se déclarent (requests et limits), mais ils sont facultatifs.",
     "Chaque service a un cycle de vie à piloter."
   ],
   "change": [
-    "Un pod est éphémère : il n'est pas réparé, il est remplacé.",
+    "Un pod est éphémère : on le remplace par un nouveau plutôt que de le réparer.",
     "Un Deployment maintient le nombre voulu de pods identiques et remplace progressivement les anciens.",
     "On ne se connecte pas pour corriger : on change l'image ou la configuration, puis on redéploie."
   ],
@@ -23,9 +23,9 @@
   "piege": "Mettre une application à état dans un Deployment. Une base répliquée, qui demande à chaque réplica un nom réseau stable et son propre volume, relève d'un StatefulSet.",
   "exemple": "Un frontal HTTP/2 d'interface SBI, sans état local, se déploie en plusieurs pods identiques ; si l'un tombe, un autre est créé à sa place.",
   "epreuve": {
-    "cas": "Vous migrez deux choses : un frontal HTTP/2 sans état local, et une base de données répliquée. Quel objet Kubernetes pour chacune, et pourquoi ?",
-    "raisonnement": "Le frontal sans état se déploie en plusieurs pods identiques dans un Deployment ; si l'un tombe, un autre est créé. La base répliquée relève d'un StatefulSet : chaque pod a une identité stable (nom ordonné, DNS propre) et, avec volumeClaimTemplates, un volume dédié qui le suit lors d'un redémarrage. Un Deployment traite ses pods comme interchangeables.",
-    "source": "Kubernetes : StatefulSets (kubernetes.io/docs/concepts/workloads/controllers/statefulset/) ; Deployments"
+    "cas": "Vous migrez deux choses : un frontal HTTP/2 que l'on suppose sans état local, et une base de données répliquée. Quel objet Kubernetes pour chacune, et pourquoi ?",
+    "raisonnement": "Le frontal sans état se déploie en plusieurs pods identiques dans un Deployment ; si l'un tombe, un autre est créé. La base répliquée relève d'un StatefulSet : chaque pod a une identité stable (nom ordonné, DNS propre grâce à un Service headless) et, avec volumeClaimTemplates, un volume dédié qui le suit lors d'un redémarrage. Un Deployment traite ses pods comme interchangeables.",
+    "source": "Kubernetes : StatefulSets (kubernetes.io/docs/concepts/workloads/controllers/statefulset/) ; Deployments (kubernetes.io/docs/concepts/workloads/controllers/deployment/)"
   },
   "schema": {
     "legende": "De la machine qu'on soigne au pod qu'on remplace",
@@ -54,7 +54,7 @@
       },
       {
         "texte": "Pods",
-        "detail": "remplacés, jamais réparés"
+        "detail": "remplacés, pas réparés"
       }
     ]
   },
@@ -147,7 +147,7 @@
       {
         "id": "pods",
         "texte": "Pods",
-        "detail": "remplacés, jamais réparés",
+        "detail": "remplacés, pas réparés",
         "ton": "ok",
         "x": 626,
         "y": 210,
@@ -173,9 +173,9 @@
         "texte": "push"
       },
       {
-        "de": "registre",
-        "vers": "deployment",
-        "texte": "tire"
+        "de": "deployment",
+        "vers": "registre",
+        "texte": "cite"
       },
       {
         "de": "deployment",
@@ -189,8 +189,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-08",
+  "misAJour": "2026-11-20",
   "historique": [
+    {
+      "date": "2026-11-20",
+      "changement": "Relecture sourcée : lien du diagramme corrigé (le Deployment référence l'image), « jamais réparés » nuancé, source Deployments complétée, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lot A1)",
+      "lien": null
+    },
     {
       "date": "2026-11-08",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -275,5 +281,11 @@
       "nom": "Kubernetes : StatefulSets",
       "url": "https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai.0",
+    "resteVrai.2",
+    "change.2",
+    "exemple"
   ]
 }

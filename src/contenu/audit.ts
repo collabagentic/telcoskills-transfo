@@ -16,6 +16,7 @@ export type LigneAudit = {
   schemaDessine: boolean;
   sources: number;
   ressources: number;
+  avisAuteur: number;
   temps: number;
   misAJour: string;
   aVerifier: string[];
@@ -53,6 +54,7 @@ export function auditFiches(): Audit {
       schemaDessine: Boolean(f.diagramme),
       sources: f.sources.length,
       ressources: f.plusLoin.length,
+      avisAuteur: (f.avisAuteur ?? []).length,
       temps: tempsLecture(f),
       misAJour: f.misAJour,
       aVerifier,

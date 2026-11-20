@@ -14,17 +14,17 @@
   ],
   "change": [
     "Un Deployment qui déclare 3 réplicas alors qu'il en reste 2 voit le troisième recréé sans intervention.",
-    "Les contrôleurs passent par le serveur d'API, seul à lire et écrire dans etcd.",
-    "L'état voulu se modifie dans la déclaration, jamais sur l'objet qu'un contrôleur gère."
+    "La plupart des contrôleurs intégrés passent par le serveur d'API, qui stocke ses données dans etcd.",
+    "Les ReplicaSets d'un Deployment ne se gèrent pas à la main : l'état voulu se modifie dans la déclaration du Deployment."
   ],
   "reflexe": null,
-  "pourquoiNouveau": "Dans une infrastructure classique, rien ne remet seul une machine dans l'état voulu : une alerte, puis un humain ou un script. Kubernetes fait de cette comparaison permanente son mécanisme central. Aucun équivalent direct dans votre métier d'origine.",
-  "piege": "Corriger à la main ce qu'un contrôleur gère : il remet l'état déclaré et efface la correction. Le bon geste est de modifier la déclaration.",
-  "exemple": "Si un pod de l'AMF disparaît, le contrôleur du Deployment en recrée un pour retrouver le nombre voulu ; l'équipe n'est alertée que si la reconstitution échoue.",
+  "pourquoiNouveau": "Dans une infrastructure classique, une machine qui s'écarte de l'état voulu déclenche souvent une alerte, puis un humain ou un script. Kubernetes fait de la comparaison permanente son mécanisme central. La supervision détecte l'écart, mais ne le corrige pas seule.",
+  "piege": "Gérer à la main un ReplicaSet qu'un Deployment possède : la documentation le déconseille. Modifiez le Deployment lui-même : l'état voulu se déclare, on ne le corrige pas sur les objets qu'il produit.",
+  "exemple": "Si un pod de l'AMF disparaît, le ReplicaSet géré par le Deployment en recrée un pour retrouver le nombre voulu.",
   "epreuve": {
-    "cas": "Un Deployment déclare 3 réplicas, il n'en existe que 2. Personne n'intervient et un troisième pod apparaît. Quel principe l'explique, et que devient une correction faite à la main sur ce qu'un contrôleur gère ?",
-    "raisonnement": "La réconciliation : une boucle de contrôle compare l'état désiré à l'état observé et agit pour les rapprocher. Ici le contrôleur du ReplicaSet crée un pod, puis le scheduler lui choisit un nœud. Une correction manuelle est effacée : le contrôleur remet l'état déclaré. Le bon geste est de modifier la déclaration.",
-    "source": "Kubernetes : Controllers (kubernetes.io/docs/concepts/architecture/controller/)"
+    "cas": "Un Deployment déclare 3 réplicas, il n'en existe que 2. Personne n'intervient et un troisième pod apparaît. Quel principe l'explique, et où modifiez-vous le nombre de réplicas voulu ?",
+    "raisonnement": "La réconciliation : une boucle de contrôle compare l'état désiré à l'état observé et agit pour les rapprocher. Ici le ReplicaSet crée le pod manquant, puis le scheduler lui choisit un nœud. Le nombre voulu se modifie dans la déclaration du Deployment, pas sur les ReplicaSets qu'il possède, qu'on ne gère pas à la main.",
+    "source": "Kubernetes : contrôleurs (kubernetes.io/docs/concepts/architecture/controller/) ; ReplicaSet et Deployment (kubernetes.io/docs/concepts/workloads/controllers/) ; composants d'un cluster (kubernetes.io/docs/concepts/overview/components/)"
   },
   "schema": {
     "legende": "La boucle de réconciliation",
@@ -92,7 +92,7 @@
       {
         "id": "reel",
         "texte": "État réel",
-        "detail": "pods, nœuds, volumes",
+        "detail": "pods, nœuds",
         "x": 500,
         "y": 160,
         "w": 180,
@@ -105,7 +105,7 @@
       {
         "de": "vous",
         "vers": "api",
-        "texte": "apply"
+        "texte": "déclare"
       },
       {
         "de": "api",
@@ -125,8 +125,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-08",
+  "misAJour": "2026-11-20",
   "historique": [
+    {
+      "date": "2026-11-20",
+      "changement": "Relecture sourcée : sources ReplicaSet et Deployment ajoutées, affirmations restreintes à ce que disent les sources, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lot A1)",
+      "lien": null
+    },
     {
       "date": "2026-11-08",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -204,6 +210,18 @@
     {
       "nom": "Kubernetes : composants d'un cluster",
       "url": "https://kubernetes.io/docs/concepts/overview/components/"
+    },
+    {
+      "nom": "Kubernetes : ReplicaSet",
+      "url": "https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/"
+    },
+    {
+      "nom": "Kubernetes : Deployments",
+      "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "pourquoiNouveau"
   ]
 }

@@ -2589,3 +2589,20 @@ a.barre-fleche:hover {
 .pied-audit {
   opacity: 0.6;
 }
+
+/* Étiquette d'un passage qui est un avis de l'auteur, non un fait sourcé */
+.avis-auteur {
+  display: inline-block;
+  margin-left: var(--e-2);
+  padding: 0 var(--e-2);
+  border: 1px solid var(--teinte-nouveau);
+  border-radius: var(--r-pilule);
+  color: var(--teinte-nouveau);
+  font-family: var(--police-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  white-space: nowrap;
+  vertical-align: middle;
+}

@@ -41,6 +41,7 @@ export default function PageSources() {
       <h2>Les règles que le site se fait respecter</h2>
       <ul>
         <li>Chaque fiche a au moins une source avec adresse, un lien gratuit pour aller plus loin, et une épreuve (un cas, son raisonnement attendu, sa source).</li>
+        <li>Un passage qui n'est pas un fait sourcé (un conseil, une comparaison avec « avant ») porte l'étiquette « avis d'auteur » ; tout le reste doit avoir sa source.</li>
         <li>Une transposition nomme le réflexe à lâcher ; une nouveauté explique pourquoi elle n'existait pas avant.</li>
         <li>Les prérequis du graphe existent tous et ne forment aucune boucle.</li>
         <li>Les longueurs des textes sont limitées : c'est une contrainte de lisibilité.</li>

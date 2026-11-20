@@ -6,24 +6,24 @@
   "apres": "Les opérateurs et les ressources personnalisées",
   "resume": {
     "avant": null,
-    "apres": "La connaissance d'exploitation d'un logiciel (installer, mettre à jour, réparer) s'écrit dans un contrôleur qui tourne dans le cluster."
+    "apres": "La connaissance d'exploitation d'un logiciel (installer, mettre à jour, sauvegarder et restaurer) s'écrit dans un contrôleur qui tourne dans le cluster."
   },
   "resteVrai": [
-    "Les runbooks d'exploitation existent toujours : ils deviennent du code.",
+    "Les procédures d'exploitation existent toujours : leur connaissance s'écrit dans le code d'un contrôleur.",
     "Un équipementier reste responsable de la qualité de ce qu'il livre."
   ],
   "change": [
-    "Une ressource personnalisée (CRD) ajoute à l'API un type d'objet propre à une application.",
+    "Une CRD ajoute à l'API un type d'objet propre à une application ; ses objets sont des ressources personnalisées.",
     "Un opérateur est un contrôleur qui réconcilie ces objets et automatise des tâches d'exploitation.",
-    "Sur OpenShift, OLM installe et met à jour les opérateurs : la Subscription exprime le canal suivi, l'InstallPlan porte les changements."
+    "OLM installe et met à jour les opérateurs : la Subscription suit un canal, l'InstallPlan liste les ressources à créer."
   ],
   "reflexe": null,
   "pourquoiNouveau": "Les équipementiers livraient une appliance et une procédure d'exploitation. Kubernetes permet de livrer à la place un contrôleur qui applique cette procédure, avec la même boucle de réconciliation que le reste du cluster.",
-  "piege": "Traiter un opérateur comme une boîte noire. Il agit sur le cluster avec ses propres droits RBAC : lisez ce qu'il demande avant de l'installer.",
+  "piege": "Traiter un opérateur comme une boîte noire. Il s'exécute sous un compte de service dont les rôles RBAC bornent ce qu'il peut faire : lisez ce qu'il demande avant de l'installer.",
   "exemple": "Un éditeur de cœur 5G livre un opérateur : vous créez un objet qui décrit la version et le nombre d'instances, et l'opérateur déploie et met à jour les pods.",
   "epreuve": {
-    "cas": "Un éditeur de cœur 5G livre un opérateur. Avec OLM, quel objet demande son installation et son maintien à jour, et que vérifiez-vous avant de l'installer ?",
-    "raisonnement": "La Subscription : elle désigne un package, un canal et une source de catalogue, et sert à garder les CSV à jour (le CatalogSource est le dépôt, le CSV décrit l'application, l'InstallPlan liste les ressources à créer). Un opérateur agit avec ses propres droits RBAC : on lit ce qu'il demande avant de l'installer, on ne le traite pas comme une boîte noire.",
+    "cas": "Avec OLM, quel objet demande l'installation d'un opérateur et son maintien à jour, et que vérifiez-vous avant de l'installer ?",
+    "raisonnement": "La Subscription (le cas courant) : elle désigne un package, un canal et une source de catalogue, et sert à garder les CSV à jour. Le CatalogSource est le dépôt, le CSV décrit l'application, l'InstallPlan liste les ressources à créer. Avant d'installer, on lit les rôles RBAC que l'opérateur demande : il s'exécute sous un compte de service dont les rôles bornent ce qu'il peut faire (recommandation d'auteur).",
     "source": "Operator Lifecycle Manager : architecture (olm.operatorframework.io/docs/concepts/olm-architecture/)"
   },
   "schema": {
@@ -51,7 +51,7 @@
     "zones": [
       {
         "id": "olm",
-        "titre": "OLM (OpenShift)",
+        "titre": "OLM",
         "x": 20,
         "y": 22,
         "w": 632,
@@ -91,7 +91,7 @@
       {
         "id": "plan",
         "texte": "InstallPlan",
-        "detail": "changements à approuver",
+        "detail": "ressources à créer",
         "x": 456,
         "y": 60,
         "w": 180,
@@ -101,7 +101,7 @@
       {
         "id": "cr",
         "texte": "Ressource perso",
-        "detail": "UPF : 3 instances",
+        "detail": "ex. UPF : 3 instances",
         "ton": "chaud",
         "x": 276,
         "y": 220,
@@ -123,7 +123,7 @@
       {
         "id": "res",
         "texte": "Ressources gérées",
-        "detail": "StatefulSet, Service",
+        "detail": "StatefulSet, PVC",
         "ton": "ok",
         "x": 666,
         "y": 220,
@@ -134,9 +134,9 @@
     ],
     "liens": [
       {
-        "de": "catalogue",
-        "vers": "sub",
-        "texte": "choisit"
+        "de": "sub",
+        "vers": "catalogue",
+        "texte": "cible"
       },
       {
         "de": "sub",
@@ -146,7 +146,7 @@
       {
         "de": "plan",
         "vers": "op",
-        "texte": "installe"
+        "texte": "fait créer"
       },
       {
         "de": "cr",
@@ -165,8 +165,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-08",
+  "misAJour": "2026-11-20",
   "historique": [
+    {
+      "date": "2026-11-20",
+      "changement": "Relecture sourcée : lien Subscription vers catalogue corrigé, OLM sans mention d'OpenShift, source OLM architecture ajoutée, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lot A1)",
+      "lien": null
+    },
     {
       "date": "2026-11-08",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -246,6 +252,15 @@
     {
       "nom": "Kubernetes : contrôle d'accès RBAC",
       "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+    },
+    {
+      "nom": "Operator Lifecycle Manager : architecture",
+      "url": "https://olm.operatorframework.io/docs/concepts/olm-architecture/"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai.1",
+    "pourquoiNouveau",
+    "piege"
   ]
 }

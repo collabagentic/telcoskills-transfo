@@ -102,3 +102,28 @@ describe("règles du contenu", () => {
     expect(competenceSchema.safeParse({ id: "x" }).success).toBe(false);
   });
 });
+
+describe("règle 16 : avis d'auteur", () => {
+  const erreurs16 = (c: ReturnType<typeof contenuValide>) => verifierContenu(c).filter((e) => e.startsWith("Règle 16 "));
+
+  it("accepte des passages qui existent", () => {
+    const c = contenuValide();
+    c.fiches[0].avisAuteur = ["resteVrai.0", "change", "piege", "reflexe"];
+    expect(erreurs16(c)).toEqual([]);
+  });
+
+  it("refuse un champ vide, une puce absente ou un doublon", () => {
+    const c = contenuValide();
+    c.fiches[1].avisAuteur = ["reflexe"]; // une nouveauté n'a pas de réflexe
+    c.fiches[0].avisAuteur = ["resteVrai.3", "piege", "piege"];
+    const e = erreurs16(c).join("\n");
+    expect(e).toContain("le champ est vide");
+    expect(e).toContain("n'existe pas");
+    expect(e).toContain("deux fois");
+  });
+
+  it("refuse un nom de passage inconnu", () => {
+    expect(ficheSchema.safeParse({ ...fiche("x"), avisAuteur: ["resume"] }).success).toBe(false);
+    expect(ficheSchema.safeParse({ ...fiche("x"), avisAuteur: ["change.4"] }).success).toBe(false);
+  });
+});

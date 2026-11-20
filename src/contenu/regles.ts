@@ -66,6 +66,16 @@ export function verifierContenu(c: Contenu): string[] {
       err(5, `fiche « ${f.id} » : au moins un lien « pour aller plus loin » libre (open source ou documentation gratuite) est attendu.`);
     }
 
+    // 16. Les passages étiquetés « avis d'auteur » existent (champ non vide, puce présente), sans doublon.
+    const avis = f.avisAuteur ?? [];
+    for (const id of new Set(doublons(avis))) err(16, `fiche « ${f.id} » : « ${id} » est étiqueté deux fois comme avis d'auteur.`);
+    for (const a of avis) {
+      const [champ, indice] = a.split(".");
+      const valeur = (f as unknown as Record<string, unknown>)[champ];
+      if (valeur === null || valeur === undefined) err(16, `fiche « ${f.id} » : « ${a} » est étiqueté avis d'auteur mais le champ est vide.`);
+      else if (indice !== undefined && Number(indice) >= (valeur as unknown[]).length) err(16, `fiche « ${f.id} » : « ${a} » désigne une puce qui n'existe pas.`);
+    }
+
     // 11. Schéma : une nouveauté n'a pas de schéma « avant », une transposition en a un.
     if (f.genre === "transposition" && !f.schema.avant) err(11, `fiche « ${f.id} » : une transposition a un schéma « avant ».`);
     if (f.genre === "nouveaute" && f.schema.avant) err(11, `fiche « ${f.id} » : une nouveauté n'a pas de schéma « avant ».`);

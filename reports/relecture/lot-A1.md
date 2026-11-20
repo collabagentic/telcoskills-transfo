@@ -47,3 +47,14 @@ Réserves : les pages Kubernetes n'ont été lues que sur leurs 100 000 premiers
 ## Suite
 
 Appliquer les corrections que vous validez, passer les fiches en « relu » dans le JSON, puis lot A2 (`lb-services`, `vlan-reseaux-cluster`, `matrice-networkpolicy`, `acces-rbac`).
+
+## Corrections appliquées (2026-11-20), après la décision de l'auteur
+
+Décision : garder les phrases du « monde d'avant » et les conseils, **étiquetés « avis d'auteur »**. Nouveau champ `avisAuteur` dans les fiches (règle de build 16 : les passages désignés existent), étiquette visible sur le site, compte dans l'audit.
+
+- `reconciliation` : sources ReplicaSet et Deployment ajoutées, « seul à lire et écrire dans etcd » et « jamais sur l'objet… » restreints, alerte non sourcée retirée de l'exemple, question finale de l'épreuve rendue sourçable (où modifier le nombre voulu). Avis : `resteVrai`, `pourquoiNouveau`.
+- `vm-pod` : lien du diagramme « Registre tire Deployment » remplacé par « Deployment cite l'image du registre », « jamais réparés » nuancé, CPU et mémoire dits facultatifs, Service headless et adresse Deployments ajoutés à l'épreuve. Avis : `resteVrai.0`, `resteVrai.2`, `change.2`, `exemple`.
+- `actif-passif-replicas` : conseil sur les sondes reformulé d'après la page (initialDelaySeconds, startupProbe), déduction « plus de destination » signalée comme telle, « heartbeat » retiré, « garde ≥ 2 » remplacé par « protège ». Avis : `resteVrai.0`, `resteVrai.2`, `change.0`, `piege`.
+- `operateurs` : lien inversé corrigé (Subscription cible le catalogue), « InstallPlan fait créer », mention d'OpenShift retirée, « réparer » remplacé, source OLM architecture ajoutée. Avis : `resteVrai.1`, `pourquoiNouveau`, `piege`.
+
+Restent ouverts : aucune source ne couvre l'actif/passif (`actif-passif-replicas`), le frontal HTTP/2 « sans état » reste une hypothèse étiquetée (`vm-pod`), et la relecture par l'auteur des quatre fiches (« relu » n'est posé que par lui). Le texte « avant » du résumé de `vm-pod` n'est pas étiqueté (le champ `resume` n'est pas désignable) : il décrit une pratique, pas un fait Kubernetes.

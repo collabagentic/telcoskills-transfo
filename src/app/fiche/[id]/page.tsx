@@ -52,6 +52,9 @@ export default async function PageFiche({ params }: Props) {
   const recents = f.historique.slice(0, 3);
   const anciens = f.historique.slice(3);
   const donnees = donneesPubliques();
+  const avis = new Set(f.avisAuteur ?? []);
+  const etiquette = <span className="avis-auteur">avis d'auteur</span>;
+  const puce = (champ: "resteVrai" | "change", i: number) => (avis.has(champ) || avis.has(`${champ}.${i}`) ? etiquette : null);
 
   return (
     <article className="fiche fiche-pilotage">
@@ -73,16 +76,20 @@ export default async function PageFiche({ params }: Props) {
       <section className="rubrique">
         <h2>Ce qui reste vrai</h2>
         <ul>
-          {f.resteVrai.map((p) => (
-            <li key={p}>{p}</li>
+          {f.resteVrai.map((p, i) => (
+            <li key={p}>
+              {p} {puce("resteVrai", i)}
+            </li>
           ))}
         </ul>
       </section>
       <section className="rubrique">
         <h2>Ce qui change</h2>
         <ul>
-          {f.change.map((p) => (
-            <li key={p}>{p}</li>
+          {f.change.map((p, i) => (
+            <li key={p}>
+              {p} {puce("change", i)}
+            </li>
           ))}
         </ul>
       </section>
@@ -98,21 +105,29 @@ export default async function PageFiche({ params }: Props) {
       </section>
       {f.genre === "transposition" && f.reflexe ? (
         <section className="rubrique">
-          <h2>Le réflexe à lâcher</h2>
+          <h2>
+            Le réflexe à lâcher {avis.has("reflexe") ? etiquette : null}
+          </h2>
           <p className="reflexe">« {f.reflexe} »</p>
         </section>
       ) : (
         <section className="rubrique">
-          <h2>Pourquoi ça n'existait pas chez vous</h2>
+          <h2>
+            Pourquoi ça n'existait pas chez vous {avis.has("pourquoiNouveau") ? etiquette : null}
+          </h2>
           <p>{f.pourquoiNouveau}</p>
         </section>
       )}
       <section className="rubrique">
-        <h2>Le piège</h2>
+        <h2>
+          Le piège {avis.has("piege") ? etiquette : null}
+        </h2>
         <p className="encadre">{f.piege}</p>
       </section>
       <section className="rubrique">
-        <h2>En télécom, concrètement</h2>
+        <h2>
+          En télécom, concrètement {avis.has("exemple") ? etiquette : null}
+        </h2>
         <p>{f.exemple}</p>
       </section>
 

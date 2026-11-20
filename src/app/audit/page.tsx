@@ -51,6 +51,7 @@ export default function PageAudit() {
                 <td>
                   <span className="cockpit-texte">
                     {l.temps} min · {l.schemaDessine ? "schéma dessiné" : "chaîne simple"} · {l.sources} source{pluriel(l.sources)} · {l.ressources} ressource{pluriel(l.ressources)}
+                    {l.avisAuteur > 0 ? ` · ${l.avisAuteur} avis d'auteur` : ""}
                   </span>
                 </td>
                 <td>

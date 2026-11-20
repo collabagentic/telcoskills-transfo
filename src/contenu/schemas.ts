@@ -98,6 +98,13 @@ export const ficheSchema = z
     change: puces,
     reflexe: texte(90).nullable(),
     pourquoiNouveau: texte(500).nullable(),
+    /**
+     * Passages qui sont un avis de l'auteur et non un fait sourcé : « resteVrai », « change.1 », « pourquoiNouveau », « piege », « exemple », « reflexe ».
+     * Le site les étiquette « avis d'auteur » ; tout le reste d'une fiche doit avoir sa source.
+     */
+    avisAuteur: z
+      .array(z.string().regex(/^(?:(?:resteVrai|change)(?:\.[0-3])?|reflexe|pourquoiNouveau|piege|exemple)$/, "passage inconnu (resteVrai, change.N, reflexe, pourquoiNouveau, piege, exemple)"))
+      .optional(),
     piege: texte(600),
     exemple: texte(400),
     /** Mise à l'épreuve : un cas à raisonner, puis le raisonnement attendu (masqué jusqu'à ce que l'apprenant ait écrit le sien) et sa source. */

@@ -14,6 +14,7 @@ const GABARIT = `{
   "change": ["…", "…"],                // 2 à 4 puces
   "reflexe": "Une IP identifie une machine.",   // obligatoire pour une transposition
   "pourquoiNouveau": null,             // obligatoire pour une nouveauté, interdit sinon
+  "avisAuteur": ["resteVrai.0", "piege"],   // passages qui sont un avis et non un fait sourcé (étiquetés sur le site)
   "piege": "…",                        // un paragraphe, 600 caractères au plus
   "exemple": "…",                      // un exemple télécom (5GC, CNF, CaaS)
   "schema": { "legende": "…", "avant": [{ "texte": "…" }, { "texte": "…" }], "apres": [{ "texte": "…" }, { "texte": "…" }] },

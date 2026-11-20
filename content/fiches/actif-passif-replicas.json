@@ -6,7 +6,7 @@
   "apres": "réplicas et sondes",
   "resume": {
     "avant": "Un nœud actif, un nœud passif en attente, une bascule déclenchée par un cluster ou un opérateur.",
-    "apres": "Plusieurs réplicas servent en même temps. Des sondes décident qui reçoit du trafic ; Kubernetes remplace ce qui tombe."
+    "apres": "Plusieurs réplicas servent en même temps. Des sondes décident qui reçoit du trafic ; la liveness redémarre un conteneur défaillant."
   },
   "resteVrai": [
     "Éliminer les points de défaillance uniques reste le but de la conception.",
@@ -20,11 +20,11 @@
   ],
   "reflexe": "Le passif attend, et on bascule à la main.",
   "pourquoiNouveau": null,
-  "piege": "Une sonde de readiness mal réglée peut retirer tous les pods du trafic en même temps : le service se retrouve sans destination. Réglez les sondes sur le comportement réel de l'application.",
+  "piege": "Une sonde de readiness trop stricte peut retirer tous les pods du trafic en même temps : le service n'a alors plus de destination. Laissez à l'application le temps de démarrer (initialDelaySeconds, startupProbe).",
   "exemple": "Les instances d'une fonction du cœur 5G sont répliquées ; un pod dont la sonde de readiness échoue cesse de recevoir du trafic le temps de se rétablir.",
   "epreuve": {
-    "cas": "Vous passez d'un couple actif/passif à plusieurs réplicas d'une fonction du cœur 5G. Une sonde de readiness est réglée trop strictement et tous les pods échouent en même temps. Que devient le trafic, et sur quoi réglez-vous les sondes ?",
-    "raisonnement": "Un pod dont la sonde de readiness échoue cesse de recevoir du trafic le temps de se rétablir. Si tous échouent ensemble, le service se retrouve sans destination. Les sondes se règlent sur le comportement réel de l'application, pas sur un comportement idéal.",
+    "cas": "Vous passez d'un couple actif/passif à plusieurs réplicas d'une fonction du cœur 5G. Une sonde de readiness est réglée trop strictement et tous les pods échouent en même temps. Que devient le trafic, et que réglez-vous pour l'éviter ?",
+    "raisonnement": "Un pod dont la sonde de readiness échoue cesse de recevoir du trafic, sans être redémarré (c'est le rôle de la liveness). Si tous échouent en même temps, plus aucun pod ne reçoit de trafic : c'est une conséquence logique, que la documentation ne formule pas ainsi. Pour ne pas retirer les pods trop tôt, on règle les délais de démarrage (initialDelaySeconds, startupProbe).",
     "source": "Kubernetes : sondes liveness, readiness, startup (kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)"
   },
   "schema": {
@@ -197,7 +197,6 @@
       {
         "de": "actif",
         "vers": "passif",
-        "texte": "heartbeat",
         "style": "pointille",
         "sens": "double"
       },
@@ -226,7 +225,7 @@
       {
         "de": "pdb",
         "vers": "pod-c",
-        "texte": "garde ≥ 2",
+        "texte": "protège",
         "style": "pointille"
       }
     ],
@@ -236,8 +235,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-08",
+  "misAJour": "2026-11-20",
   "historique": [
+    {
+      "date": "2026-11-20",
+      "changement": "Relecture sourcée : conseil sur les sondes reformulé d'après la documentation, libellés de diagramme non sourcés retirés, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lot A1)",
+      "lien": null
+    },
     {
       "date": "2026-11-08",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -321,5 +326,11 @@
       "nom": "etcd : FAQ, tolérance aux pannes",
       "url": "https://etcd.io/docs/v3.5/faq/"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai.0",
+    "resteVrai.2",
+    "change.0",
+    "piege"
   ]
 }
