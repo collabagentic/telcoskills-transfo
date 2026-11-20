@@ -6,6 +6,9 @@
 > Les questions ouvertes (§11) ont toutes une **valeur par défaut** : applique-la et continue, sauf mention « BLOQUANT ».
 > Ce qu'on attend à la fin (client, promesse, critères de succès, conditions de lancement) est dans **`PRFAQ.md`** :
 > toute story doit servir une phrase de ce document. Écarts D1 à D6 du PR/FAQ intégrés le 2026-11-08.
+>
+> **État au 2026-11-21 : lire d'abord le §14 (fin du fichier).** Les §4 à §9 (écrans à métiers, plan, lots 0 à 8) décrivent
+> le produit d'origine, remplacé par la refonte du §13 ; ils restent comme historique. Le §14 dit ce qui existe et ce qui reste.
 
 ---
 
@@ -718,3 +721,40 @@ L'ancien site (telcoskills.com) était « trop complexe ». Ce projet le **rempl
 - **Relecture des diagrammes** (2026-11-10) : le build contrôle aussi les étiquettes de flèches (elles ne chevauchent ni un composant ni une autre étiquette ; sur un trait vertical elles se posent à côté du trait). Les gabarits flux et étoile élargissent les écarts selon la longueur des étiquettes. Sur mobile, un diagramme se fait défiler horizontalement (indication affichée).
 - **Lot 4** (2026-11-12) : 13 compétences techniques de plus (`diagrammes-lot4.mjs`) ; 118 compétences sur 131 ont un diagramme. Les 13 restantes sont réglementaires (`reg-*`, `reglementation-5gc`) ou de simple liste (`certifs`) : un schéma juridique se rédige et se relit avec l'auteur, on n'invente pas de portée légale.
 - **Pages d'information** (2026-11-12) : À propos, Sources et méthode, Contribuer, Confidentialité (avec « Effacer mes données ») et Mentions légales, liées depuis le pied de page ; `content/contexte.json` (chiffres de contexte sourcés, limites) ; chiffres du site calculés au build (`src/lib/site.ts`) ; `CONTRIBUTING.md` et gabarits de tickets (`.github/ISSUE_TEMPLATE/`). Reste : mesure d'audience avec consentement, test utilisateur, relecture des fiches, ouverture du dépôt et du site (Q1).
+
+---
+
+## 14. État au 2026-11-21 : ce qui existe, ce qui reste
+
+Ce paragraphe fait foi sur l'état du produit. Il remplace les §4 à §9 (historique) ; le §12 et le §13 restent exacts.
+
+### Ce qui existe (en production sur telcoskills-transfo.vercel.app, `noindex`)
+
+- **Une feuille de route vivante** (§13) et un cockpit d'apprentissage ; 131 compétences migrées, 21 fiches, 118 diagrammes.
+- **Fiche en cockpit « Pilotage »** (2026-11-20, `reports/lots/epreuve.md`) : ligne de métro à correspondances collée en haut (`src/lib/metro.ts`), feuille de route à gauche, lecture au centre, « prochain geste » à droite (une ressource à lire d'abord, le prompt, l'épreuve) ; une seule colonne sous 62 rem. Les schémas restent dans la colonne de lecture et s'agrandissent dans une fenêtre.
+- **Mise à l'épreuve** à la place du quiz : un cas, le raisonnement de l'apprenant (15 caractères au moins) avant d'afficher le raisonnement attendu et sa source, puis « Je l'avais » / « À revoir ». « Vérifié » devient « Acquis » (stockage migré sans perte). Le texte écrit n'est pas conservé.
+- **Catégorie par fiche** (`categorie` : comprendre, pratique, integrer, diagnostiquer, decider) et **prompt à copier** : un gabarit à blancs « [à compléter] » pour poser la bonne question à l'IA de son choix ; le format de réponse demandé suit la catégorie (`src/lib/prompt.ts`).
+- **Avis d'auteur** (`avisAuteur`, règle 16) : les passages qui ne sont pas des faits sourcés (conseils, comparaisons avec « avant ») sont étiquetés sur le site ; tout le reste doit avoir sa source.
+- **Audit des fiches** (`/audit`, lien discret en pied de page, `noindex`) : fini ou non, classement, contenu, points à vérifier. Rapport `reports/audit-fiches.md` (`node scripts/audit-fiches.mjs`), notes et classements validés dans `content/audit.json`.
+- **Relecture sourcée** (`reports/relecture/`) : une relecture par fiche, chaque affirmation classée confirmée, non sourcée ou douteuse. Lots A1, A2, B, C et D appliqués : les 21 fiches sont relues contre leurs sources (synthèses `reports/relecture/lot-A1.md`, `lot-A2.md` et `lots-B-C-D.md`), aucune n'est encore passée en « relu » par l'auteur.
+
+### Ce qui reste
+
+1. **Contenu**
+   - **Relecture par l'auteur** des 21 fiches (les corrections sourcées des lots A à D sont appliquées) : « relu » n'est posé que par lui, aujourd'hui 0 fiche finie sur 21.
+   - Points à sourcer connus (colonne « À vérifier » de `/audit`) : actif/passif, SCTP porté par un Service LoadBalancer, nom « N2 », NetworkPolicy sur le réseau primaire, RTO et RPO.
+   - **Fiche « diagnostiquer »** (dépanner Kubernetes) à écrire avec l'auteur ; arbitrer `plateforme-produit` (decider ou comprendre) ; valider les classements.
+   - **Canevas propres à chaque catégorie** (aujourd'hui la catégorie ne change que le prompt) ; relecture des 21 épreuves (brouillons dérivées de l'ancien quiz).
+   - 13 compétences sans diagramme (réglementaires), à rédiger avec l'auteur.
+2. **Fonctions**
+   - Rappel espacé d'une fiche acquise (par exemple à J+7).
+   - Portage depuis l'ancien site : 117 questions de pratique, paysage des outils, recherche ⌘K, redirections de telcoskills.com.
+3. **Ouverture au public** (questions Q1 et Q8)
+   - Nom de domaine et bascule de l'ancien site ; dépôt GitHub à rendre public (les liens « Signaler une erreur » et « Proposer une correction » ne marchent pas sinon) ; accès de l'application GitHub à Vercel puis `vercel git connect` ; retrait du `noindex`.
+   - Adresse Vercel des mentions légales et lien LinkedIn à confirmer ; mesure d'audience avec consentement.
+   - **Test utilisateur** (3 à 5 personnes, E13) : point d'arrêt bloquant avant l'ouverture.
+4. **Entretien** : vérification mobile et thème clair seulement partielle ; diagrammes du lot 4 et pages d'information non relus visuellement.
+
+### Méthode retenue pour compléter les fiches
+
+Des lots par catégorie, un prompt commun par lot (pas un par fiche). Pour chaque fiche : un agent lit les sources et classe chaque affirmation ; les corrections sont proposées, puis appliquées ; ce qui est une opinion reste mais porte l'étiquette « avis d'auteur » ; l'auteur relit et passe la fiche en « relu ». Les sources illisibles (redirigées, 404) sont retirées plutôt que citées.

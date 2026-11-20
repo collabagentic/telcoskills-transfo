@@ -5,27 +5,27 @@
   "avant": "dossier PRA",
   "apres": "GitOps",
   "resume": {
-    "avant": "Un dossier avec RTO et RPO, des procédures de reprise rédigées, testées une fois par an.",
+    "avant": "Un dossier avec RTO et RPO, des procédures de reprise rédigées, testées de temps en temps.",
     "apres": "L'état voulu du cluster est dans Git. Reconstruire, c'est réappliquer ce dépôt, aussi souvent qu'on veut."
   },
   "resteVrai": [
-    "Le RTO mesure le temps de reprise acceptable, le RPO la perte de données acceptable.",
+    "Le RTO est la durée de reprise acceptable ; le RPO, la perte de données acceptable, exprimée en temps depuis la dernière copie.",
     "Les données persistantes restent à répliquer et à sauvegarder : Git ne contient pas vos bases.",
     "Un PRA qu'on ne teste pas ne vaut rien."
   ],
   "change": [
-    "Le dépôt Git décrit l'état voulu ; un outil GitOps le réapplique et peut corriger la dérive.",
-    "Reconstruire un cluster, c'est rejouer des manifestes, pas dérouler une procédure à la main.",
-    "Une modification faite à la main dans le cluster peut être écrasée par ce que dit le dépôt."
+    "Le dépôt Git décrit l'état voulu ; un outil comme Argo CD peut, si le self-heal est activé, ramener le cluster à cet état.",
+    "Reconstruire un cluster peut se ramener, pour l'essentiel, à rejouer les manifestes plutôt qu'à suivre une procédure manuelle.",
+    "Avec l'auto-correction (self-heal) activée, une modification manuelle dans le cluster est annulée au profit du dépôt."
   ],
   "reflexe": "La procédure de reprise est un document que l'on déroule.",
   "pourquoiNouveau": null,
-  "piege": "Croire que Git suffit. Les manifestes reconstruisent les applications, pas les données ni les secrets : il faut toujours des sauvegardes testées (par exemple de la base etcd) et une gestion des secrets. Le RPO dépend de la réplication des données, pas de Git.",
-  "exemple": "Un site de secours doit accueillir des fonctions du cœur (AMF, SMF) : le cluster est recréé, le dépôt est réappliqué, puis les données d'abonnés et de sessions sont restaurées depuis leur réplication.",
+  "piege": "Croire que Git suffit. Les manifestes ne contiennent pas les données ; les secrets se traitent à part (chiffrés dans le dépôt ou gérés hors dépôt). Il faut des sauvegardes, par exemple d'etcd, et les tester. Le RPO dépend de la réplication des données, pas de Git.",
+  "exemple": "Un site de secours doit accueillir des fonctions du cœur (AMF, SMF) : le cluster est recréé et le dépôt réappliqué, puis les données qui doivent survivre sont restaurées depuis leurs sauvegardes ou leur réplication. Scénario illustratif.",
   "epreuve": {
     "cas": "Un site de secours doit accueillir l'AMF et la SMF. Un collègue dit : « Tout est dans Git, on réapplique et c'est fini. » Que répondez-vous, et que mesurent le RTO et le RPO ?",
-    "raisonnement": "Git reconstruit les applications, pas les données ni les secrets : il faut des sauvegardes testées (par exemple de la base etcd) et une gestion des secrets. Le RTO est la durée maximale acceptable d'arrêt du service ; le RPO, la quantité de données perdues acceptable, et il dépend de la réplication des données, pas de Git.",
-    "source": "OpenGitOps : principes (opengitops.dev/) ; Kubernetes : sauvegarde d'etcd (kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/) ; définitions usuelles du RTO et du RPO"
+    "raisonnement": "Git décrit l'état voulu des applications ; il ne contient pas les données, et les secrets se traitent à part. Il faut des sauvegardes, par exemple d'etcd (qui contient tous les objets du cluster), et les tester. Le RTO est le délai maximal acceptable entre l'interruption et la restauration du service ; le RPO, le temps maximal écoulé depuis le dernier point de récupération, donc la perte de données exprimée en durée. Il dépend de la réplication, pas de Git.",
+    "source": "OpenGitOps : principes ; Kubernetes : sauvegarde d'etcd (kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/) ; AWS Well-Architected : objectifs de reprise (docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/disaster-recovery-dr-objectives.html), page historique selon AWS"
   },
   "schema": {
     "legende": "Reprise : procédure ou dépôt",
@@ -56,7 +56,7 @@
       },
       {
         "texte": "Données",
-        "detail": "restaurées depuis la réplication"
+        "detail": "restaurées à part, hors Git"
       }
     ]
   },
@@ -88,7 +88,7 @@
       {
         "id": "gitops",
         "texte": "Outil GitOps",
-        "detail": "Argo CD, Flux",
+        "detail": "Argo CD",
         "x": 400,
         "y": 100,
         "w": 150,
@@ -107,7 +107,7 @@
       {
         "id": "sauvegardes",
         "texte": "Sauvegardes",
-        "detail": "etcd, données, secrets",
+        "detail": "etcd, données",
         "x": 400,
         "y": 210,
         "w": 150,
@@ -148,8 +148,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-08",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Corrections sourcées : RTO/RPO sourcés (AWS, page historique), self-heal précisé, secrets et données reformulés, Flux retiré, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-08",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -218,6 +224,19 @@
     {
       "nom": "Kubernetes : sauvegarde d'etcd",
       "url": "https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/"
+    },
+    {
+      "nom": "AWS Well-Architected : objectifs de reprise, RTO et RPO (page historique)",
+      "url": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/disaster-recovery-dr-objectives.html"
     }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai.1",
+    "resteVrai.2",
+    "change.1",
+    "reflexe",
+    "piege",
+    "exemple"
   ]
 }

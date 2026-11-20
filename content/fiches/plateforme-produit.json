@@ -13,9 +13,9 @@
     "Les engagements de service et le support restent à définir."
   ],
   "change": [
-    "Une équipe plateforme propose des capacités en libre-service plutôt que de traiter des tickets.",
+    "Une équipe plateforme propose des capacités en libre-service (CLI, portail ou API) plutôt que des processus manuels.",
     "On mesure le produit comme tout produit : adoption, satisfaction, délai pour obtenir une capacité.",
-    "Elle ne cache pas Kubernetes : elle réduit la charge cognitive des équipes qui l'utilisent."
+    "Elle réduit la charge cognitive des équipes qui l'utilisent en masquant une partie de la complexité."
   ],
   "reflexe": null,
   "pourquoiNouveau": "Dans un modèle classique, une équipe d'infrastructure traite des demandes. Ici, la plateforme se conçoit pour ses utilisateurs internes, avec une feuille de route et des retours, comme un produit.",
@@ -23,7 +23,7 @@
   "exemple": "L'équipe plateforme propose un gabarit « déployer une CNF » (réseaux secondaires, supervision, accès) que les équipes d'exploitation utilisent sans recréer chaque réglage.",
   "epreuve": {
     "cas": "Votre équipe installe une plateforme Kubernetes et les équipes d'exploitation continuent d'ouvrir des tickets. Que manque-t-il pour que ce soit un produit, et qu'apporte avant tout une plateforme interne ?",
-    "raisonnement": "Une plateforme n'est pas un outil installé : sans équipe responsable, sans catalogue et sans retour des utilisateurs, elle redevient un guichet de tickets. Elle apporte des capacités en libre-service qui réduisent la charge cognitive des équipes, par exemple un gabarit « déployer une CNF » (réseaux secondaires, supervision, accès).",
+    "raisonnement": "Une plateforme n'est pas un outil installé : elle offre des capacités en libre-service (portail ou API), recueille les retours de ses utilisateurs, publie une feuille de route et mesure adoption et délai de livraison. Elle réduit ainsi la charge cognitive des équipes. Sans ces éléments, elle risque de rester un guichet de tickets : c'est un avis de l'auteur, la source ne le dit pas.",
     "source": "CNCF : livre blanc sur les plateformes (tag-app-delivery.cncf.io/whitepapers/platforms/)"
   },
   "schema": {
@@ -103,17 +103,7 @@
         "texte": "Gabarits",
         "detail": "chemins balisés",
         "x": 480,
-        "y": 70,
-        "w": 190,
-        "h": 56,
-        "zone": "plateforme"
-      },
-      {
-        "id": "ops",
-        "texte": "Opérateurs",
-        "detail": "exploitation automatisée",
-        "x": 480,
-        "y": 146,
+        "y": 84,
         "w": 190,
         "h": 56,
         "zone": "plateforme"
@@ -124,7 +114,7 @@
         "detail": "adoption, retours",
         "ton": "froid",
         "x": 480,
-        "y": 222,
+        "y": 190,
         "w": 190,
         "h": 56,
         "zone": "plateforme"
@@ -154,7 +144,7 @@
       {
         "de": "portail",
         "vers": "gab",
-        "texte": "applique"
+        "texte": "expose"
       },
       {
         "de": "gab",
@@ -162,9 +152,9 @@
         "texte": "déploie"
       },
       {
-        "de": "ops",
-        "vers": "cluster",
-        "texte": "exploite"
+        "de": "dev",
+        "vers": "feuille",
+        "texte": "retours"
       }
     ],
     "source": {
@@ -173,8 +163,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Relecture sourcée : libellés alignés sur le livre blanc CNCF, nœud Opérateurs retiré, avis étiquetés, ressources hors sujet retirées.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -203,38 +199,6 @@
       "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/",
       "langue": "en",
       "acces": "gratuit"
-    },
-    {
-      "type": "video",
-      "nom": "ANSIBLE - Tutos & Formation : automatiser vos configurations",
-      "url": "https://www.youtube.com/playlist?list=PLn6POgpklwWoCpLKOSw3mXCqbRocnhrh-",
-      "langue": "fr",
-      "acces": "gratuit",
-      "auteur": "xavki"
-    },
-    {
-      "type": "cours",
-      "nom": "Google SRE : ressources, livres gratuits et études de cas",
-      "url": "https://sre.google/resources/",
-      "langue": "en",
-      "acces": "gratuit",
-      "auteur": "Google"
-    },
-    {
-      "type": "video",
-      "nom": "SREcon25 Americas",
-      "url": "https://www.youtube.com/playlist?list=PLbRoZ5Rrl5letLDlvWuS1r8CZokFl-Is6",
-      "langue": "en",
-      "acces": "gratuit",
-      "auteur": "USENIX"
-    },
-    {
-      "type": "doc",
-      "nom": "Kubernetes : budgets de perturbation (PodDisruptionBudget) et interruptions volontaires",
-      "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
-      "langue": "en",
-      "acces": "gratuit",
-      "auteur": "Kubernetes"
     }
   ],
   "sources": [
@@ -246,5 +210,13 @@
       "nom": "CNCF : modèle de maturité des plateformes",
       "url": "https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai.0",
+    "resteVrai.1",
+    "pourquoiNouveau",
+    "piege",
+    "exemple",
+    "schema"
   ]
 }

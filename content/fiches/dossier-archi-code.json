@@ -6,7 +6,7 @@
   "apres": "décisions d'architecture versionnées",
   "resume": {
     "avant": "Un dossier produit en début de projet, validé en comité, puis rarement relu.",
-    "apres": "Des décisions courtes (ADR) et des schémas décrits en fichiers, versionnés avec le code et relus comme lui."
+    "apres": "Des décisions courtes (ADR), versionnées dans le dépôt avec le code."
   },
   "resteVrai": [
     "Le comité d'architecture garde son rôle : arbitrer et rendre les décisions explicites.",
@@ -14,17 +14,17 @@
     "Un dossier doit rester lisible par des non-spécialistes."
   ],
   "change": [
-    "Chaque décision est un court document (ADR) : contexte, décision, statut, conséquences, avec une date.",
+    "Chaque décision est un court document (ADR) : contexte, décision, statut, conséquences.",
     "Les ADR vivent dans le dépôt, à côté de ce qu'ils décrivent, et changent par pull request.",
-    "Un schéma décrit en texte se compare version par version, ce qu'un diagramme dessiné ne permet pas."
+    "Un schéma décrit en texte se compare version par version plus facilement qu'un diagramme dessiné."
   ],
   "reflexe": "Le dossier validé en comité fait foi pour des années.",
   "pourquoiNouveau": null,
-  "piege": "Écrire un ADR après coup, pour justifier. Sa valeur vient de ce qu'il est daté et rédigé au moment du choix ; une décision remplacée reste dans l'historique, marquée comme telle.",
-  "exemple": "Le choix de séparer le plan usager sur une interface secondaire SR-IOV s'écrit en un ADR d'une page, relu en pull request par l'équipe réseau.",
+  "piege": "Écrire un ADR après coup, pour justifier : à mon avis, il perd alors l'essentiel de sa valeur. Une décision remplacée n'est pas supprimée : son ADR reste dans le dépôt, marqué remplacé.",
+  "exemple": "Le choix de séparer le plan usager sur une interface secondaire SR-IOV s'écrit en un ADR d'une à deux pages, relu en pull request par l'équipe réseau.",
   "epreuve": {
     "cas": "Vous choisissez de séparer le plan usager sur une interface secondaire SR-IOV. Comment tracez-vous cette décision, que contient la trace, et quand l'écrivez-vous ?",
-    "raisonnement": "Par un enregistrement de décision d'architecture (ADR) : un court document avec le contexte, la décision, son statut et ses conséquences, relu en pull request. Il s'écrit au moment du choix, daté, et non après coup pour justifier ; une décision remplacée reste dans l'historique, marquée comme telle.",
+    "raisonnement": "Par un enregistrement de décision d'architecture (ADR) : un court document avec le contexte, la décision, son statut et ses conséquences, conservé dans le dépôt. Une décision remplacée reste dans le dépôt, marquée comme telle. Conseil d'auteur, hors source : faites-le relire en pull request et écrivez-le au moment du choix, pas après coup pour justifier.",
     "source": "Michael Nygard, Documenting Architecture Decisions (cognitect.com/blog/2011/11/15/documenting-architecture-decisions)"
   },
   "schema": {
@@ -54,7 +54,7 @@
       },
       {
         "texte": "Dépôt",
-        "detail": "historique daté"
+        "detail": "historique du dépôt"
       }
     ]
   },
@@ -107,7 +107,7 @@
       {
         "id": "accepte",
         "texte": "ADR accepté",
-        "detail": "statut et date",
+        "detail": "statut accepté",
         "ton": "ok",
         "x": 708,
         "y": 60,
@@ -146,7 +146,7 @@
       {
         "de": "accepte",
         "vers": "rempl",
-        "texte": "remplacé par",
+        "texte": "devient",
         "style": "pointille"
       }
     ],
@@ -156,8 +156,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Retrait de la date par ADR ; avis d'auteur étiquetés (pull request, schémas texte, moment d'écriture) ; lien « remplacé » corrigé ; ADR d'une à deux pages.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -211,5 +217,15 @@
       "nom": "ADR : site de référence",
       "url": "https://adr.github.io/"
     }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "change.1",
+    "change.2",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
   ]
 }

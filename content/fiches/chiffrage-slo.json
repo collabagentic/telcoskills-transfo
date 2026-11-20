@@ -5,7 +5,7 @@
   "avant": "chiffrage et TCO",
   "apres": "coût par SLO et FinOps",
   "resume": {
-    "avant": "Un chiffrage par équipement et par licence, un TCO sur cinq ans, des marges de sécurité.",
+    "avant": "Un chiffrage par équipement et par licence, un TCO sur la durée, des marges de sécurité.",
     "apres": "Un coût rattaché à un niveau de service (SLO) : ce qu'on paie pour tenir 99,9 % plutôt que 99 %, mesuré en continu."
   },
   "resteVrai": [
@@ -14,9 +14,9 @@
     "Le client achète un service, pas une technologie."
   ],
   "change": [
-    "Un SLO est un objectif mesurable de niveau de service ; son budget d'erreur dit combien d'indisponibilité est tolérée.",
-    "Chaque niveau de disponibilité en plus a un coût d'architecture : on le chiffre en face de l'objectif.",
-    "FinOps rend le coût visible et attribuable par équipe ou par service, en continu."
+    "Un SLO est un objectif mesurable de niveau de service ; son budget d'erreur est l'écart que l'objectif tolère.",
+    "Viser une disponibilité plus haute coûte plus cher en architecture ; on le chiffre en face de l'objectif.",
+    "FinOps est une pratique continue où chacun prend sa part de responsabilité du coût et de l'usage du cloud."
   ],
   "reflexe": "Le chiffrage se fige à la signature.",
   "pourquoiNouveau": null,
@@ -24,7 +24,7 @@
   "exemple": "Pour une fonction du cœur, deux options sont chiffrées : trois réplicas sur un site, ou six répartis sur deux sites. Le client voit le coût de chaque objectif de disponibilité.",
   "epreuve": {
     "cas": "Un client demande 99,9 % de disponibilité sur 30 jours pour une fonction du cœur. Combien d'indisponibilité cela tolère-t-il, et qu'exigez-vous avant de vendre cet objectif ?",
-    "raisonnement": "Environ 43 minutes : 30 jours font 43 200 minutes et 0,1 % de ce total fait 43,2 minutes, c'est le budget d'erreur. Un SLO ne se vend pas sans pouvoir le mesurer : il se définit avec son indicateur (SLI) et sa fenêtre de mesure.",
+    "raisonnement": "Environ 43 minutes : 30 jours font 43 200 minutes et 0,1 % de ce total fait 43,2 minutes, c'est le budget d'erreur (calcul simple, non fourni par la source). Un SLO ne se vend pas sans pouvoir le mesurer : il se définit avec son indicateur (SLI) et sa fenêtre de mesure.",
     "source": "Google SRE : objectifs de niveau de service (sre.google/sre-book/service-level-objectives/)"
   },
   "schema": {
@@ -36,7 +36,7 @@
       },
       {
         "texte": "TCO",
-        "detail": "sur cinq ans"
+        "detail": "sur la durée"
       },
       {
         "texte": "Marge",
@@ -86,7 +86,7 @@
       {
         "id": "budget",
         "texte": "Budget d'erreur",
-        "detail": "43 min par mois",
+        "detail": "43 min sur 30 jours",
         "ton": "ok",
         "x": 500,
         "y": 60,
@@ -105,7 +105,7 @@
       {
         "id": "cout",
         "texte": "Coût",
-        "detail": "par niveau de service",
+        "detail": "suivi via FinOps",
         "ton": "chaud",
         "x": 476,
         "y": 200,
@@ -117,22 +117,22 @@
       {
         "de": "sli",
         "vers": "slo",
-        "texte": "mesure"
+        "texte": "alimente"
       },
       {
         "de": "slo",
         "vers": "budget",
-        "texte": "tolère"
+        "texte": "définit"
       },
       {
         "de": "slo",
         "vers": "archi",
-        "texte": "impose"
+        "texte": "pèse sur"
       },
       {
         "de": "archi",
         "vers": "cout",
-        "texte": "FinOps"
+        "texte": "fixe"
       }
     ],
     "source": {
@@ -141,8 +141,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Relecture sourcée : FinOps et coût de disponibilité reformulés, sens des flèches corrigé, 43 min sur 30 jours, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -204,5 +210,14 @@
       "nom": "FinOps Foundation : qu'est-ce que le FinOps",
       "url": "https://www.finops.org/introduction/what-is-finops/"
     }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "change.1",
+    "reflexe",
+    "piege",
+    "exemple",
+    "schema"
   ]
 }

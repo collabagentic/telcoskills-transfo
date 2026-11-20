@@ -6,7 +6,7 @@
   "apres": "CNF et son cycle de vie",
   "resume": {
     "avant": "Une appliance livrée par l'équipementier, installée par lui, mise à jour par un jeu de procédures.",
-    "apres": "Une fonction réseau livrée en conteneurs et en chart Helm, déployée et mise à jour par des commandes versionnées."
+    "apres": "Une fonction réseau livrée en conteneurs et en chart Helm, déployée et mise à jour par des commandes Helm."
   },
   "resteVrai": [
     "Le fournisseur reste responsable du logiciel et de sa feuille de route.",
@@ -16,16 +16,16 @@
   "change": [
     "Le CNF se déploie avec un chart Helm : « helm upgrade » applique une nouvelle version ou de nouvelles valeurs.",
     "Chaque installation est une release ; les révisions précédentes permettent de revenir en arrière avec « helm rollback ».",
-    "La configuration est dans des fichiers de valeurs versionnés, plus dans une console de l'équipement."
+    "La configuration est dans des fichiers de valeurs (values.yaml), plus dans une console de l'équipement."
   ],
   "reflexe": "La configuration vit dans l'équipement.",
   "pourquoiNouveau": null,
   "piege": "Prendre le chart de l'éditeur tel quel. Les valeurs par défaut ne conviennent pas à votre cluster (réseaux secondaires, ressources, stockage) : elles se documentent et se versionnent, comme une configuration d'équipement.",
-  "exemple": "L'éditeur livre l'UPF sous forme de chart ; votre équipe fixe dans les valeurs les interfaces secondaires et les ressources, puis déploie la version par « helm upgrade ».",
+  "exemple": "L'éditeur livre l'UPF sous forme de chart ; votre équipe fixe dans les valeurs les interfaces secondaires et les ressources, installe la première version par « helm install », puis la met à jour par « helm upgrade ».",
   "epreuve": {
-    "cas": "L'éditeur livre l'UPF sous forme de chart Helm. Que faites-vous de ses valeurs par défaut, et quelle commande applique une nouvelle version sur une release déjà installée ?",
-    "raisonnement": "Les valeurs par défaut ne conviennent pas à votre cluster (réseaux secondaires, ressources, stockage) : elles se documentent et se versionnent, comme une configuration d'équipement. Une release existante se met à jour avec helm upgrade, qui crée une nouvelle révision ; helm template génère seulement les manifestes, sans rien installer.",
-    "source": "Helm : helm upgrade (helm.sh/docs/helm/helm_upgrade/)"
+    "cas": "Cas d'école : l'éditeur livre l'UPF sous forme de chart Helm. Que faites-vous de ses valeurs par défaut, et quelle commande applique une nouvelle version sur une release déjà installée ?",
+    "raisonnement": "Les valeurs par défaut du chart s'appliquent si vous ne les surchargez pas (fichier de valeurs, « -f ») ; les adapter à votre cluster est un avis d'auteur. Une release existante se met à jour avec helm upgrade, qui crée une nouvelle révision ; helm template génère seulement les manifestes, sans rien installer.",
+    "source": "Helm : helm upgrade (helm.sh/docs/helm/helm_upgrade/), utiliser Helm (helm.sh/docs/intro/using_helm/), helm template (helm.sh/docs/helm/helm_template/)"
   },
   "schema": {
     "legende": "Cycle de vie d'une fonction réseau",
@@ -50,7 +50,7 @@
       },
       {
         "texte": "Valeurs",
-        "detail": "versionnées chez vous"
+        "detail": "dans vos fichiers de valeurs"
       },
       {
         "texte": "helm upgrade",
@@ -59,7 +59,7 @@
     ]
   },
   "diagramme": {
-    "legende": "Cycle de vie d'une CNF : livraison, valeurs versionnées, helm upgrade, rollback",
+    "legende": "Cycle de vie d'une CNF : livraison, valeurs, helm upgrade, rollback",
     "largeur": 887,
     "hauteur": 302,
     "zones": [
@@ -93,7 +93,7 @@
       {
         "id": "ed",
         "texte": "Éditeur",
-        "detail": "livre chart et images",
+        "detail": "livre le chart",
         "x": 36,
         "y": 60,
         "w": 170,
@@ -103,7 +103,7 @@
       {
         "id": "reg",
         "texte": "Registre",
-        "detail": "images signées",
+        "detail": "images",
         "x": 286,
         "y": 60,
         "w": 120,
@@ -113,7 +113,7 @@
       {
         "id": "vals",
         "texte": "Valeurs",
-        "detail": "values.yaml dans Git",
+        "detail": "values.yaml",
         "ton": "chaud",
         "x": 466,
         "y": 60,
@@ -146,7 +146,7 @@
       {
         "id": "prev",
         "texte": "Révision n−1",
-        "detail": "retour possible",
+        "detail": "rollback : n−1",
         "ton": "faible",
         "x": 721,
         "y": 210,
@@ -164,7 +164,7 @@
       {
         "de": "reg",
         "vers": "pipe",
-        "texte": "tire",
+        "texte": "réfère",
         "sortie": "b",
         "entree": "h",
         "decalageEntree": -30
@@ -195,8 +195,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Relecture sourcée : valeurs sans « versionnées », install avant upgrade, registre sans « signées », source helm template, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -265,6 +271,18 @@
     {
       "nom": "Helm : utiliser Helm",
       "url": "https://helm.sh/docs/intro/using_helm/"
+    },
+    {
+      "nom": "Helm : helm template",
+      "url": "https://helm.sh/docs/helm/helm_template/"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "resume",
+    "schema",
+    "reflexe",
+    "piege",
+    "exemple"
   ]
 }

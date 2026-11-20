@@ -3,22 +3,6 @@
   "classementValide": [],
   "notes": [
     {
-      "fiche": "pra-gitops",
-      "note": "La définition du RTO et du RPO n'a pas de source précise : ajouter une source."
-    },
-    {
-      "fiche": "interfaces-sbi",
-      "note": "Vérifier la clause 3GPP citée (TS 29.500, clauses 5.2 et 5.4) contre la version en vigueur."
-    },
-    {
-      "fiche": "plateforme-produit",
-      "note": "Classée « décider » alors qu'elle se lit aussi comme « comprendre » : arbitrage de l'auteur."
-    },
-    {
-      "fiche": "observabilite-traces",
-      "note": "Nouveauté sans « avant » : vérifier que le canevas « intégrer » lui convient."
-    },
-    {
       "fiche": "reconciliation",
       "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; avis d'auteur étiquetés. Reste la relecture de l'auteur, voir reports/relecture/reconciliation.md."
     },
@@ -49,6 +33,58 @@
     {
       "fiche": "vlan-reseaux-cluster",
       "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) : sources VMware et Tigera illisibles retirées. À sourcer : NetworkPolicy en labels sur le réseau primaire (doc Kubernetes), voir reports/relecture/vlan-reseaux-cluster.md."
+    },
+    {
+      "fiche": "changement-pr",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : GitOps nuancé, Flux retiré, Pull request replacée sur la forge. À sourcer : tests, lint et contrôles de sécurité du pipeline ; reports/relecture/changement-pr.md."
+    },
+    {
+      "fiche": "patch-images",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : signature et vérification à l'admission retirées, liens de diagramme corrigés. À sourcer : usage d'un SBOM pour localiser une bibliothèque, signature d'images ; reports/relecture/patch-images.md."
+    },
+    {
+      "fiche": "cmdb-git",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : labels donnés comme exemples au choix de l'équipe. À sourcer : page « labels recommandés » de Kubernetes ; reports/relecture/cmdb-git.md."
+    },
+    {
+      "fiche": "dossier-archi-code",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : Nygard ne dit ni daté, ni pull request, ni au moment du choix : conseils étiquetés avis d'auteur. À sourcer : schémas en texte (C4) ; reports/relecture/dossier-archi-code.md."
+    },
+    {
+      "fiche": "pra-gitops",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : RTO et RPO sourcés (page AWS, marquée historique), self-heal précisé, secrets nuancés. À sourcer : où vit l'état de session de la SMF et l'état d'abonné de l'AMF ; reports/relecture/pra-gitops.md."
+    },
+    {
+      "fiche": "appliance-cnf",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : helm install puis helm upgrade, images signées retirées, sources helm_template et using_helm ajoutées. À sourcer : livraison d'une CNF en chart par les éditeurs ; reports/relecture/appliance-cnf.md."
+    },
+    {
+      "fiche": "interfaces-sbi",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : TS 29.500, 23.501 et 38.412 lues en entier, clauses citées dans l'épreuve, pile 4G et PFCP retirées. À sourcer : PFCP sur N4 (TS 29.244), TS 23.501 cl. 6.2 ; reports/relecture/interfaces-sbi.md."
+    },
+    {
+      "fiche": "supervision-prometheus",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : nœud Grafana retiré, sources de configuration Prometheus et Alertmanager ajoutées. À sourcer : métrique d'échec de session PDU ; reports/relecture/supervision-prometheus.md."
+    },
+    {
+      "fiche": "observabilite-traces",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : « trois signaux » nuancé, échantillonnage et identifiant de trace retirés, UPF retirée de l'exemple. À sourcer : pages OpenTelemetry Traces, Sampling, Context propagation ; nouveauté sans « avant » : vérifier que le canevas « intégrer » convient ; reports/relecture/observabilite-traces.md."
+    },
+    {
+      "fiche": "chiffrage-slo",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : chiffres recalculés (43,2 min sur 30 jours), flèche SLI/SLO corrigée, FinOps reformulé. Flèches « pèse sur » et « fixe » non sourcées ; reports/relecture/chiffrage-slo.md."
+    },
+    {
+      "fiche": "dimensionnement-ressources",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : OOM kill nuancé, CPU exclusifs et Topology Manager corrigés. À sourcer : besoins réels d'un UPF ; page Pod QoS Classes non lue ; reports/relecture/dimensionnement-ressources.md."
+    },
+    {
+      "fiche": "ao-exigences-cnf",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : enquête CNCF chiffrée (2e préoccupation, 42,86 %), CKA et CKAD retirés, dépôt cnf-wg retiré. À sourcer : formats de livraison et documentation des réseaux secondaires ; reports/relecture/ao-exigences-cnf.md."
+    },
+    {
+      "fiche": "plateforme-produit",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : « ne cache pas Kubernetes » retiré, ressources hors sujet retirées. DÉCISION DE L'AUTEUR : l'agent recommande « comprendre » plutôt que « décider » (aucun arbitrage proposé) ; reports/relecture/plateforme-produit.md."
     }
   ]
 }

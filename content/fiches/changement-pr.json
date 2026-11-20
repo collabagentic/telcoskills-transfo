@@ -6,7 +6,7 @@
   "apres": "pull request et pipeline",
   "resume": {
     "avant": "Une demande de changement (MOP, CAB), une fenêtre de maintenance, une exécution à la main.",
-    "apres": "Une pull request relue, des vérifications automatiques, une fusion qui déclenche le déploiement."
+    "apres": "Une pull request relue, des vérifications automatiques, une fusion qui déclenche le déploiement avec un outil GitOps."
   },
   "resteVrai": [
     "Toute évolution reste relue par un pair avant de toucher la production.",
@@ -16,16 +16,16 @@
   "change": [
     "La relecture porte sur un diff de fichiers dans une pull request, pas sur un document.",
     "Des vérifications automatiques tournent dans un pipeline avant la fusion.",
-    "La fusion déclenche le déploiement : l'historique Git est la trace du changement."
+    "La fusion déclenche le déploiement avec un outil GitOps : Git garde la trace du changement."
   ],
   "reflexe": "Le changement s'exécute à la main, dans une fenêtre.",
   "pourquoiNouveau": null,
   "piege": "Une pull request ne protège que si les vérifications sont obligatoires avant fusion et si la branche principale est protégée. Sans cela, elle devient une formalité et le pipeline un simple outil de livraison.",
-  "exemple": "Le changement de configuration d'une fonction du cœur passe par une pull request sur le dépôt de la plateforme : le pipeline valide les fichiers, un relecteur approuve, puis la plateforme applique la fusion.",
+  "exemple": "Le changement de configuration d'une fonction du cœur passe par une pull request sur le dépôt de la plateforme : le pipeline valide les fichiers, un relecteur approuve si la protection l'exige, puis la plateforme applique la fusion.",
   "epreuve": {
-    "cas": "Un changement de configuration d'une fonction du cœur passe par une pull request. Que faut-il en plus pour qu'elle protège vraiment, et que fait Argo CD ou Flux si quelqu'un modifie la ressource à la main dans le cluster ?",
-    "raisonnement": "Les vérifications doivent être obligatoires avant fusion et la branche principale protégée, sinon la pull request devient une formalité. Côté cluster, en GitOps git est la source de vérité : avec la correction automatique (selfHeal pour Argo CD), l'agent ramène le cluster à l'état décrit dans git ; sans elle, il signale seulement l'écart.",
-    "source": "GitHub : branches protégées (docs.github.com, about-protected-branches) ; Argo CD : synchronisation automatique (argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/)"
+    "cas": "Un changement de configuration d'une fonction du cœur passe par une pull request. Que faut-il en plus pour qu'elle protège vraiment, et que fait Argo CD si quelqu'un modifie la ressource à la main dans le cluster ?",
+    "raisonnement": "Les vérifications doivent être obligatoires avant fusion et la branche principale protégée, sinon la pull request devient une formalité. Côté cluster, en GitOps git est la source de vérité : avec la correction automatique (selfHeal pour Argo CD, désactivée par défaut), l'agent ramène le cluster à l'état décrit dans git ; sans elle, la modification manuelle n'est pas corrigée automatiquement.",
+    "source": "GitHub : branches protégées (docs.github.com, about-protected-branches) ; Argo CD : synchronisation automatique (argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/) ; OpenGitOps : principes (opengitops.dev)"
   },
   "schema": {
     "legende": "Du formulaire à la fusion",
@@ -54,7 +54,7 @@
       },
       {
         "texte": "Fusion",
-        "detail": "déclenche le déploiement"
+        "detail": "déploiement via GitOps"
       }
     ]
   },
@@ -68,15 +68,15 @@
         "titre": "Votre poste",
         "x": 20,
         "y": 22,
-        "w": 382,
+        "w": 130,
         "h": 110
       },
       {
         "id": "forge",
-        "titre": "Forge (GitLab, GitHub)",
-        "x": 454,
+        "titre": "Forge (GitHub, GitLab)",
+        "x": 190,
         "y": 22,
-        "w": 412,
+        "w": 676,
         "h": 110
       },
       {
@@ -93,7 +93,7 @@
         "id": "branche",
         "texte": "Branche",
         "detail": "vous poussez",
-        "x": 36,
+        "x": 30,
         "y": 60,
         "w": 110,
         "h": 56,
@@ -102,19 +102,19 @@
       {
         "id": "pr",
         "texte": "Pull request",
-        "detail": "diff relu par un pair",
+        "detail": "diff relu (ou MR)",
         "ton": "chaud",
-        "x": 216,
+        "x": 206,
         "y": 60,
-        "w": 170,
+        "w": 160,
         "h": 56,
-        "zone": "poste"
+        "zone": "forge"
       },
       {
         "id": "pipeline",
         "texte": "Pipeline CI",
-        "detail": "tests, lint, sécurité",
-        "x": 470,
+        "detail": "tests, contrôles",
+        "x": 450,
         "y": 60,
         "w": 170,
         "h": 56,
@@ -144,7 +144,7 @@
       {
         "id": "gitops",
         "texte": "Outil GitOps",
-        "detail": "Argo CD, Flux",
+        "detail": "ex. Argo CD",
         "x": 715,
         "y": 210,
         "w": 130,
@@ -166,12 +166,12 @@
       {
         "de": "pipeline",
         "vers": "fusion",
-        "texte": "si vert"
+        "texte": "si exigé"
       },
       {
         "de": "gitops",
         "vers": "fusion",
-        "texte": "lit main",
+        "texte": "lit Git",
         "style": "pointille"
       },
       {
@@ -186,8 +186,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-08",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Corrections sourcées : GitOps nuancé, Flux retiré, sans selfHeal reformulé, diagramme corrigé, liens mis à jour, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-08",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -207,7 +213,7 @@
     {
       "type": "doc",
       "nom": "GitLab CI/CD : documentation",
-      "url": "https://docs.gitlab.com/ee/ci/",
+      "url": "https://docs.gitlab.com/ci/",
       "langue": "en",
       "acces": "gratuit"
     },
@@ -249,14 +255,6 @@
       "langue": "en",
       "acces": "gratuit",
       "auteur": "Cloud With VarJosh"
-    },
-    {
-      "type": "video",
-      "nom": "SREcon25 Americas",
-      "url": "https://www.youtube.com/playlist?list=PLbRoZ5Rrl5letLDlvWuS1r8CZokFl-Is6",
-      "langue": "en",
-      "acces": "gratuit",
-      "auteur": "USENIX"
     }
   ],
   "sources": [
@@ -266,11 +264,25 @@
     },
     {
       "nom": "GitLab CI/CD",
-      "url": "https://docs.gitlab.com/ee/ci/"
+      "url": "https://docs.gitlab.com/ci/"
     },
     {
       "nom": "OpenGitOps : principes",
       "url": "https://opengitops.dev/"
+    },
+    {
+      "nom": "Argo CD : synchronisation automatique",
+      "url": "https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai.0",
+    "resteVrai.1",
+    "resteVrai.2",
+    "resume",
+    "schema",
+    "reflexe",
+    "piege",
+    "exemple"
   ]
 }

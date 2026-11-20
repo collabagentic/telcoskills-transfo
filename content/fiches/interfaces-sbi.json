@@ -2,10 +2,10 @@
   "id": "interfaces-sbi",
   "genre": "transposition",
   "categorie": "integrer",
-  "avant": "pile S1AP, GTP et Diameter",
+  "avant": "interfaces dédiées entre nœuds",
   "apres": "interfaces SBI",
   "resume": {
-    "avant": "Des interfaces point à point entre nœuds, des protocoles dédiés (SCTP, GTP, Diameter), des liens câblés.",
+    "avant": "Des interfaces dédiées entre nœuds, avec des protocoles propres à chacune.",
     "apres": "Des fonctions qui s'appellent en HTTP/2 avec des messages JSON décrits en OpenAPI ; quelques interfaces gardent leur transport d'origine."
   },
   "resteVrai": [
@@ -14,33 +14,33 @@
     "Lire une trace pour comprendre un incident reste le geste de base."
   ],
   "change": [
-    "Les fonctions du cœur se parlent par des interfaces de service (SBI) en HTTP/2, avec des messages JSON.",
-    "Chaque service est décrit par une spécification OpenAPI publiée par le 3GPP.",
+    "Les fonctions du plan de contrôle se parlent par des interfaces de service (SBI) en HTTP/2, avec des messages JSON.",
+    "Les interfaces de service sont décrites avec OpenAPI (TS 29.500, clause 5.5).",
     "Les nœuds laissent place à des fonctions (AMF, SMF, UPF) reliées par des points de référence nommés N1, N2, N3, N4."
   ],
   "reflexe": "Une interface est un lien dédié entre deux nœuds.",
   "pourquoiNouveau": null,
-  "piege": "Croire que tout passe en HTTP/2. Les interfaces N2 (NGAP en SCTP) et N3 (GTP-U) gardent leur transport d'origine : elles demandent un traitement réseau particulier dans le cluster (SCTP, interface secondaire).",
-  "exemple": "L'AMF appelle la SMF pour créer une session PDU par une requête HTTP/2 sur l'interface de service ; la RAN, elle, parle à l'AMF en SCTP sur N2.",
+  "piege": "Croire que tout passe en HTTP/2. N2 (NGAP en SCTP) et N3 (GTP-U) gardent leur transport d'origine. Dans Kubernetes, SCTP demande un plugin réseau compatible ; une interface secondaire est une pratique courante, à vérifier chez vous.",
+  "exemple": "L'AMF appelle la SMF (service Nsmf) pour créer une session PDU par une requête HTTP/2 ; le RAN, lui, parle à l'AMF en SCTP sur N2.",
   "epreuve": {
     "cas": "Un collègue affirme que tout le cœur 5G passe désormais en HTTP/2. Que répondez-vous, et qu'est-ce que cela change dans le cluster ?",
-    "raisonnement": "Les interfaces de service (SBI) utilisent HTTP/2 avec JSON, par exemple l'AMF qui appelle la SMF pour créer une session PDU. Mais N2 (NGAP en SCTP) et N3 (GTP-U) gardent leur transport d'origine : elles demandent un traitement réseau particulier dans le cluster (SCTP, interface secondaire).",
-    "source": "3GPP TS 29.500, clauses 5.2 et 5.4 (3gpp.org/ftp/Specs/archive/29_series/29.500/)"
+    "raisonnement": "Les interfaces de service (SBI) utilisent HTTP/2 avec JSON (TS 29.500), par exemple l'AMF qui appelle la SMF pour créer une session PDU. Mais N2 (NGAP en SCTP) et N3 (GTP-U) gardent leur transport d'origine (TS 23.501, TS 38.412). Dans le cluster, SCTP demande un plugin réseau compatible (Kubernetes) ; une interface secondaire est une pratique courante, pas une obligation sourcée.",
+    "source": "3GPP TS 29.500 cl. 5.1, 5.2, 5.4, 5.5 (HTTP/2, JSON, OpenAPI) ; TS 23.501 cl. 4.2.6, 8.2.1.2, 8.3.1 ; TS 38.412 cl. 7 (SCTP) ; Kubernetes, Services (SCTP)"
   },
   "schema": {
     "legende": "Du lien dédié à l'interface de service",
     "avant": [
       {
         "texte": "Nœud",
-        "detail": "MME"
+        "detail": "nœud A"
       },
       {
         "texte": "Interface dédiée",
-        "detail": "SCTP, GTP, Diameter"
+        "detail": "protocole propre"
       },
       {
         "texte": "Nœud",
-        "detail": "SGW, HSS"
+        "detail": "nœud B"
       }
     ],
     "apres": [
@@ -153,7 +153,7 @@
       {
         "de": "smf",
         "vers": "upf",
-        "texte": "N4 · PFCP",
+        "texte": "N4",
         "sortie": "b",
         "entree": "h",
         "decalageSortie": 20
@@ -172,8 +172,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Relecture sourcée : clauses 3GPP ajoutées, pile 4G et PFCP retirés, piège reformulé, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -192,7 +198,7 @@
     {
       "type": "doc",
       "nom": "Kubernetes : Services, protocole SCTP",
-      "url": "https://kubernetes.io/docs/concepts/services-networking/service/#protocol-sctp",
+      "url": "https://kubernetes.io/docs/reference/networking/service-protocols/",
       "langue": "en",
       "acces": "gratuit"
     },
@@ -246,16 +252,28 @@
   ],
   "sources": [
     {
-      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "nom": "3GPP TS 23.501 : architecture du système 5G (cl. 4.2.1, 4.2.6, 4.2.7, 8.2.1.2, 8.3.1)",
       "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
     },
     {
-      "nom": "3GPP TS 29.500 : principes des interfaces de service",
+      "nom": "3GPP TS 29.500 : principes des interfaces de service (cl. 5.1 à 5.5)",
       "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.500/"
     },
     {
-      "nom": "3GPP TS 38.412 : transport de signalisation NG (SCTP)",
+      "nom": "3GPP TS 38.412 : transport de signalisation NG, SCTP (cl. 7)",
       "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.412/"
+    },
+    {
+      "nom": "Kubernetes : protocoles des Services (SCTP)",
+      "url": "https://kubernetes.io/docs/reference/networking/service-protocols/"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai.0",
+    "resteVrai.2",
+    "reflexe",
+    "resume",
+    "schema",
+    "piege"
   ]
 }

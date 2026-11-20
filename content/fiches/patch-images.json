@@ -6,27 +6,38 @@
   "apres": "images immuables et chaîne d'approvisionnement",
   "resume": {
     "avant": "Un correctif appliqué serveur par serveur, une fenêtre par lot, un état qui diverge au fil du temps.",
-    "apres": "On ne corrige plus un conteneur existant : on reconstruit l'image, on la vérifie, on la redéploie."
+    "apres": "On ne corrige plus un conteneur existant : on reconstruit l'image et on la redéploie, en la référençant par son digest."
   },
   "resteVrai": [
-    "Corriger vite les failles critiques reste une obligation.",
+    "Corriger vite les failles critiques reste une nécessité.",
     "Une recette avant production reste nécessaire.",
     "Savoir ce qui tourne, et où, reste le point de départ."
   ],
   "change": [
     "Une image se référence par son digest (sha256:…), pas par un tag comme :latest qui peut changer.",
-    "Un SBOM liste les composants d'une image : on sait où se trouve une bibliothèque vulnérable.",
+    "Un SBOM liste les composants d'un logiciel : il sert d'inventaire pour retrouver une bibliothèque vulnérable.",
     "Le correctif est un nouveau déploiement, pas une modification de l'existant."
   ],
   "reflexe": "Le serveur patché reste le même serveur.",
   "pourquoiNouveau": null,
-  "piege": "Utiliser :latest en production : le même tag peut désigner deux contenus différents, donc deux comportements. Le digest, lui, désigne un contenu précis.",
-  "exemple": "Une faille touche une bibliothèque de l'AMF : le SBOM indique quelles images la contiennent ; on reconstruit, on déploie par digest, et l'ancien état reste récupérable.",
+  "piege": "Utiliser :latest en production : Kubernetes le déconseille, car le suivi de la version et le retour arrière deviennent plus difficiles. Le même tag peut désigner deux contenus différents, donc deux comportements. Le digest, lui, désigne un contenu précis.",
+  "exemple": "Cas illustratif : une faille touche une bibliothèque de l'AMF (Access and Mobility Management Function, cœur 5G). Le SBOM sert d'inventaire pour retrouver les images concernées ; on reconstruit et on déploie par digest, ce qui facilite le retour arrière.",
   "epreuve": {
-    "cas": "Une faille touche une bibliothèque de l'AMF et vous déployez en production avec l'image :latest. Pourquoi est-ce un problème, et que faites-vous à la place ?",
-    "raisonnement": "Un tag est un pointeur modifiable : le même tag peut désigner demain une autre image, donc un autre comportement. Le digest (sha256:…) désigne un contenu précis et garantit qu'on déploie exactement ce qui a été validé. Le SBOM indique quelles images contiennent la bibliothèque : on reconstruit, on déploie par digest, et l'ancien état reste récupérable.",
-    "source": "Kubernetes : images de conteneurs (kubernetes.io/docs/concepts/containers/images/) ; CISA : SBOM (cisa.gov/sbom)"
+    "cas": "Cas illustratif : une faille touche une bibliothèque de l'AMF (Access and Mobility Management Function, cœur 5G) et vous déployez en production avec l'image :latest. Pourquoi est-ce un problème, et que faites-vous à la place ?",
+    "raisonnement": "Un tag est un pointeur modifiable : le même tag peut désigner demain une autre image, donc un autre comportement ; Kubernetes déconseille :latest, car le suivi de la version et le retour arrière sont plus difficiles. Le digest (sha256:…) désigne un contenu précis : on déploie toujours la même image, sans mélange ancienne/nouvelle si le registre change. Un SBOM, inventaire des composants d'un logiciel, aide à retrouver les images concernées : on reconstruit, on déploie par digest, et un retour arrière reste plus facile qu'avec :latest.",
+    "source": "Kubernetes : images de conteneurs (kubernetes.io/docs/concepts/containers/images/) ; CISA : SBOM (cisa.gov/sbom) ; OCI : spécification Distribution (github.com/opencontainers/distribution-spec)"
   },
+  "avisAuteur": [
+    "resume",
+    "resteVrai.0",
+    "resteVrai.1",
+    "resteVrai.2",
+    "change.1",
+    "change.2",
+    "reflexe",
+    "schema",
+    "exemple"
+  ],
   "schema": {
     "legende": "Du correctif sur place à l'image reconstruite",
     "avant": [
@@ -59,7 +70,7 @@
     ]
   },
   "diagramme": {
-    "legende": "Corriger une faille : interroger le SBOM, reconstruire, signer, déployer par digest",
+    "legende": "Corriger une faille : interroger le SBOM, reconstruire, déployer par digest",
     "largeur": 862,
     "hauteur": 302,
     "zones": [
@@ -116,7 +127,7 @@
       {
         "id": "reg",
         "texte": "Registre",
-        "detail": "signature, digest",
+        "detail": "images, digests",
         "x": 676,
         "y": 60,
         "w": 140,
@@ -124,21 +135,10 @@
         "zone": "chaine"
       },
       {
-        "id": "pods",
-        "texte": "Pods",
-        "detail": "ancien état récupérable",
-        "ton": "ok",
-        "x": 226,
-        "y": 210,
-        "w": 180,
-        "h": 56,
-        "zone": "cluster"
-      },
-      {
         "id": "dep",
         "texte": "Déploiement",
         "detail": "par digest sha256",
-        "x": 466,
+        "x": 226,
         "y": 210,
         "w": 140,
         "h": 56,
@@ -147,8 +147,19 @@
       {
         "id": "adm",
         "texte": "Admission",
-        "detail": "vérifie la signature",
+        "detail": "tag remplacé par digest",
         "ton": "froid",
+        "x": 446,
+        "y": 210,
+        "w": 160,
+        "h": 56,
+        "zone": "cluster"
+      },
+      {
+        "id": "pods",
+        "texte": "Pods",
+        "detail": "retour arrière facilité",
+        "ton": "ok",
         "x": 666,
         "y": 210,
         "w": 160,
@@ -173,19 +184,19 @@
         "texte": "publie"
       },
       {
-        "de": "reg",
+        "de": "dep",
         "vers": "adm",
-        "texte": "tire"
+        "texte": "soumet"
       },
       {
         "de": "adm",
-        "vers": "dep",
+        "vers": "pods",
         "texte": "autorise"
       },
       {
-        "de": "dep",
-        "vers": "pods",
-        "texte": "crée"
+        "de": "pods",
+        "vers": "reg",
+        "texte": "tire"
       }
     ],
     "source": {
@@ -194,8 +205,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Signature retirée (non sourcée), flèches du diagramme corrigées, sigle AMF développé, avis d'auteur étiquetés, source OCI ajoutée.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -257,11 +274,15 @@
     },
     {
       "nom": "CISA : SBOM",
-      "url": "https://www.cisa.gov/sbom"
+      "url": "https://www.cisa.gov/topics/information-communications-technology-supply-chain-security/sbom"
     },
     {
       "nom": "SLSA",
       "url": "https://slsa.dev/"
+    },
+    {
+      "nom": "OCI : spécification Distribution",
+      "url": "https://github.com/opencontainers/distribution-spec/blob/main/spec.md"
     }
   ]
 }

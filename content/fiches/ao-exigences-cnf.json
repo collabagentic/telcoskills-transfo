@@ -6,7 +6,7 @@
   "apres": "exigences CNF et critères d'éligibilité",
   "resume": {
     "avant": "Un cahier des charges par fonctionnalités, des critères de conformité à l'équipement, une notation des réponses.",
-    "apres": "Un cahier des charges qui exige aussi la façon de livrer et d'exploiter : plateforme conforme, livraison en conteneurs, mises à jour déclaratives."
+    "apres": "Un cahier des charges qui exige aussi la façon de livrer : plateforme Kubernetes conforme, livraison en conteneurs, interopérabilité."
   },
   "resteVrai": [
     "Comparer les offres sur une grille pondérée reste la méthode.",
@@ -16,16 +16,16 @@
   "change": [
     "On exige que la fonction tourne sur une plateforme Kubernetes conforme, pas sur un matériel imposé.",
     "On demande la façon de livrer : images de conteneurs, charts, documentation des réseaux secondaires et des ressources.",
-    "On vérifie l'interopérabilité et la portabilité, que les opérateurs placent en priorité dans l'enquête de la CNCF."
+    "On vérifie l'interopérabilité (2e préoccupation, 42,86 %, de l'enquête CNCF 2022, 77 répondants) et la portabilité."
   ],
   "reflexe": "L'équipementier choisit et impose son infrastructure.",
   "pourquoiNouveau": null,
-  "piege": "Écrire « compatible cloud natif » sans le rendre vérifiable. Une exigence doit se tester : version de Kubernetes certifiée, formats de livraison, comportement à la mise à jour. Sinon, chaque fournisseur la comprend à sa façon.",
+  "piege": "Écrire « compatible cloud natif » sans le rendre vérifiable. Une exigence doit se tester : produit et version Kubernetes certifiés (indiqués dans le dépôt de conformité de la CNCF), formats de livraison, comportement à la mise à jour. Sinon, chaque fournisseur la comprend à sa façon.",
   "exemple": "Dans l'appel d'offres d'une SMF, « livrée en chart Helm, déployable sur une plateforme Kubernetes certifiée CNCF, avec la liste des réseaux secondaires requis » remplace « fournie sur serveur dédié ».",
   "epreuve": {
     "cas": "Dans l'appel d'offres d'une SMF, un fournisseur répond « compatible cloud natif ». Que lui répondez-vous, et comment rendez-vous l'exigence vérifiable ?",
-    "raisonnement": "Une exigence doit se tester, sinon chaque fournisseur la comprend à sa façon : par exemple « livrée en chart Helm, déployable sur une plateforme Kubernetes certifiée CNCF, avec la liste des réseaux secondaires requis ». Le programme Certified Kubernetes de la CNCF certifie que des distributions passent une même suite de tests ; les certifications CKA et CKAD concernent des personnes, pas des produits.",
-    "source": "CNCF : programme de conformité logicielle (cncf.io/training/certification/software-conformance/)"
+    "raisonnement": "Une exigence doit se tester, sinon chaque fournisseur la comprend à sa façon. Le programme Certified Kubernetes de la CNCF certifie que des produits logiciels basés sur Kubernetes passent une même suite de tests (Sonobuoy) : exigez un produit certifié, avec sa version. L'enquête CNCF 2022 cite comme problèmes d'intégration les CNI personnalisés (57,14 %) et les API/CRD incompatibles (42,86 %) : demandez aussi de les documenter.",
+    "source": "CNCF : programme de conformité logicielle (cncf.io/training/certification/software-conformance/) ; micro-enquête telco CNCF, août 2022"
   },
   "schema": {
     "legende": "Ce que l'appel d'offres exige",
@@ -61,7 +61,7 @@
   "diagramme": {
     "legende": "Un appel d'offres cloud natif : des exigences que l'on peut vérifier",
     "largeur": 780,
-    "hauteur": 368,
+    "hauteur": 310,
     "zones": [
       {
         "id": "exigences",
@@ -69,7 +69,7 @@
         "x": 234,
         "y": 22,
         "w": 242,
-        "h": 326,
+        "h": 254,
         "ton": "chaud"
       }
     ],
@@ -79,14 +79,14 @@
         "texte": "Appel d'offres",
         "detail": "cahier des charges",
         "x": 20,
-        "y": 170,
+        "y": 132,
         "w": 150,
         "h": 56
       },
       {
         "id": "e1",
         "texte": "Livraison",
-        "detail": "images signées, charts",
+        "detail": "images, charts",
         "x": 250,
         "y": 60,
         "w": 210,
@@ -104,21 +104,11 @@
         "zone": "exigences"
       },
       {
-        "id": "e3",
-        "texte": "Exploitation",
-        "detail": "mises à jour déclaratives",
-        "x": 250,
-        "y": 204,
-        "w": 210,
-        "h": 56,
-        "zone": "exigences"
-      },
-      {
         "id": "e4",
         "texte": "Interopérabilité",
-        "detail": "API standard, portabilité",
+        "detail": "éviter API/CRD propriétaires",
         "x": 250,
-        "y": 276,
+        "y": 204,
         "w": 210,
         "h": 56,
         "zone": "exigences"
@@ -129,7 +119,7 @@
         "detail": "tests, démonstration, recette",
         "ton": "chaud",
         "x": 540,
-        "y": 160,
+        "y": 132,
         "w": 220,
         "h": 56
       },
@@ -139,7 +129,7 @@
         "detail": "grille pondérée",
         "ton": "ok",
         "x": 585,
-        "y": 280,
+        "y": 230,
         "w": 130,
         "h": 56
       }
@@ -155,10 +145,6 @@
       },
       {
         "de": "ao",
-        "vers": "e3"
-      },
-      {
-        "de": "ao",
         "vers": "e4"
       },
       {
@@ -167,10 +153,6 @@
       },
       {
         "de": "e2",
-        "vers": "preuves"
-      },
-      {
-        "de": "e3",
         "vers": "preuves"
       },
       {
@@ -184,13 +166,19 @@
       }
     ],
     "source": {
-      "nom": "CNCF : micro-enquête telco",
+      "nom": "Schéma d'auteur ; enquête CNCF 2022 pour l'interopérabilité",
       "url": "https://www.cncf.io/blog/2022/08/02/cncf-telco-microsurvey-cloud-native-network-functions-with-kubernetes-are-coming-but-interoperability-and-portability-are-priorities"
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Relecture sourcée : formulations resserrées sur les sources CNCF, étapes non sourcées retirées du diagramme, avis d'auteur étiquetés, lien cnf-wg retiré.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -209,13 +197,6 @@
   "plusLoin": [
     {
       "type": "doc",
-      "nom": "CNCF : groupe de travail CNF",
-      "url": "https://github.com/cncf/cnf-wg",
-      "langue": "en",
-      "acces": "gratuit"
-    },
-    {
-      "type": "doc",
       "nom": "CNCF : programme de conformité Kubernetes",
       "url": "https://www.cncf.io/training/certification/software-conformance/",
       "langue": "en",
@@ -223,7 +204,7 @@
     },
     {
       "type": "doc",
-      "nom": "Sylva : projet de pile cloud native pour les télécoms (Linux Foundation Europe)",
+      "nom": "Sylva : site du projet (Linux Foundation)",
       "url": "https://sylvaproject.org/",
       "langue": "en",
       "acces": "gratuit",
@@ -254,10 +235,15 @@
     {
       "nom": "CNCF : programme de conformité logicielle",
       "url": "https://www.cncf.io/training/certification/software-conformance/"
-    },
-    {
-      "nom": "CNCF : groupe de travail CNF",
-      "url": "https://github.com/cncf/cnf-wg"
     }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "change.0",
+    "change.1",
+    "reflexe",
+    "exemple",
+    "schema"
   ]
 }

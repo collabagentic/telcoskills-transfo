@@ -5,7 +5,7 @@
   "avant": "dimensionnement en vCPU et RAM",
   "apres": "requests, limits et CPU pinning",
   "resume": {
-    "avant": "Des vCPU et de la RAM alloués à une VM, avec un surdimensionnement toléré par l'hyperviseur.",
+    "avant": "Des vCPU et de la RAM alloués à une VM, dimensionnés avec une marge de surdimensionnement.",
     "apres": "Une demande (request) pour le placement, une limite (limit) appliquée à l'exécution, et des CPU exclusifs pour les fonctions exigeantes."
   },
   "resteVrai": [
@@ -15,17 +15,17 @@
   ],
   "change": [
     "Les « requests » servent à placer le pod sur un nœud ; les « limits » sont appliquées pendant l'exécution.",
-    "Un pod dont requests et limits sont égales, en CPU entiers, peut recevoir des CPU exclusifs (politique static du CPU Manager).",
-    "Les hugepages et l'alignement NUMA (Topology Manager) se demandent eux aussi explicitement."
+    "Politique static : un conteneur Guaranteed (requests = limits) en CPU entiers reçoit des CPU exclusifs.",
+    "Les hugepages se demandent explicitement ; l'alignement NUMA est une politique du kubelet (Topology Manager)."
   ],
   "reflexe": "Un vCPU alloué est un vCPU réservé.",
   "pourquoiNouveau": null,
-  "piege": "Fixer des limites sans en connaître l'effet : une limite mémoire dépassée tue le conteneur, une limite CPU le ralentit. Et sans requests, le placement ne tient pas compte de vos besoins.",
-  "exemple": "Un UPF qui traite du trafic utilisateur demande des CPU entiers, des hugepages, et un nœud où ses CPU et sa carte réseau relèvent du même NUMA.",
+  "piege": "Fixer des limites sans en connaître l'effet : une limite mémoire dépassée expose le conteneur à être tué par le noyau (OOM kill) sous pression mémoire ; une limite CPU le ralentit sans le tuer. Sans requests ni limits, le scheduler ne compte rien pour ce conteneur ; avec une limite seule, la request en est copiée.",
+  "exemple": "Une fonction de plan usager exigeante, comme un UPF, peut demander des CPU entiers, des hugepages et un alignement NUMA de ses CPU avec ses périphériques réseau.",
   "epreuve": {
-    "cas": "Vous dimensionnez un UPF qui traite du trafic utilisateur. À quoi sert la request d'un conteneur, que provoque une limite mémoire dépassée, et que demande-t-il de plus qu'un volume de CPU ?",
-    "raisonnement": "La request sert à choisir le nœud : le scheduler place le pod sur un nœud qui dispose au moins des requests demandées ; le plafond appliqué à l'exécution est la limit. Une limite mémoire dépassée tue le conteneur, une limite CPU le ralentit. Un UPF demande des CPU entiers, des hugepages, et un nœud où ses CPU et sa carte réseau relèvent du même NUMA.",
-    "source": "Kubernetes : gérer les ressources des conteneurs (kubernetes.io/docs/concepts/configuration/manage-resources-containers/)"
+    "cas": "Vous dimensionnez une charge de plan usager de type UPF. À quoi sert la request d'un conteneur, que provoque une limite mémoire dépassée, et quels réglages Kubernetes une charge exigeante appelle-t-elle en plus ?",
+    "raisonnement": "La request sert à choisir le nœud : le scheduler veille à ce que la somme des requests déjà placées, plus celle du pod, reste sous la capacité du nœud ; le plafond appliqué à l'exécution est la limit. Une limite mémoire dépassée expose à un OOM kill par le noyau, une limite CPU ralentit sans tuer. Une charge exigeante peut demander des CPU entiers (pod Guaranteed, politique static), des hugepages explicites et un alignement NUMA via le Topology Manager.",
+    "source": "Kubernetes (kubernetes.io/docs) : gérer les ressources des conteneurs ; politiques de gestion du CPU ; hugepages ; Topology Manager"
   },
   "schema": {
     "legende": "De l'allocation à la demande",
@@ -50,7 +50,7 @@
       },
       {
         "texte": "CPU exclusifs",
-        "detail": "QoS Guaranteed, CPU entiers"
+        "detail": "static, Guaranteed, CPU entiers"
       }
     ]
   },
@@ -61,7 +61,7 @@
     "zones": [
       {
         "id": "noeud",
-        "titre": "Nœud de calcul (64 vCPU)",
+        "titre": "Nœud de calcul (exemple)",
         "x": 254,
         "y": 32,
         "w": 554,
@@ -122,7 +122,7 @@
       },
       {
         "id": "nic",
-        "texte": "Carte SR-IOV",
+        "texte": "Périphérique",
         "detail": "même NUMA",
         "ton": "froid",
         "x": 662,
@@ -134,11 +134,22 @@
       {
         "id": "hp",
         "texte": "Hugepages",
-        "detail": "1 Gio réservées",
+        "detail": "pré-allouées",
         "ton": "ok",
         "x": 270,
         "y": 270,
         "w": 130,
+        "h": 56,
+        "zone": "noeud"
+      },
+      {
+        "id": "tm",
+        "texte": "Topology Manager",
+        "detail": "aligne CPU et périph.",
+        "ton": "froid",
+        "x": 556,
+        "y": 270,
+        "w": 150,
         "h": 56,
         "zone": "noeud"
       }
@@ -165,16 +176,19 @@
         "texte": "obtient"
       },
       {
-        "de": "excl",
-        "vers": "nic",
-        "texte": "NUMA",
-        "style": "pointille",
-        "sens": "double"
-      },
-      {
         "de": "upf",
         "vers": "hp",
         "texte": "mémoire"
+      },
+      {
+        "de": "tm",
+        "vers": "excl",
+        "texte": "aligne"
+      },
+      {
+        "de": "tm",
+        "vers": "nic",
+        "texte": "aligne"
       }
     ],
     "source": {
@@ -183,8 +197,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Relecture sourcée : limite mémoire nuancée, conditions des CPU exclusifs, NUMA reformulé, UPF en exemple, avis étiquetés, sources ajoutées, lien drain retiré.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -216,20 +236,20 @@
       "acces": "gratuit"
     },
     {
+      "type": "doc",
+      "nom": "Kubernetes : Topology Manager",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "Kubernetes"
+    },
+    {
       "type": "video",
       "nom": "Learn k6 Series",
       "url": "https://www.youtube.com/playlist?list=PLJ9A48W0kpRJKmVeurt7ltKfrOdr8ZBdt",
       "langue": "en",
       "acces": "gratuit",
       "auteur": "QAInsights"
-    },
-    {
-      "type": "doc",
-      "nom": "Kubernetes : vider un nœud en sécurité (drain)",
-      "url": "https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/",
-      "langue": "en",
-      "acces": "gratuit",
-      "auteur": "Kubernetes"
     }
   ],
   "sources": [
@@ -249,5 +269,14 @@
       "nom": "Kubernetes : Topology Manager",
       "url": "https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/"
     }
+  ],
+  "avisAuteur": [
+    "resume",
+    "schema",
+    "resteVrai.0",
+    "resteVrai.1",
+    "resteVrai.2",
+    "reflexe",
+    "exemple"
   ]
 }

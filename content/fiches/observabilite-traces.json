@@ -6,24 +6,31 @@
   "apres": "Les traces distribuées (OpenTelemetry)",
   "resume": {
     "avant": null,
-    "apres": "Une requête traverse plusieurs services : une trace la suit de bout en bout, avec le temps passé dans chacun."
+    "apres": "Une requête traverse plusieurs services : une trace en suit le chemin de bout en bout."
   },
   "resteVrai": [
     "Les journaux et les compteurs restent utiles : la trace s'ajoute, elle ne les remplace pas.",
     "Reconstituer un déroulé d'appel pour comprendre un incident est déjà votre geste."
   ],
   "change": [
-    "OpenTelemetry collecte trois signaux : traces, métriques et journaux.",
+    "Les signaux principaux d'OpenTelemetry sont les traces, les métriques et les journaux.",
     "Le Collector reçoit, traite et exporte la télémétrie vers les outils d'analyse.",
-    "Un identifiant de trace relie entre elles les étapes d'une même requête."
+    "La trace relie entre elles les étapes d'une même requête."
   ],
   "reflexe": null,
-  "pourquoiNouveau": "Quand une session traverse plusieurs fonctions qui s'appellent en HTTP/2, aucun journal pris seul ne montre où le temps est perdu. C'est ce que la trace distribuée apporte, et il n'y avait pas d'équivalent dans l'ancien nœud monolithique.",
-  "piege": "Tout tracer. La télémétrie coûte du stockage et du réseau : on échantillonne et on choisit ce qui est instrumenté. Le Collector sert aussi à filtrer avant l'export.",
-  "exemple": "Une création de session PDU traverse l'AMF, la SMF, la PCF et l'UPF ; la trace montre quelle étape ralentit la création de session.",
+  "pourquoiNouveau": "Quand une session traverse plusieurs fonctions qui s'appellent entre elles, aucun journal pris seul ne montre où le temps est perdu. La trace distribuée suit la requête d'une fonction à l'autre. Dans l'ancien nœud monolithique, on s'appuyait surtout sur des journaux et des compteurs.",
+  "piege": "Tout tracer. La télémétrie a un coût en stockage et en réseau : on échantillonne et on choisit ce qui est instrumenté. Le Collector peut aussi filtrer des données, par exemple sensibles, avant de les envoyer.",
+  "exemple": "Exemple illustratif : une création de session PDU passe par plusieurs fonctions du cœur 5G (AMF, SMF, PCF). Une trace montre le chemin de la requête d'une étape à l'autre, ce qui aide à repérer la lenteur.",
+  "avisAuteur": [
+    "resteVrai.0",
+    "resteVrai.1",
+    "pourquoiNouveau",
+    "piege",
+    "exemple"
+  ],
   "epreuve": {
-    "cas": "Une création de session PDU traverse l'AMF, la SMF, la PCF et l'UPF, et elle est lente. Quels signaux collectez-vous avec OpenTelemetry, lequel montre l'étape qui ralentit, et quel est le piège ?",
-    "raisonnement": "Trois signaux : les traces (parcours d'une requête), les métriques (mesures agrégées) et les logs (événements). La trace montre quelle étape ralentit la création de session. Piège : tout tracer coûte du stockage et du réseau ; on échantillonne, on choisit ce qui est instrumenté, et le Collector peut filtrer avant l'export.",
+    "cas": "Une création de session PDU passe par plusieurs fonctions du cœur 5G, et elle est lente. Quels signaux collectez-vous avec OpenTelemetry, lequel aide à localiser la lenteur, et quel est le piège ?",
+    "raisonnement": "Les signaux principaux sont les traces (chemin d'une requête), les métriques (mesures) et les journaux (événements). La trace suit la requête d'une fonction à l'autre : c'est elle qui aide à localiser l'étape lente (lecture de l'auteur). Piège (avis de l'auteur) : tout tracer a un coût en stockage et en réseau ; on échantillonne et on choisit ce qui est instrumenté. Le Collector peut aussi filtrer des données avant l'export.",
     "source": "OpenTelemetry : signaux (opentelemetry.io/docs/concepts/signals/) ; Collector (opentelemetry.io/docs/collector/)"
   },
   "schema": {
@@ -36,11 +43,11 @@
       },
       {
         "texte": "Collector",
-        "detail": "reçoit et filtre"
+        "detail": "reçoit et traite"
       },
       {
         "texte": "Trace",
-        "detail": "temps passé par étape"
+        "detail": "chemin de la requête"
       }
     ]
   },
@@ -51,7 +58,7 @@
     "zones": [
       {
         "id": "apps",
-        "titre": "Applications (SDK OpenTelemetry)",
+        "titre": "Applications instrumentées",
         "x": 20,
         "y": 22,
         "w": 472,
@@ -101,7 +108,7 @@
       {
         "id": "collector",
         "texte": "Collector",
-        "detail": "reçoit, filtre, échantillonne",
+        "detail": "reçoit, traite, exporte",
         "ton": "chaud",
         "x": 146,
         "y": 242,
@@ -110,8 +117,8 @@
       },
       {
         "id": "bt",
-        "texte": "Traces",
-        "detail": "stockage et recherche",
+        "texte": "Outil d'analyse 1",
+        "detail": "destination d'export",
         "x": 456,
         "y": 176,
         "w": 190,
@@ -120,8 +127,8 @@
       },
       {
         "id": "bm",
-        "texte": "Métriques",
-        "detail": "stockage",
+        "texte": "Outil d'analyse 2",
+        "detail": "destination d'export",
         "x": 456,
         "y": 248,
         "w": 190,
@@ -130,8 +137,8 @@
       },
       {
         "id": "bl",
-        "texte": "Journaux",
-        "detail": "stockage",
+        "texte": "Outil d'analyse 3",
+        "detail": "destination d'export",
         "x": 456,
         "y": 320,
         "w": 190,
@@ -190,8 +197,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Relecture sourcée : trois signaux nuancés, HTTP/2 et UPF retirés, durée par étape et Collector qui échantillonne retirés, avis étiquetés, Wireshark retiré de plusLoin.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -219,14 +232,6 @@
       "url": "https://opentelemetry.io/docs/collector/",
       "langue": "en",
       "acces": "gratuit"
-    },
-    {
-      "type": "video",
-      "nom": "Wireshark Masterclass",
-      "url": "https://www.youtube.com/playlist?list=PLW8bTPfXNGdC5Co0VnBK1yVzAwSSphzpJ",
-      "langue": "en",
-      "acces": "gratuit",
-      "auteur": "Chris Greer"
     },
     {
       "type": "cours",

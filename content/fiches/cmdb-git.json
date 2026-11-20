@@ -5,8 +5,8 @@
   "avant": "CMDB et inventaire",
   "apres": "Git comme source de vérité et labels",
   "resume": {
-    "avant": "Une CMDB mise à jour à la main ou par découverte, où l'inventaire retarde sur la réalité.",
-    "apres": "L'état voulu est dans Git ; les objets se retrouvent par des labels. L'inventaire se lit dans le cluster, il n'est pas ressaisi."
+    "avant": "Une CMDB mise à jour à la main ou par découverte, où l'inventaire retarde souvent sur la réalité.",
+    "apres": "L'état voulu est dans Git ; les objets se retrouvent par des labels. L'état réel se lit dans le cluster par requête sur les labels."
   },
   "resteVrai": [
     "Savoir ce qui existe, qui en est responsable et à quoi ça sert reste indispensable.",
@@ -14,18 +14,18 @@
     "Les relations entre composants restent à documenter."
   ],
   "change": [
-    "Git décrit l'état voulu ; un outil GitOps le réapplique, donc dépôt et cluster ne divergent pas longtemps.",
-    "Les labels (clé/valeur) disent propriétaire, application, version : on sélectionne et on filtre dessus.",
+    "Git décrit l'état voulu ; un outil GitOps compare en continu l'état réel à cet état et tente de le rétablir.",
+    "Les labels (clé/valeur) servent à sélectionner et filtrer ; par exemple application, version, propriétaire, au choix de l'équipe.",
     "Un objet sans labels cohérents est un objet que l'inventaire ne retrouve pas."
   ],
   "reflexe": "L'inventaire se tient dans un outil à part, mis à jour à la main.",
   "pourquoiNouveau": null,
   "piege": "Mélanger labels et annotations : les labels servent à sélectionner et regrouper, les annotations à porter des informations non identifiantes. Et sans convention de nommage des labels, chaque équipe invente la sienne.",
-  "exemple": "Chaque fonction du cœur porte les labels application, version et propriétaire ; une requête sur le propriétaire liste ce qu'une équipe exploite, sans consulter une CMDB.",
+  "exemple": "Si les labels sont posés partout, chaque fonction du cœur porte application, version et propriétaire ; une requête sur le propriétaire liste ce qu'une équipe exploite, sans consulter une CMDB.",
   "epreuve": {
     "cas": "Votre équipe veut retrouver toutes les fonctions du cœur qu'elle exploite sans consulter une CMDB. Que mettez-vous sur les objets Kubernetes, et qu'évitez-vous de mélanger ?",
-    "raisonnement": "Des labels (par exemple application, version, propriétaire) : des paires clé/valeur que les sélecteurs utilisent pour retrouver et regrouper les objets. On ne les mélange pas avec les annotations, qui portent des informations non identifiantes. Et sans convention de nommage des labels, chaque équipe invente la sienne.",
-    "source": "Kubernetes : labels et sélecteurs (kubernetes.io/docs/concepts/overview/working-with-objects/labels/)"
+    "raisonnement": "Des labels (par exemple application, version, propriétaire, clés au choix de l'équipe) : des paires clé/valeur que les sélecteurs utilisent pour retrouver et regrouper les objets. On ne les mélange pas avec les annotations, qui portent des informations non identifiantes et ne servent pas à sélectionner.",
+    "source": "Kubernetes : labels et sélecteurs (kubernetes.io/docs/concepts/overview/working-with-objects/labels/) ; annotations (kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)"
   },
   "schema": {
     "legende": "Où vit l'inventaire",
@@ -39,7 +39,7 @@
       },
       {
         "texte": "Écart",
-        "detail": "retard sur la réalité"
+        "detail": "retard possible"
       }
     ],
     "apres": [
@@ -53,12 +53,12 @@
       },
       {
         "texte": "Requête",
-        "detail": "par propriétaire, version"
+        "detail": "par labels"
       }
     ]
   },
   "diagramme": {
-    "legende": "L'inventaire se lit dans le cluster, il n'est plus ressaisi",
+    "legende": "L'état réel se lit dans le cluster par requête sur les labels",
     "largeur": 812,
     "hauteur": 302,
     "zones": [
@@ -84,7 +84,7 @@
       {
         "id": "saisie",
         "texte": "Saisie",
-        "detail": "à la main, par lots",
+        "detail": "souvent à la main",
         "x": 36,
         "y": 60,
         "w": 150,
@@ -104,7 +104,7 @@
       {
         "id": "ecart",
         "texte": "Écart",
-        "detail": "retard sur la réalité",
+        "detail": "retard possible",
         "ton": "faible",
         "x": 466,
         "y": 60,
@@ -126,7 +126,7 @@
       {
         "id": "gitops",
         "texte": "Outil GitOps",
-        "detail": "réapplique",
+        "detail": "tente de rétablir",
         "x": 196,
         "y": 210,
         "w": 130,
@@ -147,7 +147,7 @@
       {
         "id": "req",
         "texte": "Requête",
-        "detail": "par owner, app, version",
+        "detail": "par labels choisis",
         "x": 596,
         "y": 210,
         "w": 180,
@@ -164,7 +164,7 @@
       {
         "de": "cmdb",
         "vers": "ecart",
-        "texte": "dérive"
+        "texte": "décale"
       },
       {
         "de": "git",
@@ -188,8 +188,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Relecture sourcée : dérive GitOps nuancée, labels en exemples au choix, inventaire nuancé, avis étiquetés, annotations ajoutées à l'épreuve, vidéo NETCONF retirée.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -221,14 +227,6 @@
     },
     {
       "type": "video",
-      "nom": "NETCONF YANG Tutorial with Cisco real time examples",
-      "url": "https://www.youtube.com/playlist?list=PLOocymQm7YWaJX5l5SgfkAvHQYUS-Xr1Q",
-      "langue": "en",
-      "acces": "gratuit",
-      "auteur": "NetworkEvolution"
-    },
-    {
-      "type": "video",
       "nom": "GitOps Guide to the Galaxy",
       "url": "https://www.youtube.com/playlist?list=PLbMP1JcGBmSGKO8UreWpOBOhCqilejhtd",
       "langue": "en",
@@ -257,5 +255,14 @@
       "nom": "OpenGitOps : principes",
       "url": "https://opengitops.dev/"
     }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "change.1",
+    "change.2",
+    "reflexe",
+    "piege",
+    "exemple"
   ]
 }

@@ -10,21 +10,21 @@
   },
   "resteVrai": [
     "Une alarme doit toujours conduire à une action, sinon elle ne doit pas exister.",
-    "Les compteurs de base (débit, erreurs, latence) restent les premiers indicateurs.",
+    "Latence, trafic, erreurs et saturation restent les signaux de base à suivre.",
     "Un seuil se règle sur le service réel, pas sur une valeur par défaut."
   ],
   "change": [
-    "Prometheus évalue les règles d'alerte à intervalle régulier ; la clause « for » impose que la condition dure avant d'alerter.",
+    "Prometheus évalue les règles à intervalle régulier (1 min par défaut) ; « for » impose que la condition dure avant d'alerter.",
     "On alerte de préférence sur les symptômes (taux d'erreurs vu par l'utilisateur) plutôt que sur chaque cause possible.",
-    "Alertmanager regroupe les alertes similaires, par labels, en une seule notification."
+    "Alertmanager regroupe les alertes similaires en une notification, selon les labels choisis dans la configuration."
   ],
   "reflexe": "Une alarme par cause possible.",
   "pourquoiNouveau": null,
-  "piege": "Reproduire la logique de l'ancien nœud : des centaines de règles sur des causes, qui se déclenchent ensemble. Résultat : du bruit, et les vraies alertes se perdent. Partez de ce que l'utilisateur ressent, puis creusez vers les causes.",
+  "piege": "Reproduire la logique de l'ancien nœud : beaucoup de règles sur des causes, qui se déclenchent ensemble. Résultat : du bruit, et les vraies alertes se perdent. Partez de ce que l'utilisateur ressent, puis creusez vers les causes.",
   "exemple": "Pour une SMF, une alerte part si le taux d'échec d'établissement de session PDU dépasse un seuil pendant plusieurs minutes, au lieu d'une alarme par pod redémarré.",
   "epreuve": {
-    "cas": "Pour une SMF, votre ancienne supervision déclenche des centaines d'alarmes sur des causes (CPU élevé, pod redémarré). Sur quoi alertez-vous dans Prometheus à la place, et pourquoi ?",
-    "raisonnement": "Sur les symptômes que l'utilisateur subit, par exemple un taux d'échec d'établissement de session PDU au-dessus d'un seuil pendant plusieurs minutes. Un CPU élevé n'est pas forcément un problème, et un service peut être en panne avec un CPU normal. Des règles sur les causes font du bruit où les vraies alertes se perdent ; les causes se diagnostiquent ensuite dans les tableaux de bord.",
+    "cas": "Pour une SMF, votre ancienne supervision déclenche beaucoup d'alarmes sur des causes (CPU élevé, pod redémarré). Sur quoi alertez-vous dans Prometheus à la place, et pourquoi ?",
+    "raisonnement": "Sur les symptômes que l'utilisateur subit, par exemple un taux d'échec d'établissement de session PDU au-dessus d'un seuil pendant plusieurs minutes. Le CPU est une cause possible, pas ce que l'utilisateur subit. Des règles sur les causes font du bruit où les vraies alertes se perdent ; les causes servent au diagnostic, une fois l'alerte levée sur le symptôme.",
     "source": "Google SRE : Monitoring Distributed Systems, symptômes et causes (sre.google/sre-book/monitoring-distributed-systems/)"
   },
   "schema": {
@@ -61,7 +61,7 @@
   "diagramme": {
     "legende": "Supervision : métriques ouvertes, règles sur symptômes, alertes regroupées",
     "largeur": 898,
-    "hauteur": 286,
+    "hauteur": 156,
     "zones": [
       {
         "id": "cluster",
@@ -76,7 +76,7 @@
       {
         "id": "pods",
         "texte": "Pods",
-        "detail": "exposent /metrics",
+        "detail": "métriques en HTTP",
         "x": 36,
         "y": 60,
         "w": 140,
@@ -106,20 +106,11 @@
       {
         "id": "astreinte",
         "texte": "Astreinte",
-        "detail": "mail, chat, téléphone",
+        "detail": "e-mail, chat, astreinte",
         "ton": "ok",
         "x": 708,
         "y": 60,
         "w": 170,
-        "h": 56
-      },
-      {
-        "id": "graf",
-        "texte": "Grafana",
-        "detail": "tableaux de bord",
-        "x": 281,
-        "y": 210,
-        "w": 140,
         "h": 56
       }
     ],
@@ -138,11 +129,6 @@
         "de": "am",
         "vers": "astreinte",
         "texte": "notifie"
-      },
-      {
-        "de": "graf",
-        "vers": "prom",
-        "texte": "PromQL"
       }
     ],
     "source": {
@@ -151,8 +137,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Relecture sourcée : signaux de base, évaluation des règles, regroupement et notifications reformulés ; nœud Grafana retiré ; avis d'auteur étiquetés ; sources ajoutées.",
+      "par": "Relecture sourcée (lots B à D)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -235,6 +227,22 @@
     {
       "nom": "Google SRE : superviser les systèmes distribués (symptômes et causes)",
       "url": "https://sre.google/sre-book/monitoring-distributed-systems/"
+    },
+    {
+      "nom": "Prometheus : configuration (evaluation_interval)",
+      "url": "https://prometheus.io/docs/prometheus/latest/configuration/configuration/"
+    },
+    {
+      "nom": "Alertmanager : configuration (récepteurs)",
+      "url": "https://prometheus.io/docs/alerting/latest/configuration/"
     }
+  ],
+  "avisAuteur": [
+    "resume",
+    "schema",
+    "reflexe",
+    "piege",
+    "exemple",
+    "resteVrai.2"
   ]
 }
