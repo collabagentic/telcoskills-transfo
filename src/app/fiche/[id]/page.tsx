@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Agrandir } from "@/composants/Agrandir";
 import { AvantApres } from "@/composants/AvantApres";
 import { BoutonRessources } from "@/composants/BoutonRessources";
 import { Diagramme } from "@/composants/Diagramme";
@@ -87,7 +88,13 @@ export default async function PageFiche({ params }: Props) {
       </section>
       <section className="rubrique">
         <h2>Le schéma</h2>
-        {f.diagramme ? <Diagramme diagramme={f.diagramme} /> : <SchemaFiche schema={f.schema} />}
+        {f.diagramme ? (
+          <Agrandir>
+            <Diagramme diagramme={f.diagramme} />
+          </Agrandir>
+        ) : (
+          <SchemaFiche schema={f.schema} />
+        )}
       </section>
       {f.genre === "transposition" && f.reflexe ? (
         <section className="rubrique">

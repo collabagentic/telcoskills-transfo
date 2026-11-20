@@ -73,6 +73,7 @@
   --reflet-accent: rgba(255, 255, 255, 0.35);
   --ombre-fine: rgba(0, 0, 0, 0.35);
   --masque: #000000;
+  --voile: rgba(0, 0, 0, 0.6);
 
   --lecture: 40rem;
   --page: 72rem;

@@ -2149,7 +2149,7 @@ a.barre-fleche:hover {
 /* Fiche en cockpit « Pilotage » : ligne de métro en haut, feuille de route à gauche, lecture au centre, prochain geste à droite */
 .fiche-pilotage {
   display: grid;
-  grid-template-columns: 12rem minmax(0, 1fr) 14.5rem;
+  grid-template-columns: 11rem minmax(0, 1fr) 13.5rem;
   gap: var(--e-6) var(--e-8);
   align-items: start;
 }
@@ -2493,4 +2493,37 @@ a.barre-fleche:hover {
 }
 .fiche-centre .retour + .pastille {
   margin-left: var(--e-3);
+}
+
+/* Dans le cockpit, le schéma reste dans la colonne de lecture (l'ancien débordement centré recouvrait la colonne de gauche) */
+.fiche-centre .diagramme {
+  left: auto;
+  width: 100%;
+  transform: none;
+}
+.agrandir {
+  margin: calc(var(--e-4) * -1) 0 var(--e-8);
+}
+.fenetre-schema {
+  margin: auto;
+  width: min(96vw, 62rem);
+  max-height: 92vh;
+  overflow: auto;
+  padding: var(--e-4);
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-l);
+  background: var(--surface-2);
+  color: var(--encre);
+}
+.fenetre-schema::backdrop {
+  background: var(--voile);
+}
+.fenetre-fermer {
+  display: block;
+  margin: 0 0 var(--e-3) auto;
+}
+@media (max-width: 719px) {
+  .agrandir {
+    display: none;
+  }
 }
