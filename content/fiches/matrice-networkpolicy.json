@@ -6,7 +6,7 @@
   "apres": "NetworkPolicy",
   "resume": {
     "avant": "Une ligne = IP source, IP destination, port. Validée par le pare-feu, appliquée par une équipe réseau.",
-    "apres": "Une règle = des labels, un namespace, un port. Versionnée dans Git, appliquée par le cluster."
+    "apres": "Une règle = des labels, un namespace, un port. Un objet déclaré, appliqué par le plugin réseau du cluster."
   },
   "resteVrai": [
     "Le moindre privilège sur les flux est inchangé.",
@@ -15,17 +15,17 @@
   ],
   "change": [
     "Sans NetworkPolicy, les pods acceptent tout trafic entrant : le défaut est ouvert.",
-    "Une règle désigne des pods par labels et namespaces, plus par adresses IP, car l'IP d'un pod est éphémère.",
-    "Le « default deny » se pose en premier : une policy qui sélectionne tous les pods et n'autorise rien en entrée."
+    "Pour les pods, une règle vise des labels et namespaces, pas des IP (éphémères) ; ipBlock sert aux IP externes au cluster.",
+    "Le « default deny » sert de base : une policy sélectionne tous les pods sans rien autoriser en entrée ; on ajoute ensuite les ouvertures."
   ],
   "reflexe": "Une IP identifie une machine.",
   "pourquoiNouveau": null,
   "piege": "Une NetworkPolicy peut être acceptée sans effet : si le plugin réseau du cluster ne gère pas les NetworkPolicy, rien n'est filtré. Autre piège classique : une règle ingress contenant un élément vide ({}) autorise tout le trafic au lieu de tout refuser.",
-  "exemple": "Pour l'AMF d'un cœur 5G, la règle sélectionne les pods de l'AMF par label et n'ouvre en entrée que le port 38412 en SCTP, le port de la signalisation NGAP (interface N2).",
+  "exemple": "Pour une AMF, une règle peut sélectionner ses pods par label et n'autoriser en entrée, via cette policy, que le port 38412 en SCTP, port attribué à NGAP par l'IANA.",
   "epreuve": {
-    "cas": "Pour l'AMF, vous traduisez votre matrice de flux en NetworkPolicy qui n'ouvre en entrée que le port 38412 en SCTP. Que se passe-t-il quand aucune NetworkPolicy n'existe, et quels deux pièges vérifiez-vous ?",
-    "raisonnement": "Sans NetworkPolicy, les pods ne sont pas isolés : tout est autorisé. Dès qu'une NetworkPolicy sélectionne un pod, seul le trafic qu'elle autorise est accepté, pour les directions couvertes. Pièges : si le plugin réseau ne gère pas les NetworkPolicy, rien n'est filtré ; une règle ingress contenant un élément vide ({}) autorise tout le trafic au lieu de tout refuser.",
-    "source": "Kubernetes : Network Policies (kubernetes.io/docs/concepts/services-networking/network-policies/)"
+    "cas": "Pour une AMF, vous traduisez votre matrice de flux en NetworkPolicy qui n'autorise en entrée que le port 38412 en SCTP. Que se passe-t-il quand aucune NetworkPolicy n'existe, et quels pièges vérifiez-vous ?",
+    "raisonnement": "Sans NetworkPolicy, les pods ne sont pas isolés : tout est autorisé. Dès qu'une policy sélectionne un pod pour une direction, seules passent les connexions autorisées par l'ensemble des policies qui le sélectionnent (elles s'additionnent). Pièges : si le plugin réseau ne gère pas les NetworkPolicy, rien n'est filtré ; une règle ingress contenant un élément vide ({}) autorise tout le trafic ; pour le SCTP, le plugin CNI doit le gérer.",
+    "source": "Kubernetes : Network Policies (kubernetes.io/docs/concepts/services-networking/network-policies/) ; IANA : ng-control, 38412, SCTP (iana.org/assignments/service-names-port-numbers/)"
   },
   "schema": {
     "legende": "De l'adresse IP au label",
@@ -76,8 +76,8 @@
     "noeuds": [
       {
         "id": "ran",
-        "texte": "Pods passerelle RAN",
-        "detail": "label role=ran-gw",
+        "texte": "Pair NG-RAN (gNB)",
+        "detail": "IP externes (ipBlock)",
         "x": 20,
         "y": 60,
         "w": 170,
@@ -133,7 +133,7 @@
       {
         "de": "policy",
         "vers": "amf",
-        "texte": "protège"
+        "texte": "sélectionne"
       }
     ],
     "source": {
@@ -142,8 +142,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-08",
+  "misAJour": "2026-11-20",
   "historique": [
+    {
+      "date": "2026-11-20",
+      "changement": "Relecture sourcée : port 38412 sourcé par l'IANA, formulations trop fortes nuancées (policies additives, ipBlock), pair RAN corrigé en gNB externe, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lot A2)",
+      "lien": null
+    },
     {
       "date": "2026-11-08",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -189,8 +195,21 @@
       "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
     },
     {
-      "nom": "3GPP TS 38.412 : transport de signalisation NG (SCTP, port 38412)",
+      "nom": "3GPP TS 38.412 : transport NG (le port SCTP de destination est attribué par l'IANA)",
       "url": "https://www.3gpp.org/ftp/Specs/archive/38_series/38.412/"
+    },
+    {
+      "nom": "IANA : registre des ports (ng-control, 38412, SCTP)",
+      "url": "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai.0",
+    "resteVrai.1",
+    "reflexe",
+    "change.2",
+    "exemple",
+    "resume",
+    "schema"
   ]
 }

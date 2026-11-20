@@ -10,21 +10,21 @@
   },
   "resteVrai": [
     "Séparer signalisation, données et administration reste une exigence d'architecture.",
-    "Le VLAN et la MTU existent toujours, sur les réseaux secondaires qui portent le plan data.",
+    "Le VLAN et la MTU existent toujours, sur les réseaux secondaires (plan data, et selon le cas signalisation).",
     "Chaque interface demande toujours un plan d'adressage."
   ],
   "change": [
-    "Le réseau primaire des pods est plat : l'isolation passe par des NetworkPolicy qui raisonnent en labels, pas en sous-réseaux.",
-    "Les réseaux additionnels (Multus) portent le plan data ; VLAN, MTU et VF SR-IOV se déclarent via NMState.",
+    "Sur le réseau primaire des pods, l'isolation passe par des NetworkPolicy en labels plutôt que par des sous-réseaux.",
+    "Les réseaux additionnels (Multus) portent le plan data ; NMState déclare VLAN et MTU, le SR-IOV Network Operator les VF.",
     "L'adressage des interfaces secondaires est géré à part de celui des pods."
   ],
   "reflexe": "Isoler, c'est mettre dans un autre sous-réseau.",
   "pourquoiNouveau": null,
-  "piege": "Appliquer le bon réflexe au mauvais plan. Sur le réseau primaire des pods, découper en sous-réseaux n'isole rien : l'IP d'un pod est éphémère. L'erreur inverse, côté profil cloud-natif, consiste à ignorer les réseaux secondaires, là où le VLAN reste légitime.",
-  "exemple": "Dans un cœur 5G déployé en CNF, la signalisation reste sur le réseau primaire du cluster. Le trafic utilisateur d'une fonction UPF passe par une interface secondaire attachée en SR-IOV, avec son VLAN et sa MTU.",
+  "piege": "Appliquer le bon réflexe au mauvais plan. Sur le réseau primaire des pods, s'appuyer sur des sous-réseaux est fragile : l'IP d'un pod change. L'erreur inverse : ignorer les réseaux secondaires, là où le VLAN reste légitime.",
+  "exemple": "Dans un cœur 5G déployé en CNF, selon les fonctions, la signalisation passe par un réseau secondaire (Multus en MACVLAN ou SR-IOV) ; d'autres s'appuient sur OVN-Kubernetes. Le trafic d'une UPF passe par exemple par une interface SR-IOV avec son VLAN et sa MTU.",
   "epreuve": {
-    "cas": "Vous déployez un cœur 5G en CNF. Découper le réseau primaire des pods en sous-réseaux isole-t-il quelque chose ? Où garde-t-on ses VLAN, et à quoi sert Multus ?",
-    "raisonnement": "Non : sur le réseau primaire, l'IP d'un pod est éphémère. Le VLAN reste légitime sur les réseaux secondaires : le trafic utilisateur d'un UPF passe par une interface secondaire attachée en SR-IOV, avec son VLAN et sa MTU. Multus attache plusieurs interfaces à un pod en appelant plusieurs plugins CNI ; par défaut un pod n'a qu'une interface en plus du loopback.",
+    "cas": "Vous déployez un cœur 5G en CNF. Découper le réseau primaire des pods en sous-réseaux est-il un bon moyen de les isoler ? Où garde-t-on ses VLAN, et à quoi sert Multus ?",
+    "raisonnement": "C'est fragile : l'IP d'un pod est éphémère, on isole plutôt par des règles sur les labels (avis d'auteur, non établi par la source). Le VLAN reste légitime sur les réseaux secondaires : le trafic d'un UPF passe par exemple par une interface SR-IOV avec son VLAN et sa MTU. Multus attache plusieurs interfaces à un pod en appelant plusieurs plugins CNI ; par défaut un pod n'a qu'une interface en plus du loopback.",
     "source": "Multus CNI : README (github.com/k8snetworkplumbingwg/multus-cni) ; Red Hat, OpenShift 4.20 : telco core reference design"
   },
   "schema": {
@@ -139,7 +139,7 @@
       {
         "de": "ovn",
         "vers": "services",
-        "texte": "signalisation"
+        "texte": "trafic"
       },
       {
         "de": "multus",
@@ -153,8 +153,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-08",
+  "misAJour": "2026-11-20",
   "historique": [
+    {
+      "date": "2026-11-20",
+      "changement": "Relecture sourcée : signalisation corrigée d'après Red Hat, NMState et SR-IOV Network Operator distingués, sources illisibles retirées, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lot A2)",
+      "lien": null
+    },
     {
       "date": "2026-11-08",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -226,12 +232,16 @@
       "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/scalability_and_performance/telco-core-ref-design-specs"
     },
     {
-      "nom": "VMware Telco Cloud Platform 2.7, guide d'architecture",
-      "url": "https://docs.vmware.com/en/VMware-Telco-Cloud-Platform/2.7/telco-cloud-platform-5G-edition-reference-architecture-guide-27/GUID-81109C7A-A6F9-4FEA-A9F3-443D919BF19A.html"
-    },
-    {
-      "nom": "Tigera : Kubernetes n'a pas de notion native de segment L2 ni de VLAN",
-      "url": "https://www.tigera.io/?p=69568"
+      "nom": "Multus CNI : README",
+      "url": "https://github.com/k8snetworkplumbingwg/multus-cni"
     }
+  ],
+  "avisAuteur": [
+    "resume",
+    "schema",
+    "reflexe",
+    "resteVrai.2",
+    "change.0",
+    "piege"
   ]
 }

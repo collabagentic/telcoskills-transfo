@@ -123,7 +123,7 @@ describe("règle 16 : avis d'auteur", () => {
   });
 
   it("refuse un nom de passage inconnu", () => {
-    expect(ficheSchema.safeParse({ ...fiche("x"), avisAuteur: ["resume"] }).success).toBe(false);
+    expect(ficheSchema.safeParse({ ...fiche("x"), avisAuteur: ["titre"] }).success).toBe(false);
     expect(ficheSchema.safeParse({ ...fiche("x"), avisAuteur: ["change.4"] }).success).toBe(false);
   });
 });

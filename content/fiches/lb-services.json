@@ -6,7 +6,7 @@
   "apres": "Service, Ingress et MetalLB",
   "resume": {
     "avant": "Un F5 devant les serveurs : virtual servers, pools, persistance, tout configuré sur l'équipement.",
-    "apres": "Un Service répartit le trafic entre pods ; Ingress ou Route pour le HTTP ; MetalLB pour exposer des adresses en L4, SCTP compris."
+    "apres": "Un Service répartit le trafic entre pods ; Ingress pour le HTTP ; MetalLB pour exposer des adresses en L4."
   },
   "resteVrai": [
     "Répartir la charge et supprimer les points uniques reste le but.",
@@ -14,18 +14,19 @@
     "Le L4 et le L7 se distinguent toujours."
   ],
   "change": [
-    "Un Service est un répartiteur logiciel : il suit les pods qui répondent, sans pools à maintenir à la main.",
-    "Une Route ou un Ingress ne gère que HTTP, HTTPS et TLS ; le SCTP demande un autre mécanisme.",
-    "MetalLB expose des Services de type LoadBalancer sur du bare metal, notamment en mode BGP."
+    "Un Service est une adresse virtuelle stable devant des pods ; la liste des pods prêts se tient à jour sans pool à maintenir à la main.",
+    "Un Ingress ne gère que HTTP et HTTPS (avec TLS) ; les autres protocoles passent par un Service NodePort ou LoadBalancer.",
+    "MetalLB expose des Services de type LoadBalancer sur du bare metal, notamment en mode BGP.",
+    "L'API Ingress est figée : le projet Kubernetes recommande désormais Gateway API."
   ],
   "reflexe": "Le répartiteur de charge est un équipement qu'on configure à la main.",
   "pourquoiNouveau": null,
-  "piege": "Faire passer le SCTP de la signalisation N2 par un Ingress : il ne le transporte pas. Il faut un Service de type LoadBalancer (par exemple avec MetalLB) ou un équivalent.",
-  "exemple": "L'AMF expose le port NGAP en SCTP par un Service LoadBalancer dont l'adresse est annoncée en BGP aux routeurs de la RAN.",
+  "piege": "Faire passer le SCTP par un Ingress : il ne gère que HTTP et HTTPS. Le SCTP se déclare comme protocole du port d'un Service (TCP, UDP ou SCTP), exposé par exemple en NodePort ou en LoadBalancer.",
+  "exemple": "On pourrait exposer le port NGAP d'une AMF en SCTP par un Service LoadBalancer dont MetalLB annonce l'adresse en BGP aux routeurs de la RAN.",
   "epreuve": {
-    "cas": "L'AMF doit exposer le port NGAP en SCTP vers la RAN. Votre réflexe est un répartiteur de charge configuré à la main. Quel objet Kubernetes utilisez-vous, et pourquoi pas un Ingress ?",
-    "raisonnement": "Un Service de type LoadBalancer (par exemple avec MetalLB, l'adresse étant annoncée en BGP aux routeurs de la RAN). Un Ingress ne gère que HTTP, HTTPS et TLS : il ne transporte pas le SCTP. Le Service suit lui-même les pods qui répondent, sans pool à maintenir à la main.",
-    "source": "Kubernetes : Service (kubernetes.io/docs/concepts/services-networking/service/) ; MetalLB : mode BGP (metallb.io/concepts/bgp/)"
+    "cas": "Une AMF doit exposer le port NGAP en SCTP vers la RAN. Votre réflexe est un répartiteur de charge configuré à la main. Quel type d'objet Kubernetes envisagez-vous, et pourquoi pas un Ingress ?",
+    "raisonnement": "Un Ingress ne gère que HTTP et HTTPS : le SCTP n'en fait pas partie. Le SCTP se déclare comme protocole du port d'un Service, exposé par exemple en LoadBalancer (avec MetalLB sur du bare metal, l'adresse est annoncée en BGP aux routeurs) ou en NodePort. Le Service suit lui-même les pods prêts, sans pool à maintenir à la main.",
+    "source": "Kubernetes : Service et Ingress (kubernetes.io/docs/concepts/services-networking/) ; MetalLB : mode BGP (metallb.io/concepts/bgp/)"
   },
   "schema": {
     "legende": "Répartir le trafic",
@@ -75,7 +76,7 @@
       {
         "id": "ran",
         "texte": "RAN",
-        "detail": "N2 · SCTP",
+        "detail": "trafic SCTP",
         "x": 20,
         "y": 70,
         "w": 130,
@@ -84,7 +85,7 @@
       {
         "id": "routeur",
         "texte": "Routeur",
-        "detail": "reçoit l'IP en BGP",
+        "detail": "reçoit les routes en BGP",
         "x": 210,
         "y": 70,
         "w": 170,
@@ -104,7 +105,7 @@
       {
         "id": "amf",
         "texte": "Pods AMF",
-        "detail": "SCTP 38412",
+        "detail": "écoutent en SCTP",
         "ton": "ok",
         "x": 710,
         "y": 70,
@@ -123,7 +124,7 @@
       },
       {
         "id": "ing",
-        "texte": "Ingress ou Route",
+        "texte": "Ingress",
         "detail": "HTTP, HTTPS, TLS",
         "x": 210,
         "y": 210,
@@ -133,7 +134,7 @@
       {
         "id": "svc",
         "texte": "Service ClusterIP",
-        "detail": "répartit",
+        "detail": "adresse virtuelle",
         "x": 440,
         "y": 210,
         "w": 210,
@@ -161,12 +162,12 @@
       {
         "de": "routeur",
         "vers": "svclb",
-        "texte": "BGP"
+        "texte": "SCTP"
       },
       {
         "de": "svclb",
         "vers": "amf",
-        "texte": "répartit"
+        "texte": "dirige"
       },
       {
         "de": "web",
@@ -181,7 +182,7 @@
       {
         "de": "svc",
         "vers": "pw",
-        "texte": "répartit"
+        "texte": "dirige"
       }
     ],
     "source": {
@@ -190,8 +191,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-09",
+  "misAJour": "2026-11-20",
   "historique": [
+    {
+      "date": "2026-11-20",
+      "changement": "Relecture sourcée : Route et SCTP via LoadBalancer retirés des faits (non sourcés), source VMware illisible retirée, Gateway API mentionnée, liens de diagramme corrigés, avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lot A2)",
+      "lien": null
+    },
     {
       "date": "2026-11-09",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -259,10 +266,13 @@
     {
       "nom": "MetalLB : mode BGP",
       "url": "https://metallb.io/concepts/bgp/"
-    },
-    {
-      "nom": "VMware Telco Cloud Platform 2.7, guide d'architecture",
-      "url": "https://docs.vmware.com/en/VMware-Telco-Cloud-Platform/2.7/telco-cloud-platform-5G-edition-reference-architecture-guide-27/GUID-81109C7A-A6F9-4FEA-A9F3-443D919BF19A.html"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "reflexe",
+    "exemple",
+    "resume",
+    "schema"
   ]
 }

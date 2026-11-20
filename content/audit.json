@@ -2,13 +2,53 @@
   "_aide": "Suivi à la main de l'audit des fiches : notes à vérifier et fiches dont l'auteur a validé le classement. Les autres colonnes de la page /audit sont calculées depuis les fiches.",
   "classementValide": [],
   "notes": [
-    { "fiche": "pra-gitops", "note": "La définition du RTO et du RPO n'a pas de source précise : ajouter une source." },
-    { "fiche": "interfaces-sbi", "note": "Vérifier la clause 3GPP citée (TS 29.500, clauses 5.2 et 5.4) contre la version en vigueur." },
-    { "fiche": "plateforme-produit", "note": "Classée « décider » alors qu'elle se lit aussi comme « comprendre » : arbitrage de l'auteur." },
-    { "fiche": "observabilite-traces", "note": "Nouveauté sans « avant » : vérifier que le canevas « intégrer » lui convient." },
-    { "fiche": "reconciliation", "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; avis d'auteur étiquetés. Reste la relecture de l'auteur, voir reports/relecture/reconciliation.md." },
-    { "fiche": "vm-pod", "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; reste à sourcer le frontal HTTP/2 « sans état » (étiqueté avis d'auteur), voir reports/relecture/vm-pod.md." },
-    { "fiche": "actif-passif-replicas", "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; aucune source ne couvre l'actif/passif lui-même : à sourcer, voir reports/relecture/actif-passif-replicas.md." },
-    { "fiche": "operateurs", "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; reste le contexte historique des équipementiers (étiqueté avis d'auteur), voir reports/relecture/operateurs.md." }
+    {
+      "fiche": "pra-gitops",
+      "note": "La définition du RTO et du RPO n'a pas de source précise : ajouter une source."
+    },
+    {
+      "fiche": "interfaces-sbi",
+      "note": "Vérifier la clause 3GPP citée (TS 29.500, clauses 5.2 et 5.4) contre la version en vigueur."
+    },
+    {
+      "fiche": "plateforme-produit",
+      "note": "Classée « décider » alors qu'elle se lit aussi comme « comprendre » : arbitrage de l'auteur."
+    },
+    {
+      "fiche": "observabilite-traces",
+      "note": "Nouveauté sans « avant » : vérifier que le canevas « intégrer » lui convient."
+    },
+    {
+      "fiche": "reconciliation",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; avis d'auteur étiquetés. Reste la relecture de l'auteur, voir reports/relecture/reconciliation.md."
+    },
+    {
+      "fiche": "vm-pod",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; reste à sourcer le frontal HTTP/2 « sans état » (étiqueté avis d'auteur), voir reports/relecture/vm-pod.md."
+    },
+    {
+      "fiche": "actif-passif-replicas",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; aucune source ne couvre l'actif/passif lui-même : à sourcer, voir reports/relecture/actif-passif-replicas.md."
+    },
+    {
+      "fiche": "operateurs",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; reste le contexte historique des équipementiers (étiqueté avis d'auteur), voir reports/relecture/operateurs.md."
+    },
+    {
+      "fiche": "lb-services",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) : Route et SCTP via LoadBalancer retirés des faits, source VMware retirée. À sourcer : le SCTP porté par un Service LoadBalancer (doc MetalLB), voir reports/relecture/lb-services.md."
+    },
+    {
+      "fiche": "acces-rbac",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) ; avis d'auteur étiquetés. Reste la relecture de l'auteur, voir reports/relecture/acces-rbac.md."
+    },
+    {
+      "fiche": "matrice-networkpolicy",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) : port 38412 sourcé par l'IANA. À sourcer : le nom « N2 » (TS 23.501), voir reports/relecture/matrice-networkpolicy.md."
+    },
+    {
+      "fiche": "vlan-reseaux-cluster",
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-20) : sources VMware et Tigera illisibles retirées. À sourcer : NetworkPolicy en labels sur le réseau primaire (doc Kubernetes), voir reports/relecture/vlan-reseaux-cluster.md."
+    }
   ]
 }

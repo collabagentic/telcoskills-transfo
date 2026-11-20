@@ -72,6 +72,11 @@ export default async function PageFiche({ params }: Props) {
       <h1>{titre}</h1>
 
       <AvantApres genre={f.genre} resume={f.resume} technos={technos.map((t) => ({ id: t.id, nom: t.nom }))} />
+      {avis.has("resume") ? (
+        <p className="cockpit-texte">
+          {etiquette} Le résumé « avant » / « après » décrit une pratique, il n'est pas tiré des sources.
+        </p>
+      ) : null}
 
       <section className="rubrique">
         <h2>Ce qui reste vrai</h2>
@@ -94,7 +99,9 @@ export default async function PageFiche({ params }: Props) {
         </ul>
       </section>
       <section className="rubrique">
-        <h2>Le schéma</h2>
+        <h2>
+          Le schéma {avis.has("schema") ? etiquette : null}
+        </h2>
         {f.diagramme ? (
           <Agrandir>
             <Diagramme diagramme={f.diagramme} />

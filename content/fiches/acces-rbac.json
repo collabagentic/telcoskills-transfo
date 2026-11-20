@@ -14,7 +14,7 @@
     "Un accès d'urgence doit rester tracé."
   ],
   "change": [
-    "Rien n'est autorisé par défaut : une requête sans règle RBAC qui la couvre est refusée.",
+    "Les permissions RBAC sont purement additives : il n'existe pas de règle de refus ; ce qu'aucune règle n'accorde n'est pas accordé par RBAC.",
     "Un Role vaut dans un namespace ; un ClusterRole peut valoir pour tout le cluster.",
     "Un RoleBinding qui référence un ClusterRole n'accorde ses droits que dans son propre namespace."
   ],
@@ -24,7 +24,7 @@
   "exemple": "Un exploitant du cœur 5G reçoit un rôle de lecture sur le namespace de l'UPF ; l'outil de supervision a son propre compte de service, limité à la lecture des métriques.",
   "epreuve": {
     "cas": "Votre outil de supervision doit lire les métriques du seul namespace de l'UPF. Un collègue propose un ClusterRole lié par un ClusterRoleBinding « pour aller vite ». Que répondez-vous, et que décide RBAC pour une requête qu'aucune règle n'autorise ?",
-    "raisonnement": "Un ClusterRoleBinding applique les droits à tout le cluster, pas à un namespace : pour un seul namespace, on lie le droit à ce namespace (Role et binding), avec un compte de service dédié à l'outil. Pour la seconde question : la requête est refusée. Les règles RBAC sont uniquement additives, il n'existe pas de règle de refus explicite.",
+    "raisonnement": "Un ClusterRoleBinding applique les droits à tout le cluster, pas à un namespace : pour un seul namespace, on lie le droit à ce namespace (Role et binding), avec un compte de service dédié à l'outil. Pour la seconde question : RBAC ne l'autorise pas. Ses permissions sont purement additives, il n'existe pas de règle de refus ; seul un autre mode d'autorisation configuré pourrait l'accepter.",
     "source": "Kubernetes : contrôle d'accès RBAC (kubernetes.io/docs/reference/access-authn-authz/rbac/)"
   },
   "schema": {
@@ -76,7 +76,7 @@
       {
         "id": "user",
         "texte": "Utilisateur",
-        "detail": "identité OIDC",
+        "detail": "identité externe",
         "x": 20,
         "y": 70,
         "w": 120,
@@ -136,7 +136,7 @@
       {
         "id": "cr",
         "texte": "ClusterRole",
-        "detail": "droits sur tout le cluster",
+        "detail": "droits sans namespace",
         "ton": "faible",
         "x": 480,
         "y": 270,
@@ -148,7 +148,7 @@
       {
         "de": "user",
         "vers": "rb",
-        "texte": "sujet"
+        "texte": "visé par"
       },
       {
         "de": "sa",
@@ -183,8 +183,14 @@
     }
   },
   "statut": "brouillon",
-  "misAJour": "2026-11-08",
+  "misAJour": "2026-11-20",
   "historique": [
+    {
+      "date": "2026-11-20",
+      "changement": "Relecture sourcée : « refusé par défaut » reformulé d'après la page (permissions additives), diagramme corrigé (identité externe, ClusterRole), avis d'auteur étiquetés.",
+      "par": "Relecture sourcée (lot A2)",
+      "lien": null
+    },
     {
       "date": "2026-11-08",
       "changement": "Première version, brouillon assisté par IA, à relire par l'auteur.",
@@ -256,5 +262,12 @@
       "nom": "Kubernetes : comptes de service",
       "url": "https://kubernetes.io/docs/concepts/security/service-accounts/"
     }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "reflexe",
+    "exemple",
+    "resume",
+    "schema"
   ]
 }
