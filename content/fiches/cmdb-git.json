@@ -23,8 +23,8 @@
   "piege": "Mélanger labels et annotations : les labels servent à sélectionner et regrouper, les annotations à porter des informations non identifiantes. Et sans convention de nommage des labels, chaque équipe invente la sienne.",
   "exemple": "Chaque fonction du cœur porte les labels application, version et propriétaire ; une requête sur le propriétaire liste ce qu'une équipe exploite, sans consulter une CMDB.",
   "epreuve": {
-    "cas": "À quoi servent les labels Kubernetes ?",
-    "raisonnement": "À identifier et sélectionner des groupes d'objets par attributs clé/valeur. Les labels sont des paires clé/valeur attachées aux objets ; les sélecteurs s'en servent pour retrouver et regrouper des objets.",
+    "cas": "Votre équipe veut retrouver toutes les fonctions du cœur qu'elle exploite sans consulter une CMDB. Que mettez-vous sur les objets Kubernetes, et qu'évitez-vous de mélanger ?",
+    "raisonnement": "Des labels (par exemple application, version, propriétaire) : des paires clé/valeur que les sélecteurs utilisent pour retrouver et regrouper les objets. On ne les mélange pas avec les annotations, qui portent des informations non identifiantes. Et sans convention de nommage des labels, chaque équipe invente la sienne.",
     "source": "Kubernetes : labels et sélecteurs (kubernetes.io/docs/concepts/overview/working-with-objects/labels/)"
   },
   "schema": {

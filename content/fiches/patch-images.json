@@ -23,9 +23,9 @@
   "piege": "Utiliser :latest en production : le même tag peut désigner deux contenus différents, donc deux comportements. Le digest, lui, désigne un contenu précis.",
   "exemple": "Une faille touche une bibliothèque de l'AMF : le SBOM indique quelles images la contiennent ; on reconstruit, on déploie par digest, et l'ancien état reste récupérable.",
   "epreuve": {
-    "cas": "Pourquoi référencer une image par son digest (sha256:…) plutôt que par un tag tel que :latest ?",
-    "raisonnement": "Un tag peut être déplacé vers une autre image ; le digest désigne un contenu précis et immuable. Un tag est un pointeur modifiable : le même tag peut désigner demain une autre image. Le digest est l'empreinte du contenu : il garantit qu'on déploie exactement ce qui a été analysé et validé.",
-    "source": "OCI Distribution Specification (github.com/opencontainers/distribution-spec) ; Kubernetes : Images (kubernetes.io/docs/concepts/containers/images/)"
+    "cas": "Une faille touche une bibliothèque de l'AMF et vous déployez en production avec l'image :latest. Pourquoi est-ce un problème, et que faites-vous à la place ?",
+    "raisonnement": "Un tag est un pointeur modifiable : le même tag peut désigner demain une autre image, donc un autre comportement. Le digest (sha256:…) désigne un contenu précis et garantit qu'on déploie exactement ce qui a été validé. Le SBOM indique quelles images contiennent la bibliothèque : on reconstruit, on déploie par digest, et l'ancien état reste récupérable.",
+    "source": "Kubernetes : images de conteneurs (kubernetes.io/docs/concepts/containers/images/) ; CISA : SBOM (cisa.gov/sbom)"
   },
   "schema": {
     "legende": "Du correctif sur place à l'image reconstruite",

@@ -23,8 +23,8 @@
   "piege": "Fixer des limites sans en connaître l'effet : une limite mémoire dépassée tue le conteneur, une limite CPU le ralentit. Et sans requests, le placement ne tient pas compte de vos besoins.",
   "exemple": "Un UPF qui traite du trafic utilisateur demande des CPU entiers, des hugepages, et un nœud où ses CPU et sa carte réseau relèvent du même NUMA.",
   "epreuve": {
-    "cas": "Que fait Kubernetes de la « request » CPU ou mémoire d'un conteneur ?",
-    "raisonnement": "Elle sert à choisir le nœud où placer le pod. Le scheduler place le pod sur un nœud qui dispose au moins des « requests » demandées. Le plafond appliqué pendant l'exécution est la « limit ».",
+    "cas": "Vous dimensionnez un UPF qui traite du trafic utilisateur. À quoi sert la request d'un conteneur, que provoque une limite mémoire dépassée, et que demande-t-il de plus qu'un volume de CPU ?",
+    "raisonnement": "La request sert à choisir le nœud : le scheduler place le pod sur un nœud qui dispose au moins des requests demandées ; le plafond appliqué à l'exécution est la limit. Une limite mémoire dépassée tue le conteneur, une limite CPU le ralentit. Un UPF demande des CPU entiers, des hugepages, et un nœud où ses CPU et sa carte réseau relèvent du même NUMA.",
     "source": "Kubernetes : gérer les ressources des conteneurs (kubernetes.io/docs/concepts/configuration/manage-resources-containers/)"
   },
   "schema": {

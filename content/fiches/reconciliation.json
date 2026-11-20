@@ -22,8 +22,8 @@
   "piege": "Corriger à la main ce qu'un contrôleur gère : il remet l'état déclaré et efface la correction. Le bon geste est de modifier la déclaration.",
   "exemple": "Si un pod de l'AMF disparaît, le contrôleur du Deployment en recrée un pour retrouver le nombre voulu ; l'équipe n'est alertée que si la reconstitution échoue.",
   "epreuve": {
-    "cas": "Un Deployment déclare 3 réplicas, mais il n'en existe que 2. Quel principe de Kubernetes explique qu'un troisième pod soit créé sans intervention ?",
-    "raisonnement": "La réconciliation : une boucle de contrôle compare l'état désiré à l'état observé et agit pour les rapprocher. Les contrôleurs du plan de contrôle surveillent l'état des objets et corrigent l'écart avec l'état déclaré. Ici, le contrôleur du ReplicaSet crée un pod ; le scheduler lui choisit ensuite un nœud. C'est le modèle déclaratif de Kubernetes.",
+    "cas": "Un Deployment déclare 3 réplicas, il n'en existe que 2. Personne n'intervient et un troisième pod apparaît. Quel principe l'explique, et que devient une correction faite à la main sur ce qu'un contrôleur gère ?",
+    "raisonnement": "La réconciliation : une boucle de contrôle compare l'état désiré à l'état observé et agit pour les rapprocher. Ici le contrôleur du ReplicaSet crée un pod, puis le scheduler lui choisit un nœud. Une correction manuelle est effacée : le contrôleur remet l'état déclaré. Le bon geste est de modifier la déclaration.",
     "source": "Kubernetes : Controllers (kubernetes.io/docs/concepts/architecture/controller/)"
   },
   "schema": {

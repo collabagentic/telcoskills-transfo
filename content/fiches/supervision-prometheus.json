@@ -23,9 +23,9 @@
   "piege": "Reproduire la logique de l'ancien nœud : des centaines de règles sur des causes, qui se déclenchent ensemble. Résultat : du bruit, et les vraies alertes se perdent. Partez de ce que l'utilisateur ressent, puis creusez vers les causes.",
   "exemple": "Pour une SMF, une alerte part si le taux d'échec d'établissement de session PDU dépasse un seuil pendant plusieurs minutes, au lieu d'une alarme par pod redémarré.",
   "epreuve": {
-    "cas": "Pourquoi privilégier des alertes sur les symptômes (taux d'erreurs vu par l'utilisateur) plutôt que sur les causes possibles (CPU élevé) ?",
-    "raisonnement": "Elles signalent un impact réel et limitent les fausses alertes ; la cause se cherche ensuite dans les tableaux de bord. Un CPU élevé n'est pas forcément un problème, et un service peut être en panne avec un CPU normal. Alerter sur ce que l'utilisateur subit réveille l'astreinte pour de bonnes raisons ; les causes se diagnostiquent ensuite.",
-    "source": "Google SRE Book : Monitoring Distributed Systems, Symptoms Versus Causes (sre.google/sre-book/monitoring-distributed-systems/)"
+    "cas": "Pour une SMF, votre ancienne supervision déclenche des centaines d'alarmes sur des causes (CPU élevé, pod redémarré). Sur quoi alertez-vous dans Prometheus à la place, et pourquoi ?",
+    "raisonnement": "Sur les symptômes que l'utilisateur subit, par exemple un taux d'échec d'établissement de session PDU au-dessus d'un seuil pendant plusieurs minutes. Un CPU élevé n'est pas forcément un problème, et un service peut être en panne avec un CPU normal. Des règles sur les causes font du bruit où les vraies alertes se perdent ; les causes se diagnostiquent ensuite dans les tableaux de bord.",
+    "source": "Google SRE : Monitoring Distributed Systems, symptômes et causes (sre.google/sre-book/monitoring-distributed-systems/)"
   },
   "schema": {
     "legende": "De l'alarme par cause à l'alerte sur symptôme",

@@ -23,9 +23,9 @@
   "piege": "Croire que tout passe en HTTP/2. Les interfaces N2 (NGAP en SCTP) et N3 (GTP-U) gardent leur transport d'origine : elles demandent un traitement réseau particulier dans le cluster (SCTP, interface secondaire).",
   "exemple": "L'AMF appelle la SMF pour créer une session PDU par une requête HTTP/2 sur l'interface de service ; la RAN, elle, parle à l'AMF en SCTP sur N2.",
   "epreuve": {
-    "cas": "Quel protocole applicatif et quel format de sérialisation utilisent les interfaces de service (SBI) du cœur 5G ?",
-    "raisonnement": "HTTP/2 avec JSON. Les interfaces à base de services utilisent HTTP/2 (RFC 9113) et JSON (RFC 8259) pour la sérialisation. Les protocoles de signalisation historiques (SCTP, GTP-C, ASN.1) subsistent ailleurs, par exemple entre le RAN et l'AMF.",
-    "source": "3GPP TS 29.500, clauses 5.2 et 5.4 (etsi.org/deliver/etsi_TS/129500_129599/129500/18.09.00_60/ts_129500v180900p.pdf)"
+    "cas": "Un collègue affirme que tout le cœur 5G passe désormais en HTTP/2. Que répondez-vous, et qu'est-ce que cela change dans le cluster ?",
+    "raisonnement": "Les interfaces de service (SBI) utilisent HTTP/2 avec JSON, par exemple l'AMF qui appelle la SMF pour créer une session PDU. Mais N2 (NGAP en SCTP) et N3 (GTP-U) gardent leur transport d'origine : elles demandent un traitement réseau particulier dans le cluster (SCTP, interface secondaire).",
+    "source": "3GPP TS 29.500, clauses 5.2 et 5.4 (3gpp.org/ftp/Specs/archive/29_series/29.500/)"
   },
   "schema": {
     "legende": "Du lien dédié à l'interface de service",

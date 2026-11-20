@@ -22,9 +22,9 @@
   "piege": "Tout tracer. La télémétrie coûte du stockage et du réseau : on échantillonne et on choisit ce qui est instrumenté. Le Collector sert aussi à filtrer avant l'export.",
   "exemple": "Une création de session PDU traverse l'AMF, la SMF, la PCF et l'UPF ; la trace montre quelle étape ralentit la création de session.",
   "epreuve": {
-    "cas": "Quels sont les trois signaux principaux collectés avec OpenTelemetry ?",
-    "raisonnement": "Les traces, les métriques et les journaux (logs). OpenTelemetry standardise la collecte des traces (parcours d'une requête), des métriques (mesures agrégées) et des logs (événements). Les autres propositions sont des usages ou des ressources, pas des signaux.",
-    "source": "OpenTelemetry : Signals (opentelemetry.io/docs/concepts/signals/)"
+    "cas": "Une création de session PDU traverse l'AMF, la SMF, la PCF et l'UPF, et elle est lente. Quels signaux collectez-vous avec OpenTelemetry, lequel montre l'étape qui ralentit, et quel est le piège ?",
+    "raisonnement": "Trois signaux : les traces (parcours d'une requête), les métriques (mesures agrégées) et les logs (événements). La trace montre quelle étape ralentit la création de session. Piège : tout tracer coûte du stockage et du réseau ; on échantillonne, on choisit ce qui est instrumenté, et le Collector peut filtrer avant l'export.",
+    "source": "OpenTelemetry : signaux (opentelemetry.io/docs/concepts/signals/) ; Collector (opentelemetry.io/docs/collector/)"
   },
   "schema": {
     "legende": "Suivre une requête de bout en bout",

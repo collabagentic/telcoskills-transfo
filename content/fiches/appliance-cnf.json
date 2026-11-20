@@ -23,8 +23,8 @@
   "piege": "Prendre le chart de l'éditeur tel quel. Les valeurs par défaut ne conviennent pas à votre cluster (réseaux secondaires, ressources, stockage) : elles se documentent et se versionnent, comme une configuration d'équipement.",
   "exemple": "L'éditeur livre l'UPF sous forme de chart ; votre équipe fixe dans les valeurs les interfaces secondaires et les ressources, puis déploie la version par « helm upgrade ».",
   "epreuve": {
-    "cas": "Quelle commande applique une nouvelle version d'un chart, ou de nouvelles valeurs, à une release Helm déjà installée ?",
-    "raisonnement": "helm upgrade. helm upgrade met à jour une release existante et crée une nouvelle révision. helm template génère les manifestes sans rien installer, helm lint vérifie un chart, helm pull le télécharge.",
+    "cas": "L'éditeur livre l'UPF sous forme de chart Helm. Que faites-vous de ses valeurs par défaut, et quelle commande applique une nouvelle version sur une release déjà installée ?",
+    "raisonnement": "Les valeurs par défaut ne conviennent pas à votre cluster (réseaux secondaires, ressources, stockage) : elles se documentent et se versionnent, comme une configuration d'équipement. Une release existante se met à jour avec helm upgrade, qui crée une nouvelle révision ; helm template génère seulement les manifestes, sans rien installer.",
     "source": "Helm : helm upgrade (helm.sh/docs/helm/helm_upgrade/)"
   },
   "schema": {

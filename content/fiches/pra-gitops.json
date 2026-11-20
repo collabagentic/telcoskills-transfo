@@ -23,9 +23,9 @@
   "piege": "Croire que Git suffit. Les manifestes reconstruisent les applications, pas les données ni les secrets : il faut toujours des sauvegardes testées (par exemple de la base etcd) et une gestion des secrets. Le RPO dépend de la réplication des données, pas de Git.",
   "exemple": "Un site de secours doit accueillir des fonctions du cœur (AMF, SMF) : le cluster est recréé, le dépôt est réappliqué, puis les données d'abonnés et de sessions sont restaurées depuis leur réplication.",
   "epreuve": {
-    "cas": "Que mesure le RTO ?",
-    "raisonnement": "La durée maximale acceptable d'arrêt du service. Le RTO est la durée d'arrêt acceptable. La quantité de données perdues, c'est le RPO.",
-    "source": "Résumé du nœud (pra-rpo-rto) : définition standard"
+    "cas": "Un site de secours doit accueillir l'AMF et la SMF. Un collègue dit : « Tout est dans Git, on réapplique et c'est fini. » Que répondez-vous, et que mesurent le RTO et le RPO ?",
+    "raisonnement": "Git reconstruit les applications, pas les données ni les secrets : il faut des sauvegardes testées (par exemple de la base etcd) et une gestion des secrets. Le RTO est la durée maximale acceptable d'arrêt du service ; le RPO, la quantité de données perdues acceptable, et il dépend de la réplication des données, pas de Git.",
+    "source": "OpenGitOps : principes (opengitops.dev/) ; Kubernetes : sauvegarde d'etcd (kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/) ; définitions usuelles du RTO et du RPO"
   },
   "schema": {
     "legende": "Reprise : procédure ou dépôt",

@@ -23,9 +23,9 @@
   "piege": "Une pull request ne protège que si les vérifications sont obligatoires avant fusion et si la branche principale est protégée. Sans cela, elle devient une formalité et le pipeline un simple outil de livraison.",
   "exemple": "Le changement de configuration d'une fonction du cœur passe par une pull request sur le dépôt de la plateforme : le pipeline valide les fichiers, un relecteur approuve, puis la plateforme applique la fusion.",
   "epreuve": {
-    "cas": "Quelqu'un modifie à la main une ressource dans le cluster, qui diffère maintenant du dépôt git. Que fait un outil comme Argo CD ou Flux configuré pour corriger automatiquement les dérives ?",
-    "raisonnement": "Il détecte l'écart et ramène le cluster à l'état décrit dans git. En GitOps, git est la source de vérité. L'agent compare en continu l'état réel et l'état déclaré, et, avec la correction automatique activée (selfHeal pour Argo CD), il annule les changements manuels. Sans elle, il signale seulement l'écart.",
-    "source": "Argo CD : Automated Sync Policy (argo-cd.readthedocs.io) ; Flux : documentation (fluxcd.io/flux)"
+    "cas": "Un changement de configuration d'une fonction du cœur passe par une pull request. Que faut-il en plus pour qu'elle protège vraiment, et que fait Argo CD ou Flux si quelqu'un modifie la ressource à la main dans le cluster ?",
+    "raisonnement": "Les vérifications doivent être obligatoires avant fusion et la branche principale protégée, sinon la pull request devient une formalité. Côté cluster, en GitOps git est la source de vérité : avec la correction automatique (selfHeal pour Argo CD), l'agent ramène le cluster à l'état décrit dans git ; sans elle, il signale seulement l'écart.",
+    "source": "GitHub : branches protégées (docs.github.com, about-protected-branches) ; Argo CD : synchronisation automatique (argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/)"
   },
   "schema": {
     "legende": "Du formulaire à la fusion",

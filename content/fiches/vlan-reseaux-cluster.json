@@ -23,9 +23,9 @@
   "piege": "Appliquer le bon réflexe au mauvais plan. Sur le réseau primaire des pods, découper en sous-réseaux n'isole rien : l'IP d'un pod est éphémère. L'erreur inverse, côté profil cloud-natif, consiste à ignorer les réseaux secondaires, là où le VLAN reste légitime.",
   "exemple": "Dans un cœur 5G déployé en CNF, la signalisation reste sur le réseau primaire du cluster. Le trafic utilisateur d'une fonction UPF passe par une interface secondaire attachée en SR-IOV, avec son VLAN et sa MTU.",
   "epreuve": {
-    "cas": "À quoi sert Multus CNI ?",
-    "raisonnement": "À attacher plusieurs interfaces réseau à un pod, en appelant plusieurs plugins CNI. Par défaut, un pod n'a qu'une interface réseau en plus du loopback. Multus joue le rôle de méta-plugin : il appelle d'autres plugins CNI pour créer des interfaces supplémentaires, par exemple pour séparer plan de contrôle, plan usager et gestion.",
-    "source": "Multus CNI : README (github.com/k8snetworkplumbingwg/multus-cni)"
+    "cas": "Vous déployez un cœur 5G en CNF. Découper le réseau primaire des pods en sous-réseaux isole-t-il quelque chose ? Où garde-t-on ses VLAN, et à quoi sert Multus ?",
+    "raisonnement": "Non : sur le réseau primaire, l'IP d'un pod est éphémère. Le VLAN reste légitime sur les réseaux secondaires : le trafic utilisateur d'un UPF passe par une interface secondaire attachée en SR-IOV, avec son VLAN et sa MTU. Multus attache plusieurs interfaces à un pod en appelant plusieurs plugins CNI ; par défaut un pod n'a qu'une interface en plus du loopback.",
+    "source": "Multus CNI : README (github.com/k8snetworkplumbingwg/multus-cni) ; Red Hat, OpenShift 4.20 : telco core reference design"
   },
   "schema": {
     "legende": "Deux plans de réseau dans un cluster",

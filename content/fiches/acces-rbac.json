@@ -23,9 +23,9 @@
   "piege": "Lier un ClusterRole avec un ClusterRoleBinding alors qu'on voulait un seul namespace : les droits s'appliquent alors à tout le cluster.",
   "exemple": "Un exploitant du cœur 5G reçoit un rôle de lecture sur le namespace de l'UPF ; l'outil de supervision a son propre compte de service, limité à la lecture des métriques.",
   "epreuve": {
-    "cas": "Une requête sur l'API Kubernetes ne correspond à aucune règle RBAC (Role ou ClusterRole) liée à l'utilisateur. Que décide RBAC ?",
-    "raisonnement": "Elle est refusée : RBAC n'accorde que des permissions, rien n'est autorisé par défaut. Les règles RBAC sont uniquement additives : il n'existe pas de règle de refus explicite, et en l'absence de règle qui l'autorise, l'accès est refusé. Les permissions se donnent via des Roles et des bindings.",
-    "source": "Kubernetes : Using RBAC Authorization (kubernetes.io/docs/reference/access-authn-authz/rbac/)"
+    "cas": "Votre outil de supervision doit lire les métriques du seul namespace de l'UPF. Un collègue propose un ClusterRole lié par un ClusterRoleBinding « pour aller vite ». Que répondez-vous, et que décide RBAC pour une requête qu'aucune règle n'autorise ?",
+    "raisonnement": "Un ClusterRoleBinding applique les droits à tout le cluster, pas à un namespace : pour un seul namespace, on lie le droit à ce namespace (Role et binding), avec un compte de service dédié à l'outil. Pour la seconde question : la requête est refusée. Les règles RBAC sont uniquement additives, il n'existe pas de règle de refus explicite.",
+    "source": "Kubernetes : contrôle d'accès RBAC (kubernetes.io/docs/reference/access-authn-authz/rbac/)"
   },
   "schema": {
     "legende": "Qui peut faire quoi, où",

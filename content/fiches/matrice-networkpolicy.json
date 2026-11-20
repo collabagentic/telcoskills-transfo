@@ -23,8 +23,8 @@
   "piege": "Une NetworkPolicy peut être acceptée sans effet : si le plugin réseau du cluster ne gère pas les NetworkPolicy, rien n'est filtré. Autre piège classique : une règle ingress contenant un élément vide ({}) autorise tout le trafic au lieu de tout refuser.",
   "exemple": "Pour l'AMF d'un cœur 5G, la règle sélectionne les pods de l'AMF par label et n'ouvre en entrée que le port 38412 en SCTP, le port de la signalisation NGAP (interface N2).",
   "epreuve": {
-    "cas": "Dans un namespace, aucune NetworkPolicy n'existe. Quel est le comportement par défaut pour le trafic entrant vers les pods ?",
-    "raisonnement": "Tout est autorisé. Par défaut, les pods ne sont pas isolés : ils acceptent tout trafic. Dès qu'une NetworkPolicy sélectionne un pod, seul le trafic qu'elle autorise est accepté pour les directions qu'elle couvre.",
+    "cas": "Pour l'AMF, vous traduisez votre matrice de flux en NetworkPolicy qui n'ouvre en entrée que le port 38412 en SCTP. Que se passe-t-il quand aucune NetworkPolicy n'existe, et quels deux pièges vérifiez-vous ?",
+    "raisonnement": "Sans NetworkPolicy, les pods ne sont pas isolés : tout est autorisé. Dès qu'une NetworkPolicy sélectionne un pod, seul le trafic qu'elle autorise est accepté, pour les directions couvertes. Pièges : si le plugin réseau ne gère pas les NetworkPolicy, rien n'est filtré ; une règle ingress contenant un élément vide ({}) autorise tout le trafic au lieu de tout refuser.",
     "source": "Kubernetes : Network Policies (kubernetes.io/docs/concepts/services-networking/network-policies/)"
   },
   "schema": {

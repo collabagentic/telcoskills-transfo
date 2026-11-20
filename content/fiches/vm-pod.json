@@ -23,9 +23,9 @@
   "piege": "Mettre une application à état dans un Deployment. Une base répliquée, qui demande à chaque réplica un nom réseau stable et son propre volume, relève d'un StatefulSet.",
   "exemple": "Un frontal HTTP/2 d'interface SBI, sans état local, se déploie en plusieurs pods identiques ; si l'un tombe, un autre est créé à sa place.",
   "epreuve": {
-    "cas": "Une base de données répliquée a besoin, pour chaque réplica, d'un nom réseau stable et de son propre volume. Quel objet convient le mieux ?",
-    "raisonnement": "Un StatefulSet. Un StatefulSet donne à chaque pod une identité stable (nom ordonné, DNS propre) et, avec volumeClaimTemplates, un volume dédié qui le suit lors d'un redémarrage. Un Deployment traite ses pods comme interchangeables.",
-    "source": "Kubernetes : StatefulSets (kubernetes.io/docs/concepts/workloads/controllers/statefulset/)"
+    "cas": "Vous migrez deux choses : un frontal HTTP/2 sans état local, et une base de données répliquée. Quel objet Kubernetes pour chacune, et pourquoi ?",
+    "raisonnement": "Le frontal sans état se déploie en plusieurs pods identiques dans un Deployment ; si l'un tombe, un autre est créé. La base répliquée relève d'un StatefulSet : chaque pod a une identité stable (nom ordonné, DNS propre) et, avec volumeClaimTemplates, un volume dédié qui le suit lors d'un redémarrage. Un Deployment traite ses pods comme interchangeables.",
+    "source": "Kubernetes : StatefulSets (kubernetes.io/docs/concepts/workloads/controllers/statefulset/) ; Deployments"
   },
   "schema": {
     "legende": "De la machine qu'on soigne au pod qu'on remplace",

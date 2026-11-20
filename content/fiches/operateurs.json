@@ -22,8 +22,8 @@
   "piege": "Traiter un opérateur comme une boîte noire. Il agit sur le cluster avec ses propres droits RBAC : lisez ce qu'il demande avant de l'installer.",
   "exemple": "Un éditeur de cœur 5G livre un opérateur : vous créez un objet qui décrit la version et le nombre d'instances, et l'opérateur déploie et met à jour les pods.",
   "epreuve": {
-    "cas": "Dans OLM, quel objet exprime la demande de suivre un opérateur dans un canal d'un catalogue, pour l'installer et le maintenir à jour ?",
-    "raisonnement": "La Subscription. La Subscription désigne un package, un canal et une source de catalogue : elle sert à garder les CSV à jour. Le CatalogSource est le dépôt, le CSV décrit l'application, l'InstallPlan liste les ressources à créer.",
+    "cas": "Un éditeur de cœur 5G livre un opérateur. Avec OLM, quel objet demande son installation et son maintien à jour, et que vérifiez-vous avant de l'installer ?",
+    "raisonnement": "La Subscription : elle désigne un package, un canal et une source de catalogue, et sert à garder les CSV à jour (le CatalogSource est le dépôt, le CSV décrit l'application, l'InstallPlan liste les ressources à créer). Un opérateur agit avec ses propres droits RBAC : on lit ce qu'il demande avant de l'installer, on ne le traite pas comme une boîte noire.",
     "source": "Operator Lifecycle Manager : architecture (olm.operatorframework.io/docs/concepts/olm-architecture/)"
   },
   "schema": {

@@ -23,8 +23,8 @@
   "piege": "Vendre un SLO sans pouvoir le mesurer. Un objectif de disponibilité n'a de sens que défini avec son indicateur (SLI) et sa fenêtre de mesure.",
   "exemple": "Pour une fonction du cœur, deux options sont chiffrées : trois réplicas sur un site, ou six répartis sur deux sites. Le client voit le coût de chaque objectif de disponibilité.",
   "epreuve": {
-    "cas": "Un SLO de 99,9 % de disponibilité sur 30 jours tolère environ combien d'indisponibilité ?",
-    "raisonnement": "Environ 43 minutes. 30 jours font 43 200 minutes ; 0,1 % de ce total fait 43,2 minutes. C'est le budget d'erreur de l'objectif.",
+    "cas": "Un client demande 99,9 % de disponibilité sur 30 jours pour une fonction du cœur. Combien d'indisponibilité cela tolère-t-il, et qu'exigez-vous avant de vendre cet objectif ?",
+    "raisonnement": "Environ 43 minutes : 30 jours font 43 200 minutes et 0,1 % de ce total fait 43,2 minutes, c'est le budget d'erreur. Un SLO ne se vend pas sans pouvoir le mesurer : il se définit avec son indicateur (SLI) et sa fenêtre de mesure.",
     "source": "Google SRE : objectifs de niveau de service (sre.google/sre-book/service-level-objectives/)"
   },
   "schema": {

@@ -23,9 +23,9 @@
   "piege": "Faire passer le SCTP de la signalisation N2 par un Ingress : il ne le transporte pas. Il faut un Service de type LoadBalancer (par exemple avec MetalLB) ou un équivalent.",
   "exemple": "L'AMF expose le port NGAP en SCTP par un Service LoadBalancer dont l'adresse est annoncée en BGP aux routeurs de la RAN.",
   "epreuve": {
-    "cas": "Quel type de Service ouvre un même port sur chaque nœud du cluster, en plus de créer une adresse interne ?",
-    "raisonnement": "NodePort. NodePort réserve un port (30000-32767 par défaut) sur tous les nœuds et redirige le trafic vers le Service ; il s'appuie sur une adresse ClusterIP. ClusterIP seul n'est joignable que depuis le cluster.",
-    "source": "Kubernetes : Service (kubernetes.io/docs/concepts/services-networking/service/)"
+    "cas": "L'AMF doit exposer le port NGAP en SCTP vers la RAN. Votre réflexe est un répartiteur de charge configuré à la main. Quel objet Kubernetes utilisez-vous, et pourquoi pas un Ingress ?",
+    "raisonnement": "Un Service de type LoadBalancer (par exemple avec MetalLB, l'adresse étant annoncée en BGP aux routeurs de la RAN). Un Ingress ne gère que HTTP, HTTPS et TLS : il ne transporte pas le SCTP. Le Service suit lui-même les pods qui répondent, sans pool à maintenir à la main.",
+    "source": "Kubernetes : Service (kubernetes.io/docs/concepts/services-networking/service/) ; MetalLB : mode BGP (metallb.io/concepts/bgp/)"
   },
   "schema": {
     "legende": "Répartir le trafic",

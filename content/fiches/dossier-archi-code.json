@@ -23,8 +23,8 @@
   "piege": "Écrire un ADR après coup, pour justifier. Sa valeur vient de ce qu'il est daté et rédigé au moment du choix ; une décision remplacée reste dans l'historique, marquée comme telle.",
   "exemple": "Le choix de séparer le plan usager sur une interface secondaire SR-IOV s'écrit en un ADR d'une page, relu en pull request par l'équipe réseau.",
   "epreuve": {
-    "cas": "Que contient classiquement un enregistrement de décision d'architecture (ADR) ?",
-    "raisonnement": "Le contexte, la décision, son statut et ses conséquences. Un ADR est un court document qui décrit le contexte, la décision prise, son statut et ses conséquences.",
+    "cas": "Vous choisissez de séparer le plan usager sur une interface secondaire SR-IOV. Comment tracez-vous cette décision, que contient la trace, et quand l'écrivez-vous ?",
+    "raisonnement": "Par un enregistrement de décision d'architecture (ADR) : un court document avec le contexte, la décision, son statut et ses conséquences, relu en pull request. Il s'écrit au moment du choix, daté, et non après coup pour justifier ; une décision remplacée reste dans l'historique, marquée comme telle.",
     "source": "Michael Nygard, Documenting Architecture Decisions (cognitect.com/blog/2011/11/15/documenting-architecture-decisions)"
   },
   "schema": {
