@@ -6,6 +6,10 @@
     { "fiche": "vm-pod", "note": "Le lien Deployments de l'épreuve est cité sans adresse complète." },
     { "fiche": "interfaces-sbi", "note": "Vérifier la clause 3GPP citée (TS 29.500, clauses 5.2 et 5.4) contre la version en vigueur." },
     { "fiche": "plateforme-produit", "note": "Classée « décider » alors qu'elle se lit aussi comme « comprendre » : arbitrage de l'auteur." },
-    { "fiche": "observabilite-traces", "note": "Nouveauté sans « avant » : vérifier que le canevas « intégrer » lui convient." }
+    { "fiche": "observabilite-traces", "note": "Nouveauté sans « avant » : vérifier que le canevas « intégrer » lui convient." },
+    { "fiche": "reconciliation", "note": "Relecture sourcée faite (5 confirmés, 7 non sourcés, 3 douteux) : corrections à trancher, voir reports/relecture/reconciliation.md." },
+    { "fiche": "vm-pod", "note": "Relecture sourcée faite (11 confirmés, 7 non sourcés, 3 douteux) : lien « Registre tire Deployment » faux, voir reports/relecture/vm-pod.md." },
+    { "fiche": "actif-passif-replicas", "note": "Relecture sourcée faite (5 confirmés, 6 non sourcés, 2 douteux) : rien ne source l'actif/passif, voir reports/relecture/actif-passif-replicas.md." },
+    { "fiche": "operateurs", "note": "Relecture sourcée faite (11 confirmés, 6 non sourcés, 5 douteux) : lien de diagramme inversé, voir reports/relecture/operateurs.md." }
   ]
 }
