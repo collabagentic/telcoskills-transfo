@@ -4,13 +4,18 @@ import { notFound } from "next/navigation";
 import { AvantApres } from "@/composants/AvantApres";
 import { BoutonRessources } from "@/composants/BoutonRessources";
 import { Diagramme } from "@/composants/Diagramme";
-import { BarreFiche, HautDeFiche, SuiteFiche } from "@/composants/NavigationFiche";
+import { Epreuve } from "@/composants/Epreuve";
+import { FilMetro } from "@/composants/FilMetro";
+import { GesteFiche } from "@/composants/GesteFiche";
+import { HautDeFiche, SuiteFiche } from "@/composants/NavigationFiche";
+import { PromptApprendre } from "@/composants/PromptApprendre";
+import { RailFeuille } from "@/composants/RailFeuille";
 import { Ressources } from "@/composants/Ressources";
 import { SchemaFiche } from "@/composants/SchemaFiche";
-import { Verifier } from "@/composants/Verifier";
 import { chargerContenu } from "@/contenu/charger";
-import { preparerQuestion, tempsLecture, titreFiche } from "@/contenu/lecture";
+import { tempsLecture, titreFiche } from "@/contenu/lecture";
 import { donneesPubliques } from "@/contenu/publiques";
+import { amorces } from "@/lib/prompt";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -37,7 +42,6 @@ export default async function PageFiche({ params }: Props) {
   if (!f) notFound();
 
   const titre = titreFiche(f);
-  const questions = f.questions.map((qid) => preparerQuestion(c.questions.find((q) => q.id === qid)!));
   const technos = f.technos.map((t) => c.technos.find((x) => x.id === t)!);
   const competences = f.competences.map((cid) => c.competences.find((x) => x.id === cid)!);
   const issue = `https://github.com/${DEPOT}/issues/new?title=${encodeURIComponent(`Erreur dans la fiche « ${titre} »`)}&body=${encodeURIComponent(
@@ -49,7 +53,12 @@ export default async function PageFiche({ params }: Props) {
   const donnees = donneesPubliques();
 
   return (
-    <article className="fiche lecture">
+    <article className="fiche fiche-pilotage">
+      <FilMetro donnees={donnees} competence={f.competences[0]} titreFiche={titre} />
+      <aside className="fiche-rail" aria-label="Ma feuille de route">
+        <RailFeuille donnees={donnees} competence={f.competences[0]} />
+      </aside>
+      <div className="fiche-centre lecture">
       <HautDeFiche ficheId={f.id} />
       <div className="fiche-meta">
         <span className="pastille">{GENRE[f.genre]}</span>
@@ -59,8 +68,6 @@ export default async function PageFiche({ params }: Props) {
       <h1>{titre}</h1>
 
       <AvantApres genre={f.genre} resume={f.resume} technos={technos.map((t) => ({ id: t.id, nom: t.nom }))} />
-
-      <BarreFiche ficheId={f.id} donnees={donnees} />
 
       <section className="rubrique">
         <h2>Ce qui reste vrai</h2>
@@ -102,7 +109,11 @@ export default async function PageFiche({ params }: Props) {
         <p>{f.exemple}</p>
       </section>
 
-      <Verifier ficheId={f.id} questions={questions} />
+      <PromptApprendre
+        entree={{ categorie: f.categorie, genre: f.genre, avant: f.avant, apres: f.apres, resume: f.resume.apres, reflexe: f.reflexe, competences: competences.map((x) => x.titre) }}
+        amorces={amorces(f)}
+      />
+      <Epreuve ficheId={f.id} cas={f.epreuve.cas} raisonnement={f.epreuve.raisonnement} source={f.epreuve.source} />
 
       <section className="rubrique">
         <h2>Compétences de la feuille de route</h2>
@@ -170,6 +181,10 @@ export default async function PageFiche({ params }: Props) {
 
       <SuiteFiche ficheId={f.id} donnees={donnees} />
       <BoutonRessources cible="plus-loin" />
+      </div>
+      <aside className="fiche-geste" aria-label="Prochain geste">
+        <GesteFiche liens={f.plusLoin} minutes={tempsLecture(f)} />
+      </aside>
     </article>
   );
 }

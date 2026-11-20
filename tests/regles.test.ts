@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { verifierContenu } from "@/contenu/regles";
-import { competenceSchema, ficheSchema, orientationSchema, questionSchema } from "@/contenu/schemas";
+import { competenceSchema, ficheSchema, orientationSchema } from "@/contenu/schemas";
 import { contenuValide, fiche } from "./fixtures/contenu";
 
 const erreursDeRegle = (c: ReturnType<typeof contenuValide>, n: number) => verifierContenu(c).filter((e) => e.startsWith(`Règle ${n} `));
@@ -32,19 +32,20 @@ describe("règles du contenu", () => {
     expect(erreursDeRegle(d, 4).length).toBe(2);
   });
 
-  it("règle 5 : sources, lien libre, exactement 2 questions", () => {
+  it("règle 5 : sources, lien libre, une épreuve", () => {
     const c = contenuValide();
     c.fiches[0].plusLoin = [{ ...c.fiches[0].plusLoin[0], acces: "payant" }];
     expect(erreursDeRegle(c, 5).join()).toContain("libre");
     expect(ficheSchema.safeParse({ ...fiche("x"), sources: [] }).success).toBe(false);
-    expect(ficheSchema.safeParse({ ...fiche("x"), questions: ["q-x-1"] }).success).toBe(false);
+    expect(ficheSchema.safeParse({ ...fiche("x"), epreuve: undefined }).success).toBe(false);
     expect(ficheSchema.safeParse({ ...fiche("x"), competences: [] }).success).toBe(false);
   });
 
   it("règle 6 : les longueurs maximales sont imposées", () => {
     expect(ficheSchema.safeParse({ ...fiche("x"), piege: "a".repeat(601) }).success).toBe(false);
     expect(ficheSchema.safeParse({ ...fiche("x"), resteVrai: ["a".repeat(141), "b"] }).success).toBe(false);
-    expect(questionSchema.safeParse({ id: "q", fiche: "x", enonce: "?", options: ["a", "b"], bonne: 2, explication: "e", source: "s", statut: "brouillon" }).success).toBe(false);
+    expect(ficheSchema.safeParse({ ...fiche("x"), epreuve: { cas: "a".repeat(401), raisonnement: "r", source: "s" } }).success).toBe(false);
+    expect(ficheSchema.safeParse({ ...fiche("x"), categorie: "autre" }).success).toBe(false);
   });
 
   it("règle 7 : techno non citée", () => {

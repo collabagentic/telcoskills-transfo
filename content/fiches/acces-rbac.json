@@ -1,6 +1,7 @@
 {
   "id": "acces-rbac",
   "genre": "transposition",
+  "categorie": "comprendre",
   "avant": "gestion des comptes et accès root",
   "apres": "RBAC et comptes de service",
   "resume": {
@@ -21,6 +22,11 @@
   "pourquoiNouveau": null,
   "piege": "Lier un ClusterRole avec un ClusterRoleBinding alors qu'on voulait un seul namespace : les droits s'appliquent alors à tout le cluster.",
   "exemple": "Un exploitant du cœur 5G reçoit un rôle de lecture sur le namespace de l'UPF ; l'outil de supervision a son propre compte de service, limité à la lecture des métriques.",
+  "epreuve": {
+    "cas": "Une requête sur l'API Kubernetes ne correspond à aucune règle RBAC (Role ou ClusterRole) liée à l'utilisateur. Que décide RBAC ?",
+    "raisonnement": "Elle est refusée : RBAC n'accorde que des permissions, rien n'est autorisé par défaut. Les règles RBAC sont uniquement additives : il n'existe pas de règle de refus explicite, et en l'absence de règle qui l'autorise, l'accès est refusé. Les permissions se donnent via des Roles et des bindings.",
+    "source": "Kubernetes : Using RBAC Authorization (kubernetes.io/docs/reference/access-authn-authz/rbac/)"
+  },
   "schema": {
     "legende": "Qui peut faire quoi, où",
     "avant": [
@@ -192,10 +198,6 @@
   ],
   "technos": [
     "kubernetes"
-  ],
-  "questions": [
-    "q-acces-rbac-1",
-    "q-acces-rbac-2"
   ],
   "plusLoin": [
     {

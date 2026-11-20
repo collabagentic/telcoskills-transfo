@@ -1,6 +1,7 @@
 {
   "id": "cmdb-git",
   "genre": "transposition",
+  "categorie": "pratique",
   "avant": "CMDB et inventaire",
   "apres": "Git comme source de vérité et labels",
   "resume": {
@@ -21,6 +22,11 @@
   "pourquoiNouveau": null,
   "piege": "Mélanger labels et annotations : les labels servent à sélectionner et regrouper, les annotations à porter des informations non identifiantes. Et sans convention de nommage des labels, chaque équipe invente la sienne.",
   "exemple": "Chaque fonction du cœur porte les labels application, version et propriétaire ; une requête sur le propriétaire liste ce qu'une équipe exploite, sans consulter une CMDB.",
+  "epreuve": {
+    "cas": "À quoi servent les labels Kubernetes ?",
+    "raisonnement": "À identifier et sélectionner des groupes d'objets par attributs clé/valeur. Les labels sont des paires clé/valeur attachées aux objets ; les sélecteurs s'en servent pour retrouver et regrouper des objets.",
+    "source": "Kubernetes : labels et sélecteurs (kubernetes.io/docs/concepts/overview/working-with-objects/labels/)"
+  },
   "schema": {
     "legende": "Où vit l'inventaire",
     "avant": [
@@ -197,10 +203,6 @@
   "technos": [
     "kubernetes",
     "argo-cd"
-  ],
-  "questions": [
-    "q-cmdb-git-1",
-    "q-cmdb-git-2"
   ],
   "plusLoin": [
     {

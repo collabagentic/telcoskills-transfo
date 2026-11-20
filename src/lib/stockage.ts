@@ -17,6 +17,16 @@ export type Parcours = Avancement & {
   objectif?: string;
 };
 
+/** Avant la mise à l'épreuve, une fiche s'appelait « vérifiée » : l'ancien état devient « acquise » sans rien perdre. */
+function migrerFiches(brut: unknown): Parcours["fiches"] {
+  const sortie: Parcours["fiches"] = {};
+  for (const [id, v] of Object.entries(brut as Record<string, { lu?: string; acquis?: string; verifie?: string }>)) {
+    const acquis = v?.acquis ?? v?.verifie;
+    sortie[id] = { ...(v?.lu ? { lu: v.lu } : {}), ...(acquis ? { acquis } : {}) };
+  }
+  return sortie;
+}
+
 const VIERGE: Parcours = { v: 2, reponses: {}, maitrisees: [], fiches: {} };
 
 export function analyserParcours(brut: string | null): Parcours | null {
@@ -28,7 +38,7 @@ export function analyserParcours(brut: string | null): Parcours | null {
       v: 2,
       reponses: Object.fromEntries(Object.entries(p.reponses).filter(([, v]) => typeof v === "string")),
       maitrisees: p.maitrisees.filter((x) => typeof x === "string"),
-      fiches: p.fiches,
+      fiches: migrerFiches(p.fiches),
       ...(typeof p.objectif === "string" ? { objectif: p.objectif } : {}),
     };
   } catch {
@@ -114,13 +124,13 @@ export function basculerMaitrisee(id: string): void {
   ecrire({ ...p, maitrisees: p.maitrisees.includes(id) ? p.maitrisees.filter((x) => x !== id) : [...p.maitrisees, id] });
 }
 
-/** Marque une fiche « lue » ou « vérifiée » (la date du premier événement est conservée). */
-export function marquerFiche(id: string, etat: "lu" | "verifie"): void {
+/** Marque une fiche « lue » ou « acquise » (la date du premier événement est conservée). */
+export function marquerFiche(id: string, etat: "lu" | "acquis"): void {
   const p = courant();
   const actuel = p.fiches[id] ?? {};
   const jour = aujourdhui();
-  const suivant = etat === "verifie" ? { ...actuel, lu: actuel.lu ?? jour, verifie: actuel.verifie ?? jour } : { ...actuel, lu: actuel.lu ?? jour };
-  if (suivant.lu === actuel.lu && suivant.verifie === actuel.verifie) return;
+  const suivant = etat === "acquis" ? { ...actuel, lu: actuel.lu ?? jour, acquis: actuel.acquis ?? jour } : { ...actuel, lu: actuel.lu ?? jour };
+  if (suivant.lu === actuel.lu && suivant.acquis === actuel.acquis) return;
   ecrire({ ...p, fiches: { ...p.fiches, [id]: suivant } });
 }
 

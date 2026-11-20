@@ -6,6 +6,7 @@ export const metadata: Metadata = { title: "Contribuer" };
 const GABARIT = `{
   "id": "ma-fiche",                    // minuscules et tirets, unique
   "genre": "transposition",            // ou "nouveaute"
+  "categorie": "comprendre",           // comprendre, pratique, integrer, diagnostiquer ou decider
   "avant": "matrice de flux",          // « Votre … » (transposition seulement)
   "apres": "NetworkPolicy",            // « version … »
   "resume": { "avant": "…", "apres": "…" },   // 200 caractères au plus chacun
@@ -18,7 +19,7 @@ const GABARIT = `{
   "schema": { "legende": "…", "avant": [{ "texte": "…" }, { "texte": "…" }], "apres": [{ "texte": "…" }, { "texte": "…" }] },
   "competences": ["k8s-archi"],        // au moins une compétence du graphe
   "technos": [],
-  "questions": ["q-ma-fiche-1", "q-ma-fiche-2"],   // exactement deux
+  "epreuve": { "cas": "Une situation à raisonner ?", "raisonnement": "Ce qu'on attend, en quelques phrases.", "source": "Où c'est écrit" },
   "plusLoin": [{ "type": "doc", "nom": "…", "url": "https://…", "langue": "fr", "acces": "gratuit" }],
   "sources": [{ "nom": "…", "url": "https://…" }],  // une source par affirmation technique
   "statut": "brouillon",

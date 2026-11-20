@@ -1,6 +1,7 @@
 {
   "id": "plateforme-produit",
   "genre": "nouveaute",
+  "categorie": "decider",
   "avant": null,
   "apres": "La plateforme comme produit interne",
   "resume": {
@@ -20,6 +21,11 @@
   "pourquoiNouveau": "Dans un modèle classique, une équipe d'infrastructure traite des demandes. Ici, la plateforme se conçoit pour ses utilisateurs internes, avec une feuille de route et des retours, comme un produit.",
   "piege": "Réduire la plateforme à un outil installé. Sans équipe responsable, sans catalogue et sans retour des utilisateurs, elle redevient un guichet de tickets.",
   "exemple": "L'équipe plateforme propose un gabarit « déployer une CNF » (réseaux secondaires, supervision, accès) que les équipes d'exploitation utilisent sans recréer chaque réglage.",
+  "epreuve": {
+    "cas": "D'après le livre blanc plateformes de la CNCF, qu'apporte avant tout une plateforme interne ?",
+    "raisonnement": "Des capacités en libre-service qui réduisent la charge cognitive des équipes. Une plateforme interne propose des capacités en libre-service pour que les équipes se concentrent sur leur métier plutôt que sur l'infrastructure sous-jacente.",
+    "source": "CNCF : livre blanc sur les plateformes (tag-app-delivery.cncf.io/whitepapers/platforms/)"
+  },
   "schema": {
     "legende": "Une plateforme avec ses utilisateurs",
     "avant": null,
@@ -182,10 +188,6 @@
   ],
   "technos": [
     "kubernetes"
-  ],
-  "questions": [
-    "q-plateforme-produit-1",
-    "q-plateforme-produit-2"
   ],
   "plusLoin": [
     {

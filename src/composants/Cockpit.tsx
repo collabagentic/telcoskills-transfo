@@ -49,7 +49,7 @@ export function Cockpit({ donnees }: { donnees: DonneesPubliques }) {
   const total = feuille.etapes.length;
   const pourcentage = total ? Math.round((faites / total) * 100) : 0;
   const fichesDeLaFeuille = [...new Set(feuille.etapes.flatMap((e) => e.fiches))];
-  const fichesVerifiees = fichesDeLaFeuille.filter((f) => avancement.fiches[f]?.verifie).length;
+  const fichesAcquises = fichesDeLaFeuille.filter((f) => avancement.fiches[f]?.acquis).length;
   const fichesLues = fichesDeLaFeuille.filter((f) => avancement.fiches[f]?.lu).length;
   const objectif = parcours?.objectif && feuille.etapes.some((e) => e.id === parcours.objectif) ? parcours.objectif : null;
   const reste = objectif ? restantPour(objectif, feuille, avancement) : [];
@@ -138,10 +138,10 @@ export function Cockpit({ donnees }: { donnees: DonneesPubliques }) {
           <div className="couche cockpit-carte">
             <span className="pastille">Fiches de transformation</span>
             <p className="cockpit-chiffre mono">
-              {fichesVerifiees}
+              {fichesAcquises}
               <small> / {fichesDeLaFeuille.length}</small>
             </p>
-            <p className="cockpit-texte">vérifiées · {fichesLues} lues</p>
+            <p className="cockpit-texte">acquises · {fichesLues} lues</p>
           </div>
           <div className="couche cockpit-carte">
             <label className="pastille" htmlFor="objectif">

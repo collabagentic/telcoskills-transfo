@@ -1,6 +1,7 @@
 {
   "id": "actif-passif-replicas",
   "genre": "transposition",
+  "categorie": "comprendre",
   "avant": "haute disponibilité actif/passif",
   "apres": "réplicas et sondes",
   "resume": {
@@ -21,6 +22,11 @@
   "pourquoiNouveau": null,
   "piege": "Une sonde de readiness mal réglée peut retirer tous les pods du trafic en même temps : le service se retrouve sans destination. Réglez les sondes sur le comportement réel de l'application.",
   "exemple": "Les instances d'une fonction du cœur 5G sont répliquées ; un pod dont la sonde de readiness échoue cesse de recevoir du trafic le temps de se rétablir.",
+  "epreuve": {
+    "cas": "Un cluster etcd compte 5 membres. Combien de membres peut-il perdre en gardant le quorum ?",
+    "raisonnement": "2. Le quorum est la majorité : 3 membres sur 5. Le cluster tolère donc la perte de 2 membres.",
+    "source": "etcd : modes de défaillance"
+  },
   "schema": {
     "legende": "Haute disponibilité : attendre ou répartir",
     "avant": [
@@ -245,10 +251,6 @@
   ],
   "technos": [
     "kubernetes"
-  ],
-  "questions": [
-    "q-actif-passif-replicas-1",
-    "q-actif-passif-replicas-2"
   ],
   "plusLoin": [
     {

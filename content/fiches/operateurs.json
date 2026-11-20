@@ -1,6 +1,7 @@
 {
   "id": "operateurs",
   "genre": "nouveaute",
+  "categorie": "comprendre",
   "avant": null,
   "apres": "Les opérateurs et les ressources personnalisées",
   "resume": {
@@ -20,6 +21,11 @@
   "pourquoiNouveau": "Les équipementiers livraient une appliance et une procédure d'exploitation. Kubernetes permet de livrer à la place un contrôleur qui applique cette procédure, avec la même boucle de réconciliation que le reste du cluster.",
   "piege": "Traiter un opérateur comme une boîte noire. Il agit sur le cluster avec ses propres droits RBAC : lisez ce qu'il demande avant de l'installer.",
   "exemple": "Un éditeur de cœur 5G livre un opérateur : vous créez un objet qui décrit la version et le nombre d'instances, et l'opérateur déploie et met à jour les pods.",
+  "epreuve": {
+    "cas": "Dans OLM, quel objet exprime la demande de suivre un opérateur dans un canal d'un catalogue, pour l'installer et le maintenir à jour ?",
+    "raisonnement": "La Subscription. La Subscription désigne un package, un canal et une source de catalogue : elle sert à garder les CSV à jour. Le CatalogSource est le dépôt, le CSV décrit l'application, l'InstallPlan liste les ressources à créer.",
+    "source": "Operator Lifecycle Manager : architecture (olm.operatorframework.io/docs/concepts/olm-architecture/)"
+  },
   "schema": {
     "legende": "Un contrôleur qui exploite l'application",
     "avant": null,
@@ -175,10 +181,6 @@
   "technos": [
     "kubernetes",
     "olm"
-  ],
-  "questions": [
-    "q-operateurs-1",
-    "q-operateurs-2"
   ],
   "plusLoin": [
     {

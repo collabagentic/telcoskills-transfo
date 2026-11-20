@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { z } from "zod";
 import { verifierContenu } from "./regles";
-import { competenceSchema, contexteSchema, domaineSchema, ficheSchema, orientationSchema, questionSchema, technoSchema, type Contenu } from "./schemas";
+import { competenceSchema, contexteSchema, domaineSchema, ficheSchema, orientationSchema, technoSchema, type Contenu } from "./schemas";
 
 /**
  * Chargement du contenu au build, côté serveur uniquement : ne jamais importer ce fichier dans un composant client.
@@ -67,7 +67,6 @@ export function chargerContenu(): Contenu {
     domaines: lireListes("domaines.json", domaineSchema, erreurs),
     competences: lireListes("competences", competenceSchema, erreurs),
     fiches: lireDossier("fiches", ficheSchema, erreurs),
-    questions: lireDossier("questions", questionSchema, erreurs),
     technos: lireListes("technos.json", technoSchema, erreurs),
     orientation: orientation.success ? orientation.data : undefined,
   };

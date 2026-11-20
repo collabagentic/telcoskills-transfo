@@ -1,6 +1,7 @@
 {
   "id": "lb-services",
   "genre": "transposition",
+  "categorie": "comprendre",
   "avant": "load balancer (F5)",
   "apres": "Service, Ingress et MetalLB",
   "resume": {
@@ -21,6 +22,11 @@
   "pourquoiNouveau": null,
   "piege": "Faire passer le SCTP de la signalisation N2 par un Ingress : il ne le transporte pas. Il faut un Service de type LoadBalancer (par exemple avec MetalLB) ou un équivalent.",
   "exemple": "L'AMF expose le port NGAP en SCTP par un Service LoadBalancer dont l'adresse est annoncée en BGP aux routeurs de la RAN.",
+  "epreuve": {
+    "cas": "Quel type de Service ouvre un même port sur chaque nœud du cluster, en plus de créer une adresse interne ?",
+    "raisonnement": "NodePort. NodePort réserve un port (30000-32767 par défaut) sur tous les nœuds et redirige le trafic vers le Service ; il s'appuie sur une adresse ClusterIP. ClusterIP seul n'est joignable que depuis le cluster.",
+    "source": "Kubernetes : Service (kubernetes.io/docs/concepts/services-networking/service/)"
+  },
   "schema": {
     "legende": "Répartir le trafic",
     "avant": [
@@ -200,10 +206,6 @@
   "technos": [
     "kubernetes",
     "metallb"
-  ],
-  "questions": [
-    "q-lb-services-1",
-    "q-lb-services-2"
   ],
   "plusLoin": [
     {

@@ -1,6 +1,7 @@
 {
   "id": "pra-gitops",
   "genre": "transposition",
+  "categorie": "pratique",
   "avant": "dossier PRA",
   "apres": "GitOps",
   "resume": {
@@ -21,6 +22,11 @@
   "pourquoiNouveau": null,
   "piege": "Croire que Git suffit. Les manifestes reconstruisent les applications, pas les données ni les secrets : il faut toujours des sauvegardes testées (par exemple de la base etcd) et une gestion des secrets. Le RPO dépend de la réplication des données, pas de Git.",
   "exemple": "Un site de secours doit accueillir des fonctions du cœur (AMF, SMF) : le cluster est recréé, le dépôt est réappliqué, puis les données d'abonnés et de sessions sont restaurées depuis leur réplication.",
+  "epreuve": {
+    "cas": "Que mesure le RTO ?",
+    "raisonnement": "La durée maximale acceptable d'arrêt du service. Le RTO est la durée d'arrêt acceptable. La quantité de données perdues, c'est le RPO.",
+    "source": "Résumé du nœud (pra-rpo-rto) : définition standard"
+  },
   "schema": {
     "legende": "Reprise : procédure ou dépôt",
     "avant": [
@@ -159,10 +165,6 @@
   "technos": [
     "kubernetes",
     "argo-cd"
-  ],
-  "questions": [
-    "q-pra-gitops-1",
-    "q-pra-gitops-2"
   ],
   "plusLoin": [
     {

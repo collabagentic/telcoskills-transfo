@@ -1,6 +1,7 @@
 {
   "id": "observabilite-traces",
   "genre": "nouveaute",
+  "categorie": "integrer",
   "avant": null,
   "apres": "Les traces distribuées (OpenTelemetry)",
   "resume": {
@@ -20,6 +21,11 @@
   "pourquoiNouveau": "Quand une session traverse plusieurs fonctions qui s'appellent en HTTP/2, aucun journal pris seul ne montre où le temps est perdu. C'est ce que la trace distribuée apporte, et il n'y avait pas d'équivalent dans l'ancien nœud monolithique.",
   "piege": "Tout tracer. La télémétrie coûte du stockage et du réseau : on échantillonne et on choisit ce qui est instrumenté. Le Collector sert aussi à filtrer avant l'export.",
   "exemple": "Une création de session PDU traverse l'AMF, la SMF, la PCF et l'UPF ; la trace montre quelle étape ralentit la création de session.",
+  "epreuve": {
+    "cas": "Quels sont les trois signaux principaux collectés avec OpenTelemetry ?",
+    "raisonnement": "Les traces, les métriques et les journaux (logs). OpenTelemetry standardise la collecte des traces (parcours d'une requête), des métriques (mesures agrégées) et des logs (événements). Les autres propositions sont des usages ou des ressources, pas des signaux.",
+    "source": "OpenTelemetry : Signals (opentelemetry.io/docs/concepts/signals/)"
+  },
   "schema": {
     "legende": "Suivre une requête de bout en bout",
     "avant": null,
@@ -198,10 +204,6 @@
   ],
   "technos": [
     "opentelemetry"
-  ],
-  "questions": [
-    "q-observabilite-traces-1",
-    "q-observabilite-traces-2"
   ],
   "plusLoin": [
     {

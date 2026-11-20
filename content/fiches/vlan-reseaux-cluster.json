@@ -1,6 +1,7 @@
 {
   "id": "vlan-reseaux-cluster",
   "genre": "transposition",
+  "categorie": "comprendre",
   "avant": "découpage en VLAN",
   "apres": "réseaux du cluster",
   "resume": {
@@ -21,6 +22,11 @@
   "pourquoiNouveau": null,
   "piege": "Appliquer le bon réflexe au mauvais plan. Sur le réseau primaire des pods, découper en sous-réseaux n'isole rien : l'IP d'un pod est éphémère. L'erreur inverse, côté profil cloud-natif, consiste à ignorer les réseaux secondaires, là où le VLAN reste légitime.",
   "exemple": "Dans un cœur 5G déployé en CNF, la signalisation reste sur le réseau primaire du cluster. Le trafic utilisateur d'une fonction UPF passe par une interface secondaire attachée en SR-IOV, avec son VLAN et sa MTU.",
+  "epreuve": {
+    "cas": "À quoi sert Multus CNI ?",
+    "raisonnement": "À attacher plusieurs interfaces réseau à un pod, en appelant plusieurs plugins CNI. Par défaut, un pod n'a qu'une interface réseau en plus du loopback. Multus joue le rôle de méta-plugin : il appelle d'autres plugins CNI pour créer des interfaces supplémentaires, par exemple pour séparer plan de contrôle, plan usager et gestion.",
+    "source": "Multus CNI : README (github.com/k8snetworkplumbingwg/multus-cni)"
+  },
   "schema": {
     "legende": "Deux plans de réseau dans un cluster",
     "avant": [
@@ -165,10 +171,6 @@
     "kubernetes",
     "ovn-kubernetes",
     "multus"
-  ],
-  "questions": [
-    "q-vlan-reseaux-cluster-1",
-    "q-vlan-reseaux-cluster-2"
   ],
   "plusLoin": [
     {

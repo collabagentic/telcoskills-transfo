@@ -1,6 +1,7 @@
 {
   "id": "ao-exigences-cnf",
   "genre": "transposition",
+  "categorie": "decider",
   "avant": "appel d'offres multi-fournisseurs",
   "apres": "exigences CNF et critères d'éligibilité",
   "resume": {
@@ -21,6 +22,11 @@
   "pourquoiNouveau": null,
   "piege": "Écrire « compatible cloud natif » sans le rendre vérifiable. Une exigence doit se tester : version de Kubernetes certifiée, formats de livraison, comportement à la mise à jour. Sinon, chaque fournisseur la comprend à sa façon.",
   "exemple": "Dans l'appel d'offres d'une SMF, « livrée en chart Helm, déployable sur une plateforme Kubernetes certifiée CNCF, avec la liste des réseaux secondaires requis » remplace « fournie sur serveur dédié ».",
+  "epreuve": {
+    "cas": "Quel programme permet de vérifier qu'une distribution Kubernetes respecte le comportement standard de l'API ?",
+    "raisonnement": "Le programme « Certified Kubernetes » de conformité logicielle de la CNCF. Le programme de conformité logicielle de la CNCF certifie que les distributions et offres Kubernetes passent une même suite de tests. Les certifications CKA et CKAD concernent des personnes, pas des produits.",
+    "source": "CNCF : programme de conformité logicielle (cncf.io/training/certification/software-conformance/)"
+  },
   "schema": {
     "legende": "Ce que l'appel d'offres exige",
     "avant": [
@@ -199,10 +205,6 @@
   "technos": [
     "kubernetes",
     "helm"
-  ],
-  "questions": [
-    "q-ao-exigences-cnf-1",
-    "q-ao-exigences-cnf-2"
   ],
   "plusLoin": [
     {

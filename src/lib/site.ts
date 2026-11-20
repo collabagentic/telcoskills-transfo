@@ -22,7 +22,7 @@ export function statistiques() {
     competences: c.competences.length,
     domaines: c.domaines.length,
     fiches: c.fiches.length,
-    questions: c.questions.length,
+    epreuves: c.fiches.length,
     diagrammes,
     ressources,
     sources: sources.size,

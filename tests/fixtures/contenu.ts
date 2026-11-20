@@ -1,4 +1,4 @@
-import type { Contenu, Fiche, Question } from "@/contenu/schemas";
+import type { Contenu, Fiche } from "@/contenu/schemas";
 
 /** Jeu de contenu minimal et valide ; chaque test de règle en casse un détail. */
 const hist = [{ date: "2026-11-08", changement: "Première version.", par: "Test", lien: null }];
@@ -9,6 +9,7 @@ export function fiche(id: string, genre: Fiche["genre"] = "transposition", compe
   return {
     id,
     genre,
+    categorie: "comprendre",
     avant: transposition ? "ancien" : null,
     apres: "nouveau",
     resume: { avant: transposition ? "avant" : null, apres: "après" },
@@ -18,20 +19,16 @@ export function fiche(id: string, genre: Fiche["genre"] = "transposition", compe
     pourquoiNouveau: transposition ? null : "Parce que.",
     piege: "Un piège.",
     exemple: "Un exemple.",
+    epreuve: { cas: "Un cas ?", raisonnement: "Parce que.", source: "Source" },
     schema: { legende: "Légende", avant: transposition ? [{ texte: "A" }, { texte: "B" }] : null, apres: [{ texte: "C" }, { texte: "D" }] },
     competences,
     technos: ["kube"],
-    questions: [`q-${id}-1`, `q-${id}-2`],
     plusLoin: [lien],
     sources: [{ nom: "Source", url: "https://exemple.org/s" }],
     statut: "brouillon",
     misAJour: "2026-11-08",
     historique: hist,
   };
-}
-
-export function question(id: string, ficheId: string): Question {
-  return { id, fiche: ficheId, enonce: "Question ?", options: ["a", "b"], bonne: 0, explication: "Parce que.", source: "Source", statut: "brouillon" };
 }
 
 const competence = (id: string, prerequis: string[] = []) => ({
@@ -45,7 +42,6 @@ export function contenuValide(): Contenu {
     domaines: [{ id: "d1", nom: "Domaine" }],
     competences: [competence("c1"), competence("c2", ["c1"]), competence("c3", ["c2"])],
     fiches,
-    questions: fiches.flatMap((f) => f.questions.map((q) => question(q, f.id))),
     technos: [{ id: "kube", nom: "Kubernetes", url: "https://kubernetes.io" }],
     orientation: {
       statut: "brouillon",

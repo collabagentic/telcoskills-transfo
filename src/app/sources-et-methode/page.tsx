@@ -28,7 +28,7 @@ export default function PageSources() {
           ou si une étiquette recouvre autre chose.
         </li>
         <li>
-          <strong>Les questions de vérification</strong> ({s.questions}) viennent de l'ancien site ou sont rédigées avec leur source.
+          <strong>Les épreuves</strong> ({s.epreuves}) sont des cas à raisonner : chacune a son raisonnement attendu et sa source. Elles partent de l'ancien site et restent des brouillons.
         </li>
       </ul>
 
@@ -40,7 +40,7 @@ export default function PageSources() {
 
       <h2>Les règles que le site se fait respecter</h2>
       <ul>
-        <li>Chaque fiche a au moins une source avec adresse, un lien gratuit pour aller plus loin, et exactement deux questions.</li>
+        <li>Chaque fiche a au moins une source avec adresse, un lien gratuit pour aller plus loin, et une épreuve (un cas, son raisonnement attendu, sa source).</li>
         <li>Une transposition nomme le réflexe à lâcher ; une nouveauté explique pourquoi elle n'existait pas avant.</li>
         <li>Les prérequis du graphe existent tous et ne forment aucune boucle.</li>
         <li>Les longueurs des textes sont limitées : c'est une contrainte de lisibilité.</li>

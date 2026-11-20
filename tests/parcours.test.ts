@@ -88,8 +88,8 @@ describe("avancement", () => {
     const e = { id: "p", fiches: ["f1", "f2"] };
     expect(competenceFaite(e, { maitrisees: [], fiches: {} })).toBe(false);
     expect(competenceFaite(e, { maitrisees: ["p"], fiches: {} })).toBe(true);
-    expect(competenceFaite(e, { maitrisees: [], fiches: { f1: { verifie: "j" } } })).toBe(false);
-    expect(competenceFaite(e, { maitrisees: [], fiches: { f1: { verifie: "j" }, f2: { verifie: "j" } } })).toBe(true);
+    expect(competenceFaite(e, { maitrisees: [], fiches: { f1: { acquis: "j" } } })).toBe(false);
+    expect(competenceFaite(e, { maitrisees: [], fiches: { f1: { acquis: "j" }, f2: { acquis: "j" } } })).toBe(true);
     expect(competenceFaite({ id: "p", fiches: [] }, { maitrisees: [], fiches: {} })).toBe(false);
     void avec;
   });

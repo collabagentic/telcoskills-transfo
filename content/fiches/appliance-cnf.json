@@ -1,6 +1,7 @@
 {
   "id": "appliance-cnf",
   "genre": "transposition",
+  "categorie": "integrer",
   "avant": "boîte équipementier",
   "apres": "CNF et son cycle de vie",
   "resume": {
@@ -21,6 +22,11 @@
   "pourquoiNouveau": null,
   "piege": "Prendre le chart de l'éditeur tel quel. Les valeurs par défaut ne conviennent pas à votre cluster (réseaux secondaires, ressources, stockage) : elles se documentent et se versionnent, comme une configuration d'équipement.",
   "exemple": "L'éditeur livre l'UPF sous forme de chart ; votre équipe fixe dans les valeurs les interfaces secondaires et les ressources, puis déploie la version par « helm upgrade ».",
+  "epreuve": {
+    "cas": "Quelle commande applique une nouvelle version d'un chart, ou de nouvelles valeurs, à une release Helm déjà installée ?",
+    "raisonnement": "helm upgrade. helm upgrade met à jour une release existante et crée une nouvelle révision. helm template génère les manifestes sans rien installer, helm lint vérifie un chart, helm pull le télécharge.",
+    "source": "Helm : helm upgrade (helm.sh/docs/helm/helm_upgrade/)"
+  },
   "schema": {
     "legende": "Cycle de vie d'une fonction réseau",
     "avant": [
@@ -206,10 +212,6 @@
   "technos": [
     "kubernetes",
     "helm"
-  ],
-  "questions": [
-    "q-appliance-cnf-1",
-    "q-appliance-cnf-2"
   ],
   "plusLoin": [
     {

@@ -1,6 +1,7 @@
 {
   "id": "chiffrage-slo",
   "genre": "transposition",
+  "categorie": "decider",
   "avant": "chiffrage et TCO",
   "apres": "coût par SLO et FinOps",
   "resume": {
@@ -21,6 +22,11 @@
   "pourquoiNouveau": null,
   "piege": "Vendre un SLO sans pouvoir le mesurer. Un objectif de disponibilité n'a de sens que défini avec son indicateur (SLI) et sa fenêtre de mesure.",
   "exemple": "Pour une fonction du cœur, deux options sont chiffrées : trois réplicas sur un site, ou six répartis sur deux sites. Le client voit le coût de chaque objectif de disponibilité.",
+  "epreuve": {
+    "cas": "Un SLO de 99,9 % de disponibilité sur 30 jours tolère environ combien d'indisponibilité ?",
+    "raisonnement": "Environ 43 minutes. 30 jours font 43 200 minutes ; 0,1 % de ce total fait 43,2 minutes. C'est le budget d'erreur de l'objectif.",
+    "source": "Google SRE : objectifs de niveau de service (sre.google/sre-book/service-level-objectives/)"
+  },
   "schema": {
     "legende": "Du chiffrage par équipement au coût par niveau de service",
     "avant": [
@@ -149,10 +155,6 @@
     "cout-energie"
   ],
   "technos": [],
-  "questions": [
-    "q-chiffrage-slo-1",
-    "q-chiffrage-slo-2"
-  ],
   "plusLoin": [
     {
       "type": "doc",

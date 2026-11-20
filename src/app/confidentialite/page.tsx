@@ -12,7 +12,7 @@ export default function PageConfidentialite() {
       <h2>Ce que le site conserve</h2>
       <p>
         Aucun compte, aucun cookie. Le site enregistre une seule chose, dans le stockage local de votre navigateur, sous la clé <code>ts:parcours</code> : vos réponses aux questions, les
-        compétences que vous avez marquées comme maîtrisées, les fiches lues ou vérifiées (avec la date du jour), et l'objectif choisi.
+        compétences que vous avez marquées comme maîtrisées, les fiches lues ou acquises (avec la date du jour), et l'objectif choisi.
       </p>
       <p>
         Ces données ne sont envoyées nulle part. Elles servent uniquement à recomposer votre feuille de route et votre cockpit sur cet appareil. Un autre navigateur, ou une navigation

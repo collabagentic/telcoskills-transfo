@@ -163,15 +163,15 @@ export function recombiner(graphe: CompetenceGraphe[], questions: QuestionLite[]
   return { etapes, acquises: [...acquises], ecartees: [...ecartees], hors, complete: sansRestriction && effets.acquis.size === 0 && effets.ecartes.size === 0 };
 }
 
-/** Ce que l'apprenant a fait : une compétence est « faite » si elle est marquée maîtrisée, ou si toutes ses fiches sont vérifiées. */
+/** Ce que l'apprenant a fait : une compétence est « faite » si elle est marquée maîtrisée, ou si toutes ses fiches sont acquises. */
 export type Avancement = {
   maitrisees: string[];
-  fiches: Record<string, { lu?: string; verifie?: string }>;
+  fiches: Record<string, { lu?: string; acquis?: string }>;
 };
 
 export function competenceFaite(etape: Pick<Etape, "id" | "fiches">, a: Avancement): boolean {
   if (a.maitrisees.includes(etape.id)) return true;
-  return etape.fiches.length > 0 && etape.fiches.every((f) => Boolean(a.fiches[f]?.verifie));
+  return etape.fiches.length > 0 && etape.fiches.every((f) => Boolean(a.fiches[f]?.acquis));
 }
 
 export type EtatEtape = "faite" | "disponible" | "a-venir";

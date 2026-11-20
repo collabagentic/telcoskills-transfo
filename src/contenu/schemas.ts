@@ -89,6 +89,8 @@ export const ficheSchema = z
   .object({
     id: identifiant,
     genre: z.enum(["transposition", "nouveaute"]),
+    /** Besoin cognitif : décide du canevas de la fiche et du format du prompt à copier. */
+    categorie: z.enum(["comprendre", "pratique", "integrer", "diagnostiquer", "decider"]),
     avant: texte(50).nullable(),
     apres: texte(60),
     resume: z.object({ avant: texte(200).nullable(), apres: texte(200) }).strict(),
@@ -98,13 +100,14 @@ export const ficheSchema = z
     pourquoiNouveau: texte(500).nullable(),
     piege: texte(600),
     exemple: texte(400),
+    /** Mise à l'épreuve : un cas à raisonner, puis le raisonnement attendu (masqué jusqu'à ce que l'apprenant ait écrit le sien) et sa source. */
+    epreuve: z.object({ cas: texte(400), raisonnement: texte(700), source: texte(300) }).strict(),
     schema: schemaFicheSchema,
     /** Diagramme d'architecture (facultatif) : affiché à la place de la chaîne avant/après dans « Le schéma ». */
     diagramme: diagrammeSchema.optional(),
     /** Compétences du graphe que cette fiche transforme. */
     competences: z.array(identifiant).min(1, "au moins une compétence"),
     technos: z.array(identifiant),
-    questions: z.array(identifiant).length(2, "exactement 2 questions"),
     plusLoin: z.array(lienSchema).min(1),
     sources: z.array(sourceSchema).min(1, "au moins une source"),
     statut,
@@ -138,21 +141,6 @@ export const competenceSchema = z
   })
   .strict();
 export type Competence = z.infer<typeof competenceSchema>;
-
-export const questionSchema = z
-  .object({
-    id: identifiant,
-    fiche: identifiant,
-    enonce: texte(400),
-    options: z.array(texte(300)).min(2).max(5),
-    bonne: z.number().int().min(0),
-    explication: texte(700),
-    source: texte(300),
-    statut,
-  })
-  .strict()
-  .refine((q) => q.bonne < q.options.length, { message: "« bonne » doit désigner une option existante", path: ["bonne"] });
-export type Question = z.infer<typeof questionSchema>;
 
 export const technoSchema = z.object({ id: identifiant, nom: texte(60), url }).strict();
 export type Techno = z.infer<typeof technoSchema>;
@@ -204,7 +192,6 @@ export type Contenu = {
   domaines: Domaine[];
   competences: Competence[];
   fiches: Fiche[];
-  questions: Question[];
   technos: Techno[];
   orientation: Orientation;
 };

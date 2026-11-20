@@ -12,7 +12,6 @@ export function verifierContenu(c: Contenu): string[] {
     ["domaines", c.domaines.map((d) => d.id)],
     ["compétences", c.competences.map((x) => x.id)],
     ["fiches", c.fiches.map((f) => f.id)],
-    ["questions", c.questions.map((q) => q.id)],
     ["technos", c.technos.map((t) => t.id)],
     ["questions d'orientation", c.orientation.questions.map((q) => q.id)],
   ] as const) {
@@ -21,7 +20,6 @@ export function verifierContenu(c: Contenu): string[] {
   const domaines = new Set(c.domaines.map((d) => d.id));
   const competences = new Map(c.competences.map((x) => [x.id, x]));
   const fiches = new Map(c.fiches.map((f) => [f.id, f]));
-  const questions = new Map(c.questions.map((q) => [q.id, q]));
   const technos = new Set(c.technos.map((t) => t.id));
 
   // 12. Graphe : domaine connu, prérequis existants, pas d'auto-référence, pas de boucle.
@@ -49,11 +47,6 @@ export function verifierContenu(c: Contenu): string[] {
   for (const x of c.competences) visiter(x.id, []);
 
   for (const f of c.fiches) {
-    for (const q of f.questions) {
-      const question = questions.get(q);
-      if (!question) err(1, `fiche « ${f.id} » : la question « ${q} » n'existe pas.`);
-      else if (question.fiche !== f.id) err(1, `la question « ${q} » est rattachée à « ${question.fiche} », pas à « ${f.id} ».`);
-    }
     for (const t of f.technos) if (!technos.has(t)) err(1, `fiche « ${f.id} » : la techno « ${t} » n'existe pas.`);
     for (const x of f.competences) if (!competences.has(x)) err(1, `fiche « ${f.id} » : la compétence « ${x} » n'existe pas.`);
 
@@ -82,7 +75,6 @@ export function verifierContenu(c: Contenu): string[] {
     if (dates.some((d, i) => i > 0 && d > dates[i - 1])) err(9, `fiche « ${f.id} » : l'historique doit être trié du plus récent au plus ancien.`);
     if (dates[0] !== f.misAJour) err(9, `fiche « ${f.id} » : la première date de l'historique (${dates[0]}) doit égaler « misAJour » (${f.misAJour}).`);
   }
-  for (const q of c.questions) if (!fiches.has(q.fiche)) err(1, `la question « ${q.id} » référence une fiche inconnue : « ${q.fiche} ».`);
 
   // 7. Une techno est citée par au moins une fiche.
   const citees = new Set(c.fiches.flatMap((f) => f.technos));

@@ -2145,3 +2145,352 @@ a.barre-fleche:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Fiche en cockpit « Pilotage » : ligne de métro en haut, feuille de route à gauche, lecture au centre, prochain geste à droite */
+.fiche-pilotage {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr) 14.5rem;
+  gap: var(--e-6) var(--e-8);
+  align-items: start;
+}
+.fiche-pilotage > .metro {
+  grid-column: 1 / -1;
+}
+.fiche-centre.lecture {
+  max-width: none;
+  margin: 0;
+}
+.fiche-rail,
+.fiche-geste {
+  position: sticky;
+  top: 9.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+}
+.rail-carte,
+.geste-carte {
+  padding: var(--e-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  align-items: flex-start;
+}
+.rail-carte p,
+.geste-carte p {
+  margin: 0;
+}
+.geste-principal {
+  border-color: var(--accent-filet);
+}
+.geste-lien {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.geste-liste {
+  list-style: none;
+  margin: var(--e-2) 0;
+  padding: 0;
+  font-size: var(--t-xs);
+  display: grid;
+  gap: var(--e-2);
+}
+.geste-carte details {
+  width: 100%;
+  font-size: var(--t-s);
+}
+.rail-pourcent {
+  font-size: var(--t-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.rail-jauge {
+  width: 100%;
+  height: 6px;
+  border-radius: var(--r-pilule);
+  background: var(--filet-fort);
+  overflow: hidden;
+}
+.rail-jauge i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.rail-etapes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+.rail-etapes::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 2px;
+  background: var(--filet-fort);
+}
+.rail-etape {
+  position: relative;
+  padding: var(--e-1) 0 var(--e-1) var(--e-6);
+  font-size: var(--t-s);
+  color: var(--encre-3);
+}
+.rail-etape::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--surface-3);
+  border: 2px solid var(--encre-3);
+}
+.rail-faite {
+  color: var(--encre-2);
+}
+.rail-faite::before {
+  background: var(--encre-2);
+  border-color: var(--encre-2);
+}
+.rail-courante {
+  color: var(--encre);
+  font-weight: 600;
+}
+.rail-courante::before {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-halo);
+}
+.rail-suivant {
+  display: grid;
+  gap: var(--e-1);
+  padding: var(--e-3) var(--e-4);
+  font-size: var(--t-s);
+}
+
+/* Fil d'Ariane en carte de métro */
+.metro {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: var(--e-3) var(--e-6) var(--e-3);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  background: var(--surface-3);
+  box-shadow: var(--ombre-1);
+}
+.metro-fil {
+  margin: 0 0 var(--e-3);
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+}
+.metro-fil a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.metro-fil strong {
+  color: var(--encre);
+  font-weight: 600;
+}
+.metro-ligne {
+  scrollbar-width: thin;
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: var(--e-2) 0 var(--e-2);
+  overflow-x: auto;
+}
+.metro-station {
+  position: relative;
+  flex: 1 0 6.5rem;
+  text-align: center;
+}
+.metro-station::before {
+  content: "";
+  position: absolute;
+  top: calc(0.5rem - 2px);
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--teinte-forme);
+}
+.metro-station:first-of-type::before {
+  left: 50%;
+}
+.metro-station:last-of-type::before {
+  right: 50%;
+}
+.metro-a-faire::before {
+  opacity: 0.35;
+}
+.metro-station > a:first-child {
+  display: block;
+  text-decoration: none;
+}
+.metro-point {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 auto var(--e-2);
+  border-radius: 50%;
+  background: var(--surface-3);
+  border: 3px solid var(--encre-3);
+}
+.metro-faite .metro-point {
+  background: var(--encre);
+  border-color: var(--encre);
+}
+.metro-courante .metro-point {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: -0.2rem auto calc(var(--e-2) - 0.2rem);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-halo);
+}
+.metro-courante.metro-faite .metro-point {
+  background: var(--accent);
+}
+.metro-echange .metro-point {
+  outline: 2px solid var(--teinte-nouveau);
+  outline-offset: 2px;
+}
+.metro-nom,
+.metro-branche-nom {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+.metro-nom {
+  display: -webkit-box;
+  padding: 0 var(--e-1);
+  font-size: var(--t-xs);
+  line-height: 1.25;
+  color: var(--encre-2);
+}
+.metro-courante .metro-nom {
+  color: var(--encre);
+  font-weight: 600;
+}
+.metro-branche {
+  display: block;
+  margin: var(--e-2) auto 0;
+  max-width: 9rem;
+  padding: 0 0 0 var(--e-2);
+  border-left: 3px solid var(--teinte-nouveau);
+  text-align: left;
+  text-decoration: none;
+  font-size: var(--t-xs);
+  line-height: 1.25;
+  color: var(--teinte-nouveau);
+}
+.metro-branche-ligne {
+  display: block;
+}
+.metro-branche-ligne {
+  color: var(--encre-3);
+}
+.metro-reste {
+  flex: none;
+  padding: 0 var(--e-3);
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+}
+.metro-position {
+  margin: 0;
+  text-align: right;
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+}
+
+/* Mise à l'épreuve et prompt */
+.epreuve,
+.prompt {
+  margin-top: var(--e-12);
+  padding: var(--e-6);
+}
+.epreuve h2,
+.prompt h2 {
+  font-size: var(--t-l);
+  letter-spacing: -0.02em;
+  margin: var(--e-2) 0 var(--e-4);
+}
+.epreuve-cas {
+  font-size: var(--t-m);
+  font-weight: 500;
+}
+.epreuve-champ {
+  display: grid;
+  gap: var(--e-2);
+  margin: var(--e-4) 0;
+  font-size: var(--t-s);
+  color: var(--encre-2);
+}
+.epreuve textarea,
+.prompt-texte {
+  width: 100%;
+  padding: var(--e-3) var(--e-4);
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-m);
+  background: var(--surface-3);
+  color: var(--encre);
+  font: inherit;
+  resize: vertical;
+}
+.prompt-texte {
+  font-family: var(--police-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  line-height: 1.6;
+  margin: var(--e-3) 0;
+}
+.epreuve textarea:focus-visible,
+.prompt-texte:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.epreuve .btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.epreuve-bilan {
+  margin-top: var(--e-4);
+}
+
+@media (max-width: 62rem) {
+  .fiche-pilotage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fiche-geste {
+    order: 2;
+  }
+  .fiche-centre {
+    order: 3;
+  }
+  .fiche-rail {
+    order: 4;
+  }
+  .fiche-rail,
+  .fiche-geste {
+    position: static;
+  }
+  .geste-secondaire {
+    display: none;
+  }
+}
+@media (max-width: 44rem) {
+  .metro {
+    position: static;
+  }
+}
+.fiche-centre .retour + .pastille {
+  margin-left: var(--e-3);
+}
