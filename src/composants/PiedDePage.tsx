@@ -9,6 +9,9 @@ export function PiedDePage() {
         <Link href="/sources-et-methode">Sources et méthode</Link>
         <Link href="/confidentialite">Confidentialité</Link>
         <Link href="/mentions-legales">Mentions légales</Link>
+        <Link href="/audit" className="pied-audit" title="Où en sont les fiches : finies, à vérifier, classement">
+          Audit
+        </Link>
       </nav>
       <p>Gratuit, sans compte, sans cookie. Votre feuille de route reste dans votre navigateur.</p>
       <p>Les fiches marquées « en relecture » sont des brouillons sourcés, pas encore relus par l'auteur.</p>

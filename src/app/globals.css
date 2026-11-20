@@ -2527,3 +2527,65 @@ a.barre-fleche:hover {
     display: none;
   }
 }
+
+/* Audit des fiches */
+.audit {
+  max-width: 72rem;
+}
+.audit-defile {
+  overflow-x: auto;
+  margin-top: var(--e-6);
+}
+.audit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-s);
+}
+.audit-table th,
+.audit-table td {
+  padding: var(--e-3);
+  border-bottom: 1px solid var(--filet);
+  text-align: left;
+  vertical-align: top;
+  font-weight: 400;
+}
+.audit-table thead th {
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--encre-3);
+}
+.audit-table tbody th a {
+  display: block;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.audit-table .cockpit-texte {
+  display: block;
+  margin: 2px 0 0;
+}
+.audit-table ul {
+  margin: 0;
+  padding-left: var(--e-4);
+  color: var(--encre-2);
+}
+.audit-etat {
+  display: inline-block;
+  padding: 2px var(--e-3);
+  border-radius: var(--r-pilule);
+  border: 1px solid var(--filet-fort);
+  font-size: var(--t-xs);
+  white-space: nowrap;
+}
+.audit-fini {
+  color: var(--teinte-ok);
+  border-color: var(--teinte-ok);
+}
+.audit-pas-fini {
+  color: var(--teinte-nouveau);
+  border-color: var(--teinte-nouveau);
+}
+.pied-audit {
+  opacity: 0.6;
+}

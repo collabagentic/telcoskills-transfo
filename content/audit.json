@@ -1,0 +1,11 @@
+{
+  "_aide": "Suivi à la main de l'audit des fiches : notes à vérifier et fiches dont l'auteur a validé le classement. Les autres colonnes de la page /audit sont calculées depuis les fiches.",
+  "classementValide": [],
+  "notes": [
+    { "fiche": "pra-gitops", "note": "La définition du RTO et du RPO n'a pas de source précise : ajouter une source." },
+    { "fiche": "vm-pod", "note": "Le lien Deployments de l'épreuve est cité sans adresse complète." },
+    { "fiche": "interfaces-sbi", "note": "Vérifier la clause 3GPP citée (TS 29.500, clauses 5.2 et 5.4) contre la version en vigueur." },
+    { "fiche": "plateforme-produit", "note": "Classée « décider » alors qu'elle se lit aussi comme « comprendre » : arbitrage de l'auteur." },
+    { "fiche": "observabilite-traces", "note": "Nouveauté sans « avant » : vérifier que le canevas « intégrer » lui convient." }
+  ]
+}
