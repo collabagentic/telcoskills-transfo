@@ -1,7 +1,7 @@
 {
   "id": "plateforme-produit",
   "genre": "nouveaute",
-  "categorie": "decider",
+  "categorie": "comprendre",
   "avant": null,
   "apres": "La plateforme comme produit interne",
   "resume": {
@@ -165,6 +165,12 @@
   "statut": "brouillon",
   "misAJour": "2026-11-21",
   "historique": [
+    {
+      "date": "2026-11-21",
+      "changement": "Classement validé par l'auteur : « comprendre » (la fiche définit un concept, elle n'arbitre aucun choix).",
+      "par": "Taoufik Bouazza",
+      "lien": null
+    },
     {
       "date": "2026-11-21",
       "changement": "Relecture sourcée : libellés alignés sur le livre blanc CNCF, nœud Opérateurs retiré, avis étiquetés, ressources hors sujet retirées.",

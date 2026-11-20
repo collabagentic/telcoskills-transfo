@@ -42,7 +42,7 @@ Les agents de correction partageaient un dossier de travail commun : l'un d'eux 
 
 ## Décisions qui vous reviennent
 
-- **`plateforme-produit`** : l'agent recommande « comprendre » plutôt que « décider » (la fiche définit un concept, ne propose aucun arbitrage ni critère de choix). Non modifié. Pour garder « décider », il faudrait ajouter un vrai choix (plateforme minimale ou portail complet, appuyé sur les niveaux de maturité CNCF).
+- **`plateforme-produit`** : classée « comprendre » par l'auteur le 2026-11-21 (la fiche définit un concept et n'arbitre aucun choix) ; classement validé.
 - **Les liens de diagramme ne sont pas étiquetables** : le champ `avisAuteur` couvre le texte et le schéma, pas chaque flèche de diagramme. Plusieurs flèches illustratives restent donc sans étiquette (par exemple « pèse sur » et « fixe » dans `chiffrage-slo`). À décider : étendre l'étiquetage aux diagrammes, ou accepter la légende « Schéma d'auteur ».
 
 ## À sourcer (liste complète par fiche dans `/audit` et `content/audit.json`)

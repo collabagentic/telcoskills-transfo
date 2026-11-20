@@ -1,6 +1,8 @@
 {
   "_aide": "Suivi à la main de l'audit des fiches : notes à vérifier et fiches dont l'auteur a validé le classement. Les autres colonnes de la page /audit sont calculées depuis les fiches.",
-  "classementValide": [],
+  "classementValide": [
+    "plateforme-produit"
+  ],
   "notes": [
     {
       "fiche": "reconciliation",
@@ -84,7 +86,7 @@
     },
     {
       "fiche": "plateforme-produit",
-      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : « ne cache pas Kubernetes » retiré, ressources hors sujet retirées. DÉCISION DE L'AUTEUR : l'agent recommande « comprendre » plutôt que « décider » (aucun arbitrage proposé) ; reports/relecture/plateforme-produit.md."
+      "note": "Relecture sourcée faite et corrections appliquées (2026-11-21) : « ne cache pas Kubernetes » retiré, ressources hors sujet retirées. Classée « comprendre » par l'auteur (2026-11-21). Voir reports/relecture/plateforme-produit.md."
     }
   ]
 }
