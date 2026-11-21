@@ -21,3 +21,6 @@ jobs:
       # Le build valide aussi le contenu (Zod, lot 2) : un contenu invalide fait échouer la CI.
       - name: Build
         run: npm run build
+      # Qualité de la sortie statique (lot L4) : échoue sur une erreur, pas sur un avertissement.
+      - name: Vérifier la sortie statique
+        run: npm run verifier-sortie
