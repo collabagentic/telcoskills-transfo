@@ -758,3 +758,9 @@ Ce paragraphe fait foi sur l'état du produit. Il remplace les §4 à §9 (histo
 ### Méthode retenue pour compléter les fiches
 
 Des lots par catégorie, un prompt commun par lot (pas un par fiche). Pour chaque fiche : un agent lit les sources et classe chaque affirmation ; les corrections sont proposées, puis appliquées ; ce qui est une opinion reste mais porte l'étiquette « avis d'auteur » ; l'auteur relit et passe la fiche en « relu ». Les sources illisibles (redirigées, 404) sont retirées plutôt que citées.
+
+---
+
+## 15. Audit du 2026-11-21 : plan pour les agents
+
+Le rapport d'audit UX/UI, éditorial et fonctionnel du 2026-11-21 est comparé à l'existant, recommandation par recommandation, dans `reports/audit-2026-11-21/plan-agents.md`, avec les lots L1 à L7 confiés aux agents (accueil, assistant, fiche en trois niveaux, qualité mesurée, contribution sans GitHub, transparence, partage, recherche). Ce plan complète le §14 ; il ne rouvre pas les principes du §2.
