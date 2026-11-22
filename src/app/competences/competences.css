@@ -1,0 +1,91 @@
+/*
+ * Page « Les compétences » (lot C1). Importé par src/app/competences/page.tsx.
+ * Aucune couleur en dur : uniquement les jetons de tokens.css (vérifié par tests/tokens.test.ts).
+ */
+
+.competences {
+  padding: var(--e-8) 0 var(--e-4);
+}
+
+.competences h1 {
+  font-size: var(--t-xl);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 var(--e-4);
+}
+
+.competences-chapeau {
+  font-size: var(--t-l);
+  color: var(--encre);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  margin: 0 0 var(--e-8);
+}
+
+.domaine {
+  margin: 0 0 var(--e-8);
+}
+
+.domaine h2 {
+  font-size: var(--t-l);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--e-3);
+}
+
+.domaine-liste {
+  list-style: none;
+  display: grid;
+  gap: var(--e-3);
+  margin: 0;
+  padding: 0;
+}
+
+.competence {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--e-2);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  box-shadow: var(--ombre-1);
+  padding: var(--e-4) var(--e-6);
+}
+
+.competence-titre {
+  font-size: var(--t-m);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.competence-titre a {
+  color: var(--encre);
+  text-decoration: none;
+}
+
+.competence-titre a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.competence-resume {
+  color: var(--encre-2);
+  font-size: var(--t-s);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.competence-fiche {
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-pilule);
+  padding: 0 var(--e-2);
+  line-height: 1.5rem;
+  text-decoration: none;
+}
+
+.competence-fiche:hover {
+  border-color: var(--encre-3);
+}

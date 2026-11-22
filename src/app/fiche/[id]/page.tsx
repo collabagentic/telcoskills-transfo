@@ -18,12 +18,10 @@ import { chargerContenu } from "@/contenu/charger";
 import { essentiel, tempsLecture, titreFiche } from "@/contenu/lecture";
 import { donneesPubliques } from "@/contenu/publiques";
 import { amorces } from "@/lib/prompt";
+import { DEPOT } from "@/lib/site";
 import "@/composants/essentiel.css";
 
 type Props = { params: Promise<{ id: string }> };
-
-// Dépôt des corrections (lien « Corriger cette fiche »). Le dépôt doit être public à l'ouverture du site.
-const DEPOT = process.env.NEXT_PUBLIC_DEPOT ?? "taoufikbo/telcoskills-transfo";
 
 export function generateStaticParams() {
   return chargerContenu().fiches.map((f) => ({ id: f.id }));
