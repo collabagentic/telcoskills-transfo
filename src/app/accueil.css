@@ -1,0 +1,120 @@
+/*
+ * Accueil (lot L1). Importé par src/app/page.tsx.
+ * Aucune couleur en dur : uniquement les jetons de tokens.css (vérifié par tests/tokens.test.ts).
+ */
+
+.accueil-titre {
+  font-size: var(--t-xxl);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  margin: var(--e-3) auto 0;
+  max-width: 14em;
+  color: var(--encre);
+}
+
+.accueil-accroche {
+  max-width: 34rem;
+  margin: var(--e-6) auto 0;
+  color: var(--encre-2);
+  font-size: var(--t-l);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.accueil-reperes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--e-4);
+  margin: var(--e-8) auto 0;
+  max-width: 56rem;
+  padding: 0;
+  text-align: left;
+}
+
+.accueil-repere {
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  box-shadow: var(--ombre-1);
+  padding: var(--e-4) var(--e-6);
+}
+
+.accueil-repere h2 {
+  font-size: var(--t-l);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--e-2);
+}
+
+.accueil-repere p {
+  color: var(--encre-2);
+  font-size: var(--t-s);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.accueil-entrees {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--e-3);
+  margin: var(--e-8) auto 0;
+}
+
+.exemple-fiche {
+  max-width: 40rem;
+  margin: var(--e-12) auto 0;
+  text-align: left;
+}
+
+.exemple-titre {
+  font-size: var(--t-xl);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 var(--e-2);
+}
+
+.exemple-sous-titre {
+  color: var(--encre-3);
+  font-size: var(--t-s);
+  margin: 0;
+}
+
+.exemple-fiche .avant-apres {
+  margin: var(--e-6) 0 0;
+}
+
+.exemple-avis {
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+  margin: var(--e-3) 0 0;
+}
+
+.exemple-reflexe {
+  margin-top: var(--e-6);
+  border-left: 3px solid var(--accent);
+  padding-left: var(--e-4);
+}
+
+.exemple-reflexe .pastille {
+  color: var(--accent-texte);
+}
+
+.exemple-reflexe p {
+  font-size: var(--t-l);
+  line-height: 1.4;
+  margin: var(--e-2) 0 0;
+}
+
+.exemple-lien {
+  margin-top: var(--e-6);
+}
+
+@media (min-width: 720px) {
+  .accueil-reperes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

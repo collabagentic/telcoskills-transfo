@@ -1,5 +1,8 @@
 import { chargerContenu } from "@/contenu/charger";
 
+/** Fiche montrée en exemple sur l'accueil : identifiant lu depuis content/fiches/, jamais recopiée. */
+export const FICHE_EXEMPLE = "matrice-networkpolicy";
+
 /** Dépôt du projet (code et contenu). À rendre public à l'ouverture du site. */
 export const DEPOT = process.env.NEXT_PUBLIC_DEPOT ?? "taoufikbo/telcoskills-transfo";
 export const URL_DEPOT = `https://github.com/${DEPOT}`;
