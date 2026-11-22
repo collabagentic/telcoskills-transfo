@@ -6,6 +6,7 @@ import { AvantApres } from "@/composants/AvantApres";
 import { BoutonRessources } from "@/composants/BoutonRessources";
 import { Diagramme } from "@/composants/Diagramme";
 import { Epreuve } from "@/composants/Epreuve";
+import { EssentielFiche } from "@/composants/EssentielFiche";
 import { FilMetro } from "@/composants/FilMetro";
 import { GesteFiche } from "@/composants/GesteFiche";
 import { HautDeFiche, SuiteFiche } from "@/composants/NavigationFiche";
@@ -14,9 +15,10 @@ import { RailFeuille } from "@/composants/RailFeuille";
 import { Ressources } from "@/composants/Ressources";
 import { SchemaFiche } from "@/composants/SchemaFiche";
 import { chargerContenu } from "@/contenu/charger";
-import { tempsLecture, titreFiche } from "@/contenu/lecture";
+import { essentiel, tempsLecture, titreFiche } from "@/contenu/lecture";
 import { donneesPubliques } from "@/contenu/publiques";
 import { amorces } from "@/lib/prompt";
+import "@/composants/essentiel.css";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -71,6 +73,8 @@ export default async function PageFiche({ params }: Props) {
       </div>
       <h1>{titre}</h1>
 
+      <EssentielFiche essentiel={essentiel(f)} />
+
       <AvantApres genre={f.genre} resume={f.resume} technos={technos.map((t) => ({ id: t.id, nom: t.nom }))} />
       {avis.has("resume") ? (
         <p className="cockpit-texte">
@@ -78,7 +82,7 @@ export default async function PageFiche({ params }: Props) {
         </p>
       ) : null}
 
-      <section className="rubrique">
+      <section className="rubrique" id="en-2-minutes">
         <h2>Ce qui reste vrai</h2>
         <ul>
           {f.resteVrai.map((p, i) => (
@@ -98,7 +102,7 @@ export default async function PageFiche({ params }: Props) {
           ))}
         </ul>
       </section>
-      <section className="rubrique">
+      <section className="rubrique" id="approfondir">
         <h2>
           Le schéma {avis.has("schema") ? etiquette : null}
         </h2>
