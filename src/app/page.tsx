@@ -13,9 +13,9 @@ const REPERES = [
 ] as const;
 
 const ENTREES = [
-  { label: "Composer ma feuille de route", href: "/roadmap" },
-  { label: "Explorer les compétences", href: "/cockpit" },
-  { label: "Contribuer", href: "/contribuer" },
+  { label: "Composer ma feuille de route", href: "/roadmap", principal: true },
+  { label: "Explorer les compétences", href: "/competences", principal: false },
+  { label: "Contribuer", href: "/contribuer", principal: false },
 ] as const;
 
 export default function Accueil() {
@@ -32,6 +32,14 @@ export default function Accueil() {
           Le cloud natif change les architectures et les pratiques, mais pas tout ce que vous avez appris ne devient inutile.
         </p>
 
+        <nav className="accueil-entrees" aria-label="Entrées du site">
+          {ENTREES.map((e) => (
+            <Link key={e.href} className={e.principal ? "btn btn-principal" : "btn"} href={e.href}>
+              {e.label}
+            </Link>
+          ))}
+        </nav>
+
         <ul className="accueil-reperes">
           {REPERES.map((r) => (
             <li key={r.titre} className="accueil-repere">
@@ -40,14 +48,6 @@ export default function Accueil() {
             </li>
           ))}
         </ul>
-
-        <nav className="accueil-entrees" aria-label="Entrées du site">
-          {ENTREES.map((e) => (
-            <Link key={e.href} className="btn" href={e.href}>
-              {e.label}
-            </Link>
-          ))}
-        </nav>
 
         {fiche ? <ExempleFiche fiche={fiche} /> : null}
       </section>
