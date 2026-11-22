@@ -1,0 +1,62 @@
+/* Bandeau « L'essentiel en 30 secondes » et repères de niveau (lot L3).
+   Couleurs uniquement par les jetons de tokens.css : aucune valeur en dur. */
+
+.essentiel {
+  margin: var(--e-4) 0 var(--e-12);
+  padding: var(--e-6);
+  border: 1px solid var(--accent-filet);
+  border-radius: var(--r-l);
+  background: linear-gradient(180deg, var(--accent-surface-1), var(--accent-surface-2));
+  box-shadow: var(--ombre-2);
+}
+
+.essentiel-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-2);
+  margin-bottom: var(--e-4);
+  font-size: var(--t-s);
+}
+
+.essentiel-nav-lien {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+}
+
+.essentiel-nav-point {
+  color: var(--encre-3);
+}
+
+.essentiel-nav a {
+  color: var(--accent-texte);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.essentiel-surtitre {
+  margin: 0 0 var(--e-3);
+  font-family: var(--police-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--encre);
+}
+
+.essentiel-corps {
+  display: grid;
+  gap: var(--e-2);
+}
+
+.essentiel-ligne {
+  margin: 0;
+  font-size: var(--t-s);
+  line-height: 1.5;
+  color: var(--encre);
+}
+
+.essentiel-ligne strong {
+  font-weight: 600;
+}
