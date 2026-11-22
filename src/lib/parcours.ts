@@ -20,6 +20,8 @@ export type CompetenceGraphe = {
   prerequis: string[];
   /** Fiches de transformation qui traitent cette compétence. */
   fiches: string[];
+  /** Résumé de la compétence, tel qu'il est dans les données (facultatif, vide sinon). */
+  resume?: string;
 };
 
 export type EffetsLite = { acquis?: string[]; domaines?: Record<string, number>; cible?: string[]; ecarte?: string[] };
@@ -43,6 +45,8 @@ export type Etape = {
   cible: boolean;
   /** Pourquoi cette étape est là, en une phrase lisible. */
   pourquoi: string;
+  /** Résumé de la compétence, tel qu'il est dans les données (vide si absent). */
+  resume: string;
 };
 
 export type Feuille = {
@@ -158,6 +162,7 @@ export function recombiner(graphe: CompetenceGraphe[], questions: QuestionLite[]
     fiches: c.fiches,
     cible: effets.cibles.has(c.id),
     pourquoi: pourquoi(c),
+    resume: c.resume ?? "",
   }));
   const hors = graphe.filter((c) => !retenues.has(c.id) && !acquises.has(c.id) && !ecartees.has(c.id)).map((c) => c.id);
   return { etapes, acquises: [...acquises], ecartees: [...ecartees], hors, complete: sansRestriction && effets.acquis.size === 0 && effets.ecartes.size === 0 };
@@ -239,4 +244,30 @@ export function blocsProgramme(feuille: Feuille): Bloc[] {
 export function priorites(feuille: Feuille, max = 3): Etape[] {
   if (feuille.complete) return [];
   return feuille.etapes.slice(0, max);
+}
+
+/**
+ * La seconde ligne d'une priorité, propre à la compétence (pure et déterministe, rien d'inventé) :
+ * - si la compétence n'est là que comme prérequis d'une autre, « prérequis de « X » » (déjà porté par `pourquoi`) ;
+ * - sinon, son résumé tel qu'il est dans les données.
+ */
+export function detailPriorite(e: Pick<Etape, "pourquoi" | "resume">): string {
+  return e.pourquoi.startsWith("prérequis") ? e.pourquoi : e.resume;
+}
+
+export type AcquisLimites = { montres: CompetenceGraphe[]; autres: number };
+
+/**
+ * Limite « Ce que vous maîtrisez déjà » à `max` compétences, puis compte les autres.
+ * Règle déterministe : d'abord les compétences du domaine de la première priorité,
+ * puis le reste dans l'ordre des identifiants. Le décompte total reste exact.
+ */
+export function limiterAcquis(acquises: CompetenceGraphe[], domainePremierePriorite: string | undefined, max = 6): AcquisLimites {
+  const tries = [...acquises].sort((a, b) => {
+    const ra = a.domaine === domainePremierePriorite ? 0 : 1;
+    const rb = b.domaine === domainePremierePriorite ? 0 : 1;
+    return ra - rb || a.id.localeCompare(b.id);
+  });
+  const montres = tries.slice(0, max);
+  return { montres, autres: tries.length - montres.length };
 }

@@ -40,6 +40,11 @@
   font-size: var(--t-s);
   color: var(--encre-2);
 }
+.acquis-autres {
+  border-color: transparent;
+  background: transparent;
+  color: var(--encre-3);
+}
 .liste-priorites {
   display: grid;
   gap: var(--e-2);
@@ -78,4 +83,8 @@
 .priorite-raison {
   font-size: var(--t-s);
   color: var(--encre-3);
+}
+.priorite-detail {
+  font-size: var(--t-s);
+  color: var(--encre-2);
 }

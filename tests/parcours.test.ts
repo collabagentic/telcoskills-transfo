@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { chargerContenu } from "@/contenu/charger";
-import { apercuDomaines, blocsProgramme, competenceFaite, cumulerEffets, etatsEtapes, fermeture, priorites, prochaineEtape, recombiner, restantPour, type CompetenceGraphe, type QuestionLite } from "@/lib/parcours";
+import { apercuDomaines, blocsProgramme, competenceFaite, cumulerEffets, detailPriorite, etatsEtapes, fermeture, limiterAcquis, priorites, prochaineEtape, recombiner, restantPour, type CompetenceGraphe, type QuestionLite } from "@/lib/parcours";
 
 const g = (id: string, domaine: string, prerequis: string[] = [], niveau: CompetenceGraphe["niveau"] = "intermediaire", fiches: string[] = []): CompetenceGraphe => ({
   id, titre: `Titre ${id}`, domaine, niveau, prerequis, fiches,
@@ -177,5 +177,69 @@ describe("priorites", () => {
     expect(p2).toEqual(p1);
     expect(new Set(p1.map((e) => e.id)).size).toBe(p1.length);
     expect(p1.length).toBeLessThanOrEqual(3);
+  });
+});
+
+describe("telcoskills-c2 : raison par priorité et acquis limités", () => {
+  const contenu = chargerContenu();
+  const fichesDe = new Map<string, string[]>();
+  for (const f of contenu.fiches) for (const id of f.competences) fichesDe.set(id, [...(fichesDe.get(id) ?? []), f.id]);
+  const grapheReel: CompetenceGraphe[] = contenu.competences.map((x) => ({ id: x.id, titre: x.titre, domaine: x.domaine, niveau: x.niveau, prerequis: x.prerequis, fiches: fichesDe.get(x.id) ?? [], resume: x.resume }));
+  const noms = Object.fromEntries(contenu.domaines.map((d) => [d.id, d.nom]));
+  const feuillePour = (reponses: Record<string, string>) => recombiner(grapheReel, contenu.orientation.questions, reponses, noms);
+  const texteComplet = (e: { pourquoi: string; resume: string }) => `${e.pourquoi} · ${detailPriorite(e)}`;
+
+  it("C2-C1 : sur au moins trois jeux de réponses, les textes complets des priorités sont deux à deux distincts", () => {
+    const jeux: { nom: string; reponses: Record<string, string> }[] = [
+      { nom: "métier infra", reponses: { metier: "infra" } },
+      { nom: "métier cœur", reponses: { metier: "coeur" } },
+      { nom: "métier SI + sécurité hors", reponses: { metier: "si", securite: "hors" } },
+    ];
+    for (const j of jeux) {
+      const p = priorites(feuillePour(j.reponses));
+      expect(p.length).toBeGreaterThan(0);
+      const textes = p.map(texteComplet);
+      expect(new Set(textes).size, j.nom).toBe(textes.length);
+    }
+  });
+
+  it("C2-C1 (même domaine) : trois priorités du même domaine restent deux à deux distinctes", () => {
+    const p = priorites(feuillePour({ metier: "si", securite: "hors" }));
+    expect(p.length).toBe(3);
+    expect(new Set(p.map((e) => e.domaine)).size).toBe(1);
+    expect(new Set(p.map(texteComplet)).size).toBe(p.length);
+  });
+
+  it("C2-C2 : au plus trois priorités, chacune avec une raison non vide", () => {
+    for (const reponses of [{ metier: "infra" }, { metier: "coeur" }, { metier: "si", securite: "hors" }] as Record<string, string>[]) {
+      const p = priorites(feuillePour(reponses));
+      expect(p.length).toBeLessThanOrEqual(3);
+      for (const e of p) expect(e.pourquoi.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("C2-C3 : acquis limités à 6 avec décompte exact (0, 3, 6, 18)", () => {
+    const gen = (n: number): CompetenceGraphe[] => Array.from({ length: n }, (_, i) => ({ id: `c${i}`, titre: `Compétence ${i}`, domaine: i % 2 ? "y" : "x", niveau: "intermediaire", prerequis: [], fiches: [], resume: `Résumé ${i}` }));
+    const zero = limiterAcquis(gen(0), undefined);
+    expect(zero.montres).toHaveLength(0);
+    expect(zero.autres).toBe(0);
+    const trois = limiterAcquis(gen(3), undefined);
+    expect(trois.montres).toHaveLength(3);
+    expect(trois.autres).toBe(0);
+    const six = limiterAcquis(gen(6), undefined);
+    expect(six.montres).toHaveLength(6);
+    expect(six.autres).toBe(0);
+    const dixhuit = limiterAcquis(gen(18), undefined);
+    expect(dixhuit.montres).toHaveLength(6);
+    expect(dixhuit.autres).toBe(12);
+  });
+
+  it("C2-C4 : detailPriorite est pure et déterministe, résumé pour une graine, prérequis sinon", () => {
+    const graine = { pourquoi: "Kubernetes : métier", resume: "Résumé de la compétence" };
+    expect(detailPriorite(graine)).toBe("Résumé de la compétence");
+    expect(detailPriorite(graine)).toBe(detailPriorite(graine));
+    const prerequis = { pourquoi: "prérequis de « X »", resume: "Résumé ignoré" };
+    expect(detailPriorite(prerequis)).toBe("prérequis de « X »");
+    expect(detailPriorite(prerequis)).toBe(detailPriorite(prerequis));
   });
 });
