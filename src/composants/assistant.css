@@ -1,0 +1,81 @@
+/* Assistant : écran d'entrée et restitution finale (lot L2). Aucune couleur en dur : uniquement les jetons de tokens.css. */
+
+.entree-assistant {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--e-3);
+}
+.entree-annonce {
+  font-size: var(--t-l);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--encre-2);
+  margin-bottom: var(--e-3);
+}
+
+/* Restitution finale : ce qu'on maîtrise déjà, puis par où commencer. */
+.bilan-acquis,
+.bilan-priorites {
+  margin-top: var(--e-6);
+}
+.bilan-titre {
+  font-size: var(--t-m);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--e-3);
+}
+.liste-acquis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}
+.liste-acquis li {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--e-1) var(--e-3);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-pilule);
+  background: var(--surface-2);
+  font-size: var(--t-s);
+  color: var(--encre-2);
+}
+.liste-priorites {
+  display: grid;
+  gap: var(--e-2);
+}
+.priorite {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--e-3) var(--e-4);
+  padding-right: var(--e-8);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  box-shadow: 0 1px 0 var(--reflet) inset;
+  color: var(--encre);
+  text-decoration: none;
+  transition: border-color var(--d-rapide) var(--courbe), transform var(--d-rapide) var(--courbe);
+}
+.priorite:hover {
+  border-color: var(--encre-3);
+  transform: translateY(-1px);
+}
+.priorite::after {
+  content: "→";
+  position: absolute;
+  right: var(--e-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-texte);
+}
+.priorite-titre {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.priorite-raison {
+  font-size: var(--t-s);
+  color: var(--encre-3);
+}

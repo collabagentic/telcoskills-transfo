@@ -231,3 +231,12 @@ export function blocsProgramme(feuille: Feuille): Bloc[] {
   }
   return blocs;
 }
+
+/**
+ * Les priorités pour commencer : les prochaines étapes de la feuille de route recomposée, prises dans l'ordre stable du moteur.
+ * Tant qu'aucune réponse ne restreint le graphe (feuille complète), il n'y a pas de priorité à choisir : le tableau est vide.
+ */
+export function priorites(feuille: Feuille, max = 3): Etape[] {
+  if (feuille.complete) return [];
+  return feuille.etapes.slice(0, max);
+}
