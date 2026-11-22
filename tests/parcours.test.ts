@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { chargerContenu } from "@/contenu/charger";
-import { apercuDomaines, blocsProgramme, competenceFaite, cumulerEffets, etatsEtapes, fermeture, prochaineEtape, recombiner, restantPour, type CompetenceGraphe, type QuestionLite } from "@/lib/parcours";
+import { apercuDomaines, blocsProgramme, competenceFaite, cumulerEffets, etatsEtapes, fermeture, priorites, prochaineEtape, recombiner, restantPour, type CompetenceGraphe, type QuestionLite } from "@/lib/parcours";
 
 const g = (id: string, domaine: string, prerequis: string[] = [], niveau: CompetenceGraphe["niveau"] = "intermediaire", fiches: string[] = []): CompetenceGraphe => ({
   id, titre: `Titre ${id}`, domaine, niveau, prerequis, fiches,
@@ -152,5 +152,30 @@ describe("aperçu et programme", () => {
     expect(blocs.flatMap((b) => b.etapes).length).toBe(6);
     expect(new Set(blocs.map((b) => b.domaine)).size).toBe(blocs.length);
     expect(blocsProgramme(f).map((b) => b.domaine)).toEqual(["x"]);
+  });
+});
+
+describe("priorites", () => {
+  it("sans réponse : aucune priorité, la feuille complète est la seule chose à montrer", () => {
+    expect(priorites(recombiner(graphe, questions, {}))).toEqual([]);
+  });
+
+  it("quelques réponses : au plus trois priorités, dans l'ordre de la feuille de route", () => {
+    const f = recombiner(graphe, questions, { q1: "x" }); // a → b → c
+    expect(priorites(f).map((e) => e.id)).toEqual(["a", "b", "c"]);
+  });
+
+  it("toutes les réponses : les priorités se resserrent sur ce qui reste", () => {
+    const f = recombiner(graphe, questions, { q1: "x", q2: "sait" }); // a, b acquis → c
+    expect(priorites(f).map((e) => e.id)).toEqual(["c"]);
+  });
+
+  it("déterminisme : même feuille, même sortie, sans doublon", () => {
+    const f = recombiner(graphe, questions, { q1: "y" });
+    const p1 = priorites(f);
+    const p2 = priorites(f);
+    expect(p2).toEqual(p1);
+    expect(new Set(p1.map((e) => e.id)).size).toBe(p1.length);
+    expect(p1.length).toBeLessThanOrEqual(3);
   });
 });
