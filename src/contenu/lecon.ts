@@ -14,6 +14,8 @@ export type Lecon = {
   brouillon: boolean;
   domaine: string;
   competences: { id: string; titre: string }[];
+  technos: { id: string; nom: string }[];
+  historique: Fiche["historique"];
   voisines: Voisine[];
   resume: { avant: string | null; apres: string };
   resteVrai: string[];
@@ -49,6 +51,8 @@ export function construireLecon(f: Fiche, c: Contenu): Lecon {
     brouillon: f.statut === "brouillon",
     domaine: domaine?.nom ?? "",
     competences: competences.map((x) => ({ id: x.id, titre: x.titre })),
+    technos: f.technos.map((t) => ({ id: t, nom: c.technos.find((x) => x.id === t)?.nom ?? t })),
+    historique: f.historique,
     voisines,
     resume: { avant: f.resume.avant, apres: f.resume.apres },
     resteVrai: f.resteVrai,
