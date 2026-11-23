@@ -4,6 +4,7 @@ import { BarreProto } from "@/composants/prototypes/communs";
 import { FicheA } from "@/composants/prototypes/FicheA";
 import { FicheB } from "@/composants/prototypes/FicheB";
 import { FicheC } from "@/composants/prototypes/FicheC";
+import { FicheD } from "@/composants/prototypes/FicheD";
 import { chargerContenu } from "@/contenu/charger";
 import { titreFiche } from "@/contenu/lecture";
 import { DIRECTIONS, type Direction } from "../../../directions";
@@ -34,7 +35,7 @@ export default async function PrototypeFiche({ params }: Props) {
   return (
     <div className="proto">
       <BarreProto dir={d} page="fiche" ficheId={f.id} />
-      {d === "a" ? <FicheA l={l} dir={d} /> : d === "b" ? <FicheB l={l} dir={d} /> : <FicheC l={l} dir={d} />}
+      {d === "a" ? <FicheA l={l} dir={d} /> : d === "b" ? <FicheB l={l} dir={d} /> : d === "c" ? <FicheC l={l} dir={d} /> : <FicheD l={l} dir={d} />}
     </div>
   );
 }

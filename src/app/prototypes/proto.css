@@ -588,6 +588,41 @@
   color: var(--encre);
 }
 
+/* Direction D : B et C mêlés (réutilise les grilles de C et les phases de B) */
+.pv-d-droite {
+  max-width: 44rem;
+  scroll-margin-top: var(--e-4);
+}
+.pv-d .pv-c-fixe .pv-d-domaine {
+  position: static;
+  border: 0;
+  border-top: 1px solid var(--filet);
+  padding: var(--e-4) 0 0;
+}
+.pv-d .pv-d-domaine ol {
+  max-height: 13rem;
+  overflow: auto;
+}
+.pv-d .pv-d-domaine li {
+  padding: var(--e-1) 0;
+}
+.pv-d-outils {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2) var(--e-6);
+  margin-top: var(--e-6);
+  font-size: var(--t-s);
+}
+.pv-d-outils a {
+  color: var(--encre-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--filet-fort);
+}
+.pv-cockpit-d .pv-niveau {
+  margin-top: var(--e-8);
+}
+
 /* Cockpits */
 .pv-cockpit {
   max-width: 52rem;
@@ -904,6 +939,9 @@ a.pv-case:focus-visible {
     gap: var(--e-3);
     max-height: 55vh;
     overflow: auto;
+  }
+  .pv-d .pv-d-domaine {
+    display: none;
   }
   .pv-carte-ligne {
     grid-template-columns: minmax(0, 1fr) 2.75rem;

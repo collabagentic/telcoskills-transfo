@@ -45,7 +45,7 @@ export function CockpitProto({ donnees, dir }: { donnees: DonneesPubliques; dir:
 
   const entete = (
     <>
-      <h1 className="pv-titre pv-titre-page">{dir === "b" ? "Mon parcours" : dir === "c" ? "Ma carte" : "Mon cockpit"}</h1>
+      <h1 className="pv-titre pv-titre-page">{dir === "b" || dir === "d" ? "Mon parcours" : dir === "c" ? "Ma carte" : "Mon cockpit"}</h1>
       <p className="pv-chapo-bas">
         {faites} étape{faites > 1 ? "s" : ""} maîtrisée{faites > 1 ? "s" : ""} sur {total}.
       </p>
@@ -69,6 +69,44 @@ export function CockpitProto({ donnees, dir }: { donnees: DonneesPubliques; dir:
       </Link>
     </div>
   ) : null;
+
+  const niveaux = NIVEAUX.map(([niveau, libelle]) => {
+          const chapitres = blocs.map((b) => ({ domaine: b.domaine, etapes: b.etapes.filter((e) => e.niveau === niveau) })).filter((b) => b.etapes.length > 0);
+          if (chapitres.length === 0) return null;
+          return (
+            <section key={niveau} className="pv-niveau">
+              <h2>{libelle}</h2>
+              {chapitres.map((b) => {
+                const f = b.etapes.filter((e) => competenceFaite(e, avancement)).length;
+                return (
+                  <details key={b.domaine} className="pv-chapitre" open={b.etapes.some((e) => e.id === suivante?.id)}>
+                    <summary>
+                      <b>{nom(b.domaine)}</b>
+                      <span className="pv-compte">
+                        {f}/{b.etapes.length}
+                      </span>
+                    </summary>
+                    <ol>
+                      {b.etapes.map((e) => (
+                        <li key={e.id} data-courante={genre(e) === "courant" ? "oui" : "non"}>
+                          <Point k={genre(e)} />
+                          <Link href={lien(e)}>{e.titre}</Link>
+                          {genre(e) === "courant" ? (
+                            <Link className="btn btn-principal" href={lien(e)}>
+                              Reprendre
+                            </Link>
+                          ) : (
+                            <span className="pv-etat">{LIBELLE[genre(e)]}</span>
+                          )}
+                        </li>
+                      ))}
+                    </ol>
+                  </details>
+                );
+              })}
+            </section>
+          );
+        });
 
   if (dir === "a") {
     return (
@@ -110,48 +148,14 @@ export function CockpitProto({ donnees, dir }: { donnees: DonneesPubliques; dir:
     return (
       <div className="pv-cockpit pv-cockpit-b">
         {entete}
-        {NIVEAUX.map(([niveau, libelle]) => {
-          const chapitres = blocs.map((b) => ({ domaine: b.domaine, etapes: b.etapes.filter((e) => e.niveau === niveau) })).filter((b) => b.etapes.length > 0);
-          if (chapitres.length === 0) return null;
-          return (
-            <section key={niveau} className="pv-niveau">
-              <h2>{libelle}</h2>
-              {chapitres.map((b) => {
-                const f = b.etapes.filter((e) => competenceFaite(e, avancement)).length;
-                return (
-                  <details key={b.domaine} className="pv-chapitre" open={b.etapes.some((e) => e.id === suivante?.id)}>
-                    <summary>
-                      <b>{nom(b.domaine)}</b>
-                      <span className="pv-compte">
-                        {f}/{b.etapes.length}
-                      </span>
-                    </summary>
-                    <ol>
-                      {b.etapes.map((e) => (
-                        <li key={e.id} data-courante={genre(e) === "courant" ? "oui" : "non"}>
-                          <Point k={genre(e)} />
-                          <Link href={lien(e)}>{e.titre}</Link>
-                          {genre(e) === "courant" ? (
-                            <Link className="btn btn-principal" href={lien(e)}>
-                              Reprendre
-                            </Link>
-                          ) : (
-                            <span className="pv-etat">{LIBELLE[genre(e)]}</span>
-                          )}
-                        </li>
-                      ))}
-                    </ol>
-                  </details>
-                );
-              })}
-            </section>
-          );
-        })}
+        {niveaux}
       </div>
     );
   }
 
-  return <Carte entete={entete} blocs={blocs} genre={genre} lien={lien} nom={nom} suivante={suivante} faites={faites} />;
+  return (
+    <Carte entete={entete} blocs={blocs} genre={genre} lien={lien} nom={nom} suivante={suivante} faites={faites} melange={dir === "d"} suite={dir === "d" ? niveaux : null} />
+  );
 }
 
 /** Direction C : une case par étape, rangées par domaine. L'état se lit à la forme (plein, anneau, trait plein, pointillé) et se dit dans le texte. */
@@ -163,6 +167,8 @@ function Carte({
   nom,
   suivante,
   faites,
+  melange,
+  suite,
 }: {
   entete: React.ReactNode;
   blocs: ReturnType<typeof blocsProgramme>;
@@ -171,11 +177,13 @@ function Carte({
   nom: (d: string) => string;
   suivante: Etape | null;
   faites: number;
+  melange: boolean;
+  suite: React.ReactNode;
 }) {
   const [vue, setVue] = useState<Etape | null>(null);
   const montre = vue ?? suivante;
   return (
-    <div className="pv-cockpit pv-cockpit-c">
+    <div className={`pv-cockpit pv-cockpit-c${melange ? " pv-cockpit-d" : ""}`}>
       {entete}
       <div className="pv-lecture-case" aria-live="polite">
         {montre ? (
@@ -225,6 +233,7 @@ function Carte({
         <li><i className="pv-case pv-case-disponible" /> disponible</li>
         <li><i className="pv-case pv-case-avenir" /> à venir</li>
       </ul>
+      {suite}
     </div>
   );
 }
