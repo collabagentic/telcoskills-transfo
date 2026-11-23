@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import type { Direction } from "@/app/prototypes/directions";
+import { COCKPIT, type DirectionFiche } from "@/app/prototypes/directions";
 import type { Lecon } from "@/app/prototypes/lecon";
-import { Diagramme } from "@/composants/Diagramme";
 import { Epreuve } from "@/composants/Epreuve";
 import { Ressources } from "@/composants/Ressources";
-import { Avis, Puces, SchemaChaine } from "./communs";
+import { Avis, DiagrammeFiche, Puces, SchemaChaine } from "./communs";
 import { MarquerAcquis } from "./MarquerAcquis";
 
 const GENRE = { transposition: "Change de forme", nouveaute: "Vraiment nouveau" } as const;
@@ -17,7 +16,7 @@ const ETAPES = ["avant", "compare", "apres"] as const;
  * Direction C : le schéma d'abord. Le schéma « avant / après » reste en vue pendant la lecture ; les trois temps du texte
  * (ce que vous faisiez, ce qui change, ce que vous écrivez maintenant) le font passer d'un état à l'autre, au défilement ou au clic.
  */
-export function FicheC({ l, dir }: { l: Lecon; dir: Direction }) {
+export function FicheC({ l, dir }: { l: Lecon; dir: DirectionFiche }) {
   const [etape, setEtape] = useState(0);
   const texte = useRef<HTMLDivElement>(null);
   const avis = new Set(l.avis);
@@ -66,7 +65,7 @@ export function FicheC({ l, dir }: { l: Lecon; dir: Direction }) {
 
       <div className="pv-c-droite" ref={texte}>
         <p className="pv-fil">
-          <Link href={`/prototypes/${dir}/cockpit`}>Mon cockpit</Link> › {l.domaine}
+          <Link href={`/prototypes/${COCKPIT}/cockpit`}>Mon cockpit</Link> › {l.domaine}
         </p>
         <h1 className="pv-titre">{l.titre}</h1>
         <p className="pv-meta">
@@ -110,9 +109,7 @@ export function FicheC({ l, dir }: { l: Lecon; dir: Direction }) {
         </section>
 
         {l.diagramme ? (
-          <div className="pv-diagramme">
-            <Diagramme diagramme={l.diagramme} />
-          </div>
+          <DiagrammeFiche diagramme={l.diagramme} />
         ) : null}
 
         <h2 className="pv-c-h2">Prédisez, puis vérifiez</h2>

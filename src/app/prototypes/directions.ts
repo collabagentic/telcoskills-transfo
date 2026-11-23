@@ -1,10 +1,14 @@
-/** Les directions de prototype (D mêle B et C). */
-export const DIRECTIONS = ["a", "b", "c", "d"] as const;
-export type Direction = (typeof DIRECTIONS)[number];
+/**
+ * Les prototypes retenus : fiches C (schéma d'abord) et D (B et C mêlés), cockpit B (parcours par niveau).
+ * A et la fiche B ont été retirés après la relecture de l'auteur.
+ */
+export const FICHES = ["c", "d"] as const;
+export type DirectionFiche = (typeof FICHES)[number];
+export const COCKPIT = "b" as const;
 
-export const NOM_DIRECTION: Record<Direction, { court: string; titre: string; idee: string; inspiration: string }> = {
-  a: { court: "A", titre: "La leçon qui défile", idee: "Une seule colonne de lecture, un sommaire qui suit, les outils à droite.", inspiration: "Vercel Academy" },
-  b: { court: "B", titre: "Le parcours par phases", idee: "Comprendre, voir, pratiquer : une phase à la fois, avec la barre de progression.", inspiration: "Uxcel" },
-  c: { court: "C", titre: "Le schéma d'abord", idee: "Le schéma reste en vue et suit le texte : avant, ce qui change, après.", inspiration: "Brilliant" },
-  d: { court: "D", titre: "B et C mêlés", idee: "Le schéma de C reste en vue, piloté par les phases de B : chaque phase le fait avancer.", inspiration: "Uxcel + Brilliant" },
+export const EXEMPLE = "matrice-networkpolicy";
+
+export const NOM_FICHE: Record<DirectionFiche, { court: string; titre: string; idee: string; inspiration: string }> = {
+  c: { court: "C", titre: "Le schéma d'abord", idee: "Le schéma reste en vue et suit le texte : avant, ce qui change, après. Le défilement le fait avancer.", inspiration: "Brilliant" },
+  d: { court: "D", titre: "B et C mêlés", idee: "Le schéma de C reste en vue, piloté par les trois phases de B : « Continuer » le fait avancer.", inspiration: "Uxcel + Brilliant" },
 };

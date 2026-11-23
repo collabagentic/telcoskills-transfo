@@ -91,6 +91,22 @@
 .pv-diagramme {
   margin-top: var(--e-6);
 }
+/* Le site impose 36rem de large au schéma et le met dans une boîte défilante : ici il tient dans la colonne */
+.proto .diagramme-defile {
+  overflow: visible;
+}
+.proto .diagramme-svg {
+  min-width: 0;
+  width: 100%;
+  height: auto;
+}
+.proto .diagramme.couche {
+  margin-bottom: var(--e-3);
+}
+.proto .agrandir {
+  min-height: 2.25rem;
+  font-size: var(--t-s);
+}
 
 /* Éléments communs */
 .pv-barre {
@@ -339,82 +355,6 @@
   border-color: var(--teinte-forme);
 }
 
-/* Direction A : la leçon qui défile */
-.pv-a {
-  display: grid;
-  grid-template-columns: 11rem minmax(0, 40rem) 13rem;
-  gap: var(--e-12);
-  justify-content: center;
-}
-.pv-a-sommaire,
-.pv-a-outils {
-  position: sticky;
-  top: var(--e-4);
-  align-self: start;
-  font-size: var(--t-s);
-}
-.pv-a-sommaire ol {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  gap: 2px;
-}
-.pv-a-sommaire a {
-  display: block;
-  padding: var(--e-1) 0 var(--e-1) var(--e-3);
-  border-left: 2px solid var(--filet);
-  color: var(--encre-2);
-}
-.pv-a-sommaire a:hover {
-  color: var(--encre);
-  border-left-color: var(--encre-3);
-}
-.pv-a-sommaire .pv-ou {
-  margin-top: var(--e-6);
-}
-.pv-a-outils > ul {
-  list-style: none;
-  padding: 0;
-  border-top: 1px solid var(--filet);
-}
-.pv-a-outils > ul > li {
-  border-bottom: 1px solid var(--filet);
-}
-.pv-a-outils > ul > li > a,
-.pv-a-outils summary {
-  display: block;
-  padding: var(--e-3) 0;
-  color: var(--encre-2);
-  cursor: pointer;
-  list-style: none;
-}
-.pv-a-outils summary::-webkit-details-marker {
-  display: none;
-}
-.pv-a-outils summary::after {
-  content: "+";
-  float: right;
-  color: var(--encre-3);
-}
-.pv-a-outils details[open] summary::after {
-  content: "–";
-}
-.pv-a-outils > ul > li > a:hover,
-.pv-a-outils summary:hover {
-  color: var(--encre);
-}
-.pv-a-outils details > :not(summary) {
-  margin-bottom: var(--e-3);
-}
-.pv-a-outils .prompt h2,
-.pv-a-outils .prompt > p:first-child {
-  display: none;
-}
-.pv-a-outils .prompt-texte {
-  font-size: var(--t-xs);
-  width: 100%;
-}
-
 /* Direction B : le parcours par phases */
 .pv-b {
   display: grid;
@@ -536,7 +476,7 @@
   justify-content: space-between;
 }
 .pv-c-droite {
-  max-width: 40rem;
+  max-width: 46rem;
 }
 .pv-c-etape {
   display: grid;
@@ -590,7 +530,7 @@
 
 /* Direction D : B et C mêlés (réutilise les grilles de C et les phases de B) */
 .pv-d-droite {
-  max-width: 44rem;
+  max-width: 46rem;
   scroll-margin-top: var(--e-4);
 }
 .pv-d .pv-c-fixe .pv-d-domaine {
@@ -598,10 +538,6 @@
   border: 0;
   border-top: 1px solid var(--filet);
   padding: var(--e-4) 0 0;
-}
-.pv-d .pv-d-domaine ol {
-  max-height: 13rem;
-  overflow: auto;
 }
 .pv-d .pv-d-domaine li {
   padding: var(--e-1) 0;
@@ -897,24 +833,6 @@ a.pv-case:focus-visible {
 }
 
 @media (max-width: 64rem) {
-  .pv-a {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--e-8);
-  }
-  .pv-a-sommaire,
-  .pv-a-outils {
-    position: static;
-  }
-  .pv-a-sommaire {
-    order: 3;
-  }
-  .pv-a-outils {
-    order: 2;
-  }
-  .pv-a-sommaire ol {
-    grid-auto-flow: column;
-    overflow-x: auto;
-  }
   .pv-b {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--e-6);
@@ -937,8 +855,6 @@ a.pv-case:focus-visible {
   .pv-c-fixe {
     padding: var(--e-3);
     gap: var(--e-3);
-    max-height: 55vh;
-    overflow: auto;
   }
   .pv-d .pv-d-domaine {
     display: none;
@@ -991,14 +907,20 @@ a.pv-case:focus-visible {
   .pv-c-commandes .pv-ou {
     display: none;
   }
-  .pv-c-fixe {
-    max-height: none;
-    overflow: visible;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .pv-rangee,
   .pv-c-etape {
     transition: none;
   }
+}
+
+.pv-index-h2 {
+  font-size: var(--t-s);
+  font-weight: 500;
+  color: var(--encre-3);
+  margin-top: var(--e-4);
+}
+.pv-index-liste h3 {
+  font-size: var(--t-l);
 }

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { BarreProto } from "@/composants/prototypes/communs";
 import { CockpitProto } from "@/composants/prototypes/CockpitProto";
 import { donneesPubliques } from "@/contenu/publiques";
-import { DIRECTIONS, type Direction } from "../../directions";
+import { COCKPIT } from "../../directions";
 import "../../proto.css";
 
 export const dynamicParams = false;
@@ -11,22 +11,18 @@ export const dynamicParams = false;
 type Props = { params: Promise<{ dir: string }> };
 
 export function generateStaticParams() {
-  return DIRECTIONS.map((dir) => ({ dir }));
+  return [{ dir: COCKPIT }];
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { dir } = await params;
-  return { title: `Prototype ${dir.toUpperCase()} · Cockpit` };
-}
+export const metadata: Metadata = { title: "Prototype B · Cockpit" };
 
 export default async function PrototypeCockpit({ params }: Props) {
   const { dir } = await params;
-  if (!(DIRECTIONS as readonly string[]).includes(dir)) notFound();
-  const d = dir as Direction;
+  if (dir !== COCKPIT) notFound();
   return (
     <div className="proto">
-      <BarreProto dir={d} page="cockpit" />
-      <CockpitProto donnees={donneesPubliques()} dir={d} />
+      <BarreProto page="cockpit" />
+      <CockpitProto donnees={donneesPubliques()} />
     </div>
   );
 }

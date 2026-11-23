@@ -2,14 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import type { Direction } from "@/app/prototypes/directions";
+import { COCKPIT, type DirectionFiche } from "@/app/prototypes/directions";
 import type { Lecon } from "@/app/prototypes/lecon";
-import { Diagramme } from "@/composants/Diagramme";
 import { Epreuve } from "@/composants/Epreuve";
 import { Ressources } from "@/composants/Ressources";
 import { competenceFaite } from "@/lib/parcours";
 import { useParcours } from "@/lib/stockage";
-import { Avis, Puces, SchemaChaine } from "./communs";
+import { Avis, DiagrammeFiche, Puces, SchemaChaine } from "./communs";
 import { MarquerAcquis } from "./MarquerAcquis";
 
 const GENRE = { transposition: "Change de forme", nouveaute: "Vraiment nouveau" } as const;
@@ -19,7 +18,7 @@ const ETAPES = ["avant", "compare", "apres"] as const;
  * Direction D : B et C mêlés. La colonne de gauche est celle de C (le schéma avant / après reste en vue, avec la position dans le domaine
  * dessous) ; la colonne de droite est celle de B (trois phases, barre de progression, « Continuer » en bas). Chaque phase fait avancer le schéma.
  */
-export function FicheD({ l, dir }: { l: Lecon; dir: Direction }) {
+export function FicheD({ l, dir }: { l: Lecon; dir: DirectionFiche }) {
   const [phase, setPhase] = useState(0);
   const parcours = useParcours();
   const avis = new Set(l.avis);
@@ -35,6 +34,11 @@ export function FicheD({ l, dir }: { l: Lecon; dir: Direction }) {
   };
   const faite = (v: Lecon["voisines"][number]) => (parcours ? competenceFaite({ id: v.id, fiches: v.fiches }, parcours) : false);
   const rang = l.voisines.findIndex((v) => v.courante) + 1;
+  // Fenêtre de 7 étapes autour de l'étape courante : pas de liste à faire défiler.
+  const debut = Math.max(0, Math.min(rang - 1 - 3, l.voisines.length - 7));
+  const fenetre = l.voisines.slice(debut, debut + 7);
+  const avant = debut;
+  const apres = l.voisines.length - (debut + fenetre.length);
 
   return (
     <div className="pv-c pv-d">
@@ -48,8 +52,9 @@ export function FicheD({ l, dir }: { l: Lecon; dir: Direction }) {
             <p className="pv-petit-titre">
               {l.domaine} · étape {rang} sur {l.voisines.length}
             </p>
+            {avant > 0 ? <p className="pv-ou">… {avant} étape{avant > 1 ? "s" : ""} avant</p> : null}
             <ol>
-              {l.voisines.map((v) => (
+              {fenetre.map((v) => (
                 <li key={v.id} data-courante={v.courante ? "oui" : "non"}>
                   <span className={`pv-point pv-point-${faite(v) ? "faite" : v.courante ? "courant" : "avenir"}`} aria-hidden="true" />
                   {v.courante ? (
@@ -61,13 +66,14 @@ export function FicheD({ l, dir }: { l: Lecon; dir: Direction }) {
                 </li>
               ))}
             </ol>
+            {apres > 0 ? <p className="pv-ou">… {apres} étape{apres > 1 ? "s" : ""} après</p> : null}
           </div>
         </div>
       </div>
 
       <div className="pv-c-droite pv-d-droite" id="pv-d-haut">
         <p className="pv-fil">
-          <Link href={`/prototypes/${dir}/cockpit`}>Mon cockpit</Link> › {l.domaine}
+          <Link href={`/prototypes/${COCKPIT}/cockpit`}>Mon cockpit</Link> › {l.domaine}
         </p>
         <h1 className="pv-titre">{l.titre}</h1>
         <p className="pv-meta">
@@ -106,9 +112,7 @@ export function FicheD({ l, dir }: { l: Lecon; dir: Direction }) {
               {l.piege} <Avis ok={avis.has("piege")} />
             </p>
             {l.diagramme ? (
-              <div className="pv-diagramme">
-                <Diagramme diagramme={l.diagramme} />
-              </div>
+              <DiagrammeFiche diagramme={l.diagramme} />
             ) : null}
           </div>
         ) : null}
