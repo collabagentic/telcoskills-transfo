@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { apercuDomaines, priorites, recombiner, type Etape } from "@/lib/parcours";
+import { apercuDomaines, detailPriorite, limiterAcquis, priorites, recombiner, type Etape } from "@/lib/parcours";
 import { recommencer, repondre, useParcours } from "@/lib/stockage";
 import type { DonneesPubliques } from "@/contenu/publiques";
 import "./assistant.css";
@@ -39,6 +39,7 @@ export function Assistant({ donnees }: { donnees: DonneesPubliques }) {
   const parId = useMemo(() => new Map(donnees.graphe.map((c) => [c.id, c])), [donnees.graphe]);
   const acquises = useMemo(() => feuille.acquises.filter((id) => parId.has(id)).map((id) => parId.get(id)!), [feuille.acquises, parId]);
   const lesPriorites = useMemo(() => priorites(feuille), [feuille]);
+  const acquisLimites = useMemo(() => limiterAcquis(acquises, lesPriorites[0]?.domaine), [acquises, lesPriorites]);
 
   const choisir = (idQuestion: string, option: string, dejaChoisie: boolean) => {
     repondre(idQuestion, dejaChoisie ? null : option);
@@ -111,9 +112,10 @@ export function Assistant({ donnees }: { donnees: DonneesPubliques }) {
                   <section className="bilan-acquis">
                     <h2 className="bilan-titre">Ce que vous maîtrisez déjà</h2>
                     <ul className="liste-acquis">
-                      {acquises.map((c) => (
+                      {acquisLimites.montres.map((c) => (
                         <li key={c.id}>{c.titre}</li>
                       ))}
+                      {acquisLimites.autres > 0 ? <li className="acquis-autres">… et {acquisLimites.autres} autres</li> : null}
                     </ul>
                   </section>
                 ) : null}
@@ -126,6 +128,7 @@ export function Assistant({ donnees }: { donnees: DonneesPubliques }) {
                           <Link className="priorite" href={lienEtape(e)}>
                             <span className="priorite-titre">{e.titre}</span>
                             <span className="priorite-raison">{e.pourquoi}</span>
+                            {detailPriorite(e) && detailPriorite(e) !== e.pourquoi ? <span className="priorite-detail">{detailPriorite(e)}</span> : null}
                           </Link>
                         </li>
                       ))}
