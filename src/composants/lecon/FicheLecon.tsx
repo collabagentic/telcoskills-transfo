@@ -20,12 +20,15 @@ const NOM_TYPE = { cours: "Cours", video: "Vidéo", doc: "Documentation", openso
 const ETAPES = ["avant", "compare", "apres"] as const;
 
 /**
- * La fiche, en leçon continue. À gauche, le schéma avant / après reste en vue, avec la position dans le domaine dessous ;
+ * La fiche, en leçon continue. Tout à gauche, le menu du domaine, à part : chaque étape est un lien, « … N étapes » déplie la liste complète.
+ * Ensuite le schéma avant / après, qui reste en vue ;
  * à droite, trois phases (partir de l'existant, voir ce qui change, pratiquer) avec une barre de progression et « Continuer » en bas.
  * Chaque phase fait avancer le schéma. Rien n'est réécrit : tous les textes viennent de la fiche.
  */
 export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques }) {
   const [phase, setPhase] = useState(0);
+  const [toutes, setToutes] = useState(false);
+  const [petitOuvert, setPetitOuvert] = useState(false);
   const parcours = useParcours();
   const avis = new Set(l.avis);
   const avecAvant = l.schema.avant !== null;
@@ -41,37 +44,68 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
   };
   const faite = (v: Lecon["voisines"][number]) => (parcours ? competenceFaite({ id: v.id, fiches: v.fiches }, parcours) : false);
   const rang = l.voisines.findIndex((v) => v.courante) + 1;
-  // Fenêtre de 7 étapes autour de l'étape courante : pas de liste à faire défiler.
+  // Fenêtre de 7 étapes autour de l'étape courante ; un clic sur « … N étapes » déplie TOUTE la liste (la page s'allonge, aucune boîte ne défile).
   const debut = Math.max(0, Math.min(rang - 1 - 3, l.voisines.length - 7));
-  const fenetre = l.voisines.slice(debut, debut + 7);
-  const apres = l.voisines.length - (debut + fenetre.length);
+  const fenetre = toutes ? l.voisines : l.voisines.slice(debut, debut + 7);
+  const avant = toutes ? 0 : debut;
+  const apres = toutes ? 0 : l.voisines.length - (debut + fenetre.length);
   const recents = l.historique.slice(0, 3);
   const anciens = l.historique.slice(3);
 
   return (
     <div className="lc-fiche">
+      <aside className="lc-rail" data-deploye={toutes ? "oui" : "non"} data-ferme={petitOuvert ? "non" : "oui"}>
+        <nav aria-label={`Menu du domaine ${l.domaine}`}>
+          <button type="button" className="lc-rail-bascule" onClick={() => setPetitOuvert(!petitOuvert)} aria-expanded={petitOuvert}>
+            Menu du domaine · étape {rang} sur {l.voisines.length} <span aria-hidden="true">{petitOuvert ? "▴" : "▾"}</span>
+          </button>
+          <p className="lc-petit-titre">{l.domaine}</p>
+          <p className="lc-rail-pos">
+            Étape {rang} sur {l.voisines.length}
+          </p>
+          {avant > 0 ? (
+            <button type="button" className="lc-rail-plus" onClick={() => setToutes(true)} aria-expanded="false">
+              … {avant} étape{avant > 1 ? "s" : ""} avant
+            </button>
+          ) : null}
+          <ol>
+            {fenetre.map((v) => (
+              <li key={v.id} data-courante={v.courante ? "oui" : "non"}>
+                {v.courante ? (
+                  <span className="lc-rail-ligne" aria-current="step">
+                    <span className={`lc-point lc-point-${faite(v) ? "faite" : "courant"}`} aria-hidden="true" />
+                    <span>{v.titre}</span>
+                    <span className="lc-sr">{faite(v) ? " (acquise, en cours)" : " (en cours)"}</span>
+                  </span>
+                ) : (
+                  <Link className="lc-rail-ligne" href={v.fiches[0] ? `/fiche/${v.fiches[0]}` : `/competence/${v.id}`}>
+                    <span className={`lc-point lc-point-${faite(v) ? "faite" : "avenir"}`} aria-hidden="true" />
+                    <span>{v.titre}</span>
+                    <span className="lc-sr">{faite(v) ? " (acquise)" : ""}</span>
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ol>
+          {apres > 0 ? (
+            <button type="button" className="lc-rail-plus" onClick={() => setToutes(true)} aria-expanded="false">
+              … {apres} étape{apres > 1 ? "s" : ""} après
+            </button>
+          ) : null}
+          {toutes ? (
+            <button type="button" className="lc-rail-plus" onClick={() => setToutes(false)} aria-expanded="true">
+              Réduire la liste
+            </button>
+          ) : null}
+        </nav>
+      </aside>
+
       <div className="lc-gauche">
         <div className="lc-fixe">
           <p className="lc-ou">
             Phase {phase + 1} sur 3 · {phases[phase].nom}
           </p>
           <SchemaChaine schema={l.schema} etape={avecAvant ? ETAPES[phase] : "tout"} />
-          <nav className="lc-domaine" aria-label="Dans ce domaine">
-            <p className="lc-petit-titre">
-              {l.domaine} · étape {rang} sur {l.voisines.length}
-            </p>
-            {debut > 0 ? <p className="lc-ou">… {debut} étape{debut > 1 ? "s" : ""} avant</p> : null}
-            <ol>
-              {fenetre.map((v) => (
-                <li key={v.id} data-courante={v.courante ? "oui" : "non"}>
-                  <span className={`lc-point lc-point-${faite(v) ? "faite" : v.courante ? "courant" : "avenir"}`} aria-hidden="true" />
-                  {v.courante ? <span aria-current="step">{v.titre}</span> : <Link href={v.fiches[0] ? `/fiche/${v.fiches[0]}` : `/competence/${v.id}`}>{v.titre}</Link>}
-                  <span className="lc-sr">{faite(v) ? " (acquise)" : v.courante ? " (en cours)" : ""}</span>
-                </li>
-              ))}
-            </ol>
-            {apres > 0 ? <p className="lc-ou">… {apres} étape{apres > 1 ? "s" : ""} après</p> : null}
-          </nav>
         </div>
       </div>
 
