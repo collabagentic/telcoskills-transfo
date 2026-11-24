@@ -1,0 +1,732 @@
+/*
+ * La fiche en leçon continue et le cockpit par niveau. Toutes les couleurs viennent de tokens.css (sombre et clair).
+ * Règles : fond uni, pas d'ombres, rayon --r-s au plus, titres en casse normale, aucune boîte à faire défiler,
+ * orange réservé à l'action principale. Le bleu (--teinte-forme) marque l'état courant et « après » ; le vert (--teinte-ok) ce qui est acquis.
+ */
+
+/* La scène coupe son halo avec overflow:hidden, ce qui empêche le défilement collant ; clip coupe pareil sans l'empêcher */
+.scene:has(.lc-page) {
+  overflow: clip;
+}
+
+/* Fond uni sur toute la largeur (le halo et la grille de la scène restent derrière l'en-tête) */
+.lc-page {
+  position: relative;
+  background: var(--fond);
+  box-shadow: 0 0 0 100vmax var(--fond);
+  clip-path: inset(0 -100vmax);
+  padding-block: var(--e-8) var(--e-12);
+  color: var(--encre);
+}
+.lc-page h1,
+.lc-page h2,
+.lc-page h3 {
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+.lc-page p,
+.lc-page ul,
+.lc-page ol {
+  margin: 0;
+}
+
+/* Les blocs hérités du site perdent leurs cartes, ombres et capitales */
+.lc-page .couche {
+  background: none;
+  box-shadow: none;
+  border: 0;
+  border-top: 1px solid var(--filet);
+  border-radius: 0;
+  padding: var(--e-6) 0 0;
+  margin-top: var(--e-6);
+}
+.lc-page .pastille {
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: inherit;
+  font-size: var(--t-s);
+}
+.lc-page .btn {
+  border-radius: var(--r-s);
+  background: none;
+  min-height: 2.5rem;
+  font-weight: 500;
+}
+.lc-page .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.lc-page .btn-principal {
+  background: var(--accent);
+  color: var(--accent-encre);
+  border-color: var(--accent);
+  box-shadow: none;
+  font-weight: 600;
+}
+.lc-page .epreuve .btn-principal,
+.lc-page .prompt .btn-principal,
+.lc-page .suite-fiche .btn-principal {
+  background: none;
+  color: var(--encre);
+  border-color: var(--filet-fort);
+  font-weight: 500;
+}
+.lc-page .epreuve h2,
+.lc-page .prompt h2 {
+  font-size: var(--t-m);
+}
+.lc-page textarea {
+  border-radius: var(--r-s);
+  box-shadow: none;
+}
+.lc-page .ressource {
+  border-radius: var(--r-s);
+  background: none;
+  box-shadow: none;
+}
+.lc-page .suite-fiche {
+  margin-top: var(--e-8);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--filet);
+}
+
+/* Le site impose 36rem de large au schéma et le met dans une boîte défilante : ici il tient dans la colonne */
+.lc-page .diagramme-defile {
+  overflow: visible;
+}
+.lc-page .diagramme-svg {
+  min-width: 0;
+  width: 100%;
+  height: auto;
+}
+.lc-page .diagramme.couche {
+  border: 1px solid var(--filet);
+  border-radius: var(--r-s);
+  padding: var(--e-4);
+  margin-bottom: var(--e-3);
+}
+.lc-page .agrandir {
+  min-height: 2.25rem;
+  font-size: var(--t-s);
+}
+.lc-diagramme {
+  margin-top: var(--e-6);
+}
+
+/* Éléments communs */
+.lc-petit-titre {
+  font-size: var(--t-s);
+  color: var(--encre-3);
+  margin-bottom: var(--e-3);
+}
+.lc-ou {
+  font-size: var(--t-s);
+  color: var(--encre-3);
+}
+.lc-fil {
+  font-size: var(--t-s);
+  color: var(--encre-3);
+}
+.lc-fil a:hover {
+  color: var(--encre);
+}
+.lc-titre {
+  font-size: clamp(2rem, 4.4vw, 2.75rem);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: var(--e-3) 0 var(--e-4);
+}
+.lc-titre-page {
+  font-size: var(--t-xl);
+  margin-top: 0;
+}
+.lc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-1) var(--e-4);
+  font-size: var(--t-s);
+  color: var(--encre-3);
+  margin-bottom: var(--e-6);
+}
+.lc-chapo {
+  font-size: var(--t-l);
+  line-height: 1.55;
+}
+.lc-chapo-bas {
+  color: var(--encre-2);
+}
+.lc-phase h2 {
+  font-size: var(--t-l);
+  line-height: 1.3;
+  font-weight: 600;
+  margin: var(--e-12) 0 var(--e-3);
+}
+.lc-phase > h2:first-child,
+.lc-phase > .lc-chapo + h2 {
+  margin-top: var(--e-8);
+}
+.lc-puces {
+  list-style: disc;
+  padding-left: 1.1em !important;
+  display: grid;
+  gap: var(--e-2);
+}
+.lc-puces li::marker {
+  color: var(--encre-3);
+}
+.lc-citation {
+  font-size: var(--t-l);
+  font-weight: 500;
+  line-height: 1.45;
+}
+.lc-avis {
+  display: inline-block;
+  font-size: var(--t-xs);
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-s);
+  padding: 0 var(--e-2);
+  margin-left: var(--e-1);
+  color: var(--encre-2);
+  white-space: nowrap;
+}
+.lc-acquis {
+  color: var(--teinte-ok);
+  font-weight: 600;
+}
+.lc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.lc-lien,
+.lc-liste-simple a,
+.lc-outils a,
+.lc-lire a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--filet-fort);
+}
+.lc-lien:hover,
+.lc-liste-simple a:hover,
+.lc-outils a:hover,
+.lc-lire a:hover {
+  text-decoration-color: var(--encre);
+}
+.lc-liste-simple {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--e-2);
+  margin-top: var(--e-3);
+}
+.lc-lire {
+  display: grid;
+  gap: var(--e-1);
+  margin-top: var(--e-8);
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--filet);
+}
+.lc-details,
+.lc-prompt {
+  border-top: 1px solid var(--filet);
+  margin-top: var(--e-6);
+  padding-top: var(--e-3);
+}
+.lc-details summary,
+.lc-prompt summary {
+  cursor: pointer;
+  color: var(--encre-2);
+}
+.lc-details summary:hover,
+.lc-prompt summary:hover {
+  color: var(--encre);
+}
+.lc-outils {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--e-2) var(--e-6);
+  margin-top: var(--e-6);
+  font-size: var(--t-s);
+  color: var(--encre-2);
+}
+.lc-lien-bouton {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--filet-fort);
+}
+.lc-lien-bouton:hover {
+  text-decoration-color: var(--encre);
+}
+.lc-point {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--filet-fort);
+  flex: none;
+}
+.lc-point-faite {
+  background: var(--teinte-ok);
+  border-color: var(--teinte-ok);
+}
+.lc-point-courant {
+  background: var(--teinte-forme);
+  border-color: var(--teinte-forme);
+}
+.lc-point-disponible {
+  border-color: var(--encre-3);
+}
+.lc-point-avenir {
+  border-style: dashed;
+}
+.lc-compte {
+  font-family: var(--police-mono), ui-monospace, monospace;
+  font-size: var(--t-s);
+  color: var(--encre-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Schéma avant / après */
+.lc-schema {
+  margin: 0;
+  display: grid;
+  gap: var(--e-6);
+}
+.lc-schema figcaption {
+  font-size: var(--t-s);
+  color: var(--encre-3);
+}
+.lc-rangee {
+  display: grid;
+  gap: var(--e-2);
+  transition: opacity var(--d-base) var(--courbe);
+}
+.lc-rangee[data-estompe="oui"] {
+  opacity: 0.35;
+}
+.lc-rangee-titre {
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+.lc-rangee-apres .lc-rangee-titre {
+  color: var(--teinte-forme);
+}
+.lc-chaine {
+  list-style: none;
+  padding: 0 !important;
+  display: flex;
+  align-items: stretch;
+  gap: var(--e-2);
+}
+.lc-chaine li {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  align-items: center;
+  gap: var(--e-2);
+}
+.lc-fleche {
+  width: 1.5rem;
+  height: 0.75rem;
+  fill: none;
+  stroke: var(--encre-3);
+  stroke-width: 1.5;
+  flex: none;
+}
+.lc-rangee-apres .lc-fleche {
+  stroke: var(--teinte-forme);
+}
+.lc-boite {
+  display: grid;
+  gap: var(--e-1);
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-s);
+  padding: var(--e-2) var(--e-3);
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+  overflow-wrap: break-word;
+}
+.lc-boite strong {
+  font-size: var(--t-s);
+}
+.lc-boite small {
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+  line-height: 1.4;
+}
+.lc-rangee-apres .lc-boite {
+  border-color: var(--teinte-forme);
+}
+
+/* La fiche : menu des étapes à gauche, leçon au centre (le schéma au-dessus du texte) */
+.page:has(.lc-page) {
+  max-width: 88rem;
+}
+.lc-fiche {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 46rem);
+  gap: var(--e-8);
+  justify-content: center;
+  align-items: start;
+}
+/* Le bouton qui ouvre le menu n'existe que sur écran étroit */
+.lc-rail-bascule {
+  display: none;
+}
+/* Le menu : tous les liens, la page s'allonge, aucune boîte ne défile */
+.lc-rail {
+  font-size: var(--t-s);
+}
+.lc-rail ol {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+  margin-top: var(--e-2);
+}
+.lc-rail-pos {
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+  margin-bottom: var(--e-2);
+}
+.lc-rail-ligne {
+  display: grid;
+  grid-template-columns: 0.75rem minmax(0, 1fr);
+  gap: var(--e-3);
+  align-items: start;
+  padding: var(--e-2) var(--e-3);
+  border-radius: var(--r-s);
+  color: var(--encre-2);
+  line-height: 1.35;
+  text-decoration: none;
+}
+.lc-rail-ligne .lc-point {
+  margin-top: 0.3rem;
+}
+a.lc-rail-ligne:hover,
+a.lc-rail-ligne:focus-visible {
+  background: var(--surface-1);
+  color: var(--encre);
+}
+.lc-rail li[data-courante="oui"] .lc-rail-ligne {
+  background: var(--surface-1);
+  border-left: 2px solid var(--teinte-forme);
+  color: var(--encre);
+  font-weight: 600;
+}
+.lc-schema-flux {
+  border: 1px solid var(--filet);
+  border-radius: var(--r-s);
+  background: var(--surface-1);
+  padding: var(--e-4);
+  margin-bottom: var(--e-8);
+}
+.lc-droite {
+  max-width: none;
+  scroll-margin-top: var(--e-4);
+}
+.lc-phases {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-2);
+  margin-bottom: var(--e-8);
+}
+.lc-phases button {
+  background: none;
+  border: 0;
+  border-top: 3px solid var(--filet-fort);
+  padding: var(--e-2) 0 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--encre-3);
+}
+.lc-phases button b {
+  display: block;
+  font-weight: 500;
+  color: var(--encre-2);
+}
+.lc-phases button small {
+  font-size: var(--t-xs);
+}
+.lc-phases button[data-faite="oui"] {
+  border-top-color: var(--teinte-ok);
+}
+.lc-phases button[aria-current="step"] {
+  border-top-color: var(--encre);
+}
+.lc-phases button[aria-current="step"] b {
+  color: var(--encre);
+  font-weight: 600;
+}
+.lc-bas {
+  position: sticky;
+  bottom: 0;
+  background: var(--fond);
+  border-top: 1px solid var(--filet);
+  margin-top: var(--e-12);
+  padding: var(--e-3) 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+}
+.lc-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-2);
+}
+
+/* Le cockpit : le parcours par niveau */
+.lc-cockpit {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+.lc-cockpit-tete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--e-4);
+}
+.lc-cockpit-tete .lc-outils {
+  margin-top: 0;
+}
+.lc-barre-fine {
+  height: 3px;
+  background: var(--filet);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.lc-barre-fine i {
+  display: block;
+  height: 100%;
+  background: var(--teinte-ok);
+}
+.lc-barre-prog {
+  margin-top: var(--e-4);
+}
+.lc-reprise {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-4);
+  padding: var(--e-4) 0;
+  margin-top: var(--e-6);
+  border-top: 1px solid var(--filet);
+  border-bottom: 1px solid var(--filet);
+}
+.lc-reprise-titre {
+  font-size: var(--t-m);
+  font-weight: 600;
+}
+.lc-reprise .lc-petit-titre {
+  margin-bottom: var(--e-1);
+}
+.lc-objectif {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-2) var(--e-4);
+  margin-top: var(--e-6);
+  font-size: var(--t-s);
+}
+.lc-objectif label {
+  color: var(--encre-3);
+}
+.lc-objectif .selecteur {
+  max-width: 100%;
+  border-radius: var(--r-s);
+}
+.lc-bascule {
+  display: inline-flex;
+  margin-top: var(--e-8);
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-s);
+  overflow: hidden;
+}
+.lc-bascule button {
+  background: none;
+  border: 0;
+  padding: var(--e-2) var(--e-4);
+  cursor: pointer;
+  color: var(--encre-2);
+}
+.lc-bascule button + button {
+  border-left: 1px solid var(--filet-fort);
+}
+.lc-bascule button[aria-pressed="true"] {
+  background: var(--encre);
+  color: var(--fond);
+  font-weight: 500;
+}
+.lc-niveau {
+  margin-top: var(--e-8);
+}
+.lc-niveau h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  font-size: var(--t-s);
+  font-weight: 500;
+  color: var(--encre-3);
+  margin-bottom: var(--e-2);
+}
+.lc-niveau h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--filet);
+}
+.lc-chapitre {
+  border: 1px solid var(--filet);
+  border-radius: var(--r-s);
+  margin-top: var(--e-2);
+}
+.lc-chapitre summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-3);
+  padding: var(--e-3) var(--e-4);
+  cursor: pointer;
+  list-style: none;
+}
+.lc-chapitre summary::-webkit-details-marker {
+  display: none;
+}
+.lc-chapitre ol {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--filet);
+}
+.lc-chapitre li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--e-3);
+  padding: var(--e-3) var(--e-4);
+  font-size: var(--t-s);
+}
+.lc-chapitre li .lc-point {
+  margin-top: 0.3rem;
+}
+.lc-chapitre li + li {
+  border-top: 1px solid var(--filet);
+}
+.lc-chapitre li[data-courante="oui"] {
+  background: var(--surface-1);
+}
+.lc-chapitre li[data-courante="oui"] .lc-etape span {
+  font-weight: 600;
+}
+.lc-etape {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+.lc-etape small {
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+  line-height: 1.4;
+}
+.lc-etape:hover span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lc-etat {
+  margin-left: auto;
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+  white-space: nowrap;
+}
+
+@media (max-width: 64rem) {
+  .lc-fiche {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--e-6);
+  }
+}
+/* Écran étroit : le menu est replié derrière un bouton (la leçon passe d'abord), un clic le déplie */
+@media (max-width: 64rem) {
+  .lc-rail-bascule {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--surface-1);
+    border: 1px solid var(--filet);
+    border-radius: var(--r-s);
+    padding: var(--e-3) var(--e-4);
+    font: inherit;
+    font-size: var(--t-s);
+    color: var(--encre);
+    cursor: pointer;
+  }
+  .lc-rail .lc-petit-titre,
+  .lc-rail .lc-rail-pos {
+    display: none;
+  }
+  .lc-rail[data-ferme="oui"] ol {
+    display: none;
+  }
+  .lc-rail ol {
+    margin-top: var(--e-3);
+  }
+}
+@media (max-width: 40rem) {
+  .lc-fiche .lc-chaine {
+    flex-direction: row;
+  }
+  .lc-boite {
+    padding: var(--e-1) var(--e-2);
+  }
+  .lc-boite strong {
+    font-size: var(--t-xs);
+  }
+  .lc-boite small {
+    display: none;
+  }
+  .lc-fleche {
+    width: 0.75rem;
+  }
+  .lc-fiche .lc-chaine li {
+    gap: var(--e-1);
+  }
+  .lc-boite {
+    padding: var(--e-1);
+  }
+  .lc-etat {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lc-rangee {
+    transition: none;
+  }
+}
+@media print {
+  .lc-rail,
+  .lc-bas,
+  .lc-phases {
+    display: none;
+  }
+  .lc-page {
+    box-shadow: none;
+    clip-path: none;
+  }
+}
+
