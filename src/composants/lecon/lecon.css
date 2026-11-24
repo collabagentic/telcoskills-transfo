@@ -370,60 +370,22 @@
   border-color: var(--teinte-forme);
 }
 
-/* La fiche : schéma en vue à gauche, trois phases à droite */
-/* Grand écran : la fiche prend plus de largeur pour loger le menu à part sans écraser le schéma ni la leçon */
+/* La fiche : menu des étapes à gauche, leçon au centre (le schéma au-dessus du texte) */
 .page:has(.lc-page) {
   max-width: 88rem;
 }
 .lc-fiche {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: var(--e-12);
+  grid-template-columns: 17rem minmax(0, 46rem);
+  gap: var(--e-8);
+  justify-content: center;
   align-items: start;
-}
-/* Écran moyen : le menu passe au-dessus, sur toute la largeur, en une rangée de liens */
-.lc-rail {
-  grid-column: 1 / -1;
-}
-.lc-rail ol {
-  grid-auto-flow: row;
-  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
 }
 /* Le bouton qui ouvre le menu n'existe que sur écran étroit */
 .lc-rail-bascule {
   display: none;
 }
-/* Grand écran : trois colonnes, le menu fixe à gauche */
-@media (min-width: 80rem) {
-  .lc-fiche {
-    grid-template-columns: 13.5rem minmax(0, 1.05fr) minmax(0, 1fr);
-    gap: var(--e-8);
-  }
-  .lc-rail {
-    grid-column: auto;
-    position: sticky;
-    top: var(--e-4);
-  }
-  .lc-rail[data-deploye="oui"] {
-    position: static;
-  }
-  .lc-rail ol {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-.lc-gauche {
-  position: sticky;
-  top: var(--e-4);
-}
-.lc-fixe {
-  border: 1px solid var(--filet);
-  border-radius: var(--r-s);
-  background: var(--surface-1);
-  padding: var(--e-6);
-  display: grid;
-  gap: var(--e-6);
-}
-/* Le menu du domaine : à part, tout à gauche ; chaque étape est un lien sur toute la ligne */
+/* Le menu : tous les liens, la page s'allonge, aucune boîte ne défile */
 .lc-rail {
   font-size: var(--t-s);
 }
@@ -464,26 +426,15 @@ a.lc-rail-ligne:focus-visible {
   color: var(--encre);
   font-weight: 600;
 }
-.lc-rail-plus {
-  background: none;
-  border: 0;
-  padding: var(--e-2) var(--e-3);
-  margin: var(--e-1) 0;
-  font: inherit;
-  font-size: var(--t-xs);
-  color: var(--encre-3);
-  cursor: pointer;
-  text-align: left;
+.lc-schema-flux {
+  border: 1px solid var(--filet);
   border-radius: var(--r-s);
-}
-.lc-rail-plus:hover,
-.lc-rail-plus:focus-visible {
-  color: var(--encre);
   background: var(--surface-1);
-  text-decoration: underline;
+  padding: var(--e-4);
+  margin-bottom: var(--e-8);
 }
 .lc-droite {
-  max-width: 46rem;
+  max-width: none;
   scroll-margin-top: var(--e-4);
 }
 .lc-phases {
@@ -709,21 +660,9 @@ a.lc-rail-ligne:focus-visible {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--e-6);
   }
-  .lc-gauche {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-  }
-  .lc-fixe {
-    padding: var(--e-3);
-    gap: var(--e-3);
-  }
-  .lc-rail {
-    position: static;
-  }
 }
 /* Écran étroit : le menu est replié derrière un bouton (la leçon passe d'abord), un clic le déplie */
-@media (max-width: 63.99rem) {
+@media (max-width: 64rem) {
   .lc-rail-bascule {
     display: block;
     width: 100%;
@@ -741,8 +680,7 @@ a.lc-rail-ligne:focus-visible {
   .lc-rail .lc-rail-pos {
     display: none;
   }
-  .lc-rail[data-ferme="oui"] ol,
-  .lc-rail[data-ferme="oui"] .lc-rail-plus {
+  .lc-rail[data-ferme="oui"] ol {
     display: none;
   }
   .lc-rail ol {
@@ -759,8 +697,7 @@ a.lc-rail-ligne:focus-visible {
   .lc-boite strong {
     font-size: var(--t-xs);
   }
-  .lc-boite small,
-  .lc-fixe > .lc-ou {
+  .lc-boite small {
     display: none;
   }
   .lc-fleche {
@@ -783,7 +720,6 @@ a.lc-rail-ligne:focus-visible {
 }
 @media print {
   .lc-rail,
-  .lc-gauche,
   .lc-bas,
   .lc-phases {
     display: none;
@@ -794,105 +730,3 @@ a.lc-rail-ligne:focus-visible {
   }
 }
 
-/* Variantes de prototype : menu à gauche (domaine entier ou parcours entier), schéma dans le fil ou en colonne à droite */
-.lc-fiche[data-variante] .lc-rail {
-  position: static;
-}
-.lc-schema-flux {
-  border: 1px solid var(--filet);
-  border-radius: var(--r-s);
-  background: var(--surface-1);
-  padding: var(--e-4);
-  margin-bottom: var(--e-8);
-}
-.lc-rail-groupe {
-  border-top: 1px solid var(--filet);
-}
-.lc-rail-groupe summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--e-3);
-  padding: var(--e-3) var(--e-3);
-  cursor: pointer;
-  list-style: none;
-  color: var(--encre);
-  font-weight: 500;
-}
-.lc-rail-groupe summary::-webkit-details-marker {
-  display: none;
-}
-.lc-rail-groupe ol {
-  margin-top: 0;
-  padding-bottom: var(--e-2);
-}
-@media (min-width: 64.01rem) {
-  .lc-fiche[data-variante="e"],
-  .lc-fiche[data-variante="h"] {
-    grid-template-columns: 17rem minmax(0, 46rem);
-    grid-template-areas: "menu texte";
-    gap: var(--e-8);
-    justify-content: center;
-  }
-  .lc-fiche[data-variante="e"] .lc-droite,
-  .lc-fiche[data-variante="h"] .lc-droite {
-    grid-area: texte;
-    max-width: none;
-  }
-  .lc-fiche[data-variante="g"] {
-    grid-template-columns: 15rem minmax(0, 1fr) 19rem;
-    grid-template-areas: "menu texte schema";
-    gap: var(--e-8);
-  }
-  .lc-fiche[data-variante] .lc-rail {
-    grid-column: auto;
-    grid-area: menu;
-  }
-  .lc-fiche[data-variante="g"] .lc-droite {
-    grid-area: texte;
-    max-width: none;
-  }
-  .lc-fiche[data-variante="g"] .lc-gauche {
-    grid-area: schema;
-  }
-  .lc-fiche[data-variante] .lc-rail ol {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .lc-fiche[data-variante="g"] .lc-chaine {
-    flex-direction: column;
-  }
-  .lc-fiche[data-variante="g"] .lc-chaine li {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .lc-fiche[data-variante="g"] .lc-fleche {
-    transform: rotate(90deg);
-    align-self: center;
-  }
-}
-.lc-barre-variantes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--e-2) var(--e-6);
-  align-items: baseline;
-  border-bottom: 1px solid var(--filet);
-  padding-bottom: var(--e-3);
-  margin-bottom: var(--e-6);
-  font-size: var(--t-s);
-  color: var(--encre-3);
-}
-.lc-barre-variantes a {
-  color: var(--encre-2);
-  padding-block: var(--e-1);
-  border-bottom: 2px solid transparent;
-}
-.lc-barre-variantes a:hover {
-  color: var(--encre);
-}
-.lc-barre-variantes a[aria-current="page"] {
-  color: var(--encre);
-  border-bottom-color: var(--encre);
-}
-.lc-barre-variantes .lc-barre-actuel {
-  margin-left: auto;
-}
