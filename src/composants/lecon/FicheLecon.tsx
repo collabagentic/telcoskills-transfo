@@ -25,9 +25,60 @@ const ETAPES = ["avant", "compare", "apres"] as const;
  * à droite, trois phases (partir de l'existant, voir ce qui change, pratiquer) avec une barre de progression et « Continuer » en bas.
  * Chaque phase fait avancer le schéma. Rien n'est réécrit : tous les textes viennent de la fiche.
  */
-export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques }) {
+type Variante = "e" | "g" | "h";
+
+/**
+ * Menu du parcours entier (variante h) : chaque domaine est un groupe qu'on déplie, celui de la fiche est ouvert d'office,
+ * chaque étape est un lien. Comme le sommaire d'un parcours Microsoft Learn.
+ */
+function MenuParcours({ donnees, courantId, base }: { donnees: DonneesPubliques; courantId: string; base: string }) {
+  const parcours = useParcours();
+  const courant = donnees.graphe.find((c) => c.id === courantId)?.domaine;
+  const fait = (c: DonneesPubliques["graphe"][number]) => (parcours ? competenceFaite({ id: c.id, fiches: c.fiches }, parcours) : false);
+  return (
+    <>
+      <p className="lc-petit-titre">Mon parcours</p>
+      {Object.entries(donnees.domaines).map(([d, nom]) => {
+        const etapes = donnees.graphe.filter((c) => c.domaine === d);
+        if (etapes.length === 0) return null;
+        const faites = etapes.filter(fait).length;
+        return (
+          <details key={d} className="lc-rail-groupe" open={d === courant}>
+            <summary>
+              <span>{nom}</span>
+              <span className="lc-compte">
+                {faites}/{etapes.length}
+              </span>
+            </summary>
+            <ol>
+              {etapes.map((c) => (
+                <li key={c.id} data-courante={c.id === courantId ? "oui" : "non"}>
+                  {c.id === courantId ? (
+                    <span className="lc-rail-ligne" aria-current="step">
+                      <span className={`lc-point lc-point-${fait(c) ? "faite" : "courant"}`} aria-hidden="true" />
+                      <span>{c.titre}</span>
+                      <span className="lc-sr"> (en cours)</span>
+                    </span>
+                  ) : (
+                    <Link className="lc-rail-ligne" href={c.fiches[0] ? `${base}/${c.fiches[0]}` : `/competence/${c.id}`}>
+                      <span className={`lc-point lc-point-${fait(c) ? "faite" : "avenir"}`} aria-hidden="true" />
+                      <span>{c.titre}</span>
+                      <span className="lc-sr">{fait(c) ? " (acquise)" : ""}</span>
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </details>
+        );
+      })}
+    </>
+  );
+}
+
+export function FicheLecon({ l, donnees, variante, base = "/fiche" }: { l: Lecon; donnees: DonneesPubliques; variante?: Variante; base?: string }) {
   const [phase, setPhase] = useState(0);
-  const [toutes, setToutes] = useState(false);
+  const [toutes, setToutes] = useState(variante === "e" || variante === "g");
   const [petitOuvert, setPetitOuvert] = useState(false);
   const parcours = useParcours();
   const avis = new Set(l.avis);
@@ -53,53 +104,62 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
   const anciens = l.historique.slice(3);
 
   return (
-    <div className="lc-fiche">
+    <div className="lc-fiche" data-variante={variante}>
       <aside className="lc-rail" data-deploye={toutes ? "oui" : "non"} data-ferme={petitOuvert ? "non" : "oui"}>
-        <nav aria-label={`Menu du domaine ${l.domaine}`}>
+        <nav aria-label={variante === "h" ? "Menu du parcours" : `Menu du domaine ${l.domaine}`}>
           <button type="button" className="lc-rail-bascule" onClick={() => setPetitOuvert(!petitOuvert)} aria-expanded={petitOuvert}>
             Menu du domaine · étape {rang} sur {l.voisines.length} <span aria-hidden="true">{petitOuvert ? "▴" : "▾"}</span>
           </button>
-          <p className="lc-petit-titre">{l.domaine}</p>
-          <p className="lc-rail-pos">
-            Étape {rang} sur {l.voisines.length}
-          </p>
-          {avant > 0 ? (
-            <button type="button" className="lc-rail-plus" onClick={() => setToutes(true)} aria-expanded="false">
-              … {avant} étape{avant > 1 ? "s" : ""} avant
-            </button>
-          ) : null}
-          <ol>
-            {fenetre.map((v) => (
-              <li key={v.id} data-courante={v.courante ? "oui" : "non"}>
-                {v.courante ? (
-                  <span className="lc-rail-ligne" aria-current="step">
-                    <span className={`lc-point lc-point-${faite(v) ? "faite" : "courant"}`} aria-hidden="true" />
-                    <span>{v.titre}</span>
-                    <span className="lc-sr">{faite(v) ? " (acquise, en cours)" : " (en cours)"}</span>
-                  </span>
-                ) : (
-                  <Link className="lc-rail-ligne" href={v.fiches[0] ? `/fiche/${v.fiches[0]}` : `/competence/${v.id}`}>
-                    <span className={`lc-point lc-point-${faite(v) ? "faite" : "avenir"}`} aria-hidden="true" />
-                    <span>{v.titre}</span>
-                    <span className="lc-sr">{faite(v) ? " (acquise)" : ""}</span>
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ol>
-          {apres > 0 ? (
-            <button type="button" className="lc-rail-plus" onClick={() => setToutes(true)} aria-expanded="false">
-              … {apres} étape{apres > 1 ? "s" : ""} après
-            </button>
-          ) : null}
-          {toutes ? (
-            <button type="button" className="lc-rail-plus" onClick={() => setToutes(false)} aria-expanded="true">
-              Réduire la liste
-            </button>
-          ) : null}
+          {variante === "h" ? null : <p className="lc-petit-titre">{l.domaine}</p>}
+          {variante === "h" ? null : (
+            <p className="lc-rail-pos">
+              Étape {rang} sur {l.voisines.length}
+            </p>
+          )}
+          {variante === "h" ? (
+            <MenuParcours donnees={donnees} courantId={l.competences[0]?.id ?? ""} base={base} />
+          ) : (
+            <>
+            {avant > 0 ? (
+              <button type="button" className="lc-rail-plus" onClick={() => setToutes(true)} aria-expanded="false">
+                … {avant} étape{avant > 1 ? "s" : ""} avant
+              </button>
+            ) : null}
+            <ol>
+              {fenetre.map((v) => (
+                <li key={v.id} data-courante={v.courante ? "oui" : "non"}>
+                  {v.courante ? (
+                    <span className="lc-rail-ligne" aria-current="step">
+                      <span className={`lc-point lc-point-${faite(v) ? "faite" : "courant"}`} aria-hidden="true" />
+                      <span>{v.titre}</span>
+                      <span className="lc-sr">{faite(v) ? " (acquise, en cours)" : " (en cours)"}</span>
+                    </span>
+                  ) : (
+                    <Link className="lc-rail-ligne" href={v.fiches[0] ? `${base}/${v.fiches[0]}` : `/competence/${v.id}`}>
+                      <span className={`lc-point lc-point-${faite(v) ? "faite" : "avenir"}`} aria-hidden="true" />
+                      <span>{v.titre}</span>
+                      <span className="lc-sr">{faite(v) ? " (acquise)" : ""}</span>
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ol>
+            {apres > 0 ? (
+              <button type="button" className="lc-rail-plus" onClick={() => setToutes(true)} aria-expanded="false">
+                … {apres} étape{apres > 1 ? "s" : ""} après
+              </button>
+            ) : null}
+            {toutes && !variante ? (
+              <button type="button" className="lc-rail-plus" onClick={() => setToutes(false)} aria-expanded="true">
+                Réduire la liste
+              </button>
+            ) : null}
+              </>
+          )}
         </nav>
       </aside>
 
+      {variante === "e" || variante === "h" ? null : (
       <div className="lc-gauche">
         <div className="lc-fixe">
           <p className="lc-ou">
@@ -108,6 +168,7 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
           <SchemaChaine schema={l.schema} etape={avecAvant ? ETAPES[phase] : "tout"} />
         </div>
       </div>
+      )}
 
       <article className="lc-droite" id="lc-haut">
         <p className="lc-fil">
@@ -129,6 +190,12 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
             </button>
           ))}
         </div>
+
+        {variante === "e" || variante === "h" ? (
+          <div className="lc-schema-flux">
+            <SchemaChaine schema={l.schema} etape={avecAvant ? ETAPES[phase] : "tout"} />
+          </div>
+        ) : null}
 
         {phase === 0 ? (
           <div className="lc-phase">
