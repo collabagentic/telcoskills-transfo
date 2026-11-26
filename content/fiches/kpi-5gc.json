@@ -1,0 +1,120 @@
+{
+  "id": "kpi-5gc",
+  "genre": "transposition",
+  "categorie": "diagnostiquer",
+  "avant": "compteurs de performance de l'équipementier",
+  "apres": "mesures et indicateurs normalisés du 5GC",
+  "resume": {
+    "avant": "Des compteurs propres à chaque équipementier, chacun avec ses noms, ses définitions et ses exports.",
+    "apres": "Le 3GPP normalise les mesures de performance du 5G et des indicateurs de bout en bout ; on les suit par procédure et par fonction."
+  },
+  "resteVrai": [
+    "Les taux de réussite des procédures restent les premiers indicateurs.",
+    "Un indicateur sans définition commune ne se compare pas.",
+    "Distinguer un problème de réseau d'un problème de plateforme reste le cœur du diagnostic."
+  ],
+  "change": [
+    "Le 3GPP définit des mesures de performance pour le système 5G, dont le cœur (TS 28.552).",
+    "Il définit aussi des indicateurs de bout en bout, calculés à partir de ces mesures (TS 28.554).",
+    "Les métriques de la plateforme (pods, nœuds) complètent les indicateurs des procédures, sans les remplacer."
+  ],
+  "reflexe": "Chaque équipementier a ses compteurs, on apprend les siens.",
+  "pourquoiNouveau": null,
+  "piege": "Lire une baisse d'indicateur sans regarder la plateforme : un taux d'échec de session qui monte peut venir d'un pod saturé ou d'un nœud redémarré, pas du réseau. Corrélez les indicateurs des procédures et les métriques de la plateforme sur la même période.",
+  "exemple": "Le taux de réussite d'établissement des sessions PDU baisse ; la même période montre une SMF limitée en CPU : le problème est dans la plateforme, pas dans le réseau.",
+  "epreuve": {
+    "cas": "Le taux de réussite d'établissement des sessions PDU baisse depuis ce matin. Où trouvez-vous des définitions communes de mesures et d'indicateurs, et que regardez-vous en même temps pour savoir si la cause est dans le réseau ou dans la plateforme ?",
+    "raisonnement": "Le 3GPP définit les mesures de performance du système 5G (TS 28.552) et des indicateurs de bout en bout calculés à partir d'elles (TS 28.554) : ce sont les définitions communes, quel que soit l'équipementier. En même temps, on regarde les métriques de la plateforme sur la même période (saturation CPU, redémarrages de pods, état des nœuds) pour séparer un problème de réseau d'un problème de plateforme (démarche d'auteur).",
+    "source": "3GPP TS 28.552 (mesures de performance du système 5G) et TS 28.554 (indicateurs de bout en bout du 5G), archive des spécifications (3gpp.org)"
+  },
+  "schema": {
+    "legende": "Des compteurs propriétaires aux indicateurs normalisés",
+    "avant": [
+      {
+        "texte": "Équipement",
+        "detail": "compteurs propres"
+      },
+      {
+        "texte": "Export",
+        "detail": "format de l'équipementier"
+      },
+      {
+        "texte": "Rapport",
+        "detail": "difficile à comparer"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Mesures",
+        "detail": "TS 28.552"
+      },
+      {
+        "texte": "Indicateurs",
+        "detail": "TS 28.554"
+      },
+      {
+        "texte": "Corrélation",
+        "detail": "avec les métriques de la plateforme"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "kpi-5gc",
+    "procedures-5g-diagnostic"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 28.552 : mesures de performance du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/28_series/28.552/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 28.554 : indicateurs de bout en bout du 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/28_series/28.554/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "doc",
+      "nom": "Prometheus : vue d'ensemble (métriques de la plateforme)",
+      "url": "https://prometheus.io/docs/introduction/overview/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 28.552 : mesures de performance du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/28_series/28.552/"
+    },
+    {
+      "nom": "3GPP TS 28.554 : indicateurs de bout en bout du 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/28_series/28.554/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple",
+    "change.2"
+  ]
+}

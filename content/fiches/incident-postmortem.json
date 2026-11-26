@@ -1,0 +1,118 @@
+{
+  "id": "incident-postmortem",
+  "genre": "transposition",
+  "categorie": "pratique",
+  "avant": "gestion d'incident et niveaux de support",
+  "apres": "astreinte et post-mortem sans reproche",
+  "resume": {
+    "avant": "Un incident passe de niveau en niveau (N1, N2, N3) ; le rapport cherche souvent qui a fait l'erreur.",
+    "apres": "Un responsable coordonne l'incident pendant que d'autres agissent ; le post-mortem décrit les faits et les actions, sans chercher de coupable."
+  },
+  "resteVrai": [
+    "Savoir qui fait quoi pendant un incident reste vital.",
+    "L'escalade vers l'éditeur et les équipes réseau reste nécessaire.",
+    "Un incident sans actions correctives se reproduira."
+  ],
+  "change": [
+    "Un incident a un responsable qui coordonne (incident commander) ; les autres rôles agissent ou communiquent.",
+    "Des critères écrits à l'avance disent quand déclarer un incident.",
+    "Le post-mortem est écrit sans reproche : faits, impact, causes, actions, sans chercher de coupable."
+  ],
+  "reflexe": "Le rapport d'incident désigne celui qui s'est trompé.",
+  "pourquoiNouveau": null,
+  "piege": "Tout le monde agit, personne ne coordonne : plusieurs personnes changent des réglages en même temps et l'incident se complique. Nommez un responsable dès le début, et séparez ceux qui agissent de ceux qui communiquent.",
+  "exemple": "Pendant une coupure de sessions, l'astreinte nomme un responsable d'incident ; l'équipe plateforme et l'éditeur de la SMF agissent, une personne tient le fil de communication et la chronologie.",
+  "epreuve": {
+    "cas": "Une panne coupe des sessions sur le cœur. Comment organisez-vous les gens pendant l'incident, et comment rédigez-vous le post-mortem pour qu'il serve ?",
+    "raisonnement": "Pendant l'incident, un responsable coordonne (incident commander) et répartit les rôles : ceux qui agissent, celui qui communique, celui qui tient la chronologie. Après, le post-mortem décrit les faits, l'impact, les causes et les actions correctives, sans chercher de coupable : c'est ce qui permet à chacun de dire ce qui s'est passé, et donc d'éviter que cela recommence.",
+    "source": "Google SRE : gérer les incidents (sre.google/sre-book/managing-incidents/) ; culture du post-mortem (sre.google/sre-book/postmortem-culture/)"
+  },
+  "schema": {
+    "legende": "Du passage de niveau en niveau à l'incident coordonné",
+    "avant": [
+      {
+        "texte": "N1",
+        "detail": "reçoit l'alarme"
+      },
+      {
+        "texte": "N2, N3",
+        "detail": "escalade"
+      },
+      {
+        "texte": "Rapport",
+        "detail": "cherche une faute"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Responsable",
+        "detail": "coordonne l'incident"
+      },
+      {
+        "texte": "Rôles",
+        "detail": "agir, communiquer, noter"
+      },
+      {
+        "texte": "Post-mortem",
+        "detail": "sans reproche, avec actions"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "incident-astreinte",
+    "niveaux-support",
+    "postmortem"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Google SRE : gérer les incidents",
+      "url": "https://sre.google/sre-book/managing-incidents/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Google SRE : culture du post-mortem",
+      "url": "https://sre.google/sre-book/postmortem-culture/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "PagerDuty : guide de réponse aux incidents",
+      "url": "https://docs.pagerduty.com/ops-guides/incident-response-guide",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Google SRE : gérer les incidents",
+      "url": "https://sre.google/sre-book/managing-incidents/"
+    },
+    {
+      "nom": "Google SRE : culture du post-mortem",
+      "url": "https://sre.google/sre-book/postmortem-culture/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

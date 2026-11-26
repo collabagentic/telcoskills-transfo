@@ -1,0 +1,121 @@
+{
+  "id": "flotte-clusters",
+  "genre": "transposition",
+  "categorie": "integrer",
+  "avant": "gestion d'un parc de sites distants",
+  "apres": "flotte de clusters et installation zero-touch",
+  "resume": {
+    "avant": "Chaque site s'installe avec un technicien sur place ; la configuration de chaque site est tenue à part.",
+    "apres": "Un cluster central (hub) installe et pilote les clusters des sites ; leur description et leurs politiques sont dans Git."
+  },
+  "resteVrai": [
+    "Chaque site garde ses contraintes physiques : matériel, liens, alimentation.",
+    "L'inventaire du parc reste la base de tout.",
+    "Un site coupé du centre doit pouvoir continuer à fonctionner."
+  ],
+  "change": [
+    "Un cluster central (hub) gère une flotte de clusters : inventaire, politiques, déploiement d'applications.",
+    "Avec GitOps ZTP, les sites se décrivent dans Git et le hub les installe sans intervention logicielle sur place.",
+    "Des politiques appliquées depuis le hub gardent la configuration des clusters conforme."
+  ],
+  "reflexe": "Un technicien installe chaque site.",
+  "pourquoiNouveau": null,
+  "piege": "Croire que le hub fait tout : si le matériel n'est pas prêt (contrôleur de gestion de la carte joignable, adresses, liens), l'installation à distance échoue. Et le hub pilote, il ne fait pas tourner les applications des sites : sa panne ne doit pas les arrêter.",
+  "exemple": "Des dizaines de sites d'UPF en périphérie sont décrits dans un dépôt ; ajouter un site, c'est ajouter sa description et laisser le hub l'installer.",
+  "epreuve": {
+    "cas": "Vous devez déployer des clusters sur cinquante sites distants sans envoyer de technicien pour l'installation logicielle. Que décrit-on dans Git, qui installe, et qu'est-ce qui doit être prêt sur chaque site ?",
+    "raisonnement": "Avec GitOps ZTP, chaque site est décrit dans Git (matériel, réseau, configuration) ; un cluster central (hub) lit ces descriptions, installe à distance les clusters des sites, puis leur applique des politiques de configuration. Sur chaque site, le matériel doit être prêt et joignable : contrôleur de gestion de la carte (BMC) accessible, adresses et liens réseau en place.",
+    "source": "Red Hat, OpenShift 4.18 : GitOps ZTP pour les sites en périphérie (docs.redhat.com) ; Open Cluster Management (open-cluster-management.io)"
+  },
+  "schema": {
+    "legende": "Du technicien sur site au site décrit dans Git",
+    "avant": [
+      {
+        "texte": "Site",
+        "detail": "technicien sur place"
+      },
+      {
+        "texte": "Installation",
+        "detail": "manuelle"
+      },
+      {
+        "texte": "Configuration",
+        "detail": "tenue à part"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Git",
+        "detail": "description des sites"
+      },
+      {
+        "texte": "Hub",
+        "detail": "installe et pilote"
+      },
+      {
+        "texte": "Clusters de site",
+        "detail": "politiques appliquées"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "ocp-multicluster",
+    "ztp"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Red Hat : GitOps ZTP pour les sites en périphérie",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/edge_computing/ztp-deploying-far-edge-clusters-at-scale",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "cours",
+      "nom": "Open Cluster Management : guide de démarrage rapide",
+      "url": "https://open-cluster-management.io/docs/getting-started/quick-start/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "Metal³ : provisionnement bare metal pour Kubernetes",
+      "url": "https://book.metal3.io/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Red Hat, OpenShift 4.18 : GitOps ZTP pour les sites en périphérie",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/edge_computing/ztp-deploying-far-edge-clusters-at-scale"
+    },
+    {
+      "nom": "Open Cluster Management",
+      "url": "https://open-cluster-management.io/"
+    },
+    {
+      "nom": "Red Hat Advanced Cluster Management : documentation",
+      "url": "https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

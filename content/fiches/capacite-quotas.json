@@ -1,0 +1,110 @@
+{
+  "id": "capacite-quotas",
+  "genre": "transposition",
+  "categorie": "decider",
+  "avant": "planification de capacité de la ferme",
+  "apres": "requests, quotas et tendances",
+  "resume": {
+    "avant": "On suit l'occupation des hôtes et des datastores, et l'on commande du matériel quand le taux d'occupation approche du seuil.",
+    "apres": "On compare les requests réservées à la capacité allouable des nœuds, on plafonne les namespaces par des quotas et on suit les tendances."
+  },
+  "resteVrai": [
+    "Anticiper la saturation reste le métier.",
+    "Les délais d'achat de matériel restent longs : il faut voir venir.",
+    "Une marge pour les pannes et les maintenances reste nécessaire."
+  ],
+  "change": [
+    "Le scheduler place les pods selon leurs requests : la capacité se compte en requests réservées, pas en usage instantané.",
+    "Un ResourceQuota plafonne ce qu'un namespace peut demander (CPU, mémoire, nombre d'objets).",
+    "Les tendances se lisent dans les métriques sur la durée, par exemple dans Prometheus."
+  ],
+  "reflexe": "La capacité se lit au taux d'occupation des hôtes.",
+  "pourquoiNouveau": null,
+  "piege": "Regarder l'usage réel et oublier les requests : un nœud peut être peu chargé et pourtant plein, parce que ses pods ont réservé plus qu'ils n'utilisent. Un nouveau pod reste alors en attente (Pending) faute de place.",
+  "exemple": "Les nœuds du cluster sont à 30 % de CPU utilisé mais à 90 % de CPU réservé : la prochaine CNF ne pourra pas être placée sans ajouter des nœuds ou réduire des requests.",
+  "epreuve": {
+    "cas": "Les nœuds sont à 30 % d'usage CPU, mais un nouveau pod reste Pending « faute de CPU ». Comment est-ce possible, et quels outils utilisez-vous pour piloter la capacité ?",
+    "raisonnement": "Le scheduler place un pod si la somme des requests déjà réservées sur un nœud, plus la sienne, tient dans la capacité allouable : il compte les requests, pas l'usage réel. Un nœud peu chargé peut donc être plein. Pour piloter : suivre requests et capacité allouable dans le temps, et plafonner chaque namespace par un ResourceQuota.",
+    "source": "Kubernetes : gérer les ressources des conteneurs (kubernetes.io/docs/concepts/configuration/manage-resources-containers/) ; quotas de ressources (kubernetes.io/docs/concepts/policy/resource-quotas/)"
+  },
+  "schema": {
+    "legende": "De l'occupation des hôtes aux ressources réservées",
+    "avant": [
+      {
+        "texte": "Hôtes",
+        "detail": "taux d'occupation"
+      },
+      {
+        "texte": "Seuil",
+        "detail": "alerte"
+      },
+      {
+        "texte": "Achat",
+        "detail": "de matériel"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Requests",
+        "detail": "réservées par les pods"
+      },
+      {
+        "texte": "Quotas",
+        "detail": "par namespace"
+      },
+      {
+        "texte": "Tendances",
+        "detail": "métriques sur la durée"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "capacite"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : quotas de ressources",
+      "url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : gérer les ressources des conteneurs",
+      "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : gérer les ressources des conteneurs",
+      "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+    },
+    {
+      "nom": "Kubernetes : quotas de ressources",
+      "url": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "exemple"
+  ]
+}

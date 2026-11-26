@@ -1,0 +1,94 @@
+{
+  "id": "chaos",
+  "genre": "nouveaute",
+  "categorie": "pratique",
+  "avant": null,
+  "apres": "Les tests de résilience provoqués (chaos engineering)",
+  "resume": {
+    "avant": null,
+    "apres": "On provoque volontairement des pannes contrôlées pour vérifier que le service tient, plutôt que de l'espérer."
+  },
+  "resteVrai": [
+    "Une bascule non testée n'existe pas.",
+    "Les tests de résilience se préparent et se décident avec l'exploitation."
+  ],
+  "change": [
+    "On formule une hypothèse sur l'état stable du service (par exemple un SLO), puis on provoque une panne réelle pour la vérifier.",
+    "On commence petit et on limite le rayon d'impact de l'expérience.",
+    "Des outils comme Chaos Mesh provoquent des pannes de pod, de réseau ou de nœud dans Kubernetes."
+  ],
+  "reflexe": null,
+  "pourquoiNouveau": "Les tests de bascule existaient, mais souvent une fois par an, sur un scénario écrit. Avec des services répartis et changeants, on provoque des pannes plus souvent, en petit, pour vérifier que les réplicas, les sondes et les alertes réagissent comme prévu.",
+  "piege": "Lancer une expérience sans hypothèse ni arrêt d'urgence : ce n'est plus un test, c'est une panne. Écrivez ce que vous attendez, limitez le périmètre et prévoyez comment tout arrêter.",
+  "exemple": "En préproduction, l'équipe supprime un pod d'AMF sur trois pendant un test de charge et vérifie que le taux de réussite des enregistrements reste dans son objectif.",
+  "epreuve": {
+    "cas": "Vous voulez vérifier que la perte d'un pod d'une fonction du cœur n'affecte pas les abonnés. Comment construisez-vous l'expérience, et comment en limitez-vous le risque ?",
+    "raisonnement": "On formule d'abord l'hypothèse sur l'état stable (par exemple : le taux de réussite reste dans son SLO), puis on provoque la panne réelle, ici la perte d'un pod, avec un outil comme Chaos Mesh. On commence petit et on limite le rayon d'impact : un seul pod, un environnement choisi, et un moyen d'arrêter l'expérience à tout moment.",
+    "source": "Principles of Chaos Engineering (principlesofchaos.org) ; Chaos Mesh : documentation (chaos-mesh.org/docs/)"
+  },
+  "schema": {
+    "legende": "Vérifier la résilience en provoquant la panne",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "Hypothèse",
+        "detail": "état stable, SLO"
+      },
+      {
+        "texte": "Panne provoquée",
+        "detail": "petite, limitée"
+      },
+      {
+        "texte": "Constat",
+        "detail": "tient ou ne tient pas"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "chaos"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Principles of Chaos Engineering",
+      "url": "https://principlesofchaos.org/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "Chaos Mesh : documentation",
+      "url": "https://chaos-mesh.org/docs/"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Principles of Chaos Engineering",
+      "url": "https://principlesofchaos.org/"
+    },
+    {
+      "nom": "Chaos Mesh : documentation",
+      "url": "https://chaos-mesh.org/docs/"
+    }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "pourquoiNouveau",
+    "piege",
+    "exemple",
+    "schema"
+  ]
+}

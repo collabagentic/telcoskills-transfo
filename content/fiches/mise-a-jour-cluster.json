@@ -1,0 +1,107 @@
+{
+  "id": "mise-a-jour-cluster",
+  "genre": "transposition",
+  "categorie": "pratique",
+  "avant": "montée de version d'hyperviseur",
+  "apres": "mise à jour du cluster par canaux",
+  "resume": {
+    "avant": "Une montée de version de l'hyperviseur hôte par hôte, planifiée dans une fenêtre, en déplaçant les VM.",
+    "apres": "Le cluster suit un canal de mises à jour ; un opérateur applique la nouvelle version, puis les nœuds sont mis à jour par vagues."
+  },
+  "resteVrai": [
+    "Une mise à jour se prépare : notes de version, compatibilité des logiciels hébergés.",
+    "La fenêtre de maintenance reste utile pour maîtriser le risque.",
+    "On prévoit toujours comment reprendre si quelque chose casse."
+  ],
+  "change": [
+    "Les versions proposées dépendent du canal choisi (par exemple stable ou eus) et des chemins de mise à jour recommandés.",
+    "Le Cluster Version Operator met à jour les composants de la plateforme.",
+    "Les nœuds se mettent à jour par pool (MachineConfigPool), un nombre limité à la fois, et redémarrent."
+  ],
+  "reflexe": "On met à jour quand on a le temps, en sautant des versions.",
+  "pourquoiNouveau": null,
+  "piege": "Oublier les fonctions hébergées : chaque nœud mis à jour redémarre. Sans réplicas répartis sur plusieurs nœuds ni PodDisruptionBudget, une CNF peut perdre trop d'instances pendant la vague. Vérifiez aussi la version de plateforme que l'éditeur de la CNF prend en charge.",
+  "exemple": "Avant de mettre à jour le cluster qui porte les fonctions du cœur, l'équipe vérifie la compatibilité annoncée par l'éditeur des CNF, puis laisse les nœuds se mettre à jour un par un.",
+  "epreuve": {
+    "cas": "Votre cluster porte des CNF et doit monter de version. Qui met à jour les composants de la plateforme, comment les nœuds sont-ils traités, et que vérifiez-vous côté CNF ?",
+    "raisonnement": "Le Cluster Version Operator applique la nouvelle version aux composants de la plateforme, selon le canal choisi et un chemin de mise à jour recommandé. Les nœuds sont mis à jour par pool de machines (MachineConfigPool), un nombre limité à la fois, et redémarrent. Côté CNF : des réplicas répartis et des PodDisruptionBudgets pour garder assez d'instances pendant les redémarrages (conseil d'auteur), et la version de plateforme prise en charge par l'éditeur.",
+    "source": "Red Hat, OpenShift 4.18 : mise à jour des clusters (docs.redhat.com) ; Cluster Version Operator (github.com/openshift/cluster-version-operator)"
+  },
+  "schema": {
+    "legende": "De l'hôte mis à jour à la main au cluster qui suit un canal",
+    "avant": [
+      {
+        "texte": "Fenêtre",
+        "detail": "planifiée"
+      },
+      {
+        "texte": "Hôte",
+        "detail": "mis à jour un par un"
+      },
+      {
+        "texte": "VM",
+        "detail": "déplacées à la main"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Canal",
+        "detail": "stable ou eus"
+      },
+      {
+        "texte": "Cluster Version Operator",
+        "detail": "met à jour la plateforme"
+      },
+      {
+        "texte": "Nœuds",
+        "detail": "par pool, par vagues"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "ocp-upgrade"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Red Hat : mise à jour des clusters OpenShift",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/updating_clusters/index",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "Cluster Version Operator (dépôt source)",
+      "url": "https://github.com/openshift/cluster-version-operator"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Red Hat, OpenShift 4.18 : mise à jour des clusters",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/updating_clusters/index"
+    },
+    {
+      "nom": "Cluster Version Operator (dépôt source)",
+      "url": "https://github.com/openshift/cluster-version-operator"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}
