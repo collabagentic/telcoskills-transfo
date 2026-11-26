@@ -41,7 +41,6 @@ export default async function PageCompetence({ params }: Props) {
       <div className="fiche-meta">
         <span className="pastille">{domaine?.nom}</span>
         <span className="pastille">{NIVEAU[x.niveau]}</span>
-        {x.statut === "brouillon" ? <span className="pastille pastille-relecture">en relecture</span> : null}
       </div>
       <h1 style={{ fontSize: "var(--t-xl)" }}>{x.titre}</h1>
       <p className="sous-titre">{x.resume}</p>

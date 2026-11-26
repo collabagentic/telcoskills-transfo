@@ -1,5 +1,8 @@
 import { chargerContenu } from "@/contenu/charger";
 
+/** Adresse publique du site (URL absolues du plan du site, de robots.txt et des images de partage). */
+export const SITE = process.env.NEXT_PUBLIC_SITE ?? "https://telcoskills-transfo.vercel.app";
+
 /** Fiche montrée en exemple sur l'accueil : identifiant lu depuis content/fiches/, jamais recopiée. */
 export const FICHE_EXEMPLE = "matrice-networkpolicy";
 

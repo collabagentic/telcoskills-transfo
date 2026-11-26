@@ -29,7 +29,7 @@ export default function Accueil() {
         <p className="sur-titre">Pour les métiers du télécom qui passent au cloud natif</p>
         <h1 className="accueil-titre">Vous connaissez déjà le télécom.</h1>
         <p className="accueil-accroche">
-          Le cloud natif change les architectures et les pratiques, mais pas tout ce que vous avez appris ne devient inutile.
+          Le cloud natif change les architectures et les pratiques, mais ce que vous avez appris reste utile.
         </p>
 
         <nav className="accueil-entrees" aria-label="Entrées du site">

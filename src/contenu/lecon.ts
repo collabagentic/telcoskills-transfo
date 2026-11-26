@@ -32,6 +32,7 @@ export type Lecon = {
   prompt: { entree: EntreePrompt; amorces: string[] };
   signaler: string;
   proposer: string;
+  relire: string;
 };
 
 export function construireLecon(f: Fiche, c: Contenu): Lecon {
@@ -72,5 +73,8 @@ export function construireLecon(f: Fiche, c: Contenu): Lecon {
     },
     signaler: `https://github.com/${DEPOT}/issues/new?title=${encodeURIComponent(`Erreur dans la fiche « ${titre} »`)}&body=${encodeURIComponent(`Fiche : ${f.id}\nSection concernée : \nCe qui est faux ou manque : \nSource : \n`)}`,
     proposer: `https://github.com/${DEPOT}/edit/main/content/fiches/${f.id}.json`,
+    relire: `https://github.com/${DEPOT}/issues/new?title=${encodeURIComponent(`Relecture de la fiche « ${titre} »`)}&labels=relecture&body=${encodeURIComponent(
+      `Fiche : ${f.id}\nVotre domaine d'expertise : \nCe que vous avez vérifié (et contre quelle source) : \nCe qui est faux, imprécis ou daté : \nCe qui manque : \n`,
+    )}`,
   };
 }

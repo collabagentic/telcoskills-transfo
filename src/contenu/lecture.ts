@@ -1,8 +1,13 @@
 import type { Fiche } from "./schemas";
 
-/** Titre affiché : « Votre X, version Y. » pour une transposition, l'intitulé de la nouveauté sinon. Importable côté client. */
+/**
+ * Titre affiché : « Votre X, version Y. » (« Vos » quand X commence par un pluriel : « Vos compteurs et alarmes ») pour une transposition,
+ * l'intitulé de la nouveauté sinon. Importable côté client.
+ */
 export function titreFiche(f: Pick<Fiche, "genre" | "avant" | "apres">): string {
-  return f.genre === "transposition" && f.avant ? `Votre ${f.avant}, version ${f.apres}.` : `${f.apres}.`;
+  if (f.genre !== "transposition" || !f.avant) return `${f.apres}.`;
+  const possessif = /^\S+[sx](\s|$)/.test(f.avant) ? "Vos" : "Votre";
+  return `${possessif} ${f.avant}, version ${f.apres}.`;
 }
 
 function mots(texte: string): number {

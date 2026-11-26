@@ -32,7 +32,7 @@
       {
         "type": "doc",
         "nom": "Guide d'hygiène informatique",
-        "url": "https://cyber.gouv.fr/publications/guide-dhygiene-informatique",
+        "url": "https://messervices.cyber.gouv.fr/guides/guide-dhygiene-informatique",
         "acces": "gratuit",
         "langue": "fr",
         "auteur": "ANSSI"
@@ -40,7 +40,7 @@
       {
         "type": "doc",
         "nom": "Recommandations de configuration d'un système GNU/Linux",
-        "url": "https://cyber.gouv.fr/publications/recommandations-de-securite-relatives-un-systeme-gnulinux",
+        "url": "https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-relatives-un-systeme-gnulinux",
         "acces": "gratuit",
         "langue": "fr",
         "auteur": "ANSSI"
@@ -836,7 +836,7 @@
       {
         "type": "doc",
         "nom": "Référentiel SecNumCloud (ANSSI)",
-        "url": "https://cyber.gouv.fr/sites/default/files/document/secnumcloud-referentiel-exigences-v3.2.pdf",
+        "url": "https://messervices.cyber.gouv.fr/guides/referentiel-secnumcloud",
         "acces": "gratuit",
         "langue": "fr",
         "auteur": "ANSSI"
@@ -844,7 +844,7 @@
       {
         "type": "doc",
         "nom": "Guide d'hygiène informatique",
-        "url": "https://cyber.gouv.fr/publications/guide-dhygiene-informatique",
+        "url": "https://messervices.cyber.gouv.fr/guides/guide-dhygiene-informatique",
         "acces": "gratuit",
         "langue": "fr",
         "auteur": "ANSSI"
@@ -852,7 +852,7 @@
       {
         "type": "doc",
         "nom": "Recommandations de configuration d'un système GNU/Linux",
-        "url": "https://cyber.gouv.fr/publications/recommandations-de-securite-relatives-un-systeme-gnulinux",
+        "url": "https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-relatives-un-systeme-gnulinux",
         "acces": "gratuit",
         "langue": "fr",
         "auteur": "ANSSI"
@@ -948,7 +948,7 @@
       {
         "type": "doc",
         "nom": "Référentiel SecNumCloud (ANSSI)",
-        "url": "https://cyber.gouv.fr/sites/default/files/document/secnumcloud-referentiel-exigences-v3.2.pdf",
+        "url": "https://messervices.cyber.gouv.fr/guides/referentiel-secnumcloud",
         "acces": "gratuit",
         "langue": "fr",
         "auteur": "ANSSI"

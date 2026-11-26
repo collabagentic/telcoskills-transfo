@@ -87,7 +87,6 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
         <p className="lc-meta">
           <span>{GENRE[l.genre]}</span>
           <span>{l.minutes} min</span>
-          {l.brouillon ? <span>en relecture</span> : null}
           {l.technos.length > 0 ? <span>{l.technos.map((t) => t.nom).join(" · ")}</span> : null}
         </p>
 
@@ -203,6 +202,9 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
             </details>
             <p className="lc-outils">
               <Link href="/roadmap">Refaire ma feuille de route</Link>
+              <a href={l.relire} target="_blank" rel="noopener noreferrer">
+                Relire cette fiche
+              </a>
               <a href={l.signaler} target="_blank" rel="noopener noreferrer">
                 Signaler une erreur
               </a>

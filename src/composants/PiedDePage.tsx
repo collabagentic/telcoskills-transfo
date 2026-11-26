@@ -14,7 +14,7 @@ export function PiedDePage() {
         </Link>
       </nav>
       <p>Gratuit, sans compte, sans cookie. Votre feuille de route reste dans votre navigateur.</p>
-      <p>Les fiches marquées « en relecture » sont des brouillons sourcés, pas encore relus par l'auteur.</p>
+      <p>Les fiches sont des textes sourcés, relus au fil de l'eau par l'auteur et par des experts : chaque fiche se termine par un lien « Relire cette fiche ».</p>
     </footer>
   );
 }

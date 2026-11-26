@@ -3,13 +3,16 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { EnTete } from "@/composants/EnTete";
 import { PiedDePage } from "@/composants/PiedDePage";
+import { SITE } from "@/lib/site";
 
 const geist = Geist({ subsets: ["latin"], variable: "--police-texte", display: "swap" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--police-mono", display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "TelcoSkills · Transformation", template: "%s · TelcoSkills" },
-  description: "Le telco cloud : par où commencer ? Une feuille de route qui se resserre sur ce qui change pour votre métier.",
+  metadataBase: new URL(SITE),
+  description: "Vous connaissez déjà le télécom : ce qui reste, ce qui change et ce qu'il faut apprendre pour passer au cloud natif. Une feuille de route sans compte, des fiches sourcées.",
+  openGraph: { siteName: "TelcoSkills", locale: "fr_FR", type: "website" },
   // Pas d'indexation tant que l'auteur n'a pas dit « on ouvre » (BACKLOG.md E0-4, lot 8).
   robots: { index: false, follow: false },
 };

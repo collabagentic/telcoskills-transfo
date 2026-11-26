@@ -1,0 +1,65 @@
+{
+  "id": "lun-pvc",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "LUN et datastore",
+  "apres": "PV, PVC et StorageClass",
+  "resume": {
+    "avant": "Une LUN créée par l'équipe stockage, présentée à l'hyperviseur, un datastore découpé en disques de VM.",
+    "apres": "L'application demande un volume (PVC) ; une StorageClass le crée à la demande (PV) par son pilote de stockage."
+  },
+  "resteVrai": [
+    "La capacité, la performance et la protection des données restent à dimensionner.",
+    "Les données survivent à la machine qui les utilise : le volume a sa propre vie.",
+    "Sauvegarder et tester la restauration reste indispensable."
+  ],
+  "change": [
+    "Une PersistentVolumeClaim (PVC) est la demande d'un volume par l'application : une taille et un mode d'accès.",
+    "Une StorageClass décrit une classe de stockage et crée les PersistentVolumes à la demande (provisionnement dynamique).",
+    "Le mode d'accès dit qui peut monter le volume : ReadWriteOnce (un seul nœud), ReadWriteMany (plusieurs nœuds)."
+  ],
+  "reflexe": "Le disque est préparé à l'avance par l'équipe stockage.",
+  "pourquoiNouveau": null,
+  "piege": "Oublier la politique de récupération (reclaimPolicy). Delete est la valeur par défaut d'une StorageClass : supprimer la PVC supprime alors le volume créé pour elle, et ses données. Pour des données à garder, prévoyez Retain, ou des sauvegardes testées.",
+  "exemple": "La base d'un lab de cœur 5G demande une PVC de 50 Gio en ReadWriteOnce ; la StorageClass du cluster crée le volume, sans ticket à l'équipe stockage.",
+  "epreuve": {
+    "cas": "Une base de données de votre lab de cœur 5G a besoin de 50 Gio persistants. Quel objet demandez-vous, qui crée le volume, et que se passe-t-il si quelqu'un supprime la demande ?",
+    "raisonnement": "On crée une PersistentVolumeClaim : une taille, un mode d'accès (ReadWriteOnce pour un seul nœud) et une StorageClass. Avec le provisionnement dynamique, la StorageClass crée le PersistentVolume à la demande. Si la PVC est supprimée, le sort du volume dépend de sa politique de récupération : Delete, valeur par défaut d'une StorageClass, supprime le volume et ses données ; Retain le conserve pour une récupération manuelle.",
+    "source": "Kubernetes : volumes persistants (kubernetes.io/docs/concepts/storage/persistent-volumes/) ; classes de stockage (kubernetes.io/docs/concepts/storage/storage-classes/)"
+  },
+  "schema": {
+    "legende": "Du disque préparé au volume demandé",
+    "avant": [
+      { "texte": "LUN", "detail": "créée par l'équipe stockage" },
+      { "texte": "Datastore", "detail": "présenté à l'hyperviseur" },
+      { "texte": "Disque de VM", "detail": "découpé à l'avance" }
+    ],
+    "apres": [
+      { "texte": "PVC", "detail": "demande de l'application" },
+      { "texte": "StorageClass", "detail": "classe et pilote de stockage" },
+      { "texte": "PV", "detail": "créé à la demande" }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur la documentation Kubernetes (volumes persistants, classes de stockage).",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": ["k8s-stockage"],
+  "technos": ["kubernetes"],
+  "plusLoin": [
+    { "type": "doc", "nom": "Kubernetes : volumes persistants", "url": "https://kubernetes.io/docs/concepts/storage/persistent-volumes/", "langue": "en", "acces": "gratuit" },
+    { "type": "doc", "nom": "Kubernetes : classes de stockage", "url": "https://kubernetes.io/docs/concepts/storage/storage-classes/", "langue": "en", "acces": "gratuit" },
+    { "type": "doc", "nom": "Kubernetes : instantanés de volume", "url": "https://kubernetes.io/docs/concepts/storage/volume-snapshots/", "langue": "en", "acces": "gratuit" }
+  ],
+  "sources": [
+    { "nom": "Kubernetes : volumes persistants", "url": "https://kubernetes.io/docs/concepts/storage/persistent-volumes/" },
+    { "nom": "Kubernetes : classes de stockage", "url": "https://kubernetes.io/docs/concepts/storage/storage-classes/" }
+  ],
+  "avisAuteur": ["resume", "resteVrai", "reflexe", "schema", "exemple"]
+}
