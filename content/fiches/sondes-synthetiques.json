@@ -1,0 +1,109 @@
+{
+  "id": "sondes-synthetiques",
+  "genre": "transposition",
+  "categorie": "integrer",
+  "avant": "sondes de test de l'équipementier",
+  "apres": "sondes synthétiques (blackbox exporter)",
+  "resume": {
+    "avant": "Des sondes matérielles ou propriétaires placées dans le réseau, chacune avec son outil et ses rapports.",
+    "apres": "Des sondes logicielles testent les points d'accès de l'extérieur et alimentent les mêmes métriques que le reste de la supervision."
+  },
+  "resteVrai": [
+    "Mesurer ce que voit le client reste l'objectif.",
+    "Le bon point de mesure se choisit sur le chemin réel du trafic.",
+    "Une sonde doit elle-même être supervisée."
+  ],
+  "change": [
+    "Le blackbox exporter de Prometheus teste des cibles de l'extérieur : HTTP, HTTPS, DNS, TCP, ICMP ou gRPC.",
+    "Prometheus l'interroge pour chaque cible et enregistre le résultat, par exemple probe_success et la durée.",
+    "Ces mesures de l'extérieur complètent les métriques internes des pods."
+  ],
+  "reflexe": "Les sondes sont des équipements à part, avec leur propre outil.",
+  "pourquoiNouveau": null,
+  "piege": "Sonder depuis le mauvais endroit : une sonde placée dans le même cluster que la fonction ne voit pas une panne du chemin d'accès. Placez-la sur le chemin du client, ou au moins hors du cluster testé.",
+  "exemple": "Une sonde HTTP vérifie depuis l'extérieur du cluster que le portail d'exposition des services répond ; une alerte part si probe_success reste à 0 plusieurs minutes.",
+  "epreuve": {
+    "cas": "Tous les pods d'un service sont « prêts », mais des clients disent ne plus y accéder. Quel type de mesure aurait vu le problème, avec quel outil, et où le placez-vous ?",
+    "raisonnement": "Une mesure de l'extérieur, comme celle d'un client : le blackbox exporter de Prometheus teste la cible (HTTP, TCP, ICMP…) et Prometheus enregistre le résultat (probe_success, durée). Placée hors du cluster, sur le chemin du client, elle voit une panne du chemin d'accès que les sondes internes des pods ne voient pas (conseil d'auteur pour l'emplacement).",
+    "source": "Prometheus : blackbox exporter (github.com/prometheus/blackbox_exporter) ; motif de l'exporter multi-cibles (prometheus.io/docs/guides/multi-target-exporter/)"
+  },
+  "schema": {
+    "legende": "De la sonde à part à la mesure dans la supervision",
+    "avant": [
+      {
+        "texte": "Sonde",
+        "detail": "équipement dédié"
+      },
+      {
+        "texte": "Outil",
+        "detail": "de l'équipementier"
+      },
+      {
+        "texte": "Rapport",
+        "detail": "séparé"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Blackbox exporter",
+        "detail": "teste de l'extérieur"
+      },
+      {
+        "texte": "Prometheus",
+        "detail": "probe_success, durée"
+      },
+      {
+        "texte": "Alerte",
+        "detail": "avec le reste"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "sondes"
+  ],
+  "technos": [
+    "prometheus"
+  ],
+  "plusLoin": [
+    {
+      "type": "opensource",
+      "nom": "Prometheus : blackbox exporter",
+      "url": "https://github.com/prometheus/blackbox_exporter"
+    },
+    {
+      "type": "doc",
+      "nom": "Prometheus : motif de l'exporter multi-cibles",
+      "url": "https://prometheus.io/docs/guides/multi-target-exporter/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Prometheus : blackbox exporter",
+      "url": "https://github.com/prometheus/blackbox_exporter"
+    },
+    {
+      "nom": "Prometheus : motif de l'exporter multi-cibles",
+      "url": "https://prometheus.io/docs/guides/multi-target-exporter/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

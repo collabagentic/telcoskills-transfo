@@ -1,0 +1,112 @@
+{
+  "id": "tableaux-de-bord",
+  "genre": "transposition",
+  "categorie": "integrer",
+  "avant": "console de supervision",
+  "apres": "tableaux de bord Grafana",
+  "resume": {
+    "avant": "Une console fournie par l'équipementier, avec ses vues figées et ses compteurs propres à chaque équipement.",
+    "apres": "Des tableaux de bord Grafana interrogent les métriques (par exemple Prometheus), se versionnent en JSON et se conçoivent avec le service."
+  },
+  "resteVrai": [
+    "Une vue doit servir une décision, sinon elle ne sert à rien.",
+    "Le service vu par l'utilisateur reste ce qui compte d'abord.",
+    "Prévoir ce que l'exploitation doit voir se fait dès la conception."
+  ],
+  "change": [
+    "Un tableau de bord Grafana interroge une source de données, par exemple Prometheus, et affiche ses panneaux.",
+    "Un tableau de bord se décrit en JSON : il se versionne et se déploie comme du code.",
+    "Les quatre signaux d'or (latence, trafic, erreurs, saturation) structurent la supervision d'un service."
+  ],
+  "reflexe": "La console de l'équipementier montre ce qu'il faut voir.",
+  "pourquoiNouveau": null,
+  "piege": "Empiler les panneaux : un tableau de bord de cinquante courbes ne dit rien à trois heures du matin. Commencez par les quatre signaux d'or du service, puis ajoutez des vues de diagnostic séparées.",
+  "exemple": "Le tableau de bord de la SMF montre d'abord le taux de réussite des sessions, la latence et la saturation ; un second tableau détaille les pods et les nœuds pour le diagnostic.",
+  "epreuve": {
+    "cas": "Vous concevez la supervision d'une fonction du cœur qui part en production. Que met-on en premier sur son tableau de bord, et comment le livre-t-on avec la fonction ?",
+    "raisonnement": "En premier, les quatre signaux d'or du service : latence, trafic, erreurs et saturation. Le tableau de bord Grafana interroge la source de métriques (par exemple Prometheus) ; décrit en JSON, il se versionne et se livre avec la fonction, comme le reste de sa configuration. Les vues détaillées par pod servent ensuite au diagnostic.",
+    "source": "Google SRE : superviser les systèmes distribués, les quatre signaux d'or (sre.google/sre-book/monitoring-distributed-systems/) ; Grafana : tableaux de bord (grafana.com/docs/grafana/latest/dashboards/)"
+  },
+  "schema": {
+    "legende": "De la console figée au tableau de bord versionné",
+    "avant": [
+      {
+        "texte": "Équipement",
+        "detail": "compteurs propres"
+      },
+      {
+        "texte": "Console",
+        "detail": "vues figées"
+      },
+      {
+        "texte": "Opérateur",
+        "detail": "cherche la bonne vue"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Métriques",
+        "detail": "Prometheus"
+      },
+      {
+        "texte": "Grafana",
+        "detail": "tableaux de bord en JSON"
+      },
+      {
+        "texte": "Dépôt",
+        "detail": "versionnés avec le service"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "obs-dash",
+    "observabilite-design"
+  ],
+  "technos": [
+    "prometheus"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Grafana : tableaux de bord",
+      "url": "https://grafana.com/docs/grafana/latest/dashboards/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Google SRE : superviser les systèmes distribués",
+      "url": "https://sre.google/sre-book/monitoring-distributed-systems/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Grafana : tableaux de bord",
+      "url": "https://grafana.com/docs/grafana/latest/dashboards/"
+    },
+    {
+      "nom": "Google SRE : superviser les systèmes distribués",
+      "url": "https://sre.google/sre-book/monitoring-distributed-systems/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

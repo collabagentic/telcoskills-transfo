@@ -1,0 +1,116 @@
+{
+  "id": "mise-a-jour-progressive",
+  "genre": "transposition",
+  "categorie": "pratique",
+  "avant": "mise à jour en fenêtre de maintenance",
+  "apres": "mise à jour progressive et retour arrière",
+  "resume": {
+    "avant": "Une mise à jour faite de nuit, nœud par nœud, avec une procédure de retour arrière rédigée.",
+    "apres": "Un Deployment remplace ses pods peu à peu, garde ses révisions pour revenir en arrière, et un autoscaler suit la charge."
+  },
+  "resteVrai": [
+    "Tester avant la production reste indispensable.",
+    "La compatibilité avec les fonctions voisines reste à vérifier.",
+    "Le retour arrière se prévoit avant de commencer."
+  ],
+  "change": [
+    "La stratégie RollingUpdate remplace les pods peu à peu, bornée par maxUnavailable et maxSurge.",
+    "« kubectl rollout undo » ramène un Deployment à sa révision précédente.",
+    "Le HorizontalPodAutoscaler ajuste le nombre de réplicas selon une métrique, par exemple l'usage du CPU."
+  ],
+  "reflexe": "La mise à jour se fait la nuit, d'un coup, procédure en main.",
+  "pourquoiNouveau": null,
+  "piege": "Pendant une mise à jour progressive, l'ancienne et la nouvelle version servent en même temps : elles doivent se comprendre. Et revenir à la révision précédente ne défait pas une migration de données déjà faite par la nouvelle version.",
+  "exemple": "Une nouvelle version de la SMF est déployée progressivement ; si le taux d'échec des sessions monte, l'équipe revient à la révision précédente.",
+  "epreuve": {
+    "cas": "Vous mettez à jour une fonction du cœur déployée en Deployment de 6 réplicas. Comment se passe le remplacement, que réglez-vous pour garder assez d'instances, et comment revenez-vous en arrière ?",
+    "raisonnement": "Avec la stratégie RollingUpdate, les pods sont remplacés progressivement : maxUnavailable borne le nombre de pods indisponibles, maxSurge le nombre de pods créés en plus pendant le remplacement. Pour revenir en arrière, kubectl rollout undo ramène le Deployment à sa révision précédente. Pendant le remplacement, les deux versions servent ensemble : elles doivent rester compatibles.",
+    "source": "Kubernetes : Deployments, mise à jour et retour arrière (kubernetes.io/docs/concepts/workloads/controllers/deployment/)"
+  },
+  "schema": {
+    "legende": "De la mise à jour de nuit au remplacement progressif",
+    "avant": [
+      {
+        "texte": "Fenêtre",
+        "detail": "de nuit"
+      },
+      {
+        "texte": "Mise à jour",
+        "detail": "nœud par nœud"
+      },
+      {
+        "texte": "Retour arrière",
+        "detail": "procédure rédigée"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "RollingUpdate",
+        "detail": "maxUnavailable, maxSurge"
+      },
+      {
+        "texte": "Révisions",
+        "detail": "historique du Deployment"
+      },
+      {
+        "texte": "rollout undo",
+        "detail": "retour à la précédente"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "upgrade-nf",
+    "cnf-ops"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : Deployments",
+      "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : HorizontalPodAutoscaler",
+      "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "Argo Rollouts : déploiements progressifs",
+      "url": "https://argoproj.github.io/argo-rollouts/"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : Deployments",
+      "url": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    },
+    {
+      "nom": "Kubernetes : HorizontalPodAutoscaler",
+      "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "exemple"
+  ]
+}

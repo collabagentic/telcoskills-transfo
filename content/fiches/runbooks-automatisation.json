@@ -1,0 +1,110 @@
+{
+  "id": "runbooks-automatisation",
+  "genre": "transposition",
+  "categorie": "pratique",
+  "avant": "procédure d'exploitation papier",
+  "apres": "runbook et automatisation (Ansible)",
+  "resume": {
+    "avant": "Une procédure rédigée, déroulée à la main, avec ses copier-coller de commandes et ses écarts d'une fois à l'autre.",
+    "apres": "Un runbook court pour décider, et les étapes sûres et répétitives automatisées (Ansible, scripts), relançables sans risque."
+  },
+  "resteVrai": [
+    "Une procédure doit être lisible à trois heures du matin.",
+    "Les étapes risquées restent sous contrôle humain.",
+    "Une procédure se teste avant le jour où l'on en a besoin."
+  ],
+  "change": [
+    "Un playbook Ansible décrit en YAML des tâches à appliquer à un inventaire de machines.",
+    "Les modules Ansible visent l'idempotence : relancer un playbook ne refait pas ce qui est déjà en place.",
+    "Le travail manuel, répétitif et automatisable (le « toil ») est à réduire en priorité."
+  ],
+  "reflexe": "La procédure se déroule à la main, étape par étape.",
+  "pourquoiNouveau": null,
+  "piege": "Automatiser une procédure qu'on ne comprend pas : l'erreur s'exécute alors partout, très vite. Automatisez d'abord les étapes sûres et répétitives, gardez une décision humaine avant les étapes risquées.",
+  "exemple": "La vérification de santé d'une fonction après mise à jour devient un playbook relancé à chaque fois ; la décision de revenir en arrière reste dans le runbook, à l'humain.",
+  "epreuve": {
+    "cas": "Une procédure d'exploitation de quarante étapes est déroulée à la main chaque semaine. Que gardez-vous dans un runbook, qu'automatisez-vous, et quelle propriété attendez-vous de l'automatisation ?",
+    "raisonnement": "On réduit d'abord le travail manuel, répétitif et automatisable (le « toil ») : ces étapes passent dans un playbook Ansible appliqué à l'inventaire. Les modules Ansible visent l'idempotence : relancer le playbook ne refait pas ce qui est déjà en place, donc on peut le rejouer sans crainte. Le runbook garde les décisions et les étapes risquées, sous contrôle humain (conseil d'auteur).",
+    "source": "Google SRE : éliminer le toil (sre.google/sre-book/eliminating-toil/) ; Ansible : bien démarrer (docs.ansible.com/ansible/latest/getting_started/)"
+  },
+  "schema": {
+    "legende": "De la procédure papier au playbook relançable",
+    "avant": [
+      {
+        "texte": "Procédure",
+        "detail": "rédigée"
+      },
+      {
+        "texte": "Copier-coller",
+        "detail": "commande par commande"
+      },
+      {
+        "texte": "Écarts",
+        "detail": "d'une fois à l'autre"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Runbook",
+        "detail": "décisions"
+      },
+      {
+        "texte": "Playbook",
+        "detail": "étapes répétitives"
+      },
+      {
+        "texte": "Relance",
+        "detail": "sans risque (idempotence)"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "runbooks",
+    "ansible-python"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Ansible : bien démarrer",
+      "url": "https://docs.ansible.com/ansible/latest/getting_started/index.html",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Google SRE : éliminer le toil",
+      "url": "https://sre.google/sre-book/eliminating-toil/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Ansible : bien démarrer",
+      "url": "https://docs.ansible.com/ansible/latest/getting_started/index.html"
+    },
+    {
+      "nom": "Google SRE : éliminer le toil",
+      "url": "https://sre.google/sre-book/eliminating-toil/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

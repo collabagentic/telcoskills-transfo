@@ -1,0 +1,119 @@
+{
+  "id": "installation-openshift",
+  "genre": "transposition",
+  "categorie": "pratique",
+  "avant": "installation de serveurs et d'hyperviseurs",
+  "apres": "installation d'un cluster OpenShift",
+  "resume": {
+    "avant": "Des serveurs installés un par un, un hyperviseur posé dessus, puis des VM configurées à la main ou par modèle.",
+    "apres": "Un installateur déploie tout le cluster à partir d'un fichier de configuration, puis la plateforme se gère par ses opérateurs."
+  },
+  "resteVrai": [
+    "Les prérequis réseau (DNS, adresses, synchronisation horaire) restent à préparer avant le jour J.",
+    "Le matériel doit toujours être compatible et dimensionné.",
+    "Une installation se documente pour pouvoir être rejouée."
+  ],
+  "change": [
+    "L'installation se décrit dans un fichier (install-config.yaml) : nom du cluster, réseaux, nombre de nœuds.",
+    "Plusieurs méthodes existent, dont l'installateur à agent (Agent-based Installer), prévu pour les sites sans accès Internet.",
+    "Une fois installée, la plateforme se gère par ses opérateurs de cluster, plus serveur par serveur."
+  ],
+  "reflexe": "Chaque serveur s'installe et se configure à la main.",
+  "pourquoiNouveau": null,
+  "piege": "Sous-estimer le DNS et les adresses : l'installation demande des enregistrements DNS pour l'API et pour les applications, et sur bare metal des adresses virtuelles réservées. Une erreur de DNS fait échouer l'installation loin de sa cause.",
+  "exemple": "Pour un cluster de lab en salle, l'équipe prépare le DNS, deux adresses virtuelles et le fichier de configuration, puis démarre les serveurs sur l'image produite par l'installateur à agent.",
+  "epreuve": {
+    "cas": "Vous installez un cluster OpenShift sur des serveurs physiques, sur un site sans accès Internet. Que préparez-vous avant le jour J, et quelle méthode d'installation regardez-vous en premier ?",
+    "raisonnement": "Avant tout : les enregistrements DNS de l'API et des applications, les adresses réservées, la synchronisation horaire et le fichier de configuration de l'installation. Sans accès Internet, on regarde l'installateur à agent (Agent-based Installer), prévu pour les installations sur site, y compris déconnectées ; les images viennent alors d'un registre miroir local.",
+    "source": "Red Hat, OpenShift 4.18 : installation avec l'Agent-based Installer et vue d'ensemble de l'installation (docs.redhat.com)"
+  },
+  "schema": {
+    "legende": "Du serveur installé à la main au cluster décrit dans un fichier",
+    "avant": [
+      {
+        "texte": "Serveur",
+        "detail": "installé un par un"
+      },
+      {
+        "texte": "Hyperviseur",
+        "detail": "posé dessus"
+      },
+      {
+        "texte": "VM",
+        "detail": "configurées à la main"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "install-config",
+        "detail": "le cluster décrit"
+      },
+      {
+        "texte": "Installateur",
+        "detail": "à agent ou assisté"
+      },
+      {
+        "texte": "Cluster",
+        "detail": "géré par ses opérateurs"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "ocp-install"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Red Hat : vue d'ensemble de l'installation d'OpenShift",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installation_overview/index",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Red Hat : installation avec l'Agent-based Installer",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installing_an_on-premise_cluster_with_the_agent-based_installer/index",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "cours",
+      "nom": "Developer Sandbox for Red Hat OpenShift : cluster gratuit pour s'entraîner",
+      "url": "https://developers.redhat.com/developer-sandbox",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Red Hat, OpenShift 4.18 : installation avec l'Agent-based Installer",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installing_an_on-premise_cluster_with_the_agent-based_installer/index"
+    },
+    {
+      "nom": "Red Hat, OpenShift 4.18 : vue d'ensemble de l'installation",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/installation_overview/index"
+    },
+    {
+      "nom": "Installateur OpenShift (dépôt source)",
+      "url": "https://github.com/openshift/installer"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "exemple"
+  ]
+}

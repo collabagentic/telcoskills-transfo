@@ -1,0 +1,118 @@
+{
+  "id": "diagnostic-pod",
+  "genre": "transposition",
+  "categorie": "diagnostiquer",
+  "avant": "diagnostic sur l'équipement",
+  "apres": "diagnostic d'un pod et analyse de cause racine",
+  "resume": {
+    "avant": "On se connecte à l'équipement, on lit ses journaux et ses alarmes, on redémarre la carte en cause.",
+    "apres": "On lit l'état du pod, ses événements et ses journaux, puis on remonte du symptôme à la cause, d'une fonction à l'autre si besoin."
+  },
+  "resteVrai": [
+    "Partir du symptôme et remonter à la cause reste la méthode.",
+    "Noter la chronologie pendant l'incident reste essentiel.",
+    "Un redémarrage qui masque la cause n'est pas une résolution."
+  ],
+  "change": [
+    "« kubectl describe pod » montre le statut, les conditions et les événements récents d'un pod.",
+    "Le statut oriente : ImagePullBackOff (image introuvable), CrashLoopBackOff (plantages répétés), Pending (pas de nœud possible).",
+    "« kubectl debug » ajoute un conteneur éphémère pour diagnostiquer sans modifier l'image."
+  ],
+  "reflexe": "On se connecte à la machine et on redémarre.",
+  "pourquoiNouveau": null,
+  "piege": "Supprimer le pod pour « réparer » : le pod recréé repart sans les journaux ni les événements du précédent. Lisez d'abord le statut, les événements et les journaux de l'instance qui a planté (kubectl logs --previous), puis agissez.",
+  "exemple": "Une SMF redémarre en boucle : les événements et les journaux de l'instance précédente montrent qu'elle ne joint plus la NRF ; la cause est dans la configuration réseau, pas dans la SMF.",
+  "epreuve": {
+    "cas": "Un pod d'une fonction du cœur est en CrashLoopBackOff. Que regardez-vous, dans quel ordre, et pourquoi éviter de le supprimer tout de suite ?",
+    "raisonnement": "kubectl describe pod donne le statut, les conditions et les événements (échec de sonde, manque de ressources…). kubectl logs --previous montre les journaux de l'instance qui vient de planter. Si l'image ne contient pas d'outils, kubectl debug ajoute un conteneur éphémère. Supprimer le pod trop tôt fait perdre ces indices : le nouveau pod repart sans l'historique du précédent.",
+    "source": "Kubernetes : déboguer des pods (kubernetes.io/docs/tasks/debug/debug-application/debug-pods/) ; déboguer un pod en cours d'exécution (kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/)"
+  },
+  "schema": {
+    "legende": "Du redémarrage de la carte à la cause trouvée",
+    "avant": [
+      {
+        "texte": "Alarme",
+        "detail": "sur l'équipement"
+      },
+      {
+        "texte": "Connexion",
+        "detail": "journaux locaux"
+      },
+      {
+        "texte": "Redémarrage",
+        "detail": "de la carte"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Statut",
+        "detail": "CrashLoopBackOff, Pending…"
+      },
+      {
+        "texte": "Événements et journaux",
+        "detail": "describe, logs --previous"
+      },
+      {
+        "texte": "Cause",
+        "detail": "parfois dans une autre fonction"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "k8s-troubleshoot",
+    "analyse-incident"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : dépannage et débogage",
+      "url": "https://kubernetes.io/docs/tasks/debug/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : déboguer un pod en cours d'exécution",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "cours",
+      "nom": "Killercoda : laboratoires Kubernetes interactifs dans le navigateur",
+      "url": "https://killercoda.com/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : déboguer des pods",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/"
+    },
+    {
+      "nom": "Kubernetes : déboguer un pod en cours d'exécution",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "exemple"
+  ]
+}

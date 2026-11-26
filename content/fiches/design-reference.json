@@ -1,0 +1,104 @@
+{
+  "id": "design-reference",
+  "genre": "nouveaute",
+  "categorie": "decider",
+  "avant": null,
+  "apres": "Les designs de référence et les distributions telco",
+  "resume": {
+    "avant": null,
+    "apres": "Un éditeur ou une communauté publie une configuration de plateforme validée pour héberger des fonctions réseau : réglages, opérateurs, versions."
+  },
+  "resteVrai": [
+    "Une plateforme se qualifie avant d'accueillir des fonctions réseau.",
+    "Chaque écart à une configuration validée se justifie et se trace."
+  ],
+  "change": [
+    "Red Hat publie un design de référence pour le cœur (telco core reference design), la configuration recommandée d'OpenShift.",
+    "Ses manifestes de référence sont publiés en open source (dépôt telco-reference).",
+    "Sylva est un projet open source de pile cloud native pour les télécoms, au sein de la Linux Foundation Europe."
+  ],
+  "reflexe": null,
+  "pourquoiNouveau": "Avant, l'équipementier livrait son matériel et sa plateforme avec la fonction réseau. Avec une plateforme partagée entre plusieurs fonctions, l'opérateur choisit une distribution ; le design de référence dit comment la régler pour que les fonctions s'y comportent comme prévu.",
+  "piege": "S'écarter du design de référence sans le savoir : un réglage différent peut sortir la plateforme de la configuration validée par l'éditeur. Comparez le cluster à la référence et notez chaque écart avec sa raison.",
+  "exemple": "Avant d'accueillir les fonctions du cœur, l'équipe compare la configuration du cluster au design de référence et documente les écarts dans le dépôt de la plateforme.",
+  "epreuve": {
+    "cas": "On vous demande de préparer un cluster pour héberger des fonctions du cœur 5G de plusieurs éditeurs. Sur quoi vous appuyez-vous pour régler la plateforme, et qu'en faites-vous ?",
+    "raisonnement": "Sur le design de référence de la distribution : pour OpenShift, le telco core reference design décrit la configuration recommandée, et ses manifestes sont publiés dans le dépôt telco-reference. On compare le cluster à cette référence et on documente chaque écart (conseil d'auteur). D'autres piles existent, comme Sylva, projet open source de pile cloud native pour les télécoms au sein de la Linux Foundation Europe.",
+    "source": "Red Hat, OpenShift 4.18 : telco core reference design (docs.redhat.com) ; dépôt openshift-kni/telco-reference (github.com) ; Sylva (sylvaproject.org)"
+  },
+  "schema": {
+    "legende": "Régler la plateforme d'après une référence",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "Design de référence",
+        "detail": "réglages validés"
+      },
+      {
+        "texte": "Cluster",
+        "detail": "comparé à la référence"
+      },
+      {
+        "texte": "Écarts",
+        "detail": "notés et justifiés"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "ocp-rds",
+    "distrib-alt"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "opensource",
+      "nom": "Telco reference configuration (dépôt openshift-kni)",
+      "url": "https://github.com/openshift-kni/telco-reference"
+    },
+    {
+      "type": "doc",
+      "nom": "Documentation Sylva",
+      "url": "https://sylva-projects.gitlab.io/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Sylva : projet de pile cloud native pour les télécoms (Linux Foundation Europe)",
+      "url": "https://sylvaproject.org/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Red Hat, OpenShift 4.18 : telco core reference design",
+      "url": "https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/scalability_and_performance/telco-core-ref-design-specs"
+    },
+    {
+      "nom": "Telco reference configuration (dépôt openshift-kni)",
+      "url": "https://github.com/openshift-kni/telco-reference"
+    },
+    {
+      "nom": "Sylva (Linux Foundation Europe)",
+      "url": "https://sylvaproject.org/"
+    }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "pourquoiNouveau",
+    "piege",
+    "exemple",
+    "schema"
+  ]
+}
