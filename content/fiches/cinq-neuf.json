@@ -1,0 +1,105 @@
+{
+  "id": "cinq-neuf",
+  "genre": "transposition",
+  "categorie": "decider",
+  "avant": "disponibilité « cinq neuf » d'un équipement",
+  "apres": "disponibilité d'un service distribué",
+  "resume": {
+    "avant": "Un équipement redondé, garanti à 99,999 % par l'équipementier, avec une bascule matérielle.",
+    "apres": "La disponibilité se mesure sur le service vu par l'utilisateur ; elle dépend de toutes les briques en chaîne et se pilote par un objectif."
+  },
+  "resteVrai": [
+    "Les sessions en cours ne doivent pas être coupées.",
+    "La maintenance doit se faire sans interruption de service.",
+    "Chaque neuf supplémentaire coûte cher."
+  ],
+  "change": [
+    "99,999 % sur un an laisse environ 5 minutes 15 secondes d'indisponibilité.",
+    "La disponibilité d'un service se mesure du point de vue de l'utilisateur, pas d'un seul composant.",
+    "Des composants en chaîne cumulent leurs indisponibilités : la chaîne est moins disponible que son maillon le plus faible."
+  ],
+  "reflexe": "La disponibilité est celle de l'équipement.",
+  "pourquoiNouveau": null,
+  "piege": "Additionner des « cinq neuf » de composants et croire que le service en hérite : en chaîne, les indisponibilités se cumulent. Fixez l'objectif sur le service et vérifiez-le par la mesure.",
+  "exemple": "Une plateforme à 99,99 %, une fonction à 99,99 % et un transport à 99,99 %, en chaîne, donnent un service d'environ 99,97 %.",
+  "epreuve": {
+    "cas": "Un client demande « cinq neuf » pour le service de données. Combien d'indisponibilité cela autorise-t-il par an, et pourquoi la disponibilité de chaque composant ne suffit-elle pas ?",
+    "raisonnement": "99,999 % sur un an : 525 600 minutes × 0,001 % ≈ 5,3 minutes, soit environ 5 minutes 15 secondes (calcul). La disponibilité se mesure sur le service vu par l'utilisateur : des composants en chaîne cumulent leurs indisponibilités, donc le service est moins disponible que chacun d'eux. On fixe l'objectif sur le service et on le mesure.",
+    "source": "Google SRE : accepter le risque, mesurer la disponibilité d'un service (sre.google/sre-book/embracing-risk/)"
+  },
+  "schema": {
+    "legende": "De l'équipement garanti au service mesuré",
+    "avant": [
+      {
+        "texte": "Équipement",
+        "detail": "redondé"
+      },
+      {
+        "texte": "Garantie",
+        "detail": "99,999 %"
+      },
+      {
+        "texte": "Bascule",
+        "detail": "matérielle"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Service",
+        "detail": "vu par l'utilisateur"
+      },
+      {
+        "texte": "Chaîne",
+        "detail": "plateforme, fonction, transport"
+      },
+      {
+        "texte": "Objectif",
+        "detail": "mesuré en continu"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "tel-exigences-continuite"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Google SRE : accepter le risque",
+      "url": "https://sre.google/sre-book/embracing-risk/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Google SRE : objectifs de niveau de service",
+      "url": "https://sre.google/sre-book/service-level-objectives/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Google SRE : accepter le risque",
+      "url": "https://sre.google/sre-book/embracing-risk/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

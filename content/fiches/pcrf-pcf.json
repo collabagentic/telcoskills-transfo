@@ -1,0 +1,118 @@
+{
+  "id": "pcrf-pcf",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "PCRF et systèmes de taxation",
+  "apres": "PCF et facturation convergente (CHF)",
+  "resume": {
+    "avant": "En 4G, le PCRF fournit les règles de politique aux passerelles ; la taxation en ligne et hors ligne passe par des systèmes séparés.",
+    "apres": "En 5G, le PCF fournit les règles de politique, notamment à la SMF ; le CHF réunit la facturation en ligne et hors ligne."
+  },
+  "resteVrai": [
+    "Les règles de qualité de service et d'usage restent décidées par l'opérateur.",
+    "Compter l'usage reste indispensable à la facturation.",
+    "Les offres commerciales restent traduites en règles techniques."
+  ],
+  "change": [
+    "Le PCF fournit les règles de politique (qualité de service, contrôle de l'usage) aux fonctions, dont la SMF.",
+    "Le CHF assure une facturation convergente, en ligne et hors ligne.",
+    "La SMF dialogue avec le PCF pour les règles et avec le CHF pour la facturation des sessions."
+  ],
+  "reflexe": "Politique et taxation sont deux mondes à part.",
+  "pourquoiNouveau": null,
+  "piege": "Diagnostiquer une session refusée sans regarder le PCF et le CHF : une session peut échouer parce que la politique ou la facturation la refuse, pas à cause du réseau. Regardez leurs réponses à la SMF.",
+  "exemple": "Un abonné dont le forfait est épuisé voit sa session limitée : la décision vient de la facturation (CHF) et de la politique (PCF), appliquées par la SMF et l'UPF.",
+  "epreuve": {
+    "cas": "Un abonné obtient une session mais avec un débit très réduit. Quelles fonctions peuvent l'expliquer, et qu'est-ce qui change par rapport à la 4G ?",
+    "raisonnement": "Le PCF fournit à la SMF les règles de politique (qualité de service, contrôle de l'usage) ; le CHF assure la facturation convergente, en ligne et hors ligne. La SMF applique ces décisions et programme l'UPF. Par rapport à la 4G, le PCF remplace le PCRF, et la facturation en ligne et hors ligne est réunie dans le CHF.",
+    "source": "3GPP TS 23.503, cadre des politiques et de la facturation du 5G ; TS 32.240, architecture de facturation (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "Des politiques et de la taxation séparées à la facturation convergente",
+    "avant": [
+      {
+        "texte": "PCRF",
+        "detail": "règles de politique"
+      },
+      {
+        "texte": "Taxation en ligne",
+        "detail": "système séparé"
+      },
+      {
+        "texte": "Taxation hors ligne",
+        "detail": "système séparé"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "PCF",
+        "detail": "règles de politique"
+      },
+      {
+        "texte": "SMF",
+        "detail": "applique et programme l'UPF"
+      },
+      {
+        "texte": "CHF",
+        "detail": "facturation convergente"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "pcf-chf"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.503 : politiques et facturation du 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.503/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 32.240 : architecture de facturation",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/32_series/32.240/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "doc",
+      "nom": "Open5GS : documentation (cœur 5G open source)",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 23.503 : politiques et facturation du 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.503/"
+    },
+    {
+      "nom": "3GPP TS 32.240 : architecture de facturation",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/32_series/32.240/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

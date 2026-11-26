@@ -1,0 +1,123 @@
+{
+  "id": "linux-conteneurs",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "administration Linux des serveurs",
+  "apres": "Linux sous les conteneurs (namespaces, cgroups)",
+  "resume": {
+    "avant": "Des serveurs Linux administrés un par un : paquets, services systemd, droits, SELinux, diagnostic système.",
+    "apres": "Un conteneur est un processus Linux isolé par des namespaces et limité par des cgroups ; vos compétences Linux servent au diagnostic des nœuds et des conteneurs."
+  },
+  "resteVrai": [
+    "Lire les processus, la mémoire et les journaux reste le diagnostic de base.",
+    "SELinux et systemd restent présents sur les nœuds.",
+    "Comprendre le noyau aide toujours à comprendre une panne."
+  ],
+  "change": [
+    "Un conteneur est un processus isolé par des namespaces : réseau, processus, montages, utilisateurs…",
+    "Les cgroups limitent et comptent les ressources ; les requests et limits de Kubernetes s'y traduisent.",
+    "Les nœuds se gèrent comme un tout, souvent avec un système d'exploitation dédié et immuable."
+  ],
+  "reflexe": "On se connecte au serveur et on installe ce qui manque.",
+  "pourquoiNouveau": null,
+  "piege": "Installer des paquets à la main sur un nœud : la modification est perdue ou crée une dérive au prochain remplacement du nœud. Changez la configuration des nœuds par l'outil de la plateforme.",
+  "exemple": "Un conteneur tué pour dépassement de mémoire : le noyau a appliqué la limite de son cgroup, que Kubernetes avait fixée à partir de la limit du pod.",
+  "epreuve": {
+    "cas": "Un collègue dit qu'un conteneur est « une petite VM ». Que lui répondez-vous, et comment les limites de Kubernetes sont-elles appliquées ?",
+    "raisonnement": "Un conteneur n'est pas une VM : c'est un processus Linux qui partage le noyau de l'hôte, isolé par des namespaces (réseau, processus, montages, utilisateurs…). Ses ressources sont limitées et comptées par les cgroups ; les requests et limits de Kubernetes s'y traduisent, et c'est le noyau qui les applique.",
+    "source": "Linux : namespaces(7) et cgroups(7) (man7.org) ; Kubernetes : gérer les ressources des conteneurs (kubernetes.io/docs/concepts/configuration/manage-resources-containers/)"
+  },
+  "schema": {
+    "legende": "Du serveur administré au processus isolé",
+    "avant": [
+      {
+        "texte": "Serveur",
+        "detail": "administré à la main"
+      },
+      {
+        "texte": "Paquets et services",
+        "detail": "systemd"
+      },
+      {
+        "texte": "Diagnostic",
+        "detail": "sur la machine"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Processus",
+        "detail": "le conteneur"
+      },
+      {
+        "texte": "Namespaces",
+        "detail": "isolent"
+      },
+      {
+        "texte": "cgroups",
+        "detail": "limitent et comptent"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "linux"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Linux : namespaces(7)",
+      "url": "https://man7.org/linux/man-pages/man7/namespaces.7.html",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Linux : cgroups(7)",
+      "url": "https://man7.org/linux/man-pages/man7/cgroups.7.html",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "ANSSI : recommandations de configuration d'un système GNU/Linux",
+      "url": "https://messervices.cyber.gouv.fr/guides/recommandations-de-securite-relatives-un-systeme-gnulinux",
+      "langue": "fr",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Linux : namespaces(7)",
+      "url": "https://man7.org/linux/man-pages/man7/namespaces.7.html"
+    },
+    {
+      "nom": "Linux : cgroups(7)",
+      "url": "https://man7.org/linux/man-pages/man7/cgroups.7.html"
+    },
+    {
+      "nom": "Kubernetes : gérer les ressources des conteneurs",
+      "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple",
+    "change.2"
+  ]
+}

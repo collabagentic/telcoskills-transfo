@@ -1,0 +1,119 @@
+{
+  "id": "interfonctionnement-4g-5g",
+  "genre": "transposition",
+  "categorie": "integrer",
+  "avant": "EPC et VoLTE",
+  "apres": "interfonctionnement 4G/5G et voix sur 5G",
+  "resume": {
+    "avant": "Un cœur 4G (EPC) qui porte les sessions de données et la voix sur LTE (VoLTE) par l'IMS.",
+    "apres": "Le cœur 5G cohabite avec l'EPC par des nœuds combinés et l'interface N26 ; la voix reste portée par l'IMS, en VoNR ou par repli vers la 4G."
+  },
+  "resteVrai": [
+    "L'IMS reste le socle de la voix.",
+    "La continuité de service entre 4G et 5G reste une exigence.",
+    "Le parc 4G reste exploité pendant des années."
+  ],
+  "change": [
+    "Des nœuds combinés assurent l'interfonctionnement : SMF+PGW-C, UPF+PGW-U, UDM+HSS, PCF+PCRF.",
+    "L'interface N26, entre l'AMF et le MME, permet de transférer le contexte du terminal entre 4G et 5G.",
+    "En 5G autonome, la voix passe en VoNR, ou par un repli vers la 4G (EPS fallback)."
+  ],
+  "reflexe": "La 5G remplace la 4G d'un coup.",
+  "pourquoiNouveau": null,
+  "piege": "Oublier la voix en préparant la 5G autonome : sans VoNR ni repli vers la 4G configurés, un terminal en 5G peut ne pas pouvoir passer d'appel. Testez les appels dès les premiers essais.",
+  "exemple": "Un terminal en 5G autonome reçoit un appel : selon la configuration, l'appel est établi en VoNR ou le terminal est basculé vers la 4G pour un appel VoLTE.",
+  "epreuve": {
+    "cas": "Vous ouvrez la 5G autonome alors que la 4G reste en service. Quels éléments assurent la continuité entre les deux, et comment la voix est-elle traitée ?",
+    "raisonnement": "Des nœuds combinés (SMF+PGW-C, UPF+PGW-U, UDM+HSS, PCF+PCRF) servent les deux systèmes, et l'interface N26 entre l'AMF et le MME transfère le contexte du terminal lors des passages entre 4G et 5G. La voix reste portée par l'IMS : en VoNR sur la 5G autonome, ou par un repli vers la 4G (EPS fallback).",
+    "source": "3GPP TS 23.501, interfonctionnement avec l'EPC ; TS 23.502, procédures de repli EPS (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "Faire cohabiter la 4G et la 5G",
+    "avant": [
+      {
+        "texte": "EPC",
+        "detail": "MME, SGW, PGW"
+      },
+      {
+        "texte": "IMS",
+        "detail": "VoLTE"
+      },
+      {
+        "texte": "Terminal",
+        "detail": "en 4G"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Nœuds combinés",
+        "detail": "SMF+PGW-C, UDM+HSS"
+      },
+      {
+        "texte": "N26",
+        "detail": "AMF vers MME"
+      },
+      {
+        "texte": "Voix",
+        "detail": "VoNR ou repli 4G"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "interfonctionnement-4g",
+    "ims-voix"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.502 : procédures du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "doc",
+      "nom": "Open5GS : documentation (cœur 5G open source)",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 23.501 : architecture du système 5G (interfonctionnement)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    },
+    {
+      "nom": "3GPP TS 23.502 : procédures du système 5G (repli EPS)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

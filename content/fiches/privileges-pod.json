@@ -1,0 +1,110 @@
+{
+  "id": "privileges-pod",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "droits root sur l'équipement",
+  "apres": "contextes de sécurité et capacités Linux",
+  "resume": {
+    "avant": "La fonction tourne avec tous les droits sur son équipement dédié : personne d'autre ne partage la machine.",
+    "apres": "Sur une plateforme partagée, chaque pod déclare son contexte de sécurité : utilisateur, capacités Linux accordées une à une, privilèges."
+  },
+  "resteVrai": [
+    "Le moindre privilège reste la règle.",
+    "Une fonction réseau a parfois besoin de droits réseau particuliers.",
+    "Chaque droit accordé se justifie."
+  ],
+  "change": [
+    "Le contexte de sécurité (securityContext) fixe l'utilisateur, l'interdiction de root (runAsNonRoot) et les capacités.",
+    "Les capacités Linux découpent les droits de root : on ajoute seulement celles qu'il faut, par exemple NET_ADMIN.",
+    "Un conteneur « privileged » obtient presque tous les accès de l'hôte : à éviter."
+  ],
+  "reflexe": "La fonction tourne en root, c'est plus simple.",
+  "pourquoiNouveau": null,
+  "piege": "Accepter « privileged: true » parce que l'éditeur le demande : le conteneur obtient presque tous les accès de l'hôte, donc à toutes les autres fonctions du nœud. Demandez la liste exacte des capacités nécessaires.",
+  "exemple": "Une CNF qui doit configurer ses interfaces reçoit la seule capacité NET_ADMIN, tourne avec un utilisateur non root et sans mode privilégié.",
+  "epreuve": {
+    "cas": "Un éditeur livre une CNF qui demande « privileged: true ». Pourquoi est-ce un problème sur une plateforme partagée, et que lui demandez-vous ?",
+    "raisonnement": "Un conteneur privilégié obtient presque tous les accès de l'hôte : sur un nœud partagé, il peut atteindre les autres fonctions. On demande la liste exacte des capacités Linux nécessaires (par exemple NET_ADMIN), qu'on accorde une à une dans le securityContext, avec un utilisateur non root (runAsNonRoot) quand c'est possible.",
+    "source": "Kubernetes : configurer un contexte de sécurité (kubernetes.io/docs/tasks/configure-pod-container/security-context/) ; Linux : capabilities(7) (man7.org)"
+  },
+  "schema": {
+    "legende": "Du root sur la machine au droit accordé un par un",
+    "avant": [
+      {
+        "texte": "Équipement",
+        "detail": "dédié"
+      },
+      {
+        "texte": "Fonction",
+        "detail": "en root"
+      },
+      {
+        "texte": "Isolation",
+        "detail": "par la machine"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "securityContext",
+        "detail": "utilisateur, runAsNonRoot"
+      },
+      {
+        "texte": "Capacités",
+        "detail": "accordées une à une"
+      },
+      {
+        "texte": "Pod",
+        "detail": "sans mode privilégié"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "sec-plateforme"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : configurer un contexte de sécurité",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Linux : capabilities(7)",
+      "url": "https://man7.org/linux/man-pages/man7/capabilities.7.html",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : configurer un contexte de sécurité",
+      "url": "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+    },
+    {
+      "nom": "Linux : capabilities(7)",
+      "url": "https://man7.org/linux/man-pages/man7/capabilities.7.html"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "exemple"
+  ]
+}

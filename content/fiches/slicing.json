@@ -1,0 +1,91 @@
+{
+  "id": "slicing",
+  "genre": "nouveaute",
+  "categorie": "comprendre",
+  "avant": null,
+  "apres": "Le découpage du réseau en tranches (network slicing)",
+  "resume": {
+    "avant": null,
+    "apres": "Un même réseau se découpe en tranches logiques, chacune avec ses caractéristiques de service, choisies pour chaque terminal."
+  },
+  "resteVrai": [
+    "Différencier les services selon leurs besoins reste l'objectif de l'opérateur.",
+    "Les ressources physiques restent partagées et finies."
+  ],
+  "change": [
+    "Une tranche s'identifie par un S-NSSAI : un type de service (SST) et un différenciateur facultatif (SD).",
+    "Des valeurs de SST sont normalisées, par exemple 1 pour le haut débit mobile (eMBB) et 2 pour les communications ultra-fiables (URLLC).",
+    "L'AMF, aidée du NSSF, détermine les tranches autorisées pour le terminal."
+  ],
+  "reflexe": null,
+  "pourquoiNouveau": "En 4G, différencier des services passait surtout par des APN et des classes de qualité de service. La 5G donne une notion de tranche de bout en bout, choisie à l'enregistrement, qui peut conduire à des fonctions et des ressources dédiées.",
+  "piege": "Promettre une tranche sans les ressources derrière : une tranche n'est qu'un identifiant si les fonctions, la plateforme et le transport ne sont pas dimensionnés et isolés pour elle.",
+  "exemple": "Un opérateur propose une tranche pour des terminaux industriels : un S-NSSAI dédié, sélectionné à l'enregistrement, qui oriente les sessions vers une SMF et un UPF réservés.",
+  "epreuve": {
+    "cas": "Un client industriel veut un service à part sur le réseau 5G. Comment la tranche est-elle identifiée, qui décide qu'un terminal peut l'utiliser, et que faut-il derrière pour qu'elle soit réelle ?",
+    "raisonnement": "La tranche s'identifie par un S-NSSAI (type de service SST et différenciateur SD facultatif). À l'enregistrement, l'AMF, aidée du NSSF, détermine les tranches autorisées pour le terminal selon son abonnement. Pour qu'elle soit réelle, il faut derrière des fonctions, des ressources de plateforme et un transport dimensionnés et isolés pour elle (avis d'auteur).",
+    "source": "3GPP TS 23.501, network slicing et identification S-NSSAI (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "Un réseau, plusieurs tranches",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "S-NSSAI",
+        "detail": "SST et SD"
+      },
+      {
+        "texte": "AMF et NSSF",
+        "detail": "tranches autorisées"
+      },
+      {
+        "texte": "Fonctions dédiées",
+        "detail": "SMF, UPF de la tranche"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "slicing"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.501 : architecture du système 5G (network slicing)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "doc",
+      "nom": "Open5GS : documentation (cœur 5G open source)",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 23.501 : architecture du système 5G (network slicing)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "pourquoiNouveau",
+    "piege",
+    "exemple",
+    "schema"
+  ]
+}

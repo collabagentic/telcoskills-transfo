@@ -1,0 +1,121 @@
+{
+  "id": "analyse-risques",
+  "genre": "transposition",
+  "categorie": "decider",
+  "avant": "analyse de risques par projet",
+  "apres": "EBIOS Risk Manager et évaluation des équipements (SCAS)",
+  "resume": {
+    "avant": "Une analyse de risques rédigée pour chaque projet, souvent sous forme de liste de menaces, rarement mise à jour.",
+    "apres": "Une analyse par scénarios (EBIOS Risk Manager), un système de management de la sécurité (ISO/IEC 27001) et des exigences de sécurité normalisées pour les fonctions réseau (SCAS)."
+  },
+  "resteVrai": [
+    "Partir des biens à protéger et des menaces reste la démarche.",
+    "Une analyse de risques se met à jour quand le système change.",
+    "Les mesures doivent être proportionnées au risque."
+  ],
+  "change": [
+    "EBIOS Risk Manager est la méthode d'analyse de risques de l'ANSSI, fondée sur des scénarios.",
+    "ISO/IEC 27001 définit les exigences d'un système de management de la sécurité de l'information.",
+    "Le 3GPP définit des exigences de sécurité pour les fonctions réseau (SCAS), par exemple TS 33.117."
+  ],
+  "reflexe": "L'analyse de risques est un document de projet, fait une fois.",
+  "pourquoiNouveau": null,
+  "piege": "Faire l'analyse de risques sans la plateforme : les fonctions du cœur partagent maintenant un cluster, des opérateurs de plateforme et une chaîne de livraison. Ces éléments entrent dans les scénarios.",
+  "exemple": "L'analyse EBIOS RM du nouveau cœur inclut un scénario de compromission de la chaîne de livraison des images, et les exigences SCAS servent de liste de vérification pour les fonctions.",
+  "epreuve": {
+    "cas": "Vous préparez l'analyse de risques d'un cœur 5G hébergé sur une plateforme partagée. Quelle méthode, quel cadre de management, et quelles exigences pour les fonctions elles-mêmes ?",
+    "raisonnement": "La méthode EBIOS Risk Manager de l'ANSSI, fondée sur des scénarios ; le cadre de management de la sécurité ISO/IEC 27001 ; pour les fonctions réseau, les exigences de sécurité normalisées du 3GPP (SCAS, par exemple TS 33.117). La plateforme partagée et sa chaîne de livraison entrent dans les scénarios (avis d'auteur).",
+    "source": "ANSSI : la méthode EBIOS Risk Manager (cyber.gouv.fr) ; ISO/IEC 27001 (iso.org) ; 3GPP TS 33.117 (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "De la liste de menaces à l'analyse par scénarios",
+    "avant": [
+      {
+        "texte": "Projet",
+        "detail": "analyse rédigée"
+      },
+      {
+        "texte": "Liste de menaces",
+        "detail": "figée"
+      },
+      {
+        "texte": "Document",
+        "detail": "rarement mis à jour"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "EBIOS RM",
+        "detail": "scénarios"
+      },
+      {
+        "texte": "ISO/IEC 27001",
+        "detail": "management"
+      },
+      {
+        "texte": "SCAS",
+        "detail": "exigences des fonctions"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "reg-risque"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "ANSSI : la méthode EBIOS Risk Manager",
+      "url": "https://cyber.gouv.fr/la-methode-ebios-risk-manager",
+      "langue": "fr",
+      "acces": "gratuit"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 33.117 : exigences de sécurité génériques (SCAS)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.117/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "opensource",
+      "nom": "MONARC : analyse de risques open source",
+      "url": "https://www.monarc.lu/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "ANSSI : la méthode EBIOS Risk Manager",
+      "url": "https://cyber.gouv.fr/la-methode-ebios-risk-manager"
+    },
+    {
+      "nom": "ISO/IEC 27001",
+      "url": "https://www.iso.org/standard/27001"
+    },
+    {
+      "nom": "3GPP TS 33.117 : exigences de sécurité génériques",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.117/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

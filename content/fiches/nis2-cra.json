@@ -1,0 +1,106 @@
+{
+  "id": "nis2-cra",
+  "genre": "nouveaute",
+  "categorie": "decider",
+  "avant": null,
+  "apres": "NIS 2, Cyber Resilience Act et certification européenne",
+  "resume": {
+    "avant": null,
+    "apres": "Trois textes européens encadrent la cybersécurité : NIS 2 pour les entités, le Cyber Resilience Act pour les produits, le Cybersecurity Act pour la certification."
+  },
+  "resteVrai": [
+    "Gérer les risques et notifier les incidents restait déjà attendu des opérateurs.",
+    "La sécurité d'un produit reste d'abord la responsabilité de son fabricant."
+  ],
+  "change": [
+    "NIS 2 (directive (UE) 2022/2555) impose aux entités essentielles et importantes des mesures de gestion des risques.",
+    "NIS 2 encadre la notification des incidents importants : alerte précoce sous 24 heures, notification sous 72 heures.",
+    "Le Cyber Resilience Act (règlement (UE) 2024/2847) impose des exigences aux produits comportant des éléments numériques."
+  ],
+  "reflexe": null,
+  "pourquoiNouveau": "Ces textes étendent et précisent les obligations : plus d'entités concernées, des délais de notification fixés, et pour la première fois des exigences de cybersécurité imposées aux produits eux-mêmes, dont la gestion des vulnérabilités. Le Cybersecurity Act (règlement (UE) 2019/881) crée en parallèle un cadre européen de certification.",
+  "piege": "Croire que NIS 2 ne concerne que l'équipe sécurité : les mesures portent aussi sur l'exploitation, la chaîne d'approvisionnement et la gestion des incidents. Associez l'exploitation de la plateforme dès l'analyse.",
+  "exemple": "Un incident important sur le cœur déclenche une alerte précoce à l'autorité dans les 24 heures, puis une notification dans les 72 heures ; la chronologie de l'incident sert directement à ces déclarations.",
+  "epreuve": {
+    "cas": "Un incident important touche le cœur d'un opérateur soumis à NIS 2. Quels délais de notification s'appliquent, et qu'est-ce que le Cyber Resilience Act change pour les éditeurs de fonctions réseau ?",
+    "raisonnement": "NIS 2 prévoit une alerte précoce dans les 24 heures après la prise de connaissance de l'incident important, puis une notification dans les 72 heures. Le Cyber Resilience Act impose des exigences de cybersécurité aux produits comportant des éléments numériques, dont la gestion des vulnérabilités : les éditeurs doivent les respecter pour les produits qu'ils mettent sur le marché.",
+    "source": "Directive (UE) 2022/2555 (NIS 2), article 23 ; règlement (UE) 2024/2847 (Cyber Resilience Act) ; EUR-Lex (eur-lex.europa.eu)"
+  },
+  "schema": {
+    "legende": "Trois textes, trois cibles",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "NIS 2",
+        "detail": "les entités"
+      },
+      {
+        "texte": "Cyber Resilience Act",
+        "detail": "les produits"
+      },
+      {
+        "texte": "Cybersecurity Act",
+        "detail": "la certification"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "reg-nis2",
+    "reg-cra",
+    "reg-ue-certif"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "ANSSI : la directive NIS 2",
+      "url": "https://cyber.gouv.fr/la-directive-nis-2",
+      "langue": "fr",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Directive (UE) 2022/2555 (NIS 2) sur EUR-Lex",
+      "url": "https://eur-lex.europa.eu/eli/dir/2022/2555/oj",
+      "langue": "fr",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Règlement (UE) 2024/2847 (Cyber Resilience Act) sur EUR-Lex",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj",
+      "langue": "fr",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Directive (UE) 2022/2555 (NIS 2)",
+      "url": "https://eur-lex.europa.eu/eli/dir/2022/2555/oj"
+    },
+    {
+      "nom": "Règlement (UE) 2024/2847 (Cyber Resilience Act)",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj"
+    },
+    {
+      "nom": "Règlement (UE) 2019/881 (Cybersecurity Act)",
+      "url": "https://eur-lex.europa.eu/eli/reg/2019/881/oj"
+    }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "piege",
+    "exemple",
+    "schema"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "upf-local",
+  "genre": "transposition",
+  "categorie": "decider",
+  "avant": "plan usager centralisé",
+  "apres": "UPF distribué au plus près des utilisateurs",
+  "resume": {
+    "avant": "Tout le trafic usager remonte jusqu'aux passerelles centrales avant de sortir vers Internet ou les services.",
+    "apres": "Des UPF locaux acheminent une partie du trafic près de l'utilisateur ; la SMF choisit l'UPF et peut aiguiller certains flux vers un accès local."
+  },
+  "resteVrai": [
+    "La latence dépend toujours de la distance parcourue par les paquets.",
+    "Chaque site supplémentaire reste à exploiter et à sécuriser.",
+    "Le transport entre sites reste dimensionnant."
+  ],
+  "change": [
+    "La SMF sélectionne l'UPF d'une session, notamment selon la localisation du terminal et le réseau de données.",
+    "Un UPF classificateur de liaison montante (UL CL) peut aiguiller une partie du trafic vers un accès local.",
+    "L'informatique en périphérie (MEC, normalisée par l'ETSI) place des applications près de ces UPF locaux."
+  ],
+  "reflexe": "Tout le trafic passe par le site central.",
+  "pourquoiNouveau": null,
+  "piege": "Multiplier les UPF de périphérie sans prévoir leur exploitation : chaque site ajoute un cluster à installer, superviser, mettre à jour et sécuriser. Dimensionnez l'exploitation avant le nombre de sites.",
+  "exemple": "Pour une usine connectée, un UPF installé sur le site achemine localement le trafic des machines vers les applications de l'usine, tandis que l'accès à Internet passe par le site central.",
+  "epreuve": {
+    "cas": "Un client demande une faible latence pour des applications sur son site. Que proposez-vous côté plan usager, qui décide du chemin du trafic, et quel coût d'exploitation anticipez-vous ?",
+    "raisonnement": "Un UPF local, sur le site ou à proximité : la SMF sélectionne l'UPF selon la localisation et le réseau de données, et un UPF classificateur (UL CL) peut aiguiller une partie du trafic vers l'accès local. Les applications peuvent s'y héberger en périphérie (MEC). Coût (avis d'auteur) : un cluster de plus à installer, superviser, mettre à jour et sécuriser par site.",
+    "source": "3GPP TS 23.501, sélection de l'UPF et classificateur de liaison montante (archive 3gpp.org) ; ETSI : Multi-access Edge Computing (etsi.org/technologies/multi-access-edge-computing)"
+  },
+  "schema": {
+    "legende": "Du plan usager central au plan usager distribué",
+    "avant": [
+      {
+        "texte": "Terminal",
+        "detail": "sur le site"
+      },
+      {
+        "texte": "Transport",
+        "detail": "jusqu'au centre"
+      },
+      {
+        "texte": "Passerelle centrale",
+        "detail": "sortie unique"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "SMF",
+        "detail": "choisit l'UPF"
+      },
+      {
+        "texte": "UPF local",
+        "detail": "UL CL, accès local"
+      },
+      {
+        "texte": "Applications",
+        "detail": "en périphérie (MEC)"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "upf-edge"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "doc",
+      "nom": "ETSI : Multi-access Edge Computing",
+      "url": "https://www.etsi.org/technologies/multi-access-edge-computing",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 23.501 : architecture du système 5G (sélection de l'UPF, UL CL)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    },
+    {
+      "nom": "ETSI : Multi-access Edge Computing",
+      "url": "https://www.etsi.org/technologies/multi-access-edge-computing"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

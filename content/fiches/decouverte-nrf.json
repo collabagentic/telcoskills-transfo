@@ -1,0 +1,118 @@
+{
+  "id": "decouverte-nrf",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "configuration statique des voisins",
+  "apres": "découverte des services par la NRF",
+  "resume": {
+    "avant": "Chaque nœud connaît ses voisins par configuration : adresses, liens et routes de signalisation saisis à la main.",
+    "apres": "Chaque fonction s'enregistre auprès de la NRF avec son profil ; les autres la découvrent en interrogeant la NRF, directement ou via un SCP."
+  },
+  "resteVrai": [
+    "Savoir quelle fonction parle à quelle autre reste indispensable au diagnostic.",
+    "La redondance des fonctions reste à prévoir.",
+    "Les contrôles d'accès entre fonctions restent nécessaires."
+  ],
+  "change": [
+    "Chaque fonction s'enregistre auprès de la NRF avec son profil (type, services, adresses).",
+    "Une fonction découvre ses pairs en interrogeant la NRF (service de découverte Nnrf_NFDiscovery).",
+    "La communication peut être directe ou indirecte, par un proxy de communication de service (SCP)."
+  ],
+  "reflexe": "Les voisins d'un nœud se configurent à la main.",
+  "pourquoiNouveau": null,
+  "piege": "Oublier que la NRF devient un point critique : si elle est indisponible, de nouvelles découvertes échouent. Prévoyez sa redondance et regardez son état en premier quand une fonction « ne trouve plus » ses pairs.",
+  "exemple": "Au démarrage, une nouvelle instance de SMF s'enregistre auprès de la NRF ; l'AMF la découvre par la NRF et peut l'utiliser sans modification de sa configuration.",
+  "epreuve": {
+    "cas": "Vous ajoutez une instance de SMF. Comment l'AMF apprend-elle son existence, et que regardez-vous si l'AMF ne la trouve pas ?",
+    "raisonnement": "La nouvelle SMF s'enregistre auprès de la NRF avec son profil (type, services, adresses). L'AMF la découvre en interrogeant la NRF par son service de découverte, directement ou via un SCP. Si elle ne la trouve pas : l'enregistrement de la SMF auprès de la NRF a-t-il réussi, la NRF est-elle disponible, et le profil correspond-il aux critères de la recherche ?",
+    "source": "3GPP TS 29.510, services de la NRF (enregistrement, découverte) ; TS 23.501, modèles de communication et SCP (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "De la configuration des voisins à la découverte",
+    "avant": [
+      {
+        "texte": "Nœud A",
+        "detail": "configuré à la main"
+      },
+      {
+        "texte": "Lien",
+        "detail": "saisi"
+      },
+      {
+        "texte": "Nœud B",
+        "detail": "connu par adresse"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Fonction",
+        "detail": "s'enregistre"
+      },
+      {
+        "texte": "NRF",
+        "detail": "profils et découverte"
+      },
+      {
+        "texte": "Fonction cliente",
+        "detail": "découvre et appelle"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "nrf-scp"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 29.510 : services de la NRF",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.510/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "doc",
+      "nom": "Open5GS : documentation (cœur 5G open source)",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 29.510 : services de la NRF",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.510/"
+    },
+    {
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}
