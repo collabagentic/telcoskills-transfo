@@ -1,0 +1,111 @@
+{
+  "id": "tests-charge",
+  "genre": "transposition",
+  "categorie": "decider",
+  "avant": "tests de charge en fin de projet",
+  "apres": "mesure des marges par des tests de charge répétés",
+  "resume": {
+    "avant": "Une campagne de charge en fin de projet, dont les résultats figent le dimensionnement pour des années.",
+    "apres": "Des tests de charge rejoués à chaque évolution pour vérifier les hypothèses du dimensionnement et connaître le point de saturation."
+  },
+  "resteVrai": [
+    "Le dimensionnement reste une hypothèse à vérifier par la mesure.",
+    "Connaître le point de rupture reste plus utile que la valeur nominale.",
+    "Les marges se choisissent et se documentent."
+  ],
+  "change": [
+    "Un outil comme k6 décrit une charge en code et la rejoue à l'identique d'un test à l'autre.",
+    "On mesure jusqu'à la saturation, pour savoir comment le service se dégrade, pas seulement s'il tient la charge nominale.",
+    "Un service doit refuser proprement le trop-plein plutôt que de s'effondrer : c'est à tester aussi."
+  ],
+  "reflexe": "Le dimensionnement validé une fois vaut pour toute la vie du système.",
+  "pourquoiNouveau": null,
+  "piege": "Tester seulement la charge nominale : le jour d'un pic, on découvre la dégradation. Montez jusqu'à la saturation, notez où et comment le service lâche, et gardez ces chiffres comme référence pour les versions suivantes.",
+  "exemple": "À chaque nouvelle version de l'UPF, le même scénario de charge est rejoué ; une baisse de 10 % du débit maximal bloque la mise en production.",
+  "epreuve": {
+    "cas": "Le dimensionnement d'une fonction du cœur a été validé il y a deux ans. Une nouvelle version arrive. Que mesurez-vous, comment rendez-vous la mesure comparable, et jusqu'où montez-vous ?",
+    "raisonnement": "On rejoue le même scénario de charge, décrit en code (par exemple avec k6) pour qu'il soit identique d'une version à l'autre. On monte jusqu'à la saturation pour voir comment le service se dégrade, et on vérifie qu'il refuse proprement le trop-plein plutôt que de s'effondrer. Les chiffres deviennent la référence des versions suivantes (avis d'auteur).",
+    "source": "Grafana k6 : documentation (grafana.com/docs/k6/latest/) ; Google SRE : gérer la surcharge (sre.google/sre-book/handling-overload/)"
+  },
+  "schema": {
+    "legende": "De la campagne unique à la mesure rejouée",
+    "avant": [
+      {
+        "texte": "Campagne",
+        "detail": "en fin de projet"
+      },
+      {
+        "texte": "Résultat",
+        "detail": "nominal"
+      },
+      {
+        "texte": "Dimensionnement",
+        "detail": "figé"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Scénario",
+        "detail": "décrit en code"
+      },
+      {
+        "texte": "Charge",
+        "detail": "jusqu'à la saturation"
+      },
+      {
+        "texte": "Référence",
+        "detail": "comparée à chaque version"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "tests-perf",
+    "bench-dimensionnement"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "opensource",
+      "nom": "Grafana k6 : tests de charge",
+      "url": "https://grafana.com/docs/k6/latest/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Google SRE : gérer la surcharge",
+      "url": "https://sre.google/sre-book/handling-overload/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Grafana k6 : documentation",
+      "url": "https://grafana.com/docs/k6/latest/"
+    },
+    {
+      "nom": "Google SRE : gérer la surcharge",
+      "url": "https://sre.google/sre-book/handling-overload/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple",
+    "change.1"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "flux-telco",
+  "genre": "transposition",
+  "categorie": "integrer",
+  "avant": "flux de signalisation sur équipement",
+  "apres": "flux télécom dans Kubernetes (SCTP, GTP-U, PFCP)",
+  "resume": {
+    "avant": "Des flux de signalisation et de trafic usager entre équipements, ouverts dans les pare-feu port par port.",
+    "apres": "Les mêmes protocoles traversent maintenant des Services et des réseaux de pods : chacun a ses contraintes de transport à déclarer."
+  },
+  "resteVrai": [
+    "Chaque flux a son protocole, son port et son sens.",
+    "La matrice de flux reste la référence entre équipes.",
+    "Le MTU compte toujours, surtout avec l'encapsulation GTP-U."
+  ],
+  "change": [
+    "NGAP (N2) passe en SCTP, port 38412 ; un Service Kubernetes peut déclarer SCTP comme protocole de port.",
+    "PFCP (N4, entre SMF et UPF) passe en UDP, port 8805 ; GTP-U (N3) en UDP, port 2152.",
+    "Les interfaces de service (SBI) passent en HTTP/2 sur TCP."
+  ],
+  "reflexe": "Tout flux est du TCP qu'on ouvre dans le pare-feu.",
+  "pourquoiNouveau": null,
+  "piege": "Oublier qu'un plugin réseau ou un répartiteur ne gère pas forcément SCTP : le Service se crée, mais le trafic ne passe pas. Vérifiez que le plugin réseau et l'équipement d'entrée gèrent SCTP avant de déclarer le Service.",
+  "exemple": "La matrice de flux d'un cœur 5G liste NGAP en SCTP 38412 vers l'AMF, PFCP en UDP 8805 entre SMF et UPF, GTP-U en UDP 2152 vers l'UPF, et les SBI en HTTP/2.",
+  "epreuve": {
+    "cas": "Vous documentez les flux d'un cœur 5G à faire passer dans le cluster. Quels protocoles et ports pour N2, N4 et N3, et quel point vérifiez-vous pour N2 ?",
+    "raisonnement": "N2 : NGAP en SCTP, port 38412. N4 : PFCP en UDP, port 8805. N3 : GTP-U en UDP, port 2152. Les interfaces de service passent en HTTP/2 sur TCP. Pour N2, on vérifie que le plugin réseau et l'équipement d'entrée gèrent SCTP : un Service Kubernetes peut le déclarer comme protocole de port, encore faut-il que le reste de la chaîne le transporte.",
+    "source": "3GPP TS 29.244 (PFCP) et TS 29.281 (GTP-U), archive (3gpp.org) ; Kubernetes : protocoles des Services (kubernetes.io/docs/reference/networking/service-protocols/) ; IANA : registre des ports"
+  },
+  "schema": {
+    "legende": "Des flux ouverts port par port aux flux déclarés dans le cluster",
+    "avant": [
+      {
+        "texte": "Équipement A",
+        "detail": "signalisation"
+      },
+      {
+        "texte": "Pare-feu",
+        "detail": "port par port"
+      },
+      {
+        "texte": "Équipement B",
+        "detail": "trafic usager"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "NGAP",
+        "detail": "SCTP 38412"
+      },
+      {
+        "texte": "PFCP",
+        "detail": "UDP 8805"
+      },
+      {
+        "texte": "GTP-U",
+        "detail": "UDP 2152"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "sctp-flux"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : protocoles des Services",
+      "url": "https://kubernetes.io/docs/reference/networking/service-protocols/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 29.244 : protocole PFCP",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.244/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 29.281 : GTP-U",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.281/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 29.244 : protocole PFCP (port UDP 8805)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.244/"
+    },
+    {
+      "nom": "3GPP TS 29.281 : GTP-U (port UDP 2152)",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.281/"
+    },
+    {
+      "nom": "Kubernetes : protocoles des Services",
+      "url": "https://kubernetes.io/docs/reference/networking/service-protocols/"
+    },
+    {
+      "nom": "IANA : registre des ports",
+      "url": "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

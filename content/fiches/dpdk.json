@@ -1,0 +1,121 @@
+{
+  "id": "dpdk",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "accélération matérielle du plan usager",
+  "apres": "DPDK, CPU isolés et hugepages",
+  "resume": {
+    "avant": "Un équipement dédié, avec ses processeurs réseau, qui achemine le trafic usager à pleine vitesse.",
+    "apres": "Un logiciel traite les paquets en espace utilisateur avec DPDK, sur des CPU réservés et de la mémoire en hugepages."
+  },
+  "resteVrai": [
+    "Le plan usager reste sensible au débit et à la latence.",
+    "Il faut toujours mesurer le débit réel, pas celui de la fiche produit.",
+    "La proximité entre CPU, mémoire et carte réseau compte toujours."
+  ],
+  "change": [
+    "DPDK traite les paquets en espace utilisateur, en interrogeant la carte en continu (polling), sans la pile réseau du noyau.",
+    "Un cœur qui interroge la carte en continu est occupé en permanence : on lui réserve des CPU exclusifs.",
+    "DPDK utilise des hugepages ; dans Kubernetes, elles se demandent explicitement dans le pod."
+  ],
+  "reflexe": "Le débit vient du matériel de l'équipement.",
+  "pourquoiNouveau": null,
+  "piege": "Prendre un CPU à 100 % pour une saturation : avec DPDK, un cœur qui interroge la carte en continu est toujours à 100 %, même sans trafic. Mesurez le débit et les pertes de paquets, pas l'usage CPU de ces cœurs.",
+  "exemple": "Un UPF fondé sur DPDK demande dans son pod des CPU entiers en politique static, des hugepages de 1 Gio et une interface SR-IOV, alignés sur le même nœud NUMA.",
+  "epreuve": {
+    "cas": "Un UPF fondé sur DPDK montre ses cœurs à 100 % de CPU en permanence, même la nuit. Est-ce une saturation ? Et que demande ce pod à Kubernetes pour bien fonctionner ?",
+    "raisonnement": "Non : DPDK interroge la carte en continu (polling), donc les cœurs qui lui sont dédiés sont toujours occupés, même sans trafic ; on mesure plutôt le débit et les pertes de paquets. Le pod demande des CPU exclusifs (pod Guaranteed, CPU entiers, politique static) et des hugepages déclarées explicitement, souvent avec une interface SR-IOV.",
+    "source": "DPDK : guides (doc.dpdk.org/guides/) ; Kubernetes : politiques de gestion du CPU (kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/) ; hugepages (kubernetes.io/docs/tasks/manage-hugepages/scheduling-hugepages/)"
+  },
+  "schema": {
+    "legende": "Du processeur réseau dédié au logiciel sur CPU réservés",
+    "avant": [
+      {
+        "texte": "Carte réseau",
+        "detail": "trafic usager"
+      },
+      {
+        "texte": "Processeur réseau",
+        "detail": "dédié"
+      },
+      {
+        "texte": "Équipement",
+        "detail": "pleine vitesse"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Carte réseau",
+        "detail": "SR-IOV"
+      },
+      {
+        "texte": "DPDK",
+        "detail": "polling en espace utilisateur"
+      },
+      {
+        "texte": "CPU exclusifs",
+        "detail": "et hugepages"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "dpdk"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "DPDK : guides",
+      "url": "https://doc.dpdk.org/guides/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : politiques de gestion du CPU",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : hugepages",
+      "url": "https://kubernetes.io/docs/tasks/manage-hugepages/scheduling-hugepages/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "DPDK : guides",
+      "url": "https://doc.dpdk.org/guides/"
+    },
+    {
+      "nom": "Kubernetes : politiques de gestion du CPU",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/"
+    },
+    {
+      "nom": "Kubernetes : hugepages",
+      "url": "https://kubernetes.io/docs/tasks/manage-hugepages/scheduling-hugepages/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "exemple"
+  ]
+}

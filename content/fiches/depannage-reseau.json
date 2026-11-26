@@ -1,0 +1,125 @@
+{
+  "id": "depannage-reseau",
+  "genre": "transposition",
+  "categorie": "diagnostiquer",
+  "avant": "dépannage réseau sur équipement",
+  "apres": "dépannage réseau d'un pod à plusieurs interfaces",
+  "resume": {
+    "avant": "On teste la liaison depuis l'équipement (ping, traceroute), on vérifie le VLAN et la route, on capture sur le port du commutateur.",
+    "apres": "On isole la panne interface par interface : réseau des pods, interfaces secondaires, MTU, route, politique réseau, avec une capture dans l'espace réseau du pod."
+  },
+  "resteVrai": [
+    "Isoler couche par couche reste la méthode.",
+    "Le plan d'adressage et les VLAN restent la première chose à vérifier.",
+    "Capturer au bon endroit reste décisif."
+  ],
+  "change": [
+    "Un pod peut avoir une interface primaire (eth0) et des interfaces secondaires ajoutées par Multus (net1, net2…).",
+    "Une NetworkPolicy peut bloquer un flux que le réseau transporte bien : elle fait partie du diagnostic.",
+    "Un conteneur éphémère (kubectl debug) permet de lancer des outils réseau dans le pod sans modifier son image."
+  ],
+  "reflexe": "On se connecte à l'équipement et on lance un ping.",
+  "pourquoiNouveau": null,
+  "piege": "Tester la mauvaise interface : un ping qui passe sur eth0 ne dit rien de l'interface secondaire du plan usager. Et un MTU trop grand laisse passer les petits paquets mais pas les gros : testez aussi avec des paquets de grande taille.",
+  "exemple": "Les sessions s'établissent mais le trafic usager ne passe pas : la capture sur l'interface secondaire de l'UPF montre des paquets GTP-U trop grands pour le MTU du VLAN.",
+  "epreuve": {
+    "cas": "Une fonction répond sur son interface principale, mais pas sur son interface secondaire du plan usager. Comment isolez-vous la panne, et où capturez-vous ?",
+    "raisonnement": "On vérifie l'interface concernée, pas eth0 : interface secondaire ajoutée par Multus, VLAN, adresse, route et MTU (en testant de gros paquets). On regarde aussi si une NetworkPolicy bloque le flux. Pour capturer, on lance un conteneur éphémère (kubectl debug) dans le pod, qui partage son espace réseau, et on capture sur l'interface secondaire.",
+    "source": "Kubernetes : déboguer un Service (kubernetes.io/docs/tasks/debug/debug-application/debug-service/) ; déboguer un pod en cours d'exécution (kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/) ; Multus CNI (github.com/k8snetworkplumbingwg/multus-cni)"
+  },
+  "schema": {
+    "legende": "Du ping depuis l'équipement à l'interface isolée",
+    "avant": [
+      {
+        "texte": "Ping",
+        "detail": "depuis l'équipement"
+      },
+      {
+        "texte": "VLAN et route",
+        "detail": "vérifiés"
+      },
+      {
+        "texte": "Capture",
+        "detail": "sur le commutateur"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Interface",
+        "detail": "eth0 ou secondaire ?"
+      },
+      {
+        "texte": "MTU, route, politique",
+        "detail": "vérifiés un par un"
+      },
+      {
+        "texte": "Capture",
+        "detail": "dans l'espace réseau du pod"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "depannage-reseau-telco",
+    "archi-reseau-support",
+    "reseau-ip"
+  ],
+  "technos": [
+    "multus",
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : déboguer un Service",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "Multus CNI",
+      "url": "https://github.com/k8snetworkplumbingwg/multus-cni",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : déboguer un pod en cours d'exécution",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : déboguer un Service",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/"
+    },
+    {
+      "nom": "Kubernetes : déboguer un pod en cours d'exécution",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+    },
+    {
+      "nom": "Multus CNI",
+      "url": "https://github.com/k8snetworkplumbingwg/multus-cni"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}
