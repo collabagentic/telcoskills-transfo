@@ -1,0 +1,112 @@
+{
+  "id": "boitier-nf",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "boîtier réseau dédié",
+  "apres": "fonction réseau logicielle (VNF, puis CNF)",
+  "resume": {
+    "avant": "Un équipement dédié par fonction : un boîtier, son matériel et son logiciel, livrés et maintenus ensemble par l'équipementier.",
+    "apres": "Une fonction réseau (NF) est un logiciel qui remplit un rôle : d'abord en machine virtuelle (VNF), puis en conteneurs (CNF) sur une plateforme partagée."
+  },
+  "resteVrai": [
+    "Une fonction réseau garde son rôle : AMF, SMF ou UPF font ce que faisaient leurs ancêtres.",
+    "Les exigences de disponibilité et de performance restent celles du télécom.",
+    "L'éditeur reste responsable du logiciel de la fonction."
+  ],
+  "change": [
+    "La virtualisation des fonctions réseau (NFV) sépare le logiciel de la fonction du matériel qui la porte.",
+    "Une CNF découpe la fonction en conteneurs, déployés et remplacés par Kubernetes.",
+    "Plusieurs fonctions, de plusieurs éditeurs, partagent la même plateforme."
+  ],
+  "reflexe": "Une fonction réseau, c'est un boîtier.",
+  "pourquoiNouveau": null,
+  "piege": "Croire que la plateforme partagée ne change rien à l'exploitation : le matériel, la plateforme et la fonction ont désormais des responsables différents. Écrivez qui fait quoi avant le premier incident.",
+  "exemple": "L'UPF n'est plus un châssis dans une baie : c'est un logiciel livré en conteneurs, déployé sur le même cluster que la SMF d'un autre éditeur.",
+  "epreuve": {
+    "cas": "Un responsable demande pourquoi « l'UPF n'est plus un équipement ». Que lui répondez-vous, et qu'est-ce qui change pour l'exploitation ?",
+    "raisonnement": "Avec la virtualisation des fonctions réseau (NFV), le logiciel de la fonction est séparé du matériel : l'UPF devient un logiciel, d'abord en VM (VNF), puis en conteneurs (CNF) que Kubernetes déploie et remplace. Pour l'exploitation (avis d'auteur), le matériel, la plateforme et la fonction ont des responsables différents, qu'il faut répartir clairement.",
+    "source": "ETSI : NFV, virtualisation des fonctions réseau (etsi.org/technologies/nfv) ; Kubernetes : vue d'ensemble (kubernetes.io/docs/concepts/overview/)"
+  },
+  "schema": {
+    "legende": "Du boîtier dédié à la fonction logicielle",
+    "avant": [
+      {
+        "texte": "Boîtier",
+        "detail": "matériel dédié"
+      },
+      {
+        "texte": "Logiciel",
+        "detail": "lié au boîtier"
+      },
+      {
+        "texte": "Équipementier",
+        "detail": "livre et maintient tout"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "VNF",
+        "detail": "logiciel en VM"
+      },
+      {
+        "texte": "CNF",
+        "detail": "logiciel en conteneurs"
+      },
+      {
+        "texte": "Plateforme",
+        "detail": "partagée entre fonctions"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "tel-nf"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "ETSI : NFV, virtualisation des fonctions réseau",
+      "url": "https://www.etsi.org/technologies/nfv",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : vue d'ensemble",
+      "url": "https://kubernetes.io/docs/concepts/overview/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "ETSI : NFV, virtualisation des fonctions réseau",
+      "url": "https://www.etsi.org/technologies/nfv"
+    },
+    {
+      "nom": "Kubernetes : vue d'ensemble",
+      "url": "https://kubernetes.io/docs/concepts/overview/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple",
+    "change.2"
+  ]
+}

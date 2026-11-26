@@ -1,0 +1,123 @@
+{
+  "id": "mme-amf",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "MME",
+  "apres": "AMF : enregistrement, NAS et NGAP",
+  "resume": {
+    "avant": "En 4G, le MME gère l'accès, la mobilité et la mise en place des sessions, en lien avec le HSS et les passerelles.",
+    "apres": "En 5G, l'AMF gère l'accès et la mobilité ; la gestion des sessions part dans la SMF. L'identité permanente de l'abonné ne circule plus en clair."
+  },
+  "resteVrai": [
+    "L'enregistrement, l'authentification et la mobilité restent les procédures de base.",
+    "Une identité temporaire (le 5G-GUTI) protège toujours l'abonné au quotidien.",
+    "Le PLMN (MCC et MNC) identifie toujours le réseau."
+  ],
+  "change": [
+    "L'AMF termine N1 (NAS, avec le terminal) et N2 (NGAP, avec le gNB) ; ses services s'exposent sur l'interface Namf.",
+    "La gestion des sessions n'est plus dans l'AMF : elle relaie la signalisation de session vers la SMF.",
+    "Le terminal n'envoie plus son identité permanente (SUPI) en clair, mais une identité chiffrée, le SUCI."
+  ],
+  "reflexe": "Le MME fait tout : accès, mobilité et sessions.",
+  "pourquoiNouveau": null,
+  "piege": "Chercher un échec de session dans l'AMF : en 5G, l'AMF ne gère pas les sessions PDU, elle relaie leur signalisation vers la SMF. Un échec d'établissement de session se diagnostique d'abord dans la SMF.",
+  "exemple": "Lors d'un enregistrement initial, la trace montre un message NAS d'enregistrement porté par NGAP du gNB vers l'AMF, avec un SUCI à la place de l'IMSI en clair qu'on voyait en 4G.",
+  "epreuve": {
+    "cas": "Un abonné échoue à l'enregistrement initial sur le cœur 5G. Quelles fonctions interviennent, dans quel ordre, et quelle identité voit-on passer en premier ?",
+    "raisonnement": "Le terminal envoie une demande d'enregistrement en NAS (N1), portée par NGAP (N2) du gNB jusqu'à l'AMF. Il s'identifie par son SUCI, identité chiffrée, ou par un 5G-GUTI s'il en a un. L'AMF fait authentifier l'abonné par l'AUSF, qui s'appuie sur l'UDM (laquelle déchiffre le SUCI pour retrouver le SUPI) ; puis l'AMF établit la sécurité NAS et récupère les données d'abonnement auprès de l'UDM.",
+    "source": "3GPP TS 23.502, procédure d'enregistrement ; TS 23.501, rôle de l'AMF ; TS 33.501, SUCI et authentification (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "Du MME qui fait tout à l'AMF centrée sur l'accès",
+    "avant": [
+      {
+        "texte": "Terminal",
+        "detail": "IMSI parfois en clair"
+      },
+      {
+        "texte": "MME",
+        "detail": "accès, mobilité, sessions"
+      },
+      {
+        "texte": "HSS",
+        "detail": "abonnés"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Terminal",
+        "detail": "SUCI chiffré"
+      },
+      {
+        "texte": "AMF",
+        "detail": "accès et mobilité (N1, N2)"
+      },
+      {
+        "texte": "SMF",
+        "detail": "sessions"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "amf",
+    "enregistrement",
+    "identifiants"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.502 : procédures du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "doc",
+      "nom": "Open5GS : documentation (cœur 5G open source)",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    },
+    {
+      "nom": "3GPP TS 23.502 : procédures du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/"
+    },
+    {
+      "nom": "3GPP TS 33.501 : architecture de sécurité 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "exemple"
+  ]
+}

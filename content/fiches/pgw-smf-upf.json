@@ -1,0 +1,123 @@
+{
+  "id": "pgw-smf-upf",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "SGW et PGW",
+  "apres": "SMF et UPF : sessions PDU et PFCP",
+  "resume": {
+    "avant": "En 4G, les passerelles SGW et PGW établissent les sessions et acheminent le trafic ; avec CUPS, leurs plans de contrôle et usager se séparent déjà.",
+    "apres": "En 5G, la SMF gère la session et programme l'UPF par PFCP ; l'UPF achemine les paquets entre le radio (N3) et le réseau de données (N6)."
+  },
+  "resteVrai": [
+    "Une session reste rattachée à un réseau de données (DNN, l'ancien APN).",
+    "La séparation des plans de contrôle et usager existait déjà en 4G avec CUPS.",
+    "La qualité de service et le comptage d'usage restent appliqués par session."
+  ],
+  "change": [
+    "La SMF programme l'UPF par PFCP (N4) avec des règles : détection (PDR), acheminement (FAR), QoS (QER), usage (URR).",
+    "Le trafic usager arrive en GTP-U sur N3 et sort vers le réseau de données sur N6.",
+    "La SMF choisit l'UPF de la session et alloue l'adresse IP du terminal."
+  ],
+  "reflexe": "La passerelle fait tout pour la session.",
+  "pourquoiNouveau": null,
+  "piege": "Croire qu'une session établie côté SMF achemine forcément le trafic : si les règles PFCP n'ont pas été acceptées par l'UPF, la signalisation réussit mais les paquets ne passent pas. Vérifiez la réponse PFCP de l'UPF.",
+  "exemple": "Pour une demande de session vers le DNN « internet », la SMF choisit un UPF, lui envoie une demande d'établissement de session PFCP avec ses règles, puis renvoie l'adresse IP allouée au terminal.",
+  "epreuve": {
+    "cas": "Un terminal demande une session PDU. Quelles fonctions interviennent, comment l'UPF apprend-il quoi faire des paquets, et par où passent ensuite les paquets usager ?",
+    "raisonnement": "La demande de session part du terminal en NAS, l'AMF la relaie à la SMF qu'elle a sélectionnée. La SMF choisit l'UPF, alloue l'adresse IP et programme l'UPF par PFCP sur N4 (règles PDR, FAR, QER, URR). Les paquets usager passent ensuite en GTP-U du gNB à l'UPF (N3), puis de l'UPF vers le réseau de données (N6).",
+    "source": "3GPP TS 23.502, établissement de session PDU ; TS 29.244, protocole PFCP (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "Des passerelles 4G à la SMF qui programme l'UPF",
+    "avant": [
+      {
+        "texte": "SGW",
+        "detail": "passerelle de desserte"
+      },
+      {
+        "texte": "PGW",
+        "detail": "vers le réseau de données"
+      },
+      {
+        "texte": "Session",
+        "detail": "dans les passerelles"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "SMF",
+        "detail": "gère la session"
+      },
+      {
+        "texte": "PFCP",
+        "detail": "N4, règles PDR, FAR, QER"
+      },
+      {
+        "texte": "UPF",
+        "detail": "N3 vers N6"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "smf-upf",
+    "session-pdu"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.502 : procédures du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 29.244 : protocole PFCP",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.244/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "opensource",
+      "nom": "free5GC : cœur 5G open source (guide)",
+      "url": "https://free5gc.org/guide/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    },
+    {
+      "nom": "3GPP TS 23.502 : procédures du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/"
+    },
+    {
+      "nom": "3GPP TS 29.244 : protocole PFCP",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.244/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

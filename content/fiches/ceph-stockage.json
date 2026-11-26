@@ -1,0 +1,110 @@
+{
+  "id": "ceph-stockage",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "baie de stockage SAN",
+  "apres": "stockage distribué Ceph (Rook, ODF)",
+  "resume": {
+    "avant": "Une baie centrale, ses contrôleurs redondés et ses LUN, présentées aux serveurs par le réseau de stockage.",
+    "apres": "Ceph répartit et réplique les données sur les disques de nombreux serveurs ; Rook le déploie et le gère dans Kubernetes."
+  },
+  "resteVrai": [
+    "Protéger les données contre la perte d'un disque ou d'un serveur reste l'objectif.",
+    "La performance du stockage reste à mesurer, pas à supposer.",
+    "Les sauvegardes restent indispensables : la réplication n'en est pas une."
+  ],
+  "change": [
+    "Ceph stocke les données sur des démons de stockage (OSD), un par disque, répartis sur plusieurs serveurs.",
+    "Un pool répliqué garde par défaut 3 copies de chaque donnée.",
+    "Rook déploie et gère Ceph dans Kubernetes par un opérateur ; OpenShift Data Foundation s'appuie sur Ceph et Rook."
+  ],
+  "reflexe": "Le stockage est une baie centrale qu'on connaît par cœur.",
+  "pourquoiNouveau": null,
+  "piege": "Confondre réplication et sauvegarde : une suppression ou une corruption est répliquée sur toutes les copies. Gardez des sauvegardes hors du cluster, et testez la restauration.",
+  "exemple": "Les volumes d'un lab de cœur 5G sont fournis par Ceph via Rook : la perte d'un serveur de stockage n'interrompt pas les volumes, grâce aux copies sur les autres serveurs.",
+  "epreuve": {
+    "cas": "Un serveur qui porte des disques Ceph tombe. Que deviennent les données d'un pool répliqué par défaut, et pourquoi la réplication ne remplace-t-elle pas les sauvegardes ?",
+    "raisonnement": "Un pool répliqué garde par défaut 3 copies de chaque donnée, réparties sur des OSD de serveurs différents : la perte d'un serveur laisse d'autres copies disponibles, et Ceph reconstruit les copies manquantes. La réplication ne protège pas d'une suppression ou d'une corruption, qui touchent toutes les copies : il faut des sauvegardes hors du cluster.",
+    "source": "Ceph : documentation (docs.ceph.com/en/latest/) ; Rook : documentation (rook.io/docs/rook/latest/)"
+  },
+  "schema": {
+    "legende": "De la baie centrale au stockage réparti",
+    "avant": [
+      {
+        "texte": "Baie",
+        "detail": "contrôleurs redondés"
+      },
+      {
+        "texte": "LUN",
+        "detail": "découpées"
+      },
+      {
+        "texte": "Serveurs",
+        "detail": "par le réseau de stockage"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "OSD",
+        "detail": "un par disque"
+      },
+      {
+        "texte": "Pool répliqué",
+        "detail": "3 copies par défaut"
+      },
+      {
+        "texte": "Rook",
+        "detail": "opérateur dans Kubernetes"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "ceph"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "opensource",
+      "nom": "Ceph : documentation",
+      "url": "https://docs.ceph.com/en/latest/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "Rook : documentation",
+      "url": "https://rook.io/docs/rook/latest/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Ceph : documentation",
+      "url": "https://docs.ceph.com/en/latest/"
+    },
+    {
+      "nom": "Rook : documentation",
+      "url": "https://rook.io/docs/rook/latest/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "exemple"
+  ]
+}

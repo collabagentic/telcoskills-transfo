@@ -1,0 +1,109 @@
+{
+  "id": "reseau-mobile-pour-it",
+  "genre": "nouveaute",
+  "categorie": "comprendre",
+  "avant": null,
+  "apres": "Le réseau mobile, vu par un ingénieur IT",
+  "resume": {
+    "avant": null,
+    "apres": "Un terminal parle à une antenne (le RAN), qui le relie au cœur de réseau ; le cœur authentifie l'abonné et achemine son trafic vers un réseau de données."
+  },
+  "resteVrai": [
+    "IP, HTTP, conteneurs et Kubernetes : une bonne partie du cœur 5G parle déjà votre langue.",
+    "Disponibilité, supervision et sécurité restent vos réflexes d'ingénieur."
+  ],
+  "change": [
+    "Le système 5G se découpe en terminal (UE), réseau d'accès radio (NG-RAN, avec ses gNB), cœur (5GC) et réseau de données (DN).",
+    "Le cœur sépare le plan de contrôle (signalisation) du plan usager (les paquets de l'abonné).",
+    "Les fonctions du plan de contrôle forment une architecture orientée services (SBA) et s'appellent en HTTP/2."
+  ],
+  "reflexe": null,
+  "pourquoiNouveau": "Un ingénieur IT connaît les serveurs, les réseaux IP et les applications, mais pas forcément la chaîne mobile : la radio, l'abonné identifié par sa carte SIM, la mobilité d'une antenne à l'autre, les sessions de données. Ce vocabulaire est indispensable pour travailler avec les équipes réseau.",
+  "piege": "Croire que tout est de l'IT : une partie du réseau mobile reste propre au télécom (radio, mobilité, protocoles comme SCTP ou GTP-U, contraintes de latence du plan usager). Les ignorer conduit à des choix de plateforme inadaptés.",
+  "exemple": "Quand un smartphone ouvre une page web, il s'enregistre auprès du cœur par l'antenne, obtient une session de données, puis ses paquets traversent le plan usager jusqu'à Internet.",
+  "epreuve": {
+    "cas": "Un collègue IT vous demande ce qu'est « le cœur 5G » et en quoi il ressemble à ce qu'il connaît. Que lui expliquez-vous en trois phrases ?",
+    "raisonnement": "Le système 5G relie un terminal (UE) au réseau de données (DN) par le réseau d'accès radio (NG-RAN, les antennes gNB) puis le cœur (5GC). Le cœur sépare le plan de contrôle, qui gère l'abonné et ses sessions, du plan usager, qui achemine ses paquets. Les fonctions du plan de contrôle forment une architecture orientée services (SBA) et s'appellent en HTTP/2 : c'est la partie la plus proche de l'IT.",
+    "source": "3GPP : vue d'ensemble du système 5G (3gpp.org/technologies/5g-system-overview) ; TS 23.501, architecture du système 5G (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "La chaîne mobile en quatre maillons",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "Terminal (UE)",
+        "detail": "carte SIM, abonné"
+      },
+      {
+        "texte": "NG-RAN",
+        "detail": "antennes gNB"
+      },
+      {
+        "texte": "Cœur 5GC",
+        "detail": "contrôle et plan usager"
+      },
+      {
+        "texte": "Réseau de données",
+        "detail": "Internet, services"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "telco-101",
+    "tel-reseau-mobile",
+    "tel-vocabulaire",
+    "archi-5g"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "3GPP : vue d'ensemble du système 5G",
+      "url": "https://www.3gpp.org/technologies/5g-system-overview",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "opensource",
+      "nom": "Open5GS : cœur 4G/5G open source, documentation",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP : vue d'ensemble du système 5G",
+      "url": "https://www.3gpp.org/technologies/5g-system-overview"
+    },
+    {
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "pourquoiNouveau",
+    "piege",
+    "exemple",
+    "schema"
+  ]
+}

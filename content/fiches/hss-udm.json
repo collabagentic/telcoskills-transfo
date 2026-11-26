@@ -1,0 +1,118 @@
+{
+  "id": "hss-udm",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "HSS",
+  "apres": "UDM, UDR et AUSF",
+  "resume": {
+    "avant": "En 4G, le HSS tient les données d'abonnement et fournit les vecteurs d'authentification au MME.",
+    "apres": "En 5G, l'UDM gère l'abonnement et l'authentification, l'UDR stocke les données, l'AUSF authentifie l'abonné pour le réseau."
+  },
+  "resteVrai": [
+    "Les données d'abonnement restent la référence de ce qu'un abonné a le droit de faire.",
+    "L'authentification mutuelle du réseau et du terminal reste la base de la sécurité.",
+    "Le HSS reste présent tant que la 4G cohabite avec la 5G."
+  ],
+  "change": [
+    "L'UDM gère les données d'abonnement et la génération des données d'authentification.",
+    "L'UDR stocke les données (abonnement, politiques) ; l'UDM s'appuie sur lui.",
+    "L'AUSF authentifie l'abonné pour le réseau (5G AKA ou EAP-AKA') ; l'UDM déchiffre le SUCI."
+  ],
+  "reflexe": "Le HSS est une base unique qui fait tout pour l'abonné.",
+  "pourquoiNouveau": null,
+  "piege": "Diagnostiquer un échec d'authentification dans la seule AMF : l'authentification passe par l'AUSF et l'UDM. Suivez la chaîne AMF, AUSF, UDM pour trouver où elle échoue.",
+  "exemple": "En interfonctionnement 4G et 5G, un nœud combiné UDM et HSS sert les deux réseaux, avec les mêmes données d'abonnement.",
+  "epreuve": {
+    "cas": "Un abonné 5G échoue à l'authentification. Quelles fonctions sont en jeu, et laquelle déchiffre son identité ?",
+    "raisonnement": "L'AMF demande l'authentification à l'AUSF, qui réalise la procédure (5G AKA ou EAP-AKA') pour le réseau ; l'AUSF obtient les données d'authentification auprès de l'UDM, qui s'appuie sur les données stockées dans l'UDR. C'est l'UDM qui déchiffre le SUCI pour retrouver l'identité permanente (SUPI). On suit donc la chaîne AMF, AUSF, UDM.",
+    "source": "3GPP TS 33.501, architecture de sécurité 5G (authentification, SUCI) ; TS 23.501, rôles de l'UDM, de l'UDR et de l'AUSF (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "D'une base unique à trois fonctions",
+    "avant": [
+      {
+        "texte": "MME",
+        "detail": "demande des vecteurs"
+      },
+      {
+        "texte": "HSS",
+        "detail": "abonnés et authentification"
+      },
+      {
+        "texte": "Terminal",
+        "detail": "authentifié"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "AUSF",
+        "detail": "authentifie pour le réseau"
+      },
+      {
+        "texte": "UDM",
+        "detail": "abonnement, déchiffre le SUCI"
+      },
+      {
+        "texte": "UDR",
+        "detail": "stocke les données"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "udm-udr-ausf"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 33.501 : architecture de sécurité 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "doc",
+      "nom": "Open5GS : documentation (cœur 5G open source)",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 33.501 : architecture de sécurité 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/"
+    },
+    {
+      "nom": "3GPP TS 23.501 : architecture du système 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

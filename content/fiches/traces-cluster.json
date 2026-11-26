@@ -1,0 +1,122 @@
+{
+  "id": "traces-cluster",
+  "genre": "transposition",
+  "categorie": "diagnostiquer",
+  "avant": "traces sur équipement",
+  "apres": "captures dans un cluster (NGAP, PFCP, HTTP/2)",
+  "resume": {
+    "avant": "On capture sur un port miroir ou sur l'équipement, puis on lit la procédure message par message dans Wireshark.",
+    "apres": "On capture dans l'espace réseau du pod ou sur l'interface du nœud ; les échanges entre fonctions en TLS ne se lisent qu'avec leurs clés de session."
+  },
+  "resteVrai": [
+    "Lire une procédure message par message reste le geste de base.",
+    "Wireshark reste l'outil de lecture.",
+    "Choisir le bon point de capture reste décisif."
+  ],
+  "change": [
+    "Un conteneur éphémère (kubectl debug) partage l'espace réseau du pod : on y capture le trafic de la fonction.",
+    "Wireshark décode NGAP, PFCP, GTP-U et HTTP/2.",
+    "Les échanges SBI chiffrés en TLS ne se déchiffrent qu'avec les clés de session (fichier de clés exporté)."
+  ],
+  "reflexe": "On met un port miroir sur le commutateur et on capture.",
+  "pourquoiNouveau": null,
+  "piege": "Capturer au mauvais endroit : le trafic entre deux pods du même nœud ne passe pas par le commutateur. Capturez dans l'espace réseau du pod, et pour le SBI, prévoyez comment obtenir les clés TLS, sinon la capture reste illisible.",
+  "exemple": "Pour une session qui échoue, l'intégrateur capture dans le pod de la SMF : PFCP vers l'UPF en clair, et le SBI vers l'AMF déchiffré grâce au fichier de clés activé en lab.",
+  "epreuve": {
+    "cas": "Une session PDU échoue entre la SMF et l'UPF, et vous voulez la trace. Où capturez-vous, et que faut-il pour lire les échanges SBI de la SMF ?",
+    "raisonnement": "On capture dans l'espace réseau du pod, par exemple avec un conteneur éphémère lancé par kubectl debug, qui partage cet espace : on y voit PFCP vers l'UPF, que Wireshark décode. Les échanges SBI sont en HTTP/2 sur TLS : Wireshark ne les déchiffre qu'avec les clés de session TLS, exportées dans un fichier de clés.",
+    "source": "Kubernetes : déboguer un pod en cours d'exécution (kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/) ; Wireshark : TLS (wiki.wireshark.org/TLS)"
+  },
+  "schema": {
+    "legende": "Du port miroir à la capture dans le pod",
+    "avant": [
+      {
+        "texte": "Équipement",
+        "detail": "trafic"
+      },
+      {
+        "texte": "Port miroir",
+        "detail": "sur le commutateur"
+      },
+      {
+        "texte": "Wireshark",
+        "detail": "lecture"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Pod",
+        "detail": "espace réseau"
+      },
+      {
+        "texte": "Conteneur éphémère",
+        "detail": "capture"
+      },
+      {
+        "texte": "Wireshark",
+        "detail": "clés TLS pour le SBI"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "traces"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Wireshark : documentation",
+      "url": "https://www.wireshark.org/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Wireshark : déchiffrer TLS",
+      "url": "https://wiki.wireshark.org/TLS",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Kubernetes : déboguer un pod en cours d'exécution",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : déboguer un pod en cours d'exécution",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/"
+    },
+    {
+      "nom": "Wireshark : TLS",
+      "url": "https://wiki.wireshark.org/TLS"
+    },
+    {
+      "nom": "Wireshark : documentation",
+      "url": "https://www.wireshark.org/docs/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

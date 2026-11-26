@@ -1,0 +1,118 @@
+{
+  "id": "donnees-souverainete",
+  "genre": "transposition",
+  "categorie": "decider",
+  "avant": "hébergement des données dans vos centres",
+  "apres": "RGPD et cloud qualifié SecNumCloud",
+  "resume": {
+    "avant": "Les données des abonnés restent dans les centres de l'opérateur, sur ses propres équipements.",
+    "apres": "Selon l'hébergement choisi, les données peuvent passer chez un prestataire : le RGPD encadre ce traitement, et SecNumCloud qualifie des offres de cloud de confiance."
+  },
+  "resteVrai": [
+    "Les données des abonnés restent des données personnelles protégées.",
+    "Conserver le moins possible, le moins longtemps possible, reste la règle.",
+    "Savoir où sont les données reste indispensable."
+  ],
+  "change": [
+    "Le RGPD (règlement (UE) 2016/679) impose notamment la minimisation des données et des durées de conservation limitées.",
+    "Un prestataire qui traite des données pour l'opérateur est un sous-traitant : un contrat doit encadrer ce traitement.",
+    "SecNumCloud est le référentiel de l'ANSSI pour qualifier des prestataires de cloud de confiance."
+  ],
+  "reflexe": "Les données sont chez nous, donc la question ne se pose pas.",
+  "pourquoiNouveau": null,
+  "piege": "Choisir un hébergement sans regarder qui peut accéder aux données : un prestataire soumis à un droit étranger peut être contraint de les communiquer. Pour les données sensibles, regardez les offres qualifiées SecNumCloud.",
+  "exemple": "Pour héberger des journaux contenant des identifiants d'abonnés, l'opérateur limite les champs conservés, fixe une durée de conservation et choisit une offre qualifiée.",
+  "epreuve": {
+    "cas": "Votre équipe veut envoyer les journaux d'une fonction du cœur, qui contiennent des identifiants d'abonnés, vers un service de cloud. Que vérifiez-vous avant ?",
+    "raisonnement": "Ce sont des données personnelles : le RGPD impose de limiter ce qui est conservé (minimisation) et pour combien de temps. Le prestataire de cloud est un sous-traitant : un contrat doit encadrer le traitement. Pour des données sensibles, on regarde si l'offre est qualifiée SecNumCloud, référentiel de l'ANSSI pour les prestataires de cloud de confiance.",
+    "source": "Règlement (UE) 2016/679 (RGPD), articles 5 et 28 (eur-lex.europa.eu) ; ANSSI : référentiel SecNumCloud (messervices.cyber.gouv.fr)"
+  },
+  "schema": {
+    "legende": "Des données chez soi aux données confiées",
+    "avant": [
+      {
+        "texte": "Données d'abonnés",
+        "detail": "chez l'opérateur"
+      },
+      {
+        "texte": "Équipements",
+        "detail": "de l'opérateur"
+      },
+      {
+        "texte": "Accès",
+        "detail": "interne"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "RGPD",
+        "detail": "minimisation, conservation"
+      },
+      {
+        "texte": "Sous-traitant",
+        "detail": "encadré par contrat"
+      },
+      {
+        "texte": "SecNumCloud",
+        "detail": "offre qualifiée"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "reg-rgpd",
+    "reg-souverainete",
+    "reg-anssi"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "CNIL : guide de la sécurité des données personnelles (2024)",
+      "url": "https://www.cnil.fr/fr/guide-de-la-securite-des-donnees-personnelles-nouvelle-edition-2024",
+      "langue": "fr",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "ANSSI : référentiel SecNumCloud",
+      "url": "https://messervices.cyber.gouv.fr/guides/referentiel-secnumcloud",
+      "langue": "fr",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Règlement (UE) 2016/679 (RGPD) sur EUR-Lex",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "langue": "fr",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Règlement (UE) 2016/679 (RGPD)",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    },
+    {
+      "nom": "ANSSI : référentiel SecNumCloud",
+      "url": "https://messervices.cyber.gouv.fr/guides/referentiel-secnumcloud"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

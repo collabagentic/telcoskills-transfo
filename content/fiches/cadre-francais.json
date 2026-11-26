@@ -1,0 +1,104 @@
+{
+  "id": "cadre-francais",
+  "genre": "nouveaute",
+  "categorie": "decider",
+  "avant": null,
+  "apres": "Le cadre français des réseaux : CPCE, autorisation 5G, OIV",
+  "resume": {
+    "avant": null,
+    "apres": "Le CPCE fixe les obligations des opérateurs ; certains équipements 5G sont soumis à autorisation ; les opérateurs d'importance vitale ont des règles renforcées."
+  },
+  "resteVrai": [
+    "La sécurité et l'intégrité des réseaux restent une obligation des opérateurs.",
+    "Le choix des équipements et des fournisseurs reste encadré."
+  ],
+  "change": [
+    "Le Code des postes et des communications électroniques (CPCE) fixe les obligations des opérateurs, dont la sécurité des réseaux.",
+    "Depuis la loi du 1er août 2019, certains équipements de réseaux mobiles sont soumis à autorisation (article L. 34-11 du CPCE).",
+    "Les opérateurs d'importance vitale appliquent des règles de sécurité renforcées à leurs systèmes d'information d'importance vitale."
+  ],
+  "reflexe": null,
+  "pourquoiNouveau": "Le passage au cloud natif ne supprime aucune de ces obligations, mais il les déplace : la plateforme, ses fournisseurs et ses exploitants entrent dans le périmètre à examiner. Un cœur hébergé sur une plateforme partagée doit être pensé avec ces contraintes dès l'architecture.",
+  "piege": "Traiter la réglementation à la fin du projet : le choix des équipements, des fournisseurs et de l'hébergement peut être contraint par une autorisation ou par des règles d'importance vitale. Consultez les équipes conformité dès l'architecture.",
+  "exemple": "Avant de retenir un fournisseur pour des équipements de réseau mobile, l'opérateur vérifie s'ils relèvent du régime d'autorisation de l'article L. 34-11 du CPCE.",
+  "epreuve": {
+    "cas": "Votre opérateur prépare un nouveau cœur 5G hébergé sur une plateforme partagée. Quels textes français regardez-vous dès l'architecture, et pourquoi si tôt ?",
+    "raisonnement": "Le CPCE, qui fixe les obligations des opérateurs, dont la sécurité des réseaux ; son article L. 34-11, issu de la loi du 1er août 2019, qui soumet certains équipements de réseaux mobiles à autorisation ; et, si l'opérateur est d'importance vitale, les règles applicables à ses systèmes d'information d'importance vitale. Si tôt (avis d'auteur), parce que ces règles peuvent contraindre le choix des équipements, des fournisseurs et de l'hébergement.",
+    "source": "Code des postes et des communications électroniques, article L. 34-11 (legifrance.gouv.fr) ; ANSSI : dispositif de sécurité des activités d'importance vitale (cyber.gouv.fr)"
+  },
+  "schema": {
+    "legende": "Trois cadres à regarder dès l'architecture",
+    "avant": null,
+    "apres": [
+      {
+        "texte": "CPCE",
+        "detail": "obligations des opérateurs"
+      },
+      {
+        "texte": "Article L. 34-11",
+        "detail": "autorisation des équipements"
+      },
+      {
+        "texte": "Importance vitale",
+        "detail": "règles renforcées"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "reg-cadre-fr",
+    "reg-5g-securite",
+    "reg-oiv",
+    "reglementation-5gc"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Légifrance : Code des postes et des communications électroniques",
+      "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006070987/",
+      "langue": "fr",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "ARCEP : la 5G",
+      "url": "https://www.arcep.fr/la-regulation/grands-dossiers-reseaux-mobiles/la-5g.html",
+      "langue": "fr",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "ANSSI : dispositif de sécurité des activités d'importance vitale",
+      "url": "https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformation/directives-nis-nis2-et-dispositif-saiv/dispositif-saiv/",
+      "langue": "fr",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Légifrance : Code des postes et des communications électroniques",
+      "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006070987/"
+    },
+    {
+      "nom": "ANSSI : dispositif de sécurité des activités d'importance vitale",
+      "url": "https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformation/directives-nis-nis2-et-dispositif-saiv/dispositif-saiv/"
+    }
+  ],
+  "avisAuteur": [
+    "resteVrai",
+    "pourquoiNouveau",
+    "piege",
+    "exemple",
+    "schema"
+  ]
+}

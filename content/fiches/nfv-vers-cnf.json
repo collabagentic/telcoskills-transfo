@@ -1,0 +1,119 @@
+{
+  "id": "nfv-vers-cnf",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "NFV (VNF, VIM et MANO)",
+  "apres": "CNF sur Kubernetes",
+  "resume": {
+    "avant": "Des VNF dans des VM sur une infrastructure NFV gérée par un VIM (souvent OpenStack), pilotées par un orchestrateur MANO.",
+    "apres": "Des CNF en conteneurs sur Kubernetes, décrites par des charts et des manifestes ; Kubernetes assure le placement et le cycle de vie de base."
+  },
+  "resteVrai": [
+    "Séparer la fonction réseau de l'infrastructure qui la porte reste le principe.",
+    "Un orchestrateur de bout en bout reste utile au-dessus des plateformes.",
+    "Le parc OpenStack existant reste à exploiter pendant la migration."
+  ],
+  "change": [
+    "Dans le modèle ETSI NFV, une VNF tourne sur une NFVI gérée par un VIM, et le MANO orchestre son cycle de vie.",
+    "Avec des CNF, Kubernetes place, redémarre et met à l'échelle les conteneurs : une partie du rôle du VIM et du VNFM.",
+    "Les spécifications ETSI NFV ont été étendues aux conteneurs : un paquet de fonction peut contenir des charts Helm."
+  ],
+  "reflexe": "Une fonction réseau logicielle, c'est une VM gérée par le MANO.",
+  "pourquoiNouveau": null,
+  "piege": "Transposer une VNF en conteneur sans la repenser : une VM « mise en conteneur », avec son état local et ses procédures manuelles, perd les bénéfices de Kubernetes (remplacement, mise à l'échelle). Demandez à l'éditeur une conception cloud native, pas un simple portage.",
+  "exemple": "Un opérateur garde ses VNF historiques sur OpenStack, accueille les nouvelles fonctions du cœur 5G en CNF sur Kubernetes, et fait cohabiter les deux le temps de la migration.",
+  "epreuve": {
+    "cas": "Votre parc de fonctions réseau tourne en VNF sur OpenStack, piloté par un MANO. Les nouvelles fonctions arrivent en CNF. Qui joue alors le rôle du VIM, que devient le paquet de la fonction, et quel risque surveillez-vous ?",
+    "raisonnement": "Dans le modèle ETSI NFV, le VIM gère l'infrastructure et le MANO le cycle de vie de la VNF. Avec des CNF, Kubernetes place, redémarre et met à l'échelle les conteneurs, une partie de ce que faisaient le VIM et le VNFM. Les spécifications ETSI ont été étendues : le paquet d'une fonction peut contenir des charts Helm. Risque (avis d'auteur) : une VNF simplement mise en conteneur, sans conception cloud native.",
+    "source": "ETSI : NFV, virtualisation des fonctions réseau (etsi.org/technologies/nfv) ; OpenStack Tacker, orchestrateur NFV (docs.openstack.org/tacker)"
+  },
+  "schema": {
+    "legende": "De la VNF sur OpenStack à la CNF sur Kubernetes",
+    "avant": [
+      {
+        "texte": "VNF",
+        "detail": "dans une VM"
+      },
+      {
+        "texte": "VIM",
+        "detail": "OpenStack"
+      },
+      {
+        "texte": "MANO",
+        "detail": "orchestre le cycle de vie"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "CNF",
+        "detail": "en conteneurs"
+      },
+      {
+        "texte": "Kubernetes",
+        "detail": "placement, redémarrage, échelle"
+      },
+      {
+        "texte": "Paquet",
+        "detail": "charts Helm et descripteurs"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "nfv-etsi",
+    "etsi-sol",
+    "openstack"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "ETSI : NFV, virtualisation des fonctions réseau",
+      "url": "https://www.etsi.org/technologies/nfv",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "OpenStack : documentation",
+      "url": "https://docs.openstack.org/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "OpenStack Tacker : orchestrateur NFV (ETSI SOL)",
+      "url": "https://docs.openstack.org/tacker/latest/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "ETSI : NFV, virtualisation des fonctions réseau",
+      "url": "https://www.etsi.org/technologies/nfv"
+    },
+    {
+      "nom": "OpenStack Tacker : documentation",
+      "url": "https://docs.openstack.org/tacker/latest/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple",
+    "change.1"
+  ]
+}

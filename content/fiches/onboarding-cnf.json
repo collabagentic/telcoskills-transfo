@@ -1,0 +1,125 @@
+{
+  "id": "onboarding-cnf",
+  "genre": "transposition",
+  "categorie": "integrer",
+  "avant": "réception d'un équipement",
+  "apres": "onboarding d'une CNF et matrice d'exigences",
+  "resume": {
+    "avant": "On réceptionne un équipement livré, on vérifie sa conformité au cahier des charges, on l'installe selon la procédure de l'équipementier.",
+    "apres": "On lit ce que la CNF demande à la plateforme (réseaux, ressources, privilèges, placement), on le consigne dans une matrice et on vérifie ses livrables."
+  },
+  "resteVrai": [
+    "Vérifier ce qui est livré avant de l'accepter reste la règle.",
+    "Le dossier d'intégration (schémas, flux, plan d'adressage) reste indispensable.",
+    "L'éditeur reste responsable de son logiciel."
+  ],
+  "change": [
+    "Le chart et ses valeurs disent ce que la CNF demande : ressources, volumes, comptes de service, réseaux secondaires.",
+    "Une matrice d'exigences relève, pour chaque fonction, réseaux, CPU, mémoire, stockage, privilèges et placement.",
+    "Des suites de tests vérifient les bonnes pratiques cloud natives d'une CNF, par exemple le CNTI test catalog."
+  ],
+  "reflexe": "L'équipementier installe, nous réceptionnons.",
+  "pourquoiNouveau": null,
+  "piege": "Découvrir les exigences le jour de l'installation : une CNF qui demande des privilèges, des hugepages ou un réseau SR-IOV absents du cluster ne démarre pas. Relevez ces exigences dans la matrice avant, et confrontez-les à la plateforme.",
+  "exemple": "Pour une nouvelle SMF, la matrice relève deux réseaux secondaires, des CPU dédiés, aucun volume persistant et une capacité réseau particulière ; l'équipe plateforme valide chaque ligne avant le premier déploiement.",
+  "epreuve": {
+    "cas": "Un éditeur vous livre une CNF : images, chart Helm et documentation. Que relevez-vous avant de la déployer, où le trouvez-vous, et comment vérifiez-vous ses bonnes pratiques ?",
+    "raisonnement": "On relève ce que la CNF demande à la plateforme : ressources (requests, limits), volumes, comptes de service et droits, réseaux secondaires, contraintes de placement. Le chart et ses valeurs le disent ; on le consigne dans une matrice d'exigences confrontée au cluster (démarche d'auteur). Pour les bonnes pratiques, des suites de tests existent, comme le CNTI test catalog, ou les bonnes pratiques Kubernetes publiées par Red Hat.",
+    "source": "Helm : bonnes pratiques des charts (helm.sh/docs/chart_best_practices/) ; CNTI test catalog (github.com/cnti-testcatalog/testsuite) ; Red Hat : bonnes pratiques pour Kubernetes (redhat-best-practices-for-k8s.github.io)"
+  },
+  "schema": {
+    "legende": "De la réception d'équipement à la matrice d'exigences",
+    "avant": [
+      {
+        "texte": "Équipement",
+        "detail": "livré"
+      },
+      {
+        "texte": "Conformité",
+        "detail": "au cahier des charges"
+      },
+      {
+        "texte": "Installation",
+        "detail": "par l'équipementier"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Chart et valeurs",
+        "detail": "ce que la CNF demande"
+      },
+      {
+        "texte": "Matrice d'exigences",
+        "detail": "confrontée au cluster"
+      },
+      {
+        "texte": "Tests",
+        "detail": "bonnes pratiques vérifiées"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "onboarding-editeur",
+    "dossier-integration",
+    "matrice-exigences"
+  ],
+  "technos": [
+    "helm"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Helm : bonnes pratiques des charts",
+      "url": "https://helm.sh/docs/chart_best_practices/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "CNTI test catalog : tests de bonnes pratiques des CNF",
+      "url": "https://github.com/cnti-testcatalog/testsuite",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Red Hat : bonnes pratiques pour Kubernetes",
+      "url": "https://redhat-best-practices-for-k8s.github.io/guide/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Helm : bonnes pratiques des charts",
+      "url": "https://helm.sh/docs/chart_best_practices/"
+    },
+    {
+      "nom": "CNTI test catalog",
+      "url": "https://github.com/cnti-testcatalog/testsuite"
+    },
+    {
+      "nom": "Red Hat : bonnes pratiques pour Kubernetes",
+      "url": "https://redhat-best-practices-for-k8s.github.io/guide/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple",
+    "change.1"
+  ]
+}

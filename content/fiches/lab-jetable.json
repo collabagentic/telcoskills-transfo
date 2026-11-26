@@ -1,0 +1,124 @@
+{
+  "id": "lab-jetable",
+  "genre": "transposition",
+  "categorie": "pratique",
+  "avant": "plateforme de test opérateur",
+  "apres": "lab jetable (kind, cœur et simulateurs open source)",
+  "resume": {
+    "avant": "Une plateforme de test partagée, longue à réserver, montée une fois et rarement remise à zéro.",
+    "apres": "Un lab créé et détruit à la demande : un cluster éphémère, un cœur 5G open source et des simulateurs de gNB et d'UE."
+  },
+  "resteVrai": [
+    "Tester avant la production reste indispensable.",
+    "Un lab doit ressembler à la cible sur ce que l'on teste.",
+    "Les résultats d'un test se notent et se comparent."
+  ],
+  "change": [
+    "kind crée un cluster Kubernetes dans des conteneurs : un lab tient sur un poste et se recrée en minutes.",
+    "Open5GS fournit un cœur 4G et 5G open source à déployer en lab.",
+    "UERANSIM simule un UE et un gNB 5G pour exercer le cœur : enregistrement, session PDU."
+  ],
+  "reflexe": "Le lab est rare, on le réserve et on n'y touche pas.",
+  "pourquoiNouveau": null,
+  "piege": "Croire qu'un lab sur un poste dit tout : il valide une procédure ou une configuration, pas la performance ni le comportement d'un réseau réel (SR-IOV, MTU, matériel). Gardez un banc proche de la cible pour ces essais-là.",
+  "exemple": "Avant de modifier la configuration de la SMF, l'intégrateur recrée en dix minutes un lab kind avec Open5GS et UERANSIM, rejoue l'enregistrement et l'établissement de session, puis détruit le lab.",
+  "epreuve": {
+    "cas": "Vous voulez vérifier un changement de configuration du cœur sans attendre la plateforme de test partagée. Que montez-vous, avec quels outils, et quelle est la limite de ce lab ?",
+    "raisonnement": "Un lab jetable : un cluster créé par kind (des nœuds Kubernetes dans des conteneurs), un cœur 5G open source comme Open5GS, et UERANSIM pour simuler un UE et un gNB et rejouer l'enregistrement et la session PDU. On le recrée à chaque essai. Limite (avis d'auteur) : il ne dit rien de la performance ni du réseau réel ; ces essais restent sur un banc proche de la cible.",
+    "source": "kind (kind.sigs.k8s.io) ; Open5GS : documentation (open5gs.org/open5gs/docs/) ; UERANSIM (github.com/aligungr/UERANSIM)"
+  },
+  "schema": {
+    "legende": "Du banc partagé au lab recréé à la demande",
+    "avant": [
+      {
+        "texte": "Plateforme de test",
+        "detail": "partagée"
+      },
+      {
+        "texte": "Réservation",
+        "detail": "longue"
+      },
+      {
+        "texte": "État",
+        "detail": "rarement remis à zéro"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "kind",
+        "detail": "cluster éphémère"
+      },
+      {
+        "texte": "Open5GS",
+        "detail": "cœur open source"
+      },
+      {
+        "texte": "UERANSIM",
+        "detail": "UE et gNB simulés"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "lab-as-code",
+    "simulation-ran-ue",
+    "deploiement-lab"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "opensource",
+      "nom": "kind : Kubernetes dans des conteneurs",
+      "url": "https://kind.sigs.k8s.io/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "Open5GS : documentation",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "UERANSIM : simulateur d'UE et de gNB 5G",
+      "url": "https://github.com/aligungr/UERANSIM",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "kind",
+      "url": "https://kind.sigs.k8s.io/"
+    },
+    {
+      "nom": "Open5GS : documentation",
+      "url": "https://open5gs.org/open5gs/docs/"
+    },
+    {
+      "nom": "UERANSIM",
+      "url": "https://github.com/aligungr/UERANSIM"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "audit-detection",
+  "genre": "transposition",
+  "categorie": "integrer",
+  "avant": "journal d'audit de l'équipement",
+  "apres": "audit Kubernetes et détection à l'exécution",
+  "resume": {
+    "avant": "Chaque équipement trace les connexions et les commandes de ses administrateurs, remontées vers le SIEM.",
+    "apres": "Le serveur d'API trace les requêtes selon une politique d'audit ; un outil de détection surveille le comportement des conteneurs à l'exécution."
+  },
+  "resteVrai": [
+    "Savoir qui a fait quoi, et quand, reste exigé.",
+    "Les journaux de sécurité vont toujours vers le SIEM.",
+    "Une alerte doit être exploitable, sinon elle s'ignore."
+  ],
+  "change": [
+    "Le serveur d'API enregistre les requêtes selon une politique d'audit, par niveau : None, Metadata, Request, RequestResponse.",
+    "Les journaux d'audit s'envoient vers un fichier ou un service externe, puis vers le SIEM.",
+    "Falco détecte à l'exécution des comportements suspects, par exemple un shell lancé dans un conteneur."
+  ],
+  "reflexe": "La sécurité se lit dans les connexions des administrateurs.",
+  "pourquoiNouveau": null,
+  "piege": "Tout journaliser au niveau le plus détaillé : RequestResponse sur toutes les ressources produit un volume énorme et peut exposer des secrets dans les journaux. Choisissez le niveau par ressource.",
+  "exemple": "Une alerte part quand quelqu'un lit un secret dans le namespace d'une fonction du cœur, ou quand un shell est lancé dans un pod de production.",
+  "epreuve": {
+    "cas": "On vous demande de tracer qui modifie les objets du cluster et de détecter une intrusion dans un conteneur. Quels outils, et quelle précaution sur le niveau de détail ?",
+    "raisonnement": "L'audit du serveur d'API enregistre les requêtes selon une politique, avec un niveau par ressource (None, Metadata, Request, RequestResponse), et les envoie vers un fichier ou un service externe, puis vers le SIEM. Pour l'exécution, un outil comme Falco détecte des comportements suspects, par exemple un shell lancé dans un conteneur. Précaution : le niveau le plus détaillé partout produit un volume énorme et peut exposer des secrets.",
+    "source": "Kubernetes : audit (kubernetes.io/docs/tasks/debug/debug-cluster/audit/) ; Falco : documentation (falco.org/docs/)"
+  },
+  "schema": {
+    "legende": "De la trace des administrateurs à la détection à l'exécution",
+    "avant": [
+      {
+        "texte": "Administrateur",
+        "detail": "connexion"
+      },
+      {
+        "texte": "Équipement",
+        "detail": "journal d'audit"
+      },
+      {
+        "texte": "SIEM",
+        "detail": "corrélation"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Serveur d'API",
+        "detail": "politique d'audit"
+      },
+      {
+        "texte": "Falco",
+        "detail": "comportements à l'exécution"
+      },
+      {
+        "texte": "SIEM",
+        "detail": "corrélation"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "sec-detection"
+  ],
+  "technos": [
+    "kubernetes"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Kubernetes : audit",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "Falco : détection à l'exécution",
+      "url": "https://falco.org/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Kubernetes : audit",
+      "url": "https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/"
+    },
+    {
+      "nom": "Falco : documentation",
+      "url": "https://falco.org/docs/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "exemple"
+  ]
+}

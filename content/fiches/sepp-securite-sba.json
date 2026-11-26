@@ -1,0 +1,120 @@
+{
+  "id": "sepp-securite-sba",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "interconnexion de signalisation entre opérateurs",
+  "apres": "SEPP et sécurité du SBA (TLS, OAuth2)",
+  "resume": {
+    "avant": "La signalisation d'itinérance passe par des liens et des passerelles d'interconnexion, filtrés par des pare-feu de signalisation.",
+    "apres": "Entre opérateurs, le SEPP protège les messages sur N32 ; entre fonctions, TLS protège les échanges et OAuth2 autorise l'accès aux services."
+  },
+  "resteVrai": [
+    "Filtrer ce qui entre depuis un autre réseau reste indispensable.",
+    "Chaque fonction ne doit pouvoir appeler que ce qui lui est permis.",
+    "Les certificats et les clés restent à gérer et à renouveler."
+  ],
+  "change": [
+    "Le SEPP protège la signalisation échangée entre réseaux d'opérateurs sur l'interface N32.",
+    "Les échanges entre fonctions du SBA sont protégés par TLS.",
+    "OAuth2 autorise l'accès aux services ; la NRF émet les jetons d'accès."
+  ],
+  "reflexe": "La sécurité de la signalisation est au bord du réseau.",
+  "pourquoiNouveau": null,
+  "piege": "Négliger la rotation des certificats : avec TLS partout entre fonctions, un certificat expiré coupe des échanges entre fonctions du cœur. Suivez leurs dates d'expiration et automatisez leur renouvellement.",
+  "exemple": "Un abonné en itinérance s'enregistre : la signalisation entre le réseau visité et le réseau d'origine passe par les SEPP des deux opérateurs, sur N32.",
+  "epreuve": {
+    "cas": "Un auditeur demande comment le cœur 5G protège les échanges entre ses fonctions et avec les autres opérateurs. Que répondez-vous ?",
+    "raisonnement": "Entre fonctions du SBA, les échanges sont protégés par TLS, et l'accès aux services est autorisé par OAuth2 : la NRF émet des jetons d'accès que la fonction appelée vérifie. Avec les autres opérateurs, le SEPP protège la signalisation échangée sur l'interface N32. Point d'exploitation (avis d'auteur) : la gestion et la rotation des certificats.",
+    "source": "3GPP TS 33.501, architecture de sécurité 5G (SBA, SEPP) ; TS 29.573, interface N32 (archive 3gpp.org)"
+  },
+  "schema": {
+    "legende": "De la sécurité au bord à la sécurité entre chaque fonction",
+    "avant": [
+      {
+        "texte": "Réseau visité",
+        "detail": "signalisation"
+      },
+      {
+        "texte": "Pare-feu de signalisation",
+        "detail": "au bord"
+      },
+      {
+        "texte": "Réseau d'origine",
+        "detail": "confiance par lien"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "Fonctions",
+        "detail": "TLS entre elles"
+      },
+      {
+        "texte": "NRF",
+        "detail": "jetons OAuth2"
+      },
+      {
+        "texte": "SEPP",
+        "detail": "N32 entre opérateurs"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "sepp",
+    "sec-5g",
+    "sec-sba"
+  ],
+  "technos": [],
+  "plusLoin": [
+    {
+      "type": "spec",
+      "nom": "3GPP TS 33.501 : architecture de sécurité 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "spec",
+      "nom": "3GPP TS 29.573 : interface N32",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.573/",
+      "langue": "en",
+      "acces": "gratuit",
+      "auteur": "3GPP"
+    },
+    {
+      "type": "doc",
+      "nom": "Open5GS : documentation (cœur 5G open source)",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "3GPP TS 33.501 : architecture de sécurité 5G",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/"
+    },
+    {
+      "nom": "3GPP TS 29.573 : interface N32",
+      "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.573/"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}

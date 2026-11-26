@@ -1,0 +1,125 @@
+{
+  "id": "tests-automatises",
+  "genre": "transposition",
+  "categorie": "pratique",
+  "avant": "recette sur cahier de tests",
+  "apres": "tests automatisés dans le pipeline",
+  "resume": {
+    "avant": "Une recette déroulée à la main sur un cahier de tests, en fin de projet, avec l'éditeur et le client.",
+    "apres": "Des vérifications automatiques à chaque changement (lint des charts, tests de déploiement), et une recette qui s'appuie sur leurs résultats."
+  },
+  "resteVrai": [
+    "Des critères d'acceptation écrits avant les tests restent indispensables.",
+    "La recette avec l'éditeur et le client garde sa valeur contractuelle.",
+    "Les anomalies se tracent jusqu'à leur correction."
+  ],
+  "change": [
+    "« helm lint » vérifie qu'un chart est bien formé avant tout déploiement.",
+    "chart-testing (ct) installe et teste les charts modifiés, par exemple dans l'intégration continue.",
+    "« helm test » exécute les tests définis dans le chart, sur la version installée."
+  ],
+  "reflexe": "La recette se fait une fois, à la fin, sur cahier.",
+  "pourquoiNouveau": null,
+  "piege": "Automatiser des tests sans critères d'acceptation : le pipeline est vert, mais personne n'a dit ce qui devait être vérifié. Écrivez d'abord les critères avec l'éditeur et le client, puis automatisez ce qui peut l'être.",
+  "exemple": "Chaque modification des valeurs de la SMF passe par helm lint et chart-testing dans le pipeline ; la recette finale réutilise ces résultats et ajoute les scénarios d'interopérabilité avec les autres éditeurs.",
+  "epreuve": {
+    "cas": "Chaque modification de la configuration d'une CNF demande aujourd'hui une recette manuelle de deux jours. Que pouvez-vous automatiser, avec quels outils, et que garde la recette humaine ?",
+    "raisonnement": "À chaque changement : helm lint vérifie que le chart est bien formé ; chart-testing installe et teste les charts modifiés dans l'intégration continue ; helm test exécute les tests définis dans le chart sur la version installée. La recette humaine garde les critères d'acceptation, l'interopérabilité entre éditeurs et la décision d'accepter (avis d'auteur).",
+    "source": "Helm : helm lint (helm.sh/docs/helm/helm_lint/) ; tests de charts (helm.sh/docs/topics/chart_tests/) ; chart-testing (github.com/helm/chart-testing)"
+  },
+  "schema": {
+    "legende": "De la recette manuelle aux vérifications à chaque changement",
+    "avant": [
+      {
+        "texte": "Cahier de tests",
+        "detail": "rédigé"
+      },
+      {
+        "texte": "Recette",
+        "detail": "en fin de projet"
+      },
+      {
+        "texte": "Procès-verbal",
+        "detail": "signé"
+      }
+    ],
+    "apres": [
+      {
+        "texte": "helm lint",
+        "detail": "chart bien formé"
+      },
+      {
+        "texte": "chart-testing",
+        "detail": "installé et testé en CI"
+      },
+      {
+        "texte": "helm test",
+        "detail": "tests du chart"
+      }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur les sources citées.",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": [
+    "tests-fonctionnels",
+    "tests-config",
+    "recette",
+    "multi-editeurs"
+  ],
+  "technos": [
+    "helm"
+  ],
+  "plusLoin": [
+    {
+      "type": "doc",
+      "nom": "Helm : tests de charts",
+      "url": "https://helm.sh/docs/topics/chart_tests/",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "opensource",
+      "nom": "chart-testing (ct)",
+      "url": "https://github.com/helm/chart-testing",
+      "langue": "en",
+      "acces": "gratuit"
+    },
+    {
+      "type": "doc",
+      "nom": "Helm : helm lint",
+      "url": "https://helm.sh/docs/helm/helm_lint/",
+      "langue": "en",
+      "acces": "gratuit"
+    }
+  ],
+  "sources": [
+    {
+      "nom": "Helm : helm lint",
+      "url": "https://helm.sh/docs/helm/helm_lint/"
+    },
+    {
+      "nom": "Helm : tests de charts",
+      "url": "https://helm.sh/docs/topics/chart_tests/"
+    },
+    {
+      "nom": "chart-testing",
+      "url": "https://github.com/helm/chart-testing"
+    }
+  ],
+  "avisAuteur": [
+    "resume",
+    "resteVrai",
+    "reflexe",
+    "schema",
+    "piege",
+    "exemple"
+  ]
+}
