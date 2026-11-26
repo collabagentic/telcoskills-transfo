@@ -1,0 +1,64 @@
+{
+  "id": "journaux-conteneurs",
+  "genre": "transposition",
+  "categorie": "integrer",
+  "avant": "syslog centralisé",
+  "apres": "journaux de conteneurs",
+  "resume": {
+    "avant": "Chaque équipement envoie ses journaux en syslog vers un serveur central, avec sa rotation et sa rétention.",
+    "apres": "Le conteneur écrit sur sa sortie standard ; un agent sur chaque nœud collecte ces journaux et les envoie vers un stockage central."
+  },
+  "resteVrai": [
+    "Centraliser les journaux pour diagnostiquer reste le geste de base.",
+    "La rétention et les droits d'accès aux journaux restent à définir.",
+    "Un journal sans horodatage fiable ne sert pas à grand-chose."
+  ],
+  "change": [
+    "Un conteneur écrit ses journaux sur stdout et stderr ; le runtime les conserve sur le nœud.",
+    "« kubectl logs » ne lit que ce qui reste sur le nœud : ces journaux disparaissent avec le pod ou le nœud.",
+    "La journalisation au niveau du cluster passe souvent par un agent sur chaque nœud, déployé en DaemonSet."
+  ],
+  "reflexe": "Chaque équipement envoie lui-même ses journaux au serveur central.",
+  "pourquoiNouveau": null,
+  "piege": "Croire que Kubernetes garde les journaux. Il ne fournit pas de stockage pour eux : quand un pod est supprimé ou qu'un nœud tombe, ses journaux locaux disparaissent. Sans agent ni stockage central, l'incident d'hier n'a plus de trace.",
+  "exemple": "Les pods d'une SMF écrivent sur leur sortie standard ; un agent sur chaque nœud (par exemple Fluent Bit) envoie ces journaux vers Loki, où l'exploitant les filtre par label de pod.",
+  "epreuve": {
+    "cas": "Un pod de la SMF a planté cette nuit puis a été recréé sur un autre nœud. Ce matin, « kubectl logs » ne montre rien de l'incident. Pourquoi, et que mettez-vous en place ?",
+    "raisonnement": "Le conteneur écrit ses journaux sur sa sortie standard et le nœud les conserve localement ; kubectl logs ne lit que ces journaux locaux, perdus quand le pod est remplacé (l'option --previous ne montre que l'instance précédente d'un conteneur redémarré dans le même pod). Kubernetes ne fournit pas de stockage pour les journaux : on ajoute une journalisation au niveau du cluster, par exemple un agent sur chaque nœud, déployé en DaemonSet, qui les envoie vers un stockage central.",
+    "source": "Kubernetes : architecture de journalisation (kubernetes.io/docs/concepts/cluster-administration/logging/)"
+  },
+  "schema": {
+    "legende": "Du syslog de l'équipement à l'agent de nœud",
+    "avant": [
+      { "texte": "Équipement", "detail": "journaux locaux" },
+      { "texte": "syslog", "detail": "envoyé par l'équipement" },
+      { "texte": "Serveur central", "detail": "rotation et rétention" }
+    ],
+    "apres": [
+      { "texte": "Conteneur", "detail": "écrit sur stdout et stderr" },
+      { "texte": "Agent de nœud", "detail": "DaemonSet, collecte" },
+      { "texte": "Stockage central", "detail": "recherche par labels" }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur la documentation Kubernetes (architecture de journalisation).",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": ["obs-logs"],
+  "technos": ["kubernetes"],
+  "plusLoin": [
+    { "type": "doc", "nom": "Kubernetes : architecture de journalisation", "url": "https://kubernetes.io/docs/concepts/cluster-administration/logging/", "langue": "en", "acces": "gratuit" },
+    { "type": "doc", "nom": "Grafana Loki : documentation", "url": "https://grafana.com/docs/loki/latest/", "langue": "en", "acces": "gratuit" },
+    { "type": "doc", "nom": "Fluent Bit : documentation", "url": "https://docs.fluentbit.io/manual/", "langue": "en", "acces": "gratuit" }
+  ],
+  "sources": [
+    { "nom": "Kubernetes : architecture de journalisation", "url": "https://kubernetes.io/docs/concepts/cluster-administration/logging/" }
+  ],
+  "avisAuteur": ["resume", "resteVrai", "reflexe", "schema", "exemple"]
+}

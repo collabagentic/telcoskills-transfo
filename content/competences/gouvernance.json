@@ -259,7 +259,7 @@
       {
         "type": "doc",
         "nom": "CHAOSS : métriques de santé d'une communauté open source",
-        "url": "https://chaoss.community/kb/",
+        "url": "https://www.chaoss.community/kb-chaoss-community/",
         "acces": "gratuit",
         "langue": "en",
         "auteur": "CHAOSS"
@@ -390,7 +390,7 @@
       {
         "type": "opensource",
         "nom": "OpenCost : coût des ressources Kubernetes",
-        "url": "https://www.opencost.io/"
+        "url": "https://opencost.io/"
       },
       {
         "type": "opensource",
@@ -493,7 +493,7 @@
       ],
       "source": {
         "nom": "OpenCost : coût des ressources Kubernetes",
-        "url": "https://www.opencost.io/"
+        "url": "https://opencost.io/"
       }
     }
   },

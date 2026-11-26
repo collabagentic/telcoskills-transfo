@@ -1,0 +1,65 @@
+{
+  "id": "durcissement-pss",
+  "genre": "transposition",
+  "categorie": "comprendre",
+  "avant": "durcissement des serveurs",
+  "apres": "Pod Security Standards",
+  "resume": {
+    "avant": "Un guide de durcissement appliqué serveur par serveur : comptes, services, droits, contrôlés par audit.",
+    "apres": "Des niveaux de sécurité standard (privileged, baseline, restricted) appliqués par namespace et vérifiés à l'admission de chaque pod."
+  },
+  "resteVrai": [
+    "Réduire la surface d'attaque reste le principe.",
+    "Les guides de durcissement restent des références pour les nœuds eux-mêmes.",
+    "Un contrôle qui n'est pas vérifié ne protège pas."
+  ],
+  "change": [
+    "Les Pod Security Standards définissent trois niveaux : privileged, baseline et restricted.",
+    "Le contrôleur d'admission Pod Security les applique par namespace, au moyen de labels.",
+    "Trois modes : enforce refuse le pod, audit l'inscrit au journal d'audit, warn avertit l'utilisateur."
+  ],
+  "reflexe": "Le durcissement se fait une fois, à l'installation du serveur.",
+  "pourquoiNouveau": null,
+  "piege": "Passer un namespace en enforce restricted sans essai : les nouveaux pods non conformes (exécution en root, privilèges, accès à l'hôte) sont refusés à leur création. Les pods déjà en place ne sont pas touchés, mais leurs remplaçants le seront. Commencez par warn et audit pour voir ce qui casserait.",
+  "exemple": "Le namespace des outils de supervision passe en restricted ; celui d'une CNF qui a besoin d'accès réseau privilégiés garde un niveau plus permissif, par une décision tracée et revue.",
+  "epreuve": {
+    "cas": "Vous voulez imposer le niveau restricted au namespace d'une application, sans casser la production. Comment procédez-vous, et qu'arrive-t-il aux pods déjà en place ?",
+    "raisonnement": "On pose d'abord les labels Pod Security en mode warn et audit avec le niveau restricted : les pods non conformes sont signalés sans être refusés. Une fois les écarts corrigés, on passe en mode enforce : les nouveaux pods non conformes sont refusés à leur création. Les pods déjà en place ne sont pas évincés, mais leurs remplaçants devront être conformes.",
+    "source": "Kubernetes : Pod Security Standards (kubernetes.io/docs/concepts/security/pod-security-standards/) ; Pod Security Admission (kubernetes.io/docs/concepts/security/pod-security-admission/)"
+  },
+  "schema": {
+    "legende": "Du serveur durci à la main au niveau imposé à l'admission",
+    "avant": [
+      { "texte": "Guide", "detail": "règles de durcissement" },
+      { "texte": "Serveur", "detail": "durci à la main" },
+      { "texte": "Audit", "detail": "contrôle ponctuel" }
+    ],
+    "apres": [
+      { "texte": "Niveau", "detail": "privileged, baseline, restricted" },
+      { "texte": "Namespace", "detail": "labels Pod Security" },
+      { "texte": "Admission", "detail": "pod refusé ou signalé" }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur la documentation Kubernetes (Pod Security Standards et Admission).",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": ["sec-durcissement"],
+  "technos": ["kubernetes"],
+  "plusLoin": [
+    { "type": "doc", "nom": "Kubernetes : Pod Security Standards", "url": "https://kubernetes.io/docs/concepts/security/pod-security-standards/", "langue": "en", "acces": "gratuit" },
+    { "type": "doc", "nom": "Kubernetes : Pod Security Admission", "url": "https://kubernetes.io/docs/concepts/security/pod-security-admission/", "langue": "en", "acces": "gratuit" },
+    { "type": "doc", "nom": "Kubernetes : appliquer les standards par labels de namespace", "url": "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-namespace-labels/", "langue": "en", "acces": "gratuit" }
+  ],
+  "sources": [
+    { "nom": "Kubernetes : Pod Security Standards", "url": "https://kubernetes.io/docs/concepts/security/pod-security-standards/" },
+    { "nom": "Kubernetes : Pod Security Admission", "url": "https://kubernetes.io/docs/concepts/security/pod-security-admission/" }
+  ],
+  "avisAuteur": ["resume", "resteVrai", "reflexe", "schema", "exemple"]
+}

@@ -34,8 +34,8 @@ export default function PageSources() {
 
       <h2>Brouillon ou relu</h2>
       <p>
-        Une fiche « en relecture » est un brouillon sourcé que l'auteur n'a pas encore relu. Elle peut contenir des erreurs. Relire une fiche, c'est vérifier chaque affirmation contre
-        sa source : tant que ce n'est pas fait, la mention reste affichée.
+        Chaque fiche est un texte sourcé, rédigé avec l'aide d'une IA et relu au fil de l'eau par l'auteur et par des experts. Elle peut contenir des erreurs. Relire une fiche, c'est vérifier
+        chaque affirmation contre sa source : le lien « Relire cette fiche », en fin de fiche, sert à cela, et chaque relecture est inscrite dans l'historique de la fiche.
       </p>
 
       <h2>Les règles que le site se fait respecter</h2>

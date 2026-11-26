@@ -36,7 +36,7 @@ export default function PageMentions() {
 
       <h2>Responsabilité</h2>
       <p>
-        Le site propose des explications sourcées et des brouillons : une fiche marquée « en relecture » n'a pas été relue par l'auteur et peut contenir des erreurs. Il ne remplace ni
+        Le site propose des explications sourcées, relues au fil de l'eau par l'auteur et par des experts : une fiche peut contenir des erreurs. Il ne remplace ni
         une formation, ni la documentation officielle d'un produit. Aucune garantie n'est donnée sur l'exactitude ou l'actualité du contenu ; les erreurs signalées sont corrigées
         publiquement.
       </p>

@@ -66,7 +66,7 @@ describe("jetons de design", () => {
     parcourir(path.join(RACINE, "src"));
     const motif = /#[0-9a-fA-F]{3,8}\b|\b(?:rgb|rgba|hsl|hsla|oklch)\(/;
     const fautifs = fichiers.filter((f) => motif.test(fs.readFileSync(f, "utf8").replace(/\/\*[\s\S]*?\*\//g, "")));
-    // layout.tsx déclare themeColor (méta navigateur, obligatoirement en valeur littérale)
-    expect(fautifs.map((f) => path.relative(RACINE, f).replaceAll("\\", "/")).filter((f) => f !== "src/app/layout.tsx")).toEqual([]);
+    // layout.tsx déclare themeColor et opengraph-image.tsx dessine l image de partage hors CSS : valeurs littérales obligatoires
+    expect(fautifs.map((f) => path.relative(RACINE, f).replaceAll("\\", "/")).filter((f) => f !== "src/app/layout.tsx" && f !== "src/app/opengraph-image.tsx")).toEqual([]);
   });
 });

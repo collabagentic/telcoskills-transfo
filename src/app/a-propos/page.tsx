@@ -48,7 +48,7 @@ export default function PageAPropos() {
             .
           </>
         ) : null}{" "}
-        Le texte des fiches est rédigé avec l'aide d'une IA, puis relu par l'auteur : une fiche relue le dit, une fiche non relue porte la mention « en relecture ».
+        Le texte des fiches est rédigé avec l'aide d'une IA, puis relu au fil de l'eau par l'auteur et par des experts ; chaque relecture est inscrite dans l'historique de la fiche.
       </p>
 
       <h2>Le code est ouvert</h2>

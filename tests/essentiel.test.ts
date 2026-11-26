@@ -6,7 +6,7 @@ import { essentiel } from "@/contenu/lecture";
 describe("essentiel (bandeau 30 secondes)", () => {
   it("s'applique aux 21 fiches réelles sans champ vide", () => {
     const fiches = chargerContenu().fiches;
-    expect(fiches.length).toBe(21);
+    expect(fiches.length).toBeGreaterThanOrEqual(21);
     for (const f of fiches) {
       const e = essentiel(f);
       expect(e.resume.apres.trim().length, f.id + " : resume.apres").toBeGreaterThan(0);

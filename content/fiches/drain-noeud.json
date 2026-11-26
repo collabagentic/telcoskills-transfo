@@ -1,0 +1,66 @@
+{
+  "id": "drain-noeud",
+  "genre": "transposition",
+  "categorie": "pratique",
+  "avant": "mise en maintenance d'un serveur",
+  "apres": "cordon et drain",
+  "resume": {
+    "avant": "Un serveur sorti du service pour maintenance : on déplace ou on arrête ses machines virtuelles, puis on intervient.",
+    "apres": "On marque le nœud non planifiable (cordon), on évacue ses pods (drain) en respectant les budgets de perturbation, puis on intervient."
+  },
+  "resteVrai": [
+    "Prévenir, vider, puis intervenir reste l'ordre des opérations.",
+    "La capacité restante doit absorber la charge du nœud sorti.",
+    "Une maintenance se planifie et se trace."
+  ],
+  "change": [
+    "« kubectl cordon » marque le nœud non planifiable : aucun nouveau pod n'y est placé.",
+    "« kubectl drain » évince les pods du nœud ; leurs contrôleurs les recréent sur d'autres nœuds.",
+    "L'éviction respecte les PodDisruptionBudgets : si elle ferait passer l'application sous son minimum, elle est refusée."
+  ],
+  "reflexe": "On déplace les machines virtuelles, elles gardent leur état.",
+  "pourquoiNouveau": null,
+  "piege": "Les pods d'un DaemonSet ne sont pas évincés : drain ne continue qu'avec l'option --ignore-daemonsets. Un pod qu'aucun contrôleur ne gère ne serait recréé nulle part : drain refuse de le supprimer sans --force. Lisez ce que drain signale avant de forcer.",
+  "exemple": "Avant de changer une carte réseau d'un nœud qui porte des pods d'UPF, l'exploitant fait cordon puis drain ; un PodDisruptionBudget garantit qu'il reste assez d'instances pendant l'évacuation.",
+  "epreuve": {
+    "cas": "Vous devez changer une carte réseau sur un nœud du cluster. Dans quel ordre procédez-vous, que garantit un PodDisruptionBudget pendant l'opération, et comment remettez-vous le nœud en service ?",
+    "raisonnement": "On marque d'abord le nœud non planifiable (kubectl cordon), puis on l'évacue (kubectl drain) : les pods sont évincés et leurs contrôleurs les recréent sur d'autres nœuds. L'éviction respecte les PodDisruptionBudgets : si évincer un pod faisait passer l'application sous le minimum disponible voulu, l'éviction est refusée et drain réessaie. Après l'intervention, kubectl uncordon rend le nœud de nouveau planifiable.",
+    "source": "Kubernetes : vider un nœud en sécurité (kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/) ; perturbations et PodDisruptionBudget (kubernetes.io/docs/concepts/workloads/pods/disruptions/)"
+  },
+  "schema": {
+    "legende": "Sortir un nœud du service sans couper l'application",
+    "avant": [
+      { "texte": "Maintenance", "detail": "planifiée" },
+      { "texte": "Migration", "detail": "machines virtuelles déplacées" },
+      { "texte": "Intervention", "detail": "serveur vide" }
+    ],
+    "apres": [
+      { "texte": "Cordon", "detail": "plus aucun placement" },
+      { "texte": "Drain", "detail": "pods évincés, budgets respectés" },
+      { "texte": "Uncordon", "detail": "nœud remis en service" }
+    ]
+  },
+  "statut": "brouillon",
+  "misAJour": "2026-11-26",
+  "historique": [
+    {
+      "date": "2026-11-26",
+      "changement": "Première version, brouillon assisté par IA, appuyé sur la documentation Kubernetes (vider un nœud, perturbations).",
+      "par": "Brouillon assisté par IA",
+      "lien": null
+    }
+  ],
+  "competences": ["capacite-noeuds"],
+  "technos": ["kubernetes"],
+  "plusLoin": [
+    { "type": "doc", "nom": "Kubernetes : vider un nœud en sécurité", "url": "https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/", "langue": "en", "acces": "gratuit" },
+    { "type": "doc", "nom": "Kubernetes : configurer un PodDisruptionBudget", "url": "https://kubernetes.io/docs/tasks/run-application/configure-pdb/", "langue": "en", "acces": "gratuit" },
+    { "type": "doc", "nom": "Kubernetes : perturbations", "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/", "langue": "en", "acces": "gratuit" }
+  ],
+  "sources": [
+    { "nom": "Kubernetes : vider un nœud en sécurité", "url": "https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/" },
+    { "nom": "Kubernetes : perturbations (PodDisruptionBudget)", "url": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/" },
+    { "nom": "Kubernetes : kubectl drain", "url": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_drain/" }
+  ],
+  "avisAuteur": ["resume", "resteVrai", "reflexe", "schema", "exemple"]
+}
