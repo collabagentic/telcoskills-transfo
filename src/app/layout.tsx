@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { EnTete } from "@/composants/EnTete";
+import { BarreNavigation, type Entree } from "@/composants/BarreNavigation";
+import { chargerContenu } from "@/contenu/charger";
+import { titreFiche } from "@/contenu/lecture";
 import { PiedDePage } from "@/composants/PiedDePage";
 import { SITE } from "@/lib/site";
 
@@ -17,7 +19,17 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export const viewport: Viewport = { themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#08090b" }, { media: "(prefers-color-scheme: light)", color: "#f6f5f2" }] };
+export const viewport: Viewport = { themeColor: "#f6f8fb" };
+
+/** Ce que la recherche de la barre trouve : fiches, compétences, outils. */
+function entreesRecherche(): Entree[] {
+  const c = chargerContenu();
+  return [
+    ...c.fiches.map((f) => ({ t: titreFiche(f), h: `/fiche/${f.id}`, k: "Fiche" })),
+    ...c.competences.map((x) => ({ t: x.titre, h: `/competence/${x.id}`, k: "Compétence" })),
+    ...c.outils.outils.map((o) => ({ t: o.nom, h: `/outils#${o.id}`, k: "Outil" })),
+  ];
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -28,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <div className="scene">
           <div className="page">
-            <EnTete />
+            <BarreNavigation entrees={entreesRecherche()} />
             <main id="contenu">{children}</main>
             <PiedDePage />
           </div>

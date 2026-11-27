@@ -1,57 +1,79 @@
 import Link from "next/link";
 import "./accueil.css";
+import { ConversationAccueil } from "@/composants/ConversationAccueil";
 import { ExempleFiche } from "@/composants/ExempleFiche";
-import { Reprise } from "@/composants/Reprise";
 import { chargerContenu } from "@/contenu/charger";
 import { donneesPubliques } from "@/contenu/publiques";
 import { FICHE_EXEMPLE } from "@/lib/site";
 
-const REPERES = [
-  { titre: "Ce qui reste.", texte: "Les fondamentaux du télécom et vos réflexes d'ingénieur tiennent toujours." },
-  { titre: "Ce qui change.", texte: "Le cloud natif transforme les architectures et les façons de livrer, pas votre expérience." },
-  { titre: "Ce qu'il faut apprendre.", texte: "Quelques vraies nouveautés, choisies pour votre métier, sans repartir de zéro." },
-] as const;
-
-const ENTREES = [
-  { label: "Composer ma feuille de route", href: "/roadmap", principal: true },
-  { label: "Explorer les compétences", href: "/competences", principal: false },
-  { label: "Le projet", href: "/projet", principal: false },
-  { label: "Les outils", href: "/outils", principal: false },
-] as const;
-
+/** Accueil en quatre blocs : la promesse, la discussion qui donne un premier pas, trois portes avec un vrai aperçu, un exemple. */
 export default function Accueil() {
   const c = chargerContenu();
-  const donnees = donneesPubliques();
   const fiche = c.fiches.find((f) => f.id === FICHE_EXEMPLE);
+  const p = c.projet;
+  const parDomaine = c.domaines.map((d) => ({ ...d, n: c.competences.filter((x) => x.domaine === d.id).length }));
+
   return (
-    <>
-      <Reprise donnees={donnees} />
-      <section className="accueil">
-        <p className="sur-titre">Pour les métiers du télécom qui passent au cloud natif</p>
-        <h1 className="accueil-titre">Vous connaissez déjà le télécom.</h1>
-        <p className="accueil-accroche">
-          Le cloud natif change les architectures et les pratiques, mais ce que vous avez appris reste utile.
+    <div className="pa">
+      <section className="pa-tete">
+        <p className="pa-sur">Pour les métiers du télécom qui passent au cloud natif</p>
+        <h1>Vous connaissez déjà le télécom.</h1>
+        <p className="pa-accroche">
+          Le cloud natif change les architectures et les pratiques, mais ce que vous avez appris reste utile. TelcoSkills montre, pour votre métier, ce qui reste,
+          ce qui change et ce qu&apos;il faut apprendre, dans l&apos;ordre.
         </p>
-
-        <nav className="accueil-entrees" aria-label="Entrées du site">
-          {ENTREES.map((e) => (
-            <Link key={e.href} className={e.principal ? "btn btn-principal" : "btn"} href={e.href}>
-              {e.label}
-            </Link>
-          ))}
-        </nav>
-
-        <ul className="accueil-reperes">
-          {REPERES.map((r) => (
-            <li key={r.titre} className="accueil-repere">
-              <h2>{r.titre}</h2>
-              <p>{r.texte}</p>
-            </li>
-          ))}
-        </ul>
-
-        {fiche ? <ExempleFiche fiche={fiche} /> : null}
+        <p className="pa-chiffres">
+          {c.competences.length} compétences reliées par leurs prérequis · {c.fiches.length} fiches sourcées · {p.phases.length} phases de projet · {c.outils.outils.length}{" "}
+          outils open source
+        </p>
       </section>
-    </>
+
+      <ConversationAccueil donnees={donneesPubliques()} />
+
+      <section className="pa-explorer" aria-label="Explorer">
+        <Link href="/projet" className="pa-bloc">
+          <span className="pa-bloc-sur">Le projet</span>
+          <h2>À quoi sert chaque compétence</h2>
+          <p>
+            {p.titre} : {p.phases.length} phases, {p.roles.length} rôles, qui fait quoi et quand.
+          </p>
+          <ol className="pa-phases">
+            {p.phases.map((ph, i) => (
+              <li key={ph.id}>
+                <span>{i + 1}</span>
+                {ph.titre}
+              </li>
+            ))}
+          </ol>
+        </Link>
+        <Link href="/outils" className="pa-bloc">
+          <span className="pa-bloc-sur">Les outils</span>
+          <h2>Avec quoi on travaille</h2>
+          <p>{c.outils.outils.length} outils open source, groupés par fonction, filtrables par rôle.</p>
+          <ul className="pa-puces">
+            {c.outils.outils.slice(0, 18).map((o) => (
+              <li key={o.id}>{o.nom}</li>
+            ))}
+          </ul>
+        </Link>
+        <Link href="/competences" className="pa-bloc">
+          <span className="pa-bloc-sur">Les compétences</span>
+          <h2>Tout le référentiel</h2>
+          <p>
+            {c.competences.length} compétences en {c.domaines.length} domaines, chacune avec ses prérequis et ses ressources.
+          </p>
+          <ul className="pa-domaines">
+            {parDomaine.map((d) => (
+              <li key={d.id}>
+                {d.nom}
+                <span>{d.n}</span>
+              </li>
+            ))}
+          </ul>
+        </Link>
+      </section>
+
+      {fiche ? <ExempleFiche fiche={fiche} /> : null}
+    </div>
   );
 }

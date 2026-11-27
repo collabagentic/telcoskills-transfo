@@ -3,66 +3,421 @@
  * Aucune couleur en dur : uniquement les jetons de tokens.css (vérifié par tests/tokens.test.ts).
  */
 
-.accueil-titre {
-  font-size: var(--t-xxl);
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  margin: var(--e-3) auto 0;
-  max-width: 14em;
-  color: var(--encre);
+/* ---------- Accueil ---------- */
+.pa {
+  padding: var(--e-8) 0 var(--e-4);
 }
 
-.accueil-accroche {
-  max-width: 34rem;
-  margin: var(--e-6) auto 0;
-  color: var(--encre-2);
+.pa-tete {
+  max-width: 48rem;
+}
+
+.pa-sur,
+.pa-chiffres,
+.pa-bloc-sur {
+  font-family: var(--police-mono), monospace;
+  font-size: var(--t-xs);
+  letter-spacing: 0.02em;
+  color: var(--encre-3);
+}
+
+.pa-sur {
+  margin: 0 0 var(--e-3);
+}
+
+.pa h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin: 0 0 var(--e-4);
+}
+
+.pa-accroche {
   font-size: var(--t-l);
   line-height: 1.5;
-  letter-spacing: -0.01em;
+  color: var(--encre-2);
+  margin: 0 0 var(--e-3);
 }
 
-.accueil-reperes {
+.pa-chiffres {
+  margin: 0 0 var(--e-8);
+}
+
+
+.pd-etapes {
   list-style: none;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--e-4);
-  margin: var(--e-8) auto 0;
-  max-width: 56rem;
+  counter-reset: etape;
+  margin: 0;
   padding: 0;
-  text-align: left;
+  display: grid;
+  gap: var(--e-2);
 }
 
-.accueil-repere {
+.pd-etapes li {
+  counter-increment: etape;
+  display: grid;
+  grid-template-columns: 1.75rem 1fr;
+  column-gap: var(--e-3);
+}
+
+.pd-etapes li::before {
+  content: counter(etape);
+  grid-row: span 2;
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid var(--filet-fort);
+  border-radius: 50%;
+  font-family: var(--police-mono), monospace;
+  font-size: var(--t-xs);
+  color: var(--encre-2);
+}
+
+.pd-etapes a {
+  color: var(--encre);
+  font-weight: 500;
+  text-underline-offset: 3px;
+}
+
+.pd-etapes small {
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+}
+
+.pd-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 var(--e-4);
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-m);
+  color: var(--encre);
+  text-decoration: none;
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+.pd-btn-principal {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-encre);
+}
+
+/* Trois portes, avec un vrai aperçu */
+.pa-explorer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--e-4);
+  margin: 0 0 var(--e-12);
+}
+
+.pa-bloc {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
   border: 1px solid var(--filet);
   border-radius: var(--r-l);
-  background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
-  box-shadow: var(--ombre-1);
-  padding: var(--e-4) var(--e-6);
+  background: var(--surface-1);
+  padding: var(--e-4) var(--e-6) var(--e-6);
+  color: var(--encre);
+  text-decoration: none;
+  transition: border-color var(--d-rapide);
 }
 
-.accueil-repere h2 {
+.pa-bloc:hover {
+  border-color: var(--accent);
+}
+
+.pa-bloc h2 {
   font-size: var(--t-l);
   font-weight: 600;
   letter-spacing: -0.02em;
-  margin: 0 0 var(--e-2);
-}
-
-.accueil-repere p {
-  color: var(--encre-2);
-  font-size: var(--t-s);
-  line-height: 1.5;
   margin: 0;
 }
 
-.accueil-entrees {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--e-3);
-  margin: var(--e-8) auto 0;
+.pa-bloc p {
+  margin: 0;
+  color: var(--encre-2);
+  font-size: var(--t-s);
+  line-height: 1.5;
 }
 
+.pa-phases,
+.pa-domaines {
+  list-style: none;
+  margin: var(--e-2) 0 0;
+  padding: 0;
+  font-size: var(--t-s);
+  display: grid;
+  gap: 2px;
+}
+
+.pa-phases li {
+  display: flex;
+  gap: var(--e-2);
+  color: var(--encre-2);
+}
+
+.pa-phases span {
+  font-family: var(--police-mono), monospace;
+  color: var(--accent-texte);
+  width: 1rem;
+}
+
+.pa-domaines li {
+  display: flex;
+  justify-content: space-between;
+  color: var(--encre-2);
+  border-bottom: 1px dashed var(--filet);
+  padding: 2px 0;
+}
+
+.pa-domaines span {
+  font-family: var(--police-mono), monospace;
+  color: var(--encre-3);
+}
+
+.pa-puces {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-1);
+  margin: var(--e-2) 0 0;
+  padding: 0;
+}
+
+.pa-puces li {
+  font-family: var(--police-mono), monospace;
+  font-size: var(--t-xs);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-s);
+  padding: 2px var(--e-2);
+  color: var(--encre-2);
+}
+
+/* L'exemple avant/après hérite de accueil.css ; on l'aligne à gauche. */
+.pa .exemple-fiche {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 48rem;
+}
+
+/* ---------- Boîte de discussion (reprise de l'ancien accueil) ---------- */
+.pc {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--e-6);
+  align-items: start;
+  margin: 0 0 var(--e-12);
+}
+
+@media (max-width: 52rem) {
+  .pc {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.pc-boite {
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-l);
+  background: var(--surface-1);
+  overflow: hidden;
+}
+
+.pc-tete {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-3) var(--e-4);
+  border-bottom: 1px solid var(--filet);
+}
+
+.pc-tete h2 {
+  flex: 1;
+  margin: 0;
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+.pc-avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-encre);
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+.pc-recommencer {
+  font: inherit;
+  font-family: var(--police-mono), monospace;
+  font-size: var(--t-xs);
+  color: var(--encre-2);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.pc-fil {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-3);
+  padding: var(--e-4) var(--e-4) var(--e-6);
+}
+
+.pc-bulle {
+  width: fit-content;
+  max-width: 90%;
+  margin: 0;
+  padding: var(--e-2) var(--e-3);
+  border-radius: var(--r-l);
+  background: var(--fond);
+  border: 1px solid var(--filet);
+  font-size: var(--t-s);
+  line-height: 1.5;
+}
+
+.pc-vous {
+  margin-left: auto;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-encre);
+}
+
+.pc-question {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+}
+
+.pc-aide {
+  margin: 0;
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+  line-height: 1.5;
+}
+
+.pc-aide a {
+  color: var(--encre-2);
+  text-underline-offset: 3px;
+}
+
+.pc-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  margin-top: var(--e-1);
+}
+
+.pc-options button {
+  font: inherit;
+  font-size: var(--t-s);
+  color: var(--encre);
+  background: transparent;
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-pilule);
+  padding: var(--e-1) var(--e-3);
+  min-height: 2.25rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--d-rapide), border-color var(--d-rapide);
+}
+
+.pc-options button:hover {
+  border-color: var(--accent);
+  background: var(--accent-surface-1);
+}
+
+.pc-points {
+  display: inline-flex;
+  gap: 4px;
+  padding: var(--e-3);
+}
+
+.pc-points i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--encre-3);
+  animation: pc-saisie 1s infinite ease-in-out;
+}
+
+.pc-points i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.pc-points i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes pc-saisie {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-points i {
+    animation: none;
+  }
+}
+
+.pc-resultat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  padding: var(--e-4);
+}
+
+.pc-resultat h3 {
+  margin: 0;
+  font-size: var(--t-l);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  outline: none;
+}
+
+.pc-sur {
+  margin: 0 0 var(--e-3);
+  font-family: var(--police-mono), monospace;
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+}
+
+.pc-resultat .pc-sur {
+  margin: 0;
+}
+
+.pc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  margin: var(--e-2) 0;
+}
+
+.pc-chemin {
+  padding: var(--e-2) 0 0;
+}
+
+.pc-chemin .pd-etapes {
+  margin-bottom: var(--e-4);
+}
+
+/* Exemple avant / après */
 .exemple-fiche {
   max-width: 40rem;
   margin: var(--e-12) auto 0;
