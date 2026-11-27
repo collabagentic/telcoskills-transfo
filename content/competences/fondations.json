@@ -175,7 +175,14 @@
         "nom": "Documentation du noyau Linux",
         "url": "https://docs.kernel.org/"
       }
-    }
+    },
+    "objectifs": [
+      "Lire l'état d'un système Linux en production : processus, services, ressources, système de fichiers.",
+      "Comprendre le fonctionnement des services et du démarrage avec systemd.",
+      "Diagnostiquer une saturation de CPU, de mémoire ou de disque.",
+      "Expliquer ce que les namespaces et les cgroups isolent et limitent, et leur lien avec les conteneurs.",
+      "Analyser les journaux système pour retrouver l'origine d'un échec."
+    ]
   },
   {
     "id": "reseau-ip",
@@ -327,7 +334,13 @@
         "nom": "FRRouting : suite de routage open source (BGP, OSPF, BFD)",
         "url": "https://docs.frrouting.org/"
       }
-    }
+    },
+    "objectifs": [
+      "Lire un plan d'adressage IP et un schéma de VLAN.",
+      "Expliquer le rôle d'un VLAN, d'un trunk, d'une route et d'un tunnel.",
+      "Reconnaître les causes courantes d'une perte de connectivité : mauvais VLAN, MTU, route manquante.",
+      "Comprendre ce qu'apportent le routage dynamique (BGP) et les VRF à une plateforme telco."
+    ]
   },
   {
     "id": "conteneurs",
@@ -483,7 +496,13 @@
         "nom": "Podman : documentation",
         "url": "https://podman.io/docs"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer ce qu'est une image de conteneur et comment elle est construite.",
+      "Distinguer image, conteneur et registre.",
+      "Situer les moteurs d'exécution courants (Docker, Podman, CRI-O) et leurs différences.",
+      "Lire un état de conteneur (état, journaux, ressources) pour un premier diagnostic."
+    ]
   },
   {
     "id": "telco-101",
@@ -627,7 +646,13 @@
         "nom": "Open5GS : cœur 4G/5G open source, documentation",
         "url": "https://open5gs.org/open5gs/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Situer l'accès radio, le cœur de réseau et les plans de contrôle et d'usager.",
+      "Utiliser le vocabulaire des opérateurs (RAN, cœur, UE, PLMN) pour dialoguer avec les experts réseau.",
+      "Expliquer pourquoi un réseau télécom a des exigences particulières de disponibilité et de latence.",
+      "Placer une alerte ou un incident dans l'architecture 4G/5G."
+    ]
   },
   {
     "id": "tel-reseau-mobile",
@@ -775,7 +800,12 @@
         "nom": "Open5GS : démarrage rapide",
         "url": "https://open5gs.org/open5gs/docs/guide/01-quickstart/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire la chaîne abonné, radio, cœur, Internet.",
+      "Situer chaque bloc et son rôle.",
+      "Expliquer le trajet d'un appel de données."
+    ]
   },
   {
     "id": "tel-vocabulaire",
@@ -874,7 +904,12 @@
         "nom": "3GPP TR 21.905 : vocabulaire (accès libre)",
         "url": "https://www.3gpp.org/ftp/Specs/archive/21_series/21.905/"
       }
-    }
+    },
+    "objectifs": [
+      "Employer correctement NF, PLMN, UE, gNB, DN et SLA.",
+      "Lire un document d'opérateur sans se perdre.",
+      "Reformuler un terme à un collègue."
+    ]
   },
   {
     "id": "tel-nf",
@@ -969,7 +1004,12 @@
         "nom": "ETSI : technologies NFV (accès libre)",
         "url": "https://www.etsi.org/technologies/nfv"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer ce qu'est une fonction réseau, VNF ou CNF.",
+      "Décrire son cycle de vie.",
+      "Distinguer NF et plateforme."
+    ]
   },
   {
     "id": "tel-exigences-continuite",
@@ -1087,7 +1127,12 @@
         "nom": "Google SRE Book : objectifs de niveau de service (accès libre)",
         "url": "https://sre.google/sre-book/service-level-objectives/"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer les exigences de disponibilité et de latence.",
+      "Relier ces exigences aux choix de plateforme.",
+      "Convertir un taux de disponibilité en durée d'arrêt."
+    ]
   },
   {
     "id": "archi-5g",
@@ -1256,7 +1301,12 @@
         "nom": "3GPP TS 23.501 : architecture du système 5G (accès libre)",
         "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire NG-RAN, 5GC et SBA.",
+      "Situer les interfaces principales.",
+      "Lire un schéma d'architecture 5G."
+    ]
   },
   {
     "id": "dialogue-experts",
@@ -1360,7 +1410,12 @@
         "nom": "3GPP TR 21.905 : vocabulaire (accès libre)",
         "url": "https://www.3gpp.org/ftp/Specs/archive/21_series/21.905/"
       }
-    }
+    },
+    "objectifs": [
+      "Préparer un échange avec un expert réseau ou un éditeur.",
+      "Poser des questions précises et reformuler.",
+      "Formaliser un résultat d'échange."
+    ]
   },
   {
     "id": "git-ci",
@@ -1474,7 +1529,13 @@
         "nom": "Pro Git (livre libre, en français)",
         "url": "https://git-scm.com/book/fr/v2"
       }
-    }
+    },
+    "objectifs": [
+      "Utiliser Git au quotidien : branches, fusions, revues.",
+      "Lire et modifier un pipeline d'intégration continue.",
+      "Comprendre ce qu'est un artefact et d'où il vient.",
+      "Relier un changement d'infrastructure ou de configuration à sa revue et à son déploiement."
+    ]
   },
   {
     "id": "sre-slo",
@@ -1575,6 +1636,12 @@
         "nom": "Google SRE Book : objectifs de niveau de service (accès libre)",
         "url": "https://sre.google/sre-book/service-level-objectives/"
       }
-    }
+    },
+    "objectifs": [
+      "Définir un indicateur de niveau de service (SLI) à partir de ce que vit l'utilisateur.",
+      "Fixer un objectif (SLO) réaliste et calculer le budget d'erreur correspondant.",
+      "Utiliser le budget d'erreur pour arbitrer entre livrer un changement et stabiliser.",
+      "Expliquer la différence entre SLI, SLO et engagement contractuel (SLA)."
+    ]
   }
 ]

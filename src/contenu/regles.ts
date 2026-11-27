@@ -103,5 +103,21 @@ export function verifierContenu(c: Contenu): string[] {
     }
   }
 
+  // 17. Projet et outils : rôles, catégories et compétences référencés existent.
+  const roles = new Set(c.projet.roles.map((r) => r.id));
+  for (const id of new Set(doublons(c.projet.phases.map((p) => p.id)))) err(17, `phase du projet en double : « ${id} ».`);
+  for (const p of c.projet.phases)
+    for (const a of p.activites) {
+      for (const r of a.roles) if (!roles.has(r)) err(17, `projet, phase « ${p.id} », activité « ${a.titre} » : le rôle « ${r} » n'existe pas.`);
+      for (const x of a.competences) if (!competences.has(x)) err(17, `projet, phase « ${p.id} », activité « ${a.titre} » : la compétence « ${x} » n'existe pas.`);
+    }
+  for (const id of new Set(doublons(c.outils.outils.map((o) => o.id)))) err(17, `outil en double : « ${id} ».`);
+  const categories = new Map(c.outils.categories.map((k) => [k.id, new Set(k.sous_categories.map((s) => s.id))]));
+  for (const o of c.outils.outils) {
+    if (!categories.get(o.categorie)?.has(o.sousCategorie)) err(17, `outil « ${o.id} » : la catégorie « ${o.categorie} / ${o.sousCategorie} » n'existe pas.`);
+    for (const r of o.roles) if (!roles.has(r)) err(17, `outil « ${o.id} » : le rôle « ${r} » n'existe pas dans le projet.`);
+    for (const x of o.competences) if (!competences.has(x)) err(17, `outil « ${o.id} » : la compétence « ${x} » n'existe pas.`);
+  }
+
   return erreurs;
 }

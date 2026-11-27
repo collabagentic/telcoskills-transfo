@@ -322,7 +322,13 @@
         "nom": "Kubernetes : composants d'un cluster",
         "url": "https://kubernetes.io/docs/concepts/overview/components/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire les composants du plan de contrôle et d'un nœud.",
+      "Expliquer ce qui se passe entre une demande à l'API et le démarrage d'un pod.",
+      "Situer le rôle d'etcd et l'effet de sa perte de quorum.",
+      "Lire l'état d'un cluster pour un premier diagnostic."
+    ]
   },
   {
     "id": "k8s-workloads",
@@ -553,7 +559,13 @@
         "nom": "Kubernetes : workloads",
         "url": "https://kubernetes.io/docs/concepts/workloads/"
       }
-    }
+    },
+    "objectifs": [
+      "Choisir entre Deployment, StatefulSet, DaemonSet et Job selon la charge.",
+      "Régler les ressources, les sondes de santé et les budgets d'interruption d'un pod.",
+      "Expliquer comment un déploiement progresse et comment revenir en arrière.",
+      "Lire pourquoi un pod ne démarre pas (état, événements)."
+    ]
   },
   {
     "id": "k8s-services",
@@ -703,7 +715,13 @@
         "nom": "Kubernetes : services, load balancing et réseau",
         "url": "https://kubernetes.io/docs/concepts/services-networking/"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer comment un service expose des pods et comment la résolution de noms fonctionne.",
+      "Choisir entre ClusterIP, NodePort et LoadBalancer.",
+      "Comprendre le rôle d'un Ingress ou d'une Route.",
+      "Diagnostiquer un service injoignable (sélecteur, points de terminaison, DNS)."
+    ]
   },
   {
     "id": "k8s-stockage",
@@ -825,7 +843,13 @@
         "nom": "Kubernetes : stockage",
         "url": "https://kubernetes.io/docs/concepts/storage/"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer le lien entre PersistentVolume, PersistentVolumeClaim et StorageClass.",
+      "Choisir un mode d'accès adapté à la charge.",
+      "Comprendre le provisionnement dynamique et les instantanés.",
+      "Reconnaître un volume qui ne se monte pas."
+    ]
   },
   {
     "id": "k8s-rbac",
@@ -1002,7 +1026,13 @@
         "nom": "Kubernetes : contrôle d'accès RBAC",
         "url": "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
       }
-    }
+    },
+    "objectifs": [
+      "Lire un Role, un ClusterRole et leurs liaisons pour savoir qui peut faire quoi.",
+      "Isoler des équipes par namespaces, quotas et limites.",
+      "Appliquer le principe du moindre privilège à un compte de service.",
+      "Reconnaître un refus d'accès lié aux droits."
+    ]
   },
   {
     "id": "helm",
@@ -1148,7 +1178,12 @@
         "nom": "Helm : documentation",
         "url": "https://helm.sh/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Lire un chart Helm et ses valeurs.",
+      "Installer, mettre à jour et revenir en arrière avec Helm.",
+      "Préparer des valeurs spécifiques à un environnement."
+    ]
   },
   {
     "id": "gitops",
@@ -1271,7 +1306,12 @@
         "nom": "Argo CD : documentation",
         "url": "https://argo-cd.readthedocs.io/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire le principe : état désiré dans Git, synchronisation par un contrôleur.",
+      "Gérer plusieurs environnements.",
+      "Traiter une dérive entre Git et le cluster."
+    ]
   },
   {
     "id": "ocp-install",
@@ -1427,7 +1467,12 @@
         "nom": "Installateur OpenShift / OKD (dépôt source)",
         "url": "https://github.com/openshift/installer"
       }
-    }
+    },
+    "objectifs": [
+      "Choisir une méthode d'installation selon l'environnement (assistée, agent, bare metal).",
+      "Préparer les prérequis : DNS, adressage, accès, registre.",
+      "Vérifier qu'une installation est saine."
+    ]
   },
   {
     "id": "ocp-operators",
@@ -1602,7 +1647,13 @@
         "nom": "Operator Lifecycle Manager (OLM)",
         "url": "https://olm.operatorframework.io/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer le rôle des Cluster Operators et de l'Operator Lifecycle Manager.",
+      "Lire l'état d'un opérateur (disponible, dégradé, en progression).",
+      "Installer et mettre à jour un opérateur depuis un catalogue.",
+      "Repérer un opérateur dégradé qui bloque une opération sur la plateforme."
+    ]
   },
   {
     "id": "ocp-upgrade",
@@ -1733,7 +1784,13 @@
         "nom": "Cluster Version Operator (dépôt source, logique des mises à jour)",
         "url": "https://github.com/openshift/cluster-version-operator"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer comment un cluster est mis à jour : canaux, chemins de mise à jour, MachineConfig.",
+      "Préparer une mise à jour : prérequis, sauvegarde, fenêtre de maintenance, impact sur les CNF.",
+      "Suivre le déroulement d'une mise à jour et repérer un blocage.",
+      "Décider de poursuivre, suspendre ou revenir en arrière."
+    ]
   },
   {
     "id": "ocp-multicluster",
@@ -1888,7 +1945,12 @@
         "nom": "Open Cluster Management : gestion multi-clusters",
         "url": "https://open-cluster-management.io/"
       }
-    }
+    },
+    "objectifs": [
+      "Concevoir une topologie hub/spoke pour de nombreux sites.",
+      "Gérer politiques et applications à l'échelle avec ACM.",
+      "Traiter la perte de liaison avec un site distant."
+    ]
   },
   {
     "id": "ztp",
@@ -2035,7 +2097,12 @@
         "nom": "Cluster API : documentation",
         "url": "https://cluster-api.sigs.k8s.io/"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer le déploiement sans intervention locale d'un site.",
+      "Décrire les éléments d'une chaîne ZTP : inventaire, images, politiques.",
+      "Dépanner un site qui ne s'installe pas."
+    ]
   },
   {
     "id": "ocp-rds",
@@ -2220,7 +2287,12 @@
         "nom": "Telco reference configuration (dépôt openshift-kni)",
         "url": "https://github.com/openshift-kni/telco-reference"
       }
-    }
+    },
+    "objectifs": [
+      "Situer le profil de référence télécom et son périmètre.",
+      "Appliquer ses réglages de performance et de réseau.",
+      "Mesurer l'écart entre un cluster et la référence."
+    ]
   },
   {
     "id": "distrib-alt",
@@ -2346,7 +2418,12 @@
         "nom": "Sylva : pile CaaS telco open source",
         "url": "https://gitlab.com/sylva-projects/sylva-core"
       }
-    }
+    },
+    "objectifs": [
+      "Comparer les distributions télécom (Sylva, éditeurs de CNIS, Rancher).",
+      "Dégager les critères de choix.",
+      "Dire les conséquences d'un choix sur l'exploitation."
+    ]
   },
   {
     "id": "k8s-troubleshoot",
@@ -2501,7 +2578,13 @@
         "nom": "Kubernetes : dépannage et débogage",
         "url": "https://kubernetes.io/docs/tasks/debug/"
       }
-    }
+    },
+    "objectifs": [
+      "Appliquer une démarche d'analyse en entonnoir pour isoler une panne : service, pod, nœud, plan de contrôle.",
+      "Exploiter les événements, les journaux et l'état des nœuds pour orienter un diagnostic.",
+      "Traiter les pannes types : pod en attente, nœud NotReady, etcd dégradé.",
+      "Mener et rédiger une analyse de cause racine."
+    ]
   },
   {
     "id": "cnf-exigences",
@@ -2610,7 +2693,12 @@
         "nom": "SR-IOV Network Device Plugin (dépôt source)",
         "url": "https://github.com/k8snetworkplumbingwg/sriov-network-device-plugin"
       }
-    }
+    },
+    "objectifs": [
+      "Lire les exigences d'une NF.",
+      "Les traduire en besoins de plateforme.",
+      "Vérifier qu'une plateforme répond à ces exigences."
+    ]
   },
   {
     "id": "upf-edge",
@@ -2739,7 +2827,12 @@
         "nom": "eUPF : UPF open source en eBPF/XDP",
         "url": "https://github.com/edgecomllc/eupf"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire l'UPF distribué.",
+      "Situer l'accès local et MEC.",
+      "Mesurer l'effet de la distribution sur la latence."
+    ]
   },
   {
     "id": "capacite-noeuds",
@@ -2830,6 +2923,12 @@
         "nom": "Kubernetes : drainer un nœud en sécurité",
         "url": "https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/"
       }
-    }
+    },
+    "objectifs": [
+      "Vider un nœud pour maintenance sans violer les budgets d'interruption.",
+      "Planifier un redémarrage contrôlé de nœuds.",
+      "Expliquer comment la configuration d'un nœud évolue sans le recréer à la main.",
+      "Reconnaître ce qui bloque un drain."
+    ]
   }
 ]

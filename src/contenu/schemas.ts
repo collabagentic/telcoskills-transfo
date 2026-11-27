@@ -145,6 +145,8 @@ export const competenceSchema = z
     diagramme: diagrammeSchema.optional(),
     origine: z.array(identifiant),
     statut,
+    /** « Ce que vous saurez faire » : repris des fiches pratiques de l'ancien site. */
+    objectifs: z.array(texte(160)).min(1).max(5).optional(),
   })
   .strict();
 export type Competence = z.infer<typeof competenceSchema>;
@@ -194,7 +196,61 @@ export const contexteSchema = z
   .strict();
 export type Contexte = z.infer<typeof contexteSchema>;
 
+/** Le projet fil rouge, repris de l'ancien site : à quoi sert chaque compétence, qui la mobilise et à quelle phase. */
+export const projetSchema = z
+  .object({
+    id: identifiant,
+    titre: texte(120),
+    resume: texte(240),
+    contexte: texte(600),
+    source: texte(400),
+    statut,
+    roles: z.array(z.object({ id: identifiant, libelle: texte(60), description: texte(200) }).strict()).min(2),
+    phases: z
+      .array(
+        z
+          .object({
+            id: identifiant,
+            titre: texte(60),
+            objectif: texte(200),
+            livrables: z.array(texte(120)).min(1),
+            activites: z.array(z.object({ titre: texte(120), roles: z.array(identifiant).min(1), competences: z.array(identifiant) }).strict()).min(1),
+            jalon: z.object({ titre: texte(90), criteres: z.array(texte(160)).min(1) }).strict(),
+            risques: z.array(texte(160)),
+          })
+          .strict(),
+      )
+      .min(1),
+  })
+  .strict();
+export type Projet = z.infer<typeof projetSchema>;
+
+/** Les outils de la pile, groupés par fonction, reliés aux rôles du projet et aux compétences qui les demandent. */
+export const outilsSchema = z
+  .object({
+    source: texte(400),
+    statut,
+    categories: z
+      .array(
+        z
+          .object({ id: identifiant, libelle: texte(60), intro: texte(240), sous_categories: z.array(z.object({ id: identifiant, libelle: texte(60) }).strict()).min(1) })
+          .strict(),
+      )
+      .min(1),
+    outils: z
+      .array(
+        z
+          .object({ id: identifiant, nom: texte(60), categorie: identifiant, sousCategorie: identifiant, url, roles: z.array(identifiant), competences: z.array(identifiant) })
+          .strict(),
+      )
+      .min(1),
+  })
+  .strict();
+export type Outils = z.infer<typeof outilsSchema>;
+
 export type Contenu = {
+  projet: Projet;
+  outils: Outils;
   contexte: Contexte;
   domaines: Domaine[];
   competences: Competence[];

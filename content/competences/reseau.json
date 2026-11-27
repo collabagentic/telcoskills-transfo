@@ -146,7 +146,13 @@
         "nom": "OVN-Kubernetes : documentation",
         "url": "https://ovn-kubernetes.io/"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer comment un pod obtient son adresse et communique avec les autres.",
+      "Décrire le rôle d'OVN-Kubernetes et d'Open vSwitch.",
+      "Lire et écrire une NetworkPolicy simple.",
+      "Reconnaître les symptômes d'un problème de réseau de pods."
+    ]
   },
   {
     "id": "multus",
@@ -259,7 +265,13 @@
         "nom": "Multus CNI (dépôt source)",
         "url": "https://github.com/k8snetworkplumbingwg/multus-cni"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer pourquoi un pod télécom a plusieurs interfaces.",
+      "Lire une NetworkAttachmentDefinition (macvlan, ipvlan).",
+      "Séparer les flux de contrôle, d'usager et de gestion.",
+      "Vérifier les interfaces effectives d'un pod."
+    ]
   },
   {
     "id": "sriov",
@@ -427,7 +439,12 @@
         "nom": "SR-IOV Network Operator (dépôt source)",
         "url": "https://github.com/k8snetworkplumbingwg/sriov-network-operator"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer le partage d'une carte réseau en fonctions virtuelles.",
+      "Configurer SR-IOV pour un pod.",
+      "Reconnaître ses limites : visibilité, migration."
+    ]
   },
   {
     "id": "dpdk",
@@ -606,7 +623,12 @@
         "nom": "DPDK : guides de la documentation",
         "url": "https://doc.dpdk.org/guides/"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer ce qu'apporte DPDK.",
+      "Identifier les prérequis du nœud.",
+      "Décider quand DPDK est justifié."
+    ]
   },
   {
     "id": "lb-bgp",
@@ -749,7 +771,12 @@
         "nom": "MetalLB : documentation",
         "url": "https://metallb.io/"
       }
-    }
+    },
+    "objectifs": [
+      "Exposer un service sur serveurs nus avec un équilibreur logiciel.",
+      "Configurer l'annonce BGP des adresses de service.",
+      "Diagnostiquer une adresse non annoncée."
+    ]
   },
   {
     "id": "sctp-flux",
@@ -859,7 +886,12 @@
         "nom": "Wireshark : analyse des protocoles SCTP, GTP et PFCP",
         "url": "https://www.wireshark.org/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Reconnaître les protocoles du cœur 5G.",
+      "Prévoir le traitement de SCTP et GTP par la plateforme.",
+      "Lire un flux dans une capture."
+    ]
   },
   {
     "id": "archi-reseau-support",
@@ -1005,7 +1037,13 @@
         "nom": "Open vSwitch : documentation",
         "url": "https://docs.openvswitch.org/"
       }
-    }
+    },
+    "objectifs": [
+      "Concevoir les réseaux de support d'une plateforme.",
+      "Séparer plans de gestion, de contrôle et d'usager avec VRF.",
+      "Dimensionner les liens et l'adressage.",
+      "Justifier l'architecture réseau devant l'équipe réseau."
+    ]
   },
   {
     "id": "pieges-reseau",
@@ -1096,7 +1134,12 @@
         "nom": "Multus CNI (dépôt source)",
         "url": "https://github.com/k8snetworkplumbingwg/multus-cni"
       }
-    }
+    },
+    "objectifs": [
+      "Reconnaître les pièges d'un pod multi-interfaces.",
+      "Vérifier MTU et VLAN d'un CNF.",
+      "Expliquer les limites de SR-IOV."
+    ]
   },
   {
     "id": "depannage-reseau-telco",
@@ -1214,6 +1257,12 @@
         "nom": "Wireshark : documentation",
         "url": "https://www.wireshark.org/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Isoler une panne réseau par couche : interface, VLAN, MTU, route, politique réseau.",
+      "Capturer des paquets au bon endroit (pod, nœud, interface physique) et les lire.",
+      "Reconnaître les spécificités des plateformes telco : multi-interfaces, SR-IOV, plans séparés.",
+      "Rédiger un diagnostic réseau exploitable par l'équipe réseau ou l'éditeur."
+    ]
   }
 ]

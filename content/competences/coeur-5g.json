@@ -235,7 +235,12 @@
         "nom": "free5GC : cœur 5G open source (guide)",
         "url": "https://free5gc.org/guide/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire les fonctions de l'architecture orientée services.",
+      "Lire une procédure d'appels entre fonctions.",
+      "Situer NRF et SCP."
+    ]
   },
   {
     "id": "cnf-onboarding",
@@ -364,7 +369,12 @@
         "nom": "towards5gs-helm : charts Helm free5GC",
         "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
       }
-    }
+    },
+    "objectifs": [
+      "Lire les exigences d'infrastructure d'un CNF.",
+      "Préparer la plateforme.",
+      "Valider l'onboarding."
+    ]
   },
   {
     "id": "cnf-ops",
@@ -475,7 +485,12 @@
         "nom": "OpenAirInterface : cœur 5G open source (déploiement)",
         "url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed"
       }
-    }
+    },
+    "objectifs": [
+      "Mettre un CNF à l'échelle.",
+      "Mettre à jour un CNF sans coupure.",
+      "Analyser le comportement d'un CNF quand la plateforme défaille."
+    ]
   },
   {
     "id": "sec-5g",
@@ -591,7 +606,12 @@
         "nom": "Open5GS : code source du cœur 5G open source",
         "url": "https://github.com/open5gs/open5gs"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire les menaces sur le cœur 5G.",
+      "Appliquer les mesures de sécurité de base.",
+      "Situer les exigences de l'ANSSI."
+    ]
   },
   {
     "id": "matrice-exigences",
@@ -721,7 +741,12 @@
         "nom": "towards5gs-helm : exemple de livrable de NF",
         "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
       }
-    }
+    },
+    "objectifs": [
+      "Transformer les exigences d'une NF en besoins de plateforme.",
+      "Détecter les incompatibilités.",
+      "Produire une matrice d'exigences."
+    ]
   },
   {
     "id": "identifiants",
@@ -812,7 +837,12 @@
         "nom": "3GPP TS 23.003 : numérotation, adressage et identification (accès libre)",
         "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.003/"
       }
-    }
+    },
+    "objectifs": [
+      "Lire SUPI, SUCI, GUTI, PLMN et DNN.",
+      "Savoir quand chacun est utilisé.",
+      "Retrouver un identifiant dans une trace."
+    ]
   },
   {
     "id": "sbi-http2",
@@ -904,7 +934,12 @@
         "nom": "5GC_APIs : spécifications OpenAPI des interfaces SBI 3GPP",
         "url": "https://github.com/jdegre/5GC_APIs"
       }
-    }
+    },
+    "objectifs": [
+      "Lire un appel d'interface de service.",
+      "Comprendre le rôle d'OpenAPI.",
+      "Interpréter les codes de réponse."
+    ]
   },
   {
     "id": "traces",
@@ -1025,7 +1060,12 @@
         "nom": "Wireshark : documentation",
         "url": "https://www.wireshark.org/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Capturer le trafic d'un cœur 5G.",
+      "Lire NGAP, PFCP, HTTP/2 et GTP-U dans Wireshark.",
+      "Retrouver une procédure dans une trace."
+    ]
   },
   {
     "id": "amf",
@@ -1146,7 +1186,12 @@
         "nom": "free5GC : AMF (code source)",
         "url": "https://github.com/free5gc/amf"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire le rôle de l'AMF.",
+      "Lire un échange NAS/NGAP.",
+      "Expliquer la mobilité."
+    ]
   },
   {
     "id": "smf-upf",
@@ -1268,7 +1313,12 @@
         "nom": "free5GC : UPF en Go (code source)",
         "url": "https://github.com/free5gc/go-upf"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire SMF et UPF.",
+      "Lire PFCP et le chemin de données.",
+      "Situer N4, N3 et N6."
+    ]
   },
   {
     "id": "nrf-scp",
@@ -1382,7 +1432,12 @@
         "nom": "free5GC : NRF (code source)",
         "url": "https://github.com/free5gc/nrf"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire l'enregistrement et la découverte.",
+      "Comprendre le routage par SCP.",
+      "Lire un enregistrement de service."
+    ]
   },
   {
     "id": "enregistrement",
@@ -1517,7 +1572,12 @@
         "nom": "3GPP TS 23.502 : procédures du système 5G (accès libre)",
         "url": "https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire l'enregistrement et l'authentification.",
+      "Lire la séquence 5G-AKA.",
+      "Localiser un échec."
+    ]
   },
   {
     "id": "session-pdu",
@@ -1662,7 +1722,12 @@
         "nom": "UERANSIM : simulateur d'UE et de gNB 5G",
         "url": "https://github.com/aligungr/UERANSIM"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire l'établissement d'une session de données.",
+      "Suivre le chemin de données.",
+      "Localiser un échec."
+    ]
   },
   {
     "id": "deploiement-lab",
@@ -1784,7 +1849,12 @@
         "nom": "towards5gs-helm : charts Helm free5GC",
         "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
       }
-    }
+    },
+    "objectifs": [
+      "Déployer un cœur 5G open source.",
+      "Vérifier l'enregistrement de bout en bout.",
+      "Reproduire le laboratoire."
+    ]
   },
   {
     "id": "udm-udr-ausf",
@@ -1882,7 +1952,12 @@
         "nom": "Open5GS : cœur 4G/5G open source (code source)",
         "url": "https://github.com/open5gs/open5gs"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire UDM, UDR et AUSF.",
+      "Suivre l'authentification 5G-AKA.",
+      "Diagnostiquer un rejet d'abonné."
+    ]
   },
   {
     "id": "pcf-chf",
@@ -1965,7 +2040,12 @@
         "nom": "free5GC : CHF (code source)",
         "url": "https://github.com/free5gc/chf"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire PCF et CHF.",
+      "Relier politiques et facturation.",
+      "Diagnostiquer un refus de service."
+    ]
   },
   {
     "id": "slicing",
@@ -2117,7 +2197,12 @@
         "nom": "free5GC : NSSF (code source)",
         "url": "https://github.com/free5gc/nssf"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire le découpage en tranches.",
+      "Lire S-NSSAI et NSSF.",
+      "Diagnostiquer une sélection de tranche."
+    ]
   },
   {
     "id": "sepp",
@@ -2227,7 +2312,12 @@
         "nom": "3GPP TS 29.573 : interconnexion de PLMN en 5G (accès libre)",
         "url": "https://www.3gpp.org/ftp/Specs/archive/29_series/29.573/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire le SEPP et l'itinérance.",
+      "Lire N32.",
+      "Diagnostiquer un échec d'itinérance entre deux opérateurs."
+    ]
   },
   {
     "id": "interfonctionnement-4g",
@@ -2386,7 +2476,12 @@
         "nom": "Open5GS : documentation (EPC et 5GC)",
         "url": "https://open5gs.org/open5gs/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire l'interfonctionnement 4G/5G.",
+      "Lire les interfaces concernées.",
+      "Diagnostiquer un transfert."
+    ]
   },
   {
     "id": "ims-voix",
@@ -2497,7 +2592,12 @@
         "nom": "Kamailio : serveur SIP open source utilisé en IMS",
         "url": "https://www.kamailio.org/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire la voix sur 5G.",
+      "Situer IMS et P-CSCF.",
+      "Reconnaître l'étape où un appel vocal échoue."
+    ]
   },
   {
     "id": "recette",
@@ -2610,7 +2710,12 @@
         "nom": "Robot Framework : guide utilisateur",
         "url": "https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html"
       }
-    }
+    },
+    "objectifs": [
+      "Définir critères d'acceptation.",
+      "Conduire une recette.",
+      "Rédiger le rapport."
+    ]
   },
   {
     "id": "multi-editeurs",
@@ -2716,6 +2821,12 @@
         "nom": "OpenAirInterface : cœur 5G d'une autre implémentation, pour l'interopérabilité",
         "url": "https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-fed"
       }
-    }
+    },
+    "objectifs": [
+      "Intégrer plusieurs éditeurs sur une plateforme.",
+      "Gérer l'interopérabilité.",
+      "Arbitrer les conflits d'exigences.",
+      "Piloter les essais croisés."
+    ]
   }
 ]

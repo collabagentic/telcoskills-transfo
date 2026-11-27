@@ -2,6 +2,7 @@ import { essentiel, tempsLecture, titreFiche } from "@/contenu/lecture";
 import type { Contenu, Diagramme, Fiche, Lien, SchemaFiche, Source } from "@/contenu/schemas";
 import { amorces, type EntreePrompt } from "@/lib/prompt";
 import { DEPOT } from "@/lib/site";
+import { usagesProjet } from "@/contenu/projet";
 
 export type Voisine = { id: string; titre: string; fiches: string[]; courante: boolean };
 
@@ -15,6 +16,10 @@ export type Lecon = {
   domaine: string;
   competences: { id: string; titre: string }[];
   technos: { id: string; nom: string }[];
+  /** « Ce que vous saurez faire » : les objectifs des compétences de la fiche, sans doublon. */
+  objectifs: string[];
+  /** Où la fiche sert dans le projet fil rouge : phase, activité, rôles (libellés). */
+  usages: { numero: number; phase: string; titrePhase: string; activite: string; roles: string[] }[];
   historique: Fiche["historique"];
   voisines: Voisine[];
   resume: { avant: string | null; apres: string };
@@ -44,6 +49,20 @@ export function construireLecon(f: Fiche, c: Contenu): Lecon {
     .filter((x) => x.domaine === premiere?.domaine)
     .map((x) => ({ id: x.id, titre: x.titre, fiches: c.fiches.filter((g) => g.competences.includes(x.id)).map((g) => g.id), courante: x.id === premiere?.id }));
   const e = essentiel(f);
+  const libelleRole = new Map(c.projet.roles.map((r) => [r.id, r.libelle]));
+  const parCompetence = usagesProjet(c);
+  const vus = new Set<string>();
+  const usages = competences
+    .flatMap((x) => parCompetence.get(x.id) ?? [])
+    .filter((u) => {
+      const cle = `${u.phase}|${u.activite}`;
+      if (vus.has(cle)) return false;
+      vus.add(cle);
+      return true;
+    })
+    .sort((a, b) => a.numero - b.numero)
+    .slice(0, 4)
+    .map((u) => ({ ...u, roles: u.roles.map((r) => libelleRole.get(r) ?? r) }));
   return {
     id: f.id,
     titre,
@@ -53,6 +72,8 @@ export function construireLecon(f: Fiche, c: Contenu): Lecon {
     domaine: domaine?.nom ?? "",
     competences: competences.map((x) => ({ id: x.id, titre: x.titre })),
     technos: f.technos.map((t) => ({ id: t, nom: c.technos.find((x) => x.id === t)?.nom ?? t })),
+    objectifs: [...new Set(competences.flatMap((x) => x.objectifs ?? []))].slice(0, 5),
+    usages,
     historique: f.historique,
     voisines,
     resume: { avant: f.resume.avant, apres: f.resume.apres },

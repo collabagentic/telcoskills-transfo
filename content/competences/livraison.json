@@ -96,7 +96,12 @@
         "nom": "Helm : documentation",
         "url": "https://helm.sh/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Packager une NF avec Helm.",
+      "Configurer par valeurs.",
+      "Gérer les versions."
+    ]
   },
   {
     "id": "config-nf",
@@ -195,7 +200,12 @@
         "nom": "YangModels/yang : modèles YANG de référence",
         "url": "https://github.com/YangModels/yang"
       }
-    }
+    },
+    "objectifs": [
+      "Configurer une NF par API, YANG/NETCONF ou ConfigMap.",
+      "Choisir le bon mode de configuration.",
+      "Versionner la configuration."
+    ]
   },
   {
     "id": "etsi-sol",
@@ -294,7 +304,12 @@
         "nom": "OpenStack Tacker : orchestration NFV conforme ETSI",
         "url": "https://docs.openstack.org/tacker/latest/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire le cycle de vie selon ETSI NFV.",
+      "Lire un CSAR.",
+      "Situer les interfaces SOL."
+    ]
   },
   {
     "id": "onboarding-editeur",
@@ -400,7 +415,12 @@
         "nom": "towards5gs-helm : exemple de livrable de NF",
         "url": "https://github.com/Orange-OpenSource/towards5gs-helm"
       }
-    }
+    },
+    "objectifs": [
+      "Intégrer une NF d'éditeur.",
+      "Rassembler exigences et livrables.",
+      "Remplir une matrice de conformité."
+    ]
   },
   {
     "id": "dossier-integration",
@@ -504,7 +524,12 @@
         "nom": "arc42 : modèle libre de documentation d'architecture",
         "url": "https://arc42.org/overview"
       }
-    }
+    },
+    "objectifs": [
+      "Rédiger un dossier d'intégration.",
+      "Produire schémas, flux et plan d'adressage.",
+      "Maintenir le dossier à jour."
+    ]
   },
   {
     "id": "ci-cd-integration",
@@ -618,7 +643,12 @@
         "nom": "Tekton : pipelines CI/CD Kubernetes",
         "url": "https://tekton.dev/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Automatiser le déploiement et la non-régression.",
+      "Construire un pipeline d'intégration.",
+      "Interpréter un échec."
+    ]
   },
   {
     "id": "simulation-ran-ue",
@@ -717,7 +747,12 @@
         "nom": "gNBsim : simulateur de gNB et d'UE (OMEC)",
         "url": "https://github.com/omec-project/gnbsim"
       }
-    }
+    },
+    "objectifs": [
+      "Utiliser un simulateur de RAN et d'UE.",
+      "Générer du trafic de test.",
+      "Interpréter les résultats."
+    ]
   },
   {
     "id": "tests-fonctionnels",
@@ -831,7 +866,12 @@
         "nom": "Robot Framework : automatisation de tests",
         "url": "https://robotframework.org/"
       }
-    }
+    },
+    "objectifs": [
+      "Concevoir un plan de tests.",
+      "Couvrir fonctionnel et interopérabilité.",
+      "Rapporter les résultats."
+    ]
   },
   {
     "id": "tests-perf",
@@ -945,7 +985,12 @@
         "nom": "TRex : générateur de trafic open source",
         "url": "https://github.com/cisco-system-traffic-generator/trex-core"
       }
-    }
+    },
+    "objectifs": [
+      "Concevoir un test de charge.",
+      "Mesurer débit, latence et saturation.",
+      "Conclure sur la capacité."
+    ]
   },
   {
     "id": "lab-as-code",
@@ -1058,7 +1103,12 @@
         "nom": "kind : Kubernetes dans Docker",
         "url": "https://kind.sigs.k8s.io/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire un laboratoire reproductible.",
+      "Utiliser kind et des charts.",
+      "Fournir des jeux de données."
+    ]
   },
   {
     "id": "tests-config",
@@ -1168,7 +1218,12 @@
         "nom": "Helm : tests de charts",
         "url": "https://helm.sh/docs/topics/chart_tests/"
       }
-    }
+    },
+    "objectifs": [
+      "Tester la configuration d'une NF.",
+      "Détecter la régression.",
+      "Automatiser la comparaison."
+    ]
   },
   {
     "id": "ansible-python",
@@ -1291,7 +1346,12 @@
         "nom": "Ansible : documentation",
         "url": "https://docs.ansible.com/"
       }
-    }
+    },
+    "objectifs": [
+      "Écrire un playbook Ansible avec inventaire et rôles.",
+      "Écrire un script Python d'exploitation.",
+      "Choisir entre playbook et script."
+    ]
   },
   {
     "id": "operators-dev",
@@ -1416,7 +1476,12 @@
         "nom": "Kubebuilder : le livre",
         "url": "https://book.kubebuilder.io/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire le modèle d'un opérateur Kubernetes.",
+      "Écrire un contrôleur simple en Go.",
+      "Tester et déployer l'opérateur."
+    ]
   },
   {
     "id": "gestion-changement",
@@ -1534,7 +1599,12 @@
         "nom": "Google SRE Book : ingénierie des livraisons (accès libre)",
         "url": "https://sre.google/sre-book/release-engineering/"
       }
-    }
+    },
+    "objectifs": [
+      "Classer un changement selon son risque.",
+      "Préparer une fenêtre, des vérifications et un retour arrière.",
+      "Mesurer l'effet d'un changement."
+    ]
   },
   {
     "id": "toil",
@@ -1650,6 +1720,11 @@
         "nom": "Google SRE Book : éliminer le toil (accès libre)",
         "url": "https://sre.google/sre-book/eliminating-toil/"
       }
-    }
+    },
+    "objectifs": [
+      "Reconnaître et mesurer le travail répétitif manuel.",
+      "Décider quoi automatiser en comparant gain et coût.",
+      "Éviter une automatisation fragile."
+    ]
   }
 ]

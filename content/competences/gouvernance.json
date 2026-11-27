@@ -105,7 +105,12 @@
         "nom": "arc42 : modèle libre de documentation d'architecture",
         "url": "https://arc42.org/overview"
       }
-    }
+    },
+    "objectifs": [
+      "Rédiger un document de haut niveau.",
+      "Rédiger le document détaillé.",
+      "Maintenir la cohérence entre les deux."
+    ]
   },
   {
     "id": "adr",
@@ -225,7 +230,12 @@
         "nom": "Architecture Decision Records",
         "url": "https://adr.github.io/"
       }
-    }
+    },
+    "objectifs": [
+      "Rédiger une décision d'architecture.",
+      "Documenter alternatives et conséquences.",
+      "Faire vivre le journal des décisions."
+    ]
   },
   {
     "id": "evaluation-fournisseurs",
@@ -375,7 +385,12 @@
         "nom": "Sylva : pile CaaS telco open source",
         "url": "https://gitlab.com/sylva-projects/sylva-core"
       }
-    }
+    },
+    "objectifs": [
+      "Définir les critères d'évaluation.",
+      "Conduire un essai de faisabilité.",
+      "Rédiger un appel d'offres technique."
+    ]
   },
   {
     "id": "cout-energie",
@@ -495,7 +510,12 @@
         "nom": "OpenCost : coût des ressources Kubernetes",
         "url": "https://opencost.io/"
       }
-    }
+    },
+    "objectifs": [
+      "Estimer le coût d'une plateforme.",
+      "Mesurer la consommation énergétique.",
+      "Proposer des leviers d'optimisation."
+    ]
   },
   {
     "id": "cycle-vie-plateforme",
@@ -610,7 +630,12 @@
         "nom": "Kubernetes : politique de décalage de versions",
         "url": "https://kubernetes.io/releases/version-skew-policy/"
       }
-    }
+    },
+    "objectifs": [
+      "Planifier les montées de version.",
+      "Anticiper l'obsolescence.",
+      "Construire une trajectoire."
+    ]
   },
   {
     "id": "certifs",
@@ -654,6 +679,11 @@
       "architecte-caas-telco",
       "ingenieur-caas-telco"
     ],
-    "statut": "brouillon"
+    "statut": "brouillon",
+    "objectifs": [
+      "Choisir les certifications utiles à son rôle.",
+      "Comparer certifications d'éditeur et neutres.",
+      "Planifier sa préparation."
+    ]
   }
 ]

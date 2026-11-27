@@ -7,6 +7,7 @@ import { Diagramme } from "@/composants/Diagramme";
 import { Ressources } from "@/composants/Ressources";
 import { chargerContenu } from "@/contenu/charger";
 import { titreFiche } from "@/contenu/lecture";
+import { usagesProjet } from "@/contenu/projet";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -32,6 +33,8 @@ export default async function PageCompetence({ params }: Props) {
   const prerequis = x.prerequis.map((p) => parId.get(p)!);
   const suivantes = c.competences.filter((k) => k.prerequis.includes(x.id));
   const fiches = c.fiches.filter((f) => f.competences.includes(x.id));
+  const usages = usagesProjet(c).get(x.id) ?? [];
+  const libelleRole = new Map(c.projet.roles.map((r) => [r.id, r.libelle]));
 
   return (
     <article className="fiche lecture">
@@ -47,6 +50,33 @@ export default async function PageCompetence({ params }: Props) {
       <div className="corriger" style={{ marginTop: 0, marginBottom: "var(--e-8)" }}>
         <Maitrise id={x.id} />
       </div>
+
+      {x.objectifs && x.objectifs.length > 0 ? (
+        <section className="rubrique">
+          <h2>Ce que vous saurez faire</h2>
+          <ul>
+            {x.objectifs.map((o) => (
+              <li key={o}>{o}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {usages.length > 0 ? (
+        <section className="rubrique">
+          <h2>Où ça sert dans le projet</h2>
+          <ul>
+            {usages.map((u) => (
+              <li key={u.phase + u.activite}>
+                <Link href={`/projet#${u.phase}`}>
+                  Phase {u.numero}, {u.titrePhase.charAt(0).toLowerCase() + u.titrePhase.slice(1)}
+                </Link>{" "}
+                : {u.activite.charAt(0).toLowerCase() + u.activite.slice(1)} ({u.roles.map((r) => libelleRole.get(r) ?? r).join(", ")}).
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {x.diagramme ? (
         <section className="rubrique">

@@ -22,6 +22,8 @@ export type CompetenceGraphe = {
   fiches: string[];
   /** Résumé de la compétence, tel qu'il est dans les données (facultatif, vide sinon). */
   resume?: string;
+  /** Où elle sert dans le projet fil rouge, en une phrase (facultatif) : c'est le « pourquoi » d'une étape choisie par domaine. */
+  usage?: string;
 };
 
 export type EffetsLite = { acquis?: string[]; domaines?: Record<string, number>; cible?: string[]; ecarte?: string[] };
@@ -127,10 +129,14 @@ export function recombiner(graphe: CompetenceGraphe[], questions: QuestionLite[]
   const pourquoi = (c: CompetenceGraphe): string => {
     if (effets.cibles.has(c.id)) return "votre objectif";
     const raisons = [...new Set(effets.raisonsDomaine.get(c.domaine) ?? [])];
-    if (graines.has(c.id) && raisons.length > 0) return `${nomsDomaines[c.domaine] ?? c.domaine} : ${raisons.join(", ")}`;
-    if (graines.has(c.id) && !effets.repondu) return "feuille de route complète";
+    // Une raison propre à l'étape vaut mieux que la somme des réponses, identique pour tout un domaine.
+    if (graines.has(c.id) && c.usage) return c.usage;
     const d = dependants.get(c.id);
-    return d ? `prérequis de « ${parId.get(d)!.titre} »` : "prérequis";
+    // Sans usage dans le projet, l'étape qu'elle prépare dit mieux pourquoi elle est là que le domaine.
+    if (d) return `prérequis de « ${parId.get(d)!.titre} »`;
+    if (graines.has(c.id) && raisons.length > 0) return `${nomsDomaines[c.domaine] ?? c.domaine} : ${raisons[0]}`;
+    if (graines.has(c.id) && !effets.repondu) return "feuille de route complète";
+    return "prérequis";
   };
 
   // Ordre : tri topologique (Kahn), départage par cible, poids du domaine, niveau, identifiant.

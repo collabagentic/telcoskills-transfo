@@ -157,7 +157,12 @@
         "nom": "Rook : stockage Ceph pour Kubernetes",
         "url": "https://rook.io/docs/rook/latest/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire l'architecture de Ceph : moniteurs, OSD, pools, placement.",
+      "Lire l'état d'un cluster Ceph et comprendre un état dégradé.",
+      "Régler la réplication selon le besoin de résilience."
+    ]
   },
   {
     "id": "stockage-dr",
@@ -311,7 +316,13 @@
         "nom": "Velero : sauvegarde et restauration Kubernetes",
         "url": "https://velero.io/docs/"
       }
-    }
+    },
+    "objectifs": [
+      "Distinguer sauvegarde, instantané et réplication.",
+      "Fixer un RPO et un RTO et choisir la technique adaptée.",
+      "Tester une restauration.",
+      "Mesurer l'impact de la réplication inter-sites."
+    ]
   },
   {
     "id": "kubevirt",
@@ -460,7 +471,12 @@
         "nom": "KubeVirt : guide utilisateur",
         "url": "https://kubevirt.io/user-guide/"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer l'exécution de machines virtuelles sur Kubernetes.",
+      "Créer et exploiter une machine virtuelle.",
+      "Identifier les cas d'usage télécom."
+    ]
   },
   {
     "id": "openstack",
@@ -622,7 +638,12 @@
         "nom": "OpenStack : documentation",
         "url": "https://docs.openstack.org/"
       }
-    }
+    },
+    "objectifs": [
+      "Situer OpenStack dans l'histoire de la virtualisation télécom.",
+      "Comparer NFVI OpenStack et Kubernetes.",
+      "Décrire les enjeux d'une migration."
+    ]
   },
   {
     "id": "nfv-etsi",
@@ -764,6 +785,11 @@
         "nom": "ETSI OSM : orchestrateur MANO open source",
         "url": "https://osm.etsi.org/docs/user-guide/latest/"
       }
-    }
+    },
+    "objectifs": [
+      "Décrire l'architecture ETSI NFV.",
+      "Situer MANO, VNFM et NFVO.",
+      "Lire un descripteur de NF."
+    ]
   }
 ]

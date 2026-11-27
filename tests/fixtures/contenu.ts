@@ -38,6 +38,35 @@ const competence = (id: string, prerequis: string[] = []) => ({
 export function contenuValide(): Contenu {
   const fiches = [fiche("f1"), fiche("n1", "nouveaute", ["c2"])];
   return {
+    projet: {
+      id: "p",
+      titre: "Projet",
+      resume: "Résumé.",
+      contexte: "Contexte.",
+      source: "Source.",
+      statut: "brouillon",
+      roles: [
+        { id: "r1", libelle: "Rôle 1", description: "Description." },
+        { id: "r2", libelle: "Rôle 2", description: "Description." },
+      ],
+      phases: [
+        {
+          id: "ph1",
+          titre: "Phase",
+          objectif: "Objectif.",
+          livrables: ["Livrable"],
+          activites: [{ titre: "Activité", roles: ["r1"], competences: ["c2"] }],
+          jalon: { titre: "Jalon", criteres: ["Critère"] },
+          risques: [],
+        },
+      ],
+    },
+    outils: {
+      source: "Source.",
+      statut: "brouillon",
+      categories: [{ id: "k", libelle: "Catégorie", intro: "Intro.", sous_categories: [{ id: "s", libelle: "Sous" }] }],
+      outils: [{ id: "o", nom: "Outil", categorie: "k", sousCategorie: "s", url: "https://exemple.org", roles: ["r1"], competences: ["c1"] }],
+    },
     contexte: { chiffres: [{ texte: "Un chiffre.", source: { nom: "Source", url: "https://exemple.org" } }], limites: ["Une limite."] },
     domaines: [{ id: "d1", nom: "Domaine" }],
     competences: [competence("c1"), competence("c2", ["c1"]), competence("c3", ["c2"])],
