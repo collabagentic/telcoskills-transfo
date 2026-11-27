@@ -776,3 +776,12 @@ Après relecture de l'ancien site, l'auteur juge le projet fil rouge et le lands
 - **Pourquoi d'une étape** : la première activité du projet qui mobilise la compétence (« sert en phase 4 du projet, « … » »), sinon l'étape qu'elle prépare, sinon le domaine.
 - **Fiche et compétence** : « Ce que vous saurez faire » (phase 1) et « Où ça sert dans le projet » (phase 3, avec les outils cités).
 - **Règle 17** : rôles, catégories et compétences cités par le projet et les outils existent.
+
+## 17. Habillage repris de l'ancien site (décision de l'auteur, 2026-11-27)
+
+L'auteur juge l'habillage de l'ancien site meilleur, sauf le cockpit et les fiches. Variante retenue après deux prototypes : **A, clair**.
+
+- **Jetons** (`src/app/tokens.css`) : fond gris-bleu très clair, trait fin, accent bleu, rayons de 4 à 8 px, sans ombre ni halo. Plus de mode sombre (le §2.3 ne s'applique plus sur ce point) ; l'impression reste en clair.
+- **Barre de navigation** permanente (`BarreNavigation`) : Ma feuille de route, Compétences, Le projet, Les outils, et une recherche ⌘K sur les fiches, les compétences et les outils.
+- **Accueil en quatre blocs** : la promesse, la boîte de discussion de l'ancien accueil (`ConversationAccueil` : trois questions en bulles, le premier pas, le chemin recalculé à côté), trois portes avec un vrai aperçu (projet, outils, compétences), l'exemple avant / après.
+- Le cockpit et les fiches ne sont pas réécrits : ils prennent l'habillage par les jetons.

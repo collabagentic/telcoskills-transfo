@@ -25,22 +25,22 @@ describe("fiche d'exemple de l'accueil", () => {
   });
 });
 
-describe("accueil : ordre des entrées et action principale (C1-C1)", () => {
-  it("les entrées précèdent les repères et l'action principale porte btn-principal", () => {
+describe("accueil : la discussion d'abord, puis les trois portes", () => {
+  it("la discussion précède les portes, qui mènent au projet, aux outils et aux compétences", () => {
     const page = fs.readFileSync(path.join(RACINE, "src/app/page.tsx"), "utf8");
-    const entrees = page.indexOf("accueil-entrees");
-    const reperes = page.indexOf("accueil-reperes");
-    expect(entrees, "le nav des entrées doit exister").toBeGreaterThanOrEqual(0);
-    expect(reperes, "la liste des repères doit exister").toBeGreaterThanOrEqual(0);
-    expect(entrees, "les entrées doivent précéder les repères").toBeLessThan(reperes);
-    expect(page, "l'action principale doit porter btn-principal").toContain('"btn btn-principal"');
+    const discussion = page.indexOf("<ConversationAccueil");
+    const portes = page.indexOf("pa-explorer");
+    expect(discussion, "la discussion doit être sur l'accueil").toBeGreaterThanOrEqual(0);
+    expect(discussion, "la discussion précède les portes").toBeLessThan(portes);
+    for (const href of ['href="/projet"', 'href="/outils"', 'href="/competences"']) expect(page).toContain(href);
   });
 });
 
-describe("accueil : lien vers les compétences (C1-C2)", () => {
-  it("« Explorer les compétences » pointe vers /competences", () => {
-    const page = fs.readFileSync(path.join(RACINE, "src/app/page.tsx"), "utf8");
-    expect(page, "l'entrée Explorer doit pointer vers /competences").toContain('"Explorer les compétences", href: "/competences"');
+describe("barre de navigation", () => {
+  it("elle mène à la feuille de route, aux compétences, au projet et aux outils, et propose une recherche", () => {
+    const barre = fs.readFileSync(path.join(RACINE, "src/composants/BarreNavigation.tsx"), "utf8");
+    for (const href of ['"/competences"', '"/projet"', '"/outils"', '"/cockpit"', '"/roadmap"']) expect(barre).toContain(href);
+    expect(barre).toContain('type="search"');
   });
 });
 

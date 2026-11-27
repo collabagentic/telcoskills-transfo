@@ -46,7 +46,7 @@ export function OutilsVue({ outils, roles, competences, fiches }: Props) {
                 <h3>{s.libelle}</h3>
                 <ul className="outils-liste">
                   {liste.map((o) => (
-                    <li key={o.id} className={role && !o.roles.includes(role) ? "outil est-estompe" : "outil"}>
+                    <li key={o.id} id={o.id} className={role && !o.roles.includes(role) ? "outil est-estompe" : "outil"}>
                       <p className="outil-nom">
                         <a href={o.url} rel="noopener noreferrer" target="_blank">
                           {o.nom}
