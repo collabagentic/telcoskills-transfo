@@ -54,8 +54,8 @@ La formule des passerelles existantes en est le cœur et devient la signature du
 
 ### Ce qu'on ne fait pas (anti-périmètre, ne pas rouvrir)
 
-Roadmaps de 16 à 63 compétences (voir §12 : la carte de transformation, elle, existe) · dagre · diagnostic multi-questions · test de positionnement · projet fil
-rouge et ses 9 phases · vue Équipe (reportée, §7 E11) · rôles cibles comme porte d'entrée · heures, rythme, date
+Roadmaps de 16 à 63 compétences (voir §12 : la carte de transformation, elle, existe) · dagre · diagnostic multi-questions · test de positionnement · carte interactive du projet fil
+rouge (le projet lui-même est repris, §16) · vue Équipe (reportée, §7 E11) · rôles cibles comme porte d'entrée · heures, rythme, date
 d'arrivée · révisions espacées · vidéos générées · analyses, frameworks, offres · Sylva comme rubrique.
 
 ---
@@ -764,3 +764,15 @@ Des lots par catégorie, un prompt commun par lot (pas un par fiche). Pour chaqu
 ## 15. Audit du 2026-11-21 : plan pour les agents
 
 Le rapport d'audit UX/UI, éditorial et fonctionnel du 2026-11-21 est comparé à l'existant, recommandation par recommandation, dans `reports/audit-2026-11-21/plan-agents.md`, avec les lots L1 à L7 confiés aux agents (accueil, assistant, fiche en trois niveaux, qualité mesurée, contribution sans GitHub, transparence, partage, recherche). Ce plan complète le §14 ; il ne rouvre pas les principes du §2.
+
+---
+
+## 16. Le projet et les outils (décision de l'auteur, 2026-11-27)
+
+Après relecture de l'ancien site, l'auteur juge le projet fil rouge et le landscape utiles : ce sont les seules réponses à « à quoi ça sert ». Ils sont repris **sans** leurs vues interactives (audit : `reports/audit-2026-11-27/audit-deux-sites.md`).
+
+- **Migration** : `scripts/migration/projet-outils.mjs` (lecture seule de `../telcoskills`). `content/projet.json` : 9 phases, 10 rôles, 44 activités (le rôle IA et ses 7 activités sont retirés, Q5). `content/outils.json` : 57 outils (la catégorie IA est retirée). Objectifs « Ce que vous saurez faire » ajoutés aux 131 compétences (`objectifs`, repris des fiches pratiques de l'ancien site).
+- **Écrans** : `/projet` (un rôle à la fois, matrice rôles × phases, phases avec livrables, activités, jalon, risques) et `/outils` (outils par fonction, un rôle à la fois, liens vers fiches et compétences). À l'écran : « Le projet », « Les outils » ; jamais « landscape » ni « fil rouge ».
+- **Pourquoi d'une étape** : la première activité du projet qui mobilise la compétence (« sert en phase 4 du projet, « … » »), sinon l'étape qu'elle prépare, sinon le domaine.
+- **Fiche et compétence** : « Ce que vous saurez faire » (phase 1) et « Où ça sert dans le projet » (phase 3, avec les outils cités).
+- **Règle 17** : rôles, catégories et compétences cités par le projet et les outils existent.

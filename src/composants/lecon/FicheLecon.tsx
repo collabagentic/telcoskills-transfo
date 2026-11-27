@@ -108,6 +108,12 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
             <p className="lc-chapo">
               {l.resume.avant ?? l.resume.apres} <Avis ok={avis.has("resume")} />
             </p>
+            {l.objectifs.length > 0 ? (
+              <>
+                <h2>Ce que vous saurez faire</h2>
+                <Puces items={l.objectifs} />
+              </>
+            ) : null}
             <h2>Ce qui reste vrai</h2>
             <Puces items={l.resteVrai} />
             {lecture ? (
@@ -163,6 +169,27 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
               <PromptApprendre entree={l.prompt.entree} amorces={l.prompt.amorces} />
             </details>
             <Epreuve ficheId={l.id} cas={l.epreuve.cas} raisonnement={l.epreuve.raisonnement} source={l.epreuve.source} />
+
+            {l.usages.length > 0 ? (
+              <>
+                <h2>Où ça sert dans le projet</h2>
+                <ul className="lc-puces">
+                  {l.usages.map((u) => (
+                    <li key={u.phase + u.activite}>
+                      <Link href={`/projet#${u.phase}`} className="lc-lien">
+                        Phase {u.numero}, {u.titrePhase.charAt(0).toLowerCase() + u.titrePhase.slice(1)}
+                      </Link>{" "}
+                      : {u.activite.charAt(0).toLowerCase() + u.activite.slice(1)}. <span className="lc-ou">{u.roles.join(" · ")}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
+            {l.technos.length > 0 ? (
+              <p className="lc-ou">
+                Outils cités : {l.technos.map((t) => t.nom).join(", ")}. <Link href="/outils" className="lc-lien">Voir les outils par rôle</Link>
+              </p>
+            ) : null}
 
             <h2>Compétences de la feuille de route</h2>
             <ul className="lc-puces">

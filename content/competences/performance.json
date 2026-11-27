@@ -141,7 +141,12 @@
         "nom": "Noyau Linux : HugeTLB pages",
         "url": "https://docs.kernel.org/admin-guide/mm/hugetlbpage.html"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer HugePages et NUMA.",
+      "Réserver HugePages pour un CNF.",
+      "Aligner mémoire et CPU sur le même nœud NUMA."
+    ]
   },
   {
     "id": "perf-profile",
@@ -266,7 +271,12 @@
         "nom": "Kubernetes : politiques du CPU Manager",
         "url": "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/"
       }
-    }
+    },
+    "objectifs": [
+      "Expliquer le profil de performance et l'épinglage CPU.",
+      "Séparer CPU réservés et isolés.",
+      "Valider le profil par des mesures."
+    ]
   },
   {
     "id": "dimensionnement",
@@ -392,7 +402,13 @@
         "nom": "Kubernetes : considérations pour les grands clusters",
         "url": "https://kubernetes.io/docs/setup/best-practices/cluster-large/"
       }
-    }
+    },
+    "objectifs": [
+      "Dimensionner un cluster à partir des exigences des CNF.",
+      "Calculer les marges et la perte de capacité en panne.",
+      "Justifier chaque hypothèse.",
+      "Produire une note de dimensionnement."
+    ]
   },
   {
     "id": "bench-dimensionnement",
@@ -511,6 +527,11 @@
         "nom": "TRex : générateur de trafic open source",
         "url": "https://github.com/cisco-system-traffic-generator/trex-core"
       }
-    }
+    },
+    "objectifs": [
+      "Concevoir un test de charge.",
+      "Interpréter résultats et marges.",
+      "Corriger le dimensionnement."
+    ]
   }
 ]

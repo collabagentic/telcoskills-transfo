@@ -1,0 +1,310 @@
+/*
+ * Pages « Le projet » et « Les outils ». Importé par src/app/projet/page.tsx et src/app/outils/page.tsx.
+ * Aucune couleur en dur : uniquement les jetons de tokens.css (vérifié par tests/tokens.test.ts).
+ */
+
+.projet {
+  padding: var(--e-8) 0 var(--e-4);
+}
+
+.projet h1 {
+  font-size: var(--t-xl);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: var(--e-2) 0 var(--e-4);
+}
+
+.projet-chapeau {
+  font-size: var(--t-l);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--e-4);
+}
+
+.projet-hypotheses,
+.projet-aide,
+.projet-role-desc {
+  color: var(--encre-2);
+  font-size: var(--t-s);
+  line-height: 1.55;
+  margin: 0 0 var(--e-4);
+}
+
+.projet-role-desc {
+  color: var(--encre);
+}
+
+.projet h2 {
+  font-size: var(--t-l);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: var(--e-8) 0 var(--e-3);
+}
+
+.projet h3 {
+  font-family: var(--police-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--encre-3);
+  margin: var(--e-6) 0 var(--e-2);
+}
+
+/* Choix d'un rôle */
+.projet-choix {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  margin: 0 0 var(--e-4);
+}
+
+.projet-pilule {
+  border: 1px solid var(--filet-fort);
+  border-radius: var(--r-pilule);
+  background: transparent;
+  color: var(--encre-2);
+  font: inherit;
+  font-size: var(--t-s);
+  min-height: 2.25rem;
+  padding: var(--e-1) var(--e-3);
+  cursor: pointer;
+}
+
+.projet-pilule:hover {
+  border-color: var(--encre-3);
+  color: var(--encre);
+}
+
+.projet-pilule[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-encre);
+}
+
+.projet-pilule:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Matrice rôles × phases */
+.projet-matrice-cadre {
+  overflow-x: auto;
+  margin: 0 0 var(--e-2);
+}
+
+.projet-matrice {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-s);
+}
+
+.projet-matrice caption {
+  text-align: left;
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+  padding: 0 0 var(--e-2);
+}
+
+.projet-matrice th,
+.projet-matrice td {
+  border-bottom: 1px solid var(--filet);
+  padding: var(--e-2);
+  text-align: center;
+}
+
+.projet-matrice th[scope="row"] {
+  text-align: left;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.projet-matrice td[data-n="0"] {
+  color: var(--encre-3);
+}
+
+.projet-matrice td:not([data-n="0"]) {
+  color: var(--accent-texte);
+  font-weight: 600;
+}
+
+/* Sur mobile, les 9 phases tiennent dans la largeur : pas de boîte à faire défiler. */
+@media (max-width: 40rem) {
+  .projet-matrice {
+    font-size: var(--t-xs);
+  }
+  .projet-matrice th,
+  .projet-matrice td {
+    padding: var(--e-1) 0.2rem;
+  }
+  .projet-matrice th[scope="row"] {
+    white-space: normal;
+    min-width: 6.5rem;
+  }
+}
+
+.projet-matrice tr.est-estompe {
+  opacity: 0.35;
+}
+
+.projet-matrice tr.est-choisi th[scope="row"] {
+  color: var(--accent-texte);
+}
+
+/* Phases */
+.projet-phases {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.projet-phase {
+  border-top: 1px solid var(--filet);
+  padding: var(--e-2) 0 var(--e-6);
+  scroll-margin-top: var(--e-8);
+}
+
+.projet-phase-titre {
+  display: flex;
+  align-items: baseline;
+  gap: var(--e-3);
+}
+
+.projet-numero {
+  font-family: var(--police-mono), ui-monospace, monospace;
+  color: var(--accent-texte);
+}
+
+.projet-objectif {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.projet-livrables,
+.projet-details ul {
+  margin: 0;
+  padding-left: var(--e-6);
+  line-height: 1.6;
+  color: var(--encre-2);
+}
+
+.projet-activites {
+  list-style: none;
+  display: grid;
+  gap: var(--e-3);
+  margin: 0;
+  padding: 0;
+}
+
+.projet-activite {
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  padding: var(--e-3) var(--e-4);
+}
+
+.projet-activite-titre {
+  font-weight: 600;
+  margin: 0 0 var(--e-1);
+}
+
+.projet-activite-roles {
+  color: var(--encre-3);
+  font-size: var(--t-xs);
+  margin: 0 0 var(--e-2);
+}
+
+.projet-competences {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-1) var(--e-3);
+  margin: 0;
+  padding: 0;
+  font-size: var(--t-s);
+}
+
+.projet-competences a {
+  color: var(--encre);
+  text-underline-offset: 3px;
+}
+
+.projet-a-fiche {
+  font-family: var(--police-mono), ui-monospace, monospace;
+  font-size: var(--t-xs);
+  color: var(--accent-texte);
+  margin-left: var(--e-1);
+}
+
+.projet-details {
+  margin: var(--e-3) 0 0;
+}
+
+.projet-details summary {
+  cursor: pointer;
+  color: var(--encre-2);
+  font-size: var(--t-s);
+}
+
+.projet-details summary:hover {
+  color: var(--encre);
+}
+
+/* Outils */
+.outils-categorie h2 {
+  margin-bottom: var(--e-1);
+}
+
+.outils-sous {
+  margin: var(--e-4) 0 0;
+}
+
+.outils-liste {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: var(--e-3);
+  margin: 0;
+  padding: 0;
+}
+
+.outil {
+  border: 1px solid var(--filet);
+  border-radius: var(--r-l);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface-3));
+  padding: var(--e-3) var(--e-4);
+  font-size: var(--t-s);
+}
+
+.outil.est-estompe {
+  opacity: 0.35;
+}
+
+.outil-nom {
+  font-weight: 600;
+  font-size: var(--t-m);
+  margin: 0 0 var(--e-1);
+}
+
+.outil-nom a {
+  color: var(--encre);
+  text-underline-offset: 3px;
+}
+
+.outil-liens {
+  list-style: none;
+  margin: var(--e-1) 0 0;
+  padding: 0;
+  color: var(--encre-2);
+  line-height: 1.5;
+}
+
+.outil-liens a {
+  color: var(--encre-2);
+  text-underline-offset: 3px;
+}
+
+.outil-liens a:hover {
+  color: var(--encre);
+}

@@ -4,6 +4,8 @@ export function PiedDePage() {
   return (
     <footer className="pied">
       <nav className="pied-liens" aria-label="Informations">
+        <Link href="/projet">Le projet</Link>
+        <Link href="/outils">Les outils</Link>
         <Link href="/a-propos">À propos</Link>
         <Link href="/contribuer">Contribuer</Link>
         <Link href="/sources-et-methode">Sources et méthode</Link>

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { z } from "zod";
 import { verifierContenu } from "./regles";
-import { competenceSchema, contexteSchema, domaineSchema, ficheSchema, orientationSchema, technoSchema, type Contenu } from "./schemas";
+import { competenceSchema, contexteSchema, domaineSchema, ficheSchema, orientationSchema, outilsSchema, projetSchema, technoSchema, type Contenu } from "./schemas";
 
 /**
  * Chargement du contenu au build, côté serveur uniquement : ne jamais importer ce fichier dans un composant client.
@@ -62,7 +62,13 @@ export function chargerContenu(): Contenu {
   if (!orientation.success) signaler(erreurs, "orientation.json", orientation.error);
   const contexte = contexteSchema.safeParse(lireJson(path.join(RACINE, "contexte.json")));
   if (!contexte.success) signaler(erreurs, "contexte.json", contexte.error);
+  const projet = projetSchema.safeParse(lireJson(path.join(RACINE, "projet.json")));
+  if (!projet.success) signaler(erreurs, "projet.json", projet.error);
+  const outils = outilsSchema.safeParse(lireJson(path.join(RACINE, "outils.json")));
+  if (!outils.success) signaler(erreurs, "outils.json", outils.error);
   const contenu = {
+    projet: projet.success ? projet.data : undefined,
+    outils: outils.success ? outils.data : undefined,
     contexte: contexte.success ? contexte.data : undefined,
     domaines: lireListes("domaines.json", domaineSchema, erreurs),
     competences: lireListes("competences", competenceSchema, erreurs),
@@ -70,7 +76,7 @@ export function chargerContenu(): Contenu {
     technos: lireListes("technos.json", technoSchema, erreurs),
     orientation: orientation.success ? orientation.data : undefined,
   };
-  if (erreurs.length === 0 && contenu.orientation && contenu.contexte) erreurs.push(...verifierContenu(contenu as Contenu));
+  if (erreurs.length === 0 && contenu.orientation && contenu.contexte && contenu.projet && contenu.outils) erreurs.push(...verifierContenu(contenu as Contenu));
   if (erreurs.length > 0) {
     throw new Error(`Le contenu est invalide (${erreurs.length} erreur${erreurs.length > 1 ? "s" : ""}) :\n- ${erreurs.join("\n- ")}`);
   }

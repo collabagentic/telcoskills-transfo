@@ -15,7 +15,8 @@ const REPERES = [
 const ENTREES = [
   { label: "Composer ma feuille de route", href: "/roadmap", principal: true },
   { label: "Explorer les compétences", href: "/competences", principal: false },
-  { label: "Contribuer", href: "/contribuer", principal: false },
+  { label: "Le projet", href: "/projet", principal: false },
+  { label: "Les outils", href: "/outils", principal: false },
 ] as const;
 
 export default function Accueil() {

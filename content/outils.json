@@ -1,0 +1,1053 @@
+{
+  "source": "Regroupement par fonction sur le modèle du paysage de la CNCF, repris de l'ancien site. L'association outil → rôle est une proposition à relire avec les équipes.",
+  "statut": "brouillon",
+  "categories": [
+    {
+      "id": "provisionnement",
+      "libelle": "Provisionnement",
+      "intro": "Ce qui prépare et sécurise la plateforme avant qu'une fonction réseau n'y tourne : automatisation, registre d'images, secrets, politiques.",
+      "sous_categories": [
+        {
+          "id": "automatisation",
+          "libelle": "Automatisation et configuration"
+        },
+        {
+          "id": "registre",
+          "libelle": "Registre d'images"
+        },
+        {
+          "id": "secrets",
+          "libelle": "Secrets et certificats"
+        },
+        {
+          "id": "securite",
+          "libelle": "Sécurité et conformité"
+        }
+      ]
+    },
+    {
+      "id": "runtime",
+      "libelle": "Runtime",
+      "intro": "Ce qui exécute les charges : conteneurs, machines virtuelles, stockage et réseau des pods. C'est là que le télécom exige le plus (réseau secondaire, temps réel).",
+      "sous_categories": [
+        {
+          "id": "conteneurs",
+          "libelle": "Exécution de conteneurs"
+        },
+        {
+          "id": "stockage",
+          "libelle": "Stockage"
+        },
+        {
+          "id": "reseau",
+          "libelle": "Réseau des pods"
+        },
+        {
+          "id": "reseau-telco",
+          "libelle": "Réseau télécom et performance"
+        },
+        {
+          "id": "virtualisation",
+          "libelle": "Virtualisation"
+        }
+      ]
+    },
+    {
+      "id": "orchestration",
+      "libelle": "Orchestration et gestion",
+      "intro": "Ce qui place, relie et cycle de vie les charges : Kubernetes et ses distributions, la découverte de services, le multi-cluster.",
+      "sous_categories": [
+        {
+          "id": "distributions",
+          "libelle": "Orchestration et distributions"
+        },
+        {
+          "id": "multicluster",
+          "libelle": "Multi-cluster et cycle de vie"
+        },
+        {
+          "id": "decouverte",
+          "libelle": "Coordination et découverte"
+        },
+        {
+          "id": "proxy",
+          "libelle": "Proxy et maillage de services"
+        }
+      ]
+    },
+    {
+      "id": "livraison",
+      "libelle": "Définition d'application et livraison",
+      "intro": "Ce qui décrit, empaquette et déploie une application : charts, GitOps, pipelines. Le trait d'union entre l'éditeur de la fonction réseau et la plateforme.",
+      "sous_categories": [
+        {
+          "id": "paquetage",
+          "libelle": "Paquetage"
+        },
+        {
+          "id": "gitops",
+          "libelle": "GitOps"
+        },
+        {
+          "id": "ci-cd",
+          "libelle": "CI/CD et tests"
+        }
+      ]
+    },
+    {
+      "id": "observabilite",
+      "libelle": "Observabilité et analyse",
+      "intro": "Ce qui dit si la plateforme et les fonctions réseau vont bien : métriques, journaux, traces, protocoles, résilience éprouvée.",
+      "sous_categories": [
+        {
+          "id": "metriques",
+          "libelle": "Métriques et tableaux de bord"
+        },
+        {
+          "id": "logs",
+          "libelle": "Journaux"
+        },
+        {
+          "id": "traces",
+          "libelle": "Traces et télémétrie"
+        },
+        {
+          "id": "protocoles",
+          "libelle": "Analyse de protocoles"
+        },
+        {
+          "id": "resilience",
+          "libelle": "Tests de résilience"
+        }
+      ]
+    },
+    {
+      "id": "telecom",
+      "libelle": "Cœur 5G et fonctions réseau",
+      "intro": "Ce qui est propre au télécom et absent du paysage de la CNCF : cœurs 5G ouverts pour apprendre et tester, simulateurs, orchestration de fonctions réseau, API réseau.",
+      "sous_categories": [
+        {
+          "id": "coeur-5g",
+          "libelle": "Cœurs 5G ouverts"
+        },
+        {
+          "id": "simulation",
+          "libelle": "Simulation et tests"
+        },
+        {
+          "id": "nfv",
+          "libelle": "Orchestration de fonctions réseau"
+        },
+        {
+          "id": "api-reseau",
+          "libelle": "API réseau"
+        }
+      ]
+    }
+  ],
+  "outils": [
+    {
+      "id": "ansible",
+      "nom": "Ansible",
+      "categorie": "provisionnement",
+      "sousCategorie": "automatisation",
+      "url": "https://docs.ansible.com/",
+      "roles": [
+        "ingenieur-caas",
+        "devops",
+        "sre",
+        "reseau"
+      ],
+      "competences": [
+        "ansible-python"
+      ]
+    },
+    {
+      "id": "opentofu",
+      "nom": "OpenTofu",
+      "categorie": "provisionnement",
+      "sousCategorie": "automatisation",
+      "url": "https://opentofu.org/docs/",
+      "roles": [
+        "architecte",
+        "devops",
+        "ingenieur-caas"
+      ],
+      "competences": [
+        "lab-as-code"
+      ]
+    },
+    {
+      "id": "harbor",
+      "nom": "Harbor",
+      "categorie": "provisionnement",
+      "sousCategorie": "registre",
+      "url": "https://goharbor.io/docs/",
+      "roles": [
+        "ingenieur-caas",
+        "devops",
+        "securite",
+        "integrateur-nf"
+      ],
+      "competences": [
+        "sec-supply",
+        "onboarding-editeur"
+      ]
+    },
+    {
+      "id": "openbao",
+      "nom": "OpenBao",
+      "categorie": "provisionnement",
+      "sousCategorie": "secrets",
+      "url": "https://openbao.org/docs/",
+      "roles": [
+        "securite",
+        "ingenieur-caas",
+        "architecte"
+      ],
+      "competences": [
+        "sec-secrets"
+      ]
+    },
+    {
+      "id": "cert-manager",
+      "nom": "cert-manager",
+      "categorie": "provisionnement",
+      "sousCategorie": "secrets",
+      "url": "https://cert-manager.io/docs/",
+      "roles": [
+        "securite",
+        "ingenieur-caas",
+        "integrateur-nf"
+      ],
+      "competences": [
+        "sec-secrets",
+        "sec-sba"
+      ]
+    },
+    {
+      "id": "kyverno",
+      "nom": "Kyverno",
+      "categorie": "provisionnement",
+      "sousCategorie": "securite",
+      "url": "https://kyverno.io/docs/",
+      "roles": [
+        "securite",
+        "ingenieur-caas",
+        "sre"
+      ],
+      "competences": [
+        "sec-durcissement",
+        "k8s-rbac"
+      ]
+    },
+    {
+      "id": "opa-gatekeeper",
+      "nom": "OPA Gatekeeper",
+      "categorie": "provisionnement",
+      "sousCategorie": "securite",
+      "url": "https://open-policy-agent.github.io/gatekeeper/website/docs/",
+      "roles": [
+        "securite",
+        "ingenieur-caas",
+        "architecte"
+      ],
+      "competences": [
+        "sec-durcissement",
+        "k8s-rbac"
+      ]
+    },
+    {
+      "id": "falco",
+      "nom": "Falco",
+      "categorie": "provisionnement",
+      "sousCategorie": "securite",
+      "url": "https://falco.org/docs/",
+      "roles": [
+        "securite",
+        "sre",
+        "ingenieur-caas"
+      ],
+      "competences": [
+        "sec-detection"
+      ]
+    },
+    {
+      "id": "trivy",
+      "nom": "Trivy",
+      "categorie": "provisionnement",
+      "sousCategorie": "securite",
+      "url": "https://trivy.dev/latest/docs/",
+      "roles": [
+        "securite",
+        "devops",
+        "sre"
+      ],
+      "competences": [
+        "sec-supply",
+        "gestion-vulns"
+      ]
+    },
+    {
+      "id": "sigstore",
+      "nom": "Sigstore (cosign)",
+      "categorie": "provisionnement",
+      "sousCategorie": "securite",
+      "url": "https://docs.sigstore.dev/",
+      "roles": [
+        "securite",
+        "devops",
+        "editeur"
+      ],
+      "competences": [
+        "sec-supply"
+      ]
+    },
+    {
+      "id": "cri-o",
+      "nom": "CRI-O",
+      "categorie": "runtime",
+      "sousCategorie": "conteneurs",
+      "url": "https://cri-o.io/",
+      "roles": [
+        "ingenieur-caas",
+        "architecte"
+      ],
+      "competences": [
+        "conteneurs",
+        "ocp-install"
+      ]
+    },
+    {
+      "id": "containerd",
+      "nom": "containerd",
+      "categorie": "runtime",
+      "sousCategorie": "conteneurs",
+      "url": "https://containerd.io/docs/",
+      "roles": [
+        "ingenieur-caas",
+        "devops",
+        "sre"
+      ],
+      "competences": [
+        "conteneurs"
+      ]
+    },
+    {
+      "id": "podman",
+      "nom": "Podman",
+      "categorie": "runtime",
+      "sousCategorie": "conteneurs",
+      "url": "https://docs.podman.io/",
+      "roles": [
+        "devops",
+        "ingenieur-caas",
+        "editeur"
+      ],
+      "competences": [
+        "conteneurs"
+      ]
+    },
+    {
+      "id": "ceph",
+      "nom": "Ceph",
+      "categorie": "runtime",
+      "sousCategorie": "stockage",
+      "url": "https://docs.ceph.com/",
+      "roles": [
+        "architecte",
+        "ingenieur-caas",
+        "sre"
+      ],
+      "competences": [
+        "ceph",
+        "stockage-dr"
+      ]
+    },
+    {
+      "id": "rook",
+      "nom": "Rook",
+      "categorie": "runtime",
+      "sousCategorie": "stockage",
+      "url": "https://rook.io/docs/rook/latest-release/",
+      "roles": [
+        "ingenieur-caas",
+        "architecte",
+        "sre"
+      ],
+      "competences": [
+        "ceph",
+        "k8s-stockage"
+      ]
+    },
+    {
+      "id": "csi",
+      "nom": "CSI (Container Storage Interface)",
+      "categorie": "runtime",
+      "sousCategorie": "stockage",
+      "url": "https://kubernetes-csi.github.io/docs/",
+      "roles": [
+        "ingenieur-caas",
+        "architecte"
+      ],
+      "competences": [
+        "k8s-stockage"
+      ]
+    },
+    {
+      "id": "cilium",
+      "nom": "Cilium",
+      "categorie": "runtime",
+      "sousCategorie": "reseau",
+      "url": "https://docs.cilium.io/",
+      "roles": [
+        "ingenieur-caas",
+        "architecte",
+        "reseau",
+        "securite"
+      ],
+      "competences": [
+        "cni"
+      ]
+    },
+    {
+      "id": "calico",
+      "nom": "Calico",
+      "categorie": "runtime",
+      "sousCategorie": "reseau",
+      "url": "https://docs.tigera.io/calico/latest/about/",
+      "roles": [
+        "ingenieur-caas",
+        "reseau"
+      ],
+      "competences": [
+        "cni"
+      ]
+    },
+    {
+      "id": "ovn-kubernetes",
+      "nom": "OVN-Kubernetes",
+      "categorie": "runtime",
+      "sousCategorie": "reseau",
+      "url": "https://ovn-kubernetes.io/",
+      "roles": [
+        "ingenieur-caas",
+        "architecte",
+        "reseau"
+      ],
+      "competences": [
+        "cni"
+      ]
+    },
+    {
+      "id": "multus",
+      "nom": "Multus CNI",
+      "categorie": "runtime",
+      "sousCategorie": "reseau-telco",
+      "url": "https://github.com/k8snetworkplumbingwg/multus-cni",
+      "roles": [
+        "ingenieur-caas",
+        "integrateur-nf",
+        "devops",
+        "reseau",
+        "sre"
+      ],
+      "competences": [
+        "multus"
+      ]
+    },
+    {
+      "id": "sriov-operator",
+      "nom": "SR-IOV Network Operator",
+      "categorie": "runtime",
+      "sousCategorie": "reseau-telco",
+      "url": "https://github.com/k8snetworkplumbingwg/sriov-network-operator",
+      "roles": [
+        "ingenieur-caas",
+        "reseau",
+        "architecte"
+      ],
+      "competences": [
+        "sriov"
+      ]
+    },
+    {
+      "id": "dpdk",
+      "nom": "DPDK",
+      "categorie": "runtime",
+      "sousCategorie": "reseau-telco",
+      "url": "https://doc.dpdk.org/",
+      "roles": [
+        "ingenieur-caas",
+        "reseau",
+        "editeur",
+        "architecte"
+      ],
+      "competences": [
+        "dpdk",
+        "perf-hugepages"
+      ]
+    },
+    {
+      "id": "metallb",
+      "nom": "MetalLB",
+      "categorie": "runtime",
+      "sousCategorie": "reseau-telco",
+      "url": "https://metallb.io/",
+      "roles": [
+        "ingenieur-caas",
+        "reseau",
+        "architecte"
+      ],
+      "competences": [
+        "lb-bgp"
+      ]
+    },
+    {
+      "id": "frr",
+      "nom": "FRRouting",
+      "categorie": "runtime",
+      "sousCategorie": "reseau-telco",
+      "url": "https://docs.frrouting.org/",
+      "roles": [
+        "reseau",
+        "ingenieur-caas"
+      ],
+      "competences": [
+        "reseau-ip",
+        "lb-bgp"
+      ]
+    },
+    {
+      "id": "kubevirt",
+      "nom": "KubeVirt",
+      "categorie": "runtime",
+      "sousCategorie": "virtualisation",
+      "url": "https://kubevirt.io/user-guide/",
+      "roles": [
+        "architecte",
+        "ingenieur-caas"
+      ],
+      "competences": [
+        "kubevirt"
+      ]
+    },
+    {
+      "id": "openstack",
+      "nom": "OpenStack",
+      "categorie": "runtime",
+      "sousCategorie": "virtualisation",
+      "url": "https://docs.openstack.org/",
+      "roles": [
+        "architecte",
+        "ingenieur-caas",
+        "reseau"
+      ],
+      "competences": [
+        "openstack",
+        "nfv-etsi"
+      ]
+    },
+    {
+      "id": "kubernetes",
+      "nom": "Kubernetes",
+      "categorie": "orchestration",
+      "sousCategorie": "distributions",
+      "url": "https://kubernetes.io/docs/",
+      "roles": [
+        "architecte",
+        "ingenieur-caas",
+        "integrateur-nf",
+        "devops",
+        "sre",
+        "securite"
+      ],
+      "competences": [
+        "k8s-archi",
+        "k8s-workloads",
+        "k8s-services"
+      ]
+    },
+    {
+      "id": "okd",
+      "nom": "OpenShift / OKD",
+      "categorie": "orchestration",
+      "sousCategorie": "distributions",
+      "url": "https://docs.okd.io/",
+      "roles": [
+        "architecte",
+        "ingenieur-caas",
+        "sre"
+      ],
+      "competences": [
+        "ocp-install",
+        "ocp-operators",
+        "ocp-upgrade"
+      ]
+    },
+    {
+      "id": "sylva",
+      "nom": "Sylva",
+      "categorie": "orchestration",
+      "sousCategorie": "distributions",
+      "url": "https://sylvaproject.org/",
+      "roles": [
+        "architecte",
+        "ingenieur-caas"
+      ],
+      "competences": [
+        "distrib-alt"
+      ]
+    },
+    {
+      "id": "cluster-api",
+      "nom": "Cluster API",
+      "categorie": "orchestration",
+      "sousCategorie": "multicluster",
+      "url": "https://cluster-api.sigs.k8s.io/",
+      "roles": [
+        "architecte",
+        "ingenieur-caas"
+      ],
+      "competences": [
+        "ocp-multicluster",
+        "distrib-alt"
+      ]
+    },
+    {
+      "id": "ocm",
+      "nom": "Open Cluster Management",
+      "categorie": "orchestration",
+      "sousCategorie": "multicluster",
+      "url": "https://open-cluster-management.io/",
+      "roles": [
+        "architecte",
+        "ingenieur-caas",
+        "sre"
+      ],
+      "competences": [
+        "ocp-multicluster",
+        "ztp"
+      ]
+    },
+    {
+      "id": "etcd",
+      "nom": "etcd",
+      "categorie": "orchestration",
+      "sousCategorie": "decouverte",
+      "url": "https://etcd.io/docs/",
+      "roles": [
+        "architecte",
+        "ingenieur-caas",
+        "sre"
+      ],
+      "competences": [
+        "k8s-archi"
+      ]
+    },
+    {
+      "id": "coredns",
+      "nom": "CoreDNS",
+      "categorie": "orchestration",
+      "sousCategorie": "decouverte",
+      "url": "https://coredns.io/manual/toc/",
+      "roles": [
+        "ingenieur-caas",
+        "sre",
+        "integrateur-nf"
+      ],
+      "competences": [
+        "k8s-services"
+      ]
+    },
+    {
+      "id": "envoy",
+      "nom": "Envoy",
+      "categorie": "orchestration",
+      "sousCategorie": "proxy",
+      "url": "https://www.envoyproxy.io/docs/envoy/latest/",
+      "roles": [
+        "integrateur-nf",
+        "architecte",
+        "editeur",
+        "devops"
+      ],
+      "competences": [
+        "sbi-http2",
+        "nrf-scp"
+      ]
+    },
+    {
+      "id": "istio",
+      "nom": "Istio",
+      "categorie": "orchestration",
+      "sousCategorie": "proxy",
+      "url": "https://istio.io/latest/docs/",
+      "roles": [
+        "architecte",
+        "securite",
+        "sre",
+        "integrateur-nf"
+      ],
+      "competences": [
+        "sec-sba",
+        "nrf-scp"
+      ]
+    },
+    {
+      "id": "helm",
+      "nom": "Helm",
+      "categorie": "livraison",
+      "sousCategorie": "paquetage",
+      "url": "https://helm.sh/docs/",
+      "roles": [
+        "devops",
+        "integrateur-nf",
+        "ingenieur-caas",
+        "editeur"
+      ],
+      "competences": [
+        "helm",
+        "helm-cnf"
+      ]
+    },
+    {
+      "id": "operator-framework",
+      "nom": "Operator Framework",
+      "categorie": "livraison",
+      "sousCategorie": "paquetage",
+      "url": "https://operatorframework.io/",
+      "roles": [
+        "ingenieur-caas",
+        "editeur",
+        "devops"
+      ],
+      "competences": [
+        "operators-dev",
+        "ocp-operators"
+      ]
+    },
+    {
+      "id": "argo-cd",
+      "nom": "Argo CD",
+      "categorie": "livraison",
+      "sousCategorie": "gitops",
+      "url": "https://argo-cd.readthedocs.io/",
+      "roles": [
+        "devops",
+        "ingenieur-caas",
+        "sre",
+        "architecte"
+      ],
+      "competences": [
+        "gitops"
+      ]
+    },
+    {
+      "id": "flux",
+      "nom": "Flux",
+      "categorie": "livraison",
+      "sousCategorie": "gitops",
+      "url": "https://fluxcd.io/flux/",
+      "roles": [
+        "devops",
+        "ingenieur-caas",
+        "sre"
+      ],
+      "competences": [
+        "gitops"
+      ]
+    },
+    {
+      "id": "tekton",
+      "nom": "Tekton",
+      "categorie": "livraison",
+      "sousCategorie": "ci-cd",
+      "url": "https://tekton.dev/docs/",
+      "roles": [
+        "devops",
+        "ingenieur-caas",
+        "editeur"
+      ],
+      "competences": [
+        "ci-cd-integration",
+        "git-ci"
+      ]
+    },
+    {
+      "id": "gitlab-ci",
+      "nom": "GitLab CI/CD",
+      "categorie": "livraison",
+      "sousCategorie": "ci-cd",
+      "url": "https://docs.gitlab.com/ci/",
+      "roles": [
+        "devops",
+        "ingenieur-caas",
+        "sre",
+        "editeur"
+      ],
+      "competences": [
+        "git-ci",
+        "ci-cd-integration"
+      ]
+    },
+    {
+      "id": "robot-framework",
+      "nom": "Robot Framework",
+      "categorie": "livraison",
+      "sousCategorie": "ci-cd",
+      "url": "https://robotframework.org/",
+      "roles": [
+        "devops",
+        "integrateur-nf",
+        "editeur"
+      ],
+      "competences": [
+        "tests-fonctionnels",
+        "tests-config"
+      ]
+    },
+    {
+      "id": "prometheus",
+      "nom": "Prometheus",
+      "categorie": "observabilite",
+      "sousCategorie": "metriques",
+      "url": "https://prometheus.io/docs/",
+      "roles": [
+        "sre",
+        "ingenieur-caas",
+        "devops",
+        "architecte",
+        "integrateur-nf"
+      ],
+      "competences": [
+        "obs-metrics",
+        "alerting-utile",
+        "kpi-5gc"
+      ]
+    },
+    {
+      "id": "grafana",
+      "nom": "Grafana",
+      "categorie": "observabilite",
+      "sousCategorie": "metriques",
+      "url": "https://grafana.com/docs/grafana/latest/",
+      "roles": [
+        "sre",
+        "ingenieur-caas",
+        "devops",
+        "integrateur-nf"
+      ],
+      "competences": [
+        "obs-dash",
+        "kpi-5gc"
+      ]
+    },
+    {
+      "id": "loki",
+      "nom": "Loki",
+      "categorie": "observabilite",
+      "sousCategorie": "logs",
+      "url": "https://grafana.com/docs/loki/latest/",
+      "roles": [
+        "sre",
+        "ingenieur-caas",
+        "devops"
+      ],
+      "competences": [
+        "obs-logs"
+      ]
+    },
+    {
+      "id": "fluent-bit",
+      "nom": "Fluent Bit",
+      "categorie": "observabilite",
+      "sousCategorie": "logs",
+      "url": "https://docs.fluentbit.io/manual",
+      "roles": [
+        "sre",
+        "ingenieur-caas",
+        "securite"
+      ],
+      "competences": [
+        "obs-logs"
+      ]
+    },
+    {
+      "id": "opentelemetry",
+      "nom": "OpenTelemetry",
+      "categorie": "observabilite",
+      "sousCategorie": "traces",
+      "url": "https://opentelemetry.io/docs/",
+      "roles": [
+        "sre",
+        "ingenieur-caas",
+        "devops",
+        "editeur"
+      ],
+      "competences": [
+        "obs-telemetry"
+      ]
+    },
+    {
+      "id": "jaeger",
+      "nom": "Jaeger",
+      "categorie": "observabilite",
+      "sousCategorie": "traces",
+      "url": "https://www.jaegertracing.io/docs/",
+      "roles": [
+        "sre",
+        "devops",
+        "integrateur-nf"
+      ],
+      "competences": [
+        "obs-telemetry",
+        "traces"
+      ]
+    },
+    {
+      "id": "wireshark",
+      "nom": "Wireshark",
+      "categorie": "observabilite",
+      "sousCategorie": "protocoles",
+      "url": "https://www.wireshark.org/docs/",
+      "roles": [
+        "integrateur-nf",
+        "reseau",
+        "sre",
+        "devops",
+        "editeur"
+      ],
+      "competences": [
+        "traces",
+        "analyse-incident",
+        "depannage-reseau-telco"
+      ]
+    },
+    {
+      "id": "litmus",
+      "nom": "LitmusChaos",
+      "categorie": "observabilite",
+      "sousCategorie": "resilience",
+      "url": "https://litmuschaos.io/docs/",
+      "roles": [
+        "sre",
+        "integrateur-nf"
+      ],
+      "competences": [
+        "chaos",
+        "resilience-nf"
+      ]
+    },
+    {
+      "id": "open5gs",
+      "nom": "Open5GS",
+      "categorie": "telecom",
+      "sousCategorie": "coeur-5g",
+      "url": "https://open5gs.org/open5gs/docs/",
+      "roles": [
+        "integrateur-nf",
+        "devops",
+        "editeur"
+      ],
+      "competences": [
+        "amf",
+        "smf-upf",
+        "deploiement-lab"
+      ]
+    },
+    {
+      "id": "free5gc",
+      "nom": "free5GC",
+      "categorie": "telecom",
+      "sousCategorie": "coeur-5g",
+      "url": "https://free5gc.org/guide/",
+      "roles": [
+        "integrateur-nf",
+        "devops",
+        "editeur"
+      ],
+      "competences": [
+        "amf",
+        "udm-udr-ausf",
+        "deploiement-lab"
+      ]
+    },
+    {
+      "id": "oai-5gc",
+      "nom": "OpenAirInterface 5G Core",
+      "categorie": "telecom",
+      "sousCategorie": "coeur-5g",
+      "url": "https://openairinterface.org/oai-5g-core-network-project/",
+      "roles": [
+        "integrateur-nf",
+        "editeur",
+        "devops"
+      ],
+      "competences": [
+        "archi-5g",
+        "deploiement-lab"
+      ]
+    },
+    {
+      "id": "ueransim",
+      "nom": "UERANSIM",
+      "categorie": "telecom",
+      "sousCategorie": "simulation",
+      "url": "https://github.com/aligungr/UERANSIM",
+      "roles": [
+        "integrateur-nf",
+        "devops",
+        "editeur"
+      ],
+      "competences": [
+        "simulation-ran-ue",
+        "enregistrement"
+      ]
+    },
+    {
+      "id": "trex",
+      "nom": "TRex",
+      "categorie": "telecom",
+      "sousCategorie": "simulation",
+      "url": "https://trex-tgn.cisco.com/trex/doc/",
+      "roles": [
+        "integrateur-nf",
+        "reseau",
+        "ingenieur-caas"
+      ],
+      "competences": [
+        "tests-perf",
+        "bench-dimensionnement"
+      ]
+    },
+    {
+      "id": "osm",
+      "nom": "Open Source MANO",
+      "categorie": "telecom",
+      "sousCategorie": "nfv",
+      "url": "https://osm.etsi.org/docs/",
+      "roles": [
+        "architecte",
+        "integrateur-nf",
+        "editeur"
+      ],
+      "competences": [
+        "nfv-etsi",
+        "etsi-sol"
+      ]
+    },
+    {
+      "id": "camara",
+      "nom": "CAMARA",
+      "categorie": "telecom",
+      "sousCategorie": "api-reseau",
+      "url": "https://camaraproject.org/",
+      "roles": [
+        "architecte",
+        "editeur"
+      ],
+      "competences": []
+    }
+  ]
+}

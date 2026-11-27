@@ -1,0 +1,867 @@
+{
+  "id": "coeur-5g-sur-caas",
+  "titre": "Déployer un cœur 5G sur un CaaS : du design à la mise en production",
+  "resume": "Un projet type pour voir qui fait quoi à chaque phase d'un déploiement, et à quoi sert chaque compétence.",
+  "contexte": "Exemple type, à adapter : un opérateur déploie un cœur 5G (architecture orientée services) sous forme de fonctions réseau conteneurisées, fournies par un éditeur en charts Helm, sur une plateforme Kubernetes bare metal répartie sur deux sites, interconnectée au réseau IP/MPLS de l'opérateur, avec un objectif de disponibilité élevé.",
+  "source": "Rédaction éditoriale à partir des compétences du site et de la pratique des projets de plateforme ; ce n'est pas un retour d'expérience mesuré. Le découpage en phases, les jalons et la répartition des rôles sont à adapter à votre organisation et à valider par un chef de projet.",
+  "statut": "brouillon",
+  "roles": [
+    {
+      "id": "chef-projet",
+      "libelle": "Chef de projet",
+      "description": "Cadre le périmètre, pilote les jalons et les risques, coordonne les acteurs."
+    },
+    {
+      "id": "architecte",
+      "libelle": "Architecte cloud / CaaS telco",
+      "description": "Conçoit et justifie l'architecture, dimensionne, garantit la cohérence d'ensemble."
+    },
+    {
+      "id": "ingenieur-caas",
+      "libelle": "Ingénieur CaaS telco",
+      "description": "Installe, configure et fait évoluer la plateforme Kubernetes."
+    },
+    {
+      "id": "integrateur-nf",
+      "libelle": "Intégrateur NF 5GC",
+      "description": "Fait fonctionner les fonctions réseau du cœur 5G sur la plateforme, de bout en bout."
+    },
+    {
+      "id": "devops",
+      "libelle": "Intégrateur DevOps",
+      "description": "Automatise le packaging, le déploiement et les tests ; profil IT qui apprend le métier."
+    },
+    {
+      "id": "sre",
+      "libelle": "SRE / exploitation",
+      "description": "Prépare puis assure l'exploitation : objectifs de service, supervision, incidents, changements."
+    },
+    {
+      "id": "securite",
+      "libelle": "Sécurité / RSSI",
+      "description": "Définit et vérifie les exigences de sécurité et de conformité."
+    },
+    {
+      "id": "reseau",
+      "libelle": "Ingénieur réseau transport",
+      "description": "Raccorde la plateforme au réseau de l'opérateur : VLAN, VRF, routage, interconnexion."
+    },
+    {
+      "id": "editeur",
+      "libelle": "Éditeur de NF",
+      "description": "Fournit les fonctions réseau, leurs exigences, leur documentation et leur support."
+    },
+    {
+      "id": "juridique",
+      "libelle": "Juridique / DPO",
+      "description": "Identifie les obligations légales et les risques de conformité."
+    }
+  ],
+  "phases": [
+    {
+      "id": "cadrage",
+      "titre": "Cadrage et exigences",
+      "objectif": "Traduire le besoin en périmètre, exigences de service et contraintes techniques et réglementaires, et choisir les acteurs.",
+      "livrables": [
+        "Note de cadrage et périmètre",
+        "Exigences de service : disponibilité, capacité, latence",
+        "Registre des obligations réglementaires",
+        "Organisation du projet et répartition des responsabilités"
+      ],
+      "activites": [
+        {
+          "titre": "Comprendre le besoin et formuler les exigences de service",
+          "roles": [
+            "chef-projet",
+            "architecte",
+            "editeur"
+          ],
+          "competences": [
+            "telco-101",
+            "archi-5g",
+            "sre-slo"
+          ]
+        },
+        {
+          "titre": "Identifier le cadre réglementaire applicable",
+          "roles": [
+            "juridique",
+            "securite",
+            "architecte"
+          ],
+          "competences": [
+            "reg-cadre-fr",
+            "reg-5g-securite",
+            "reg-nis2",
+            "reg-rgpd",
+            "reg-li"
+          ]
+        },
+        {
+          "titre": "Choisir la distribution et les fournisseurs",
+          "roles": [
+            "architecte",
+            "chef-projet",
+            "editeur"
+          ],
+          "competences": [
+            "evaluation-fournisseurs",
+            "distrib-alt",
+            "ocp-rds"
+          ]
+        },
+        {
+          "titre": "Partager un vocabulaire commun entre IT et télécom",
+          "roles": [
+            "devops",
+            "integrateur-nf",
+            "reseau"
+          ],
+          "competences": [
+            "tel-vocabulaire",
+            "dialogue-experts"
+          ]
+        }
+      ],
+      "jalon": {
+        "titre": "Go pour le design",
+        "criteres": [
+          "Exigences de service validées par le métier",
+          "Obligations réglementaires identifiées et attribuées",
+          "Éditeur et distribution retenus"
+        ]
+      },
+      "risques": [
+        "Exigences de disponibilité floues ou irréalistes",
+        "Cadre réglementaire découvert trop tard",
+        "Écart de vocabulaire entre équipes IT et réseau"
+      ]
+    },
+    {
+      "id": "design",
+      "titre": "Design de l'architecture (HLD)",
+      "objectif": "Définir l'architecture cible et justifier chaque choix structurant.",
+      "livrables": [
+        "HLD : schémas applicatif et réseau",
+        "Décisions d'architecture (ADR)",
+        "Matrice d'exigences des fonctions réseau",
+        "Plan de sécurité cible"
+      ],
+      "activites": [
+        {
+          "titre": "Concevoir le CaaS : distribution, sites, stockage, virtualisation",
+          "roles": [
+            "architecte",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "k8s-archi",
+            "ocp-multicluster",
+            "ceph",
+            "ha-geo",
+            "kubevirt"
+          ]
+        },
+        {
+          "titre": "Concevoir les réseaux de support et le plan d'IP",
+          "roles": [
+            "architecte",
+            "reseau",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "archi-reseau-support",
+            "cni",
+            "multus",
+            "sriov",
+            "lb-bgp"
+          ]
+        },
+        {
+          "titre": "Traduire les fonctions réseau en besoins de plateforme",
+          "roles": [
+            "architecte",
+            "integrateur-nf",
+            "editeur"
+          ],
+          "competences": [
+            "matrice-exigences",
+            "cnf-exigences",
+            "cnf-onboarding"
+          ]
+        },
+        {
+          "titre": "Définir la sécurité et la conformité cibles",
+          "roles": [
+            "securite",
+            "architecte"
+          ],
+          "competences": [
+            "sec-durcissement",
+            "sec-reseau",
+            "sec-secrets",
+            "reg-anssi",
+            "reg-risque",
+            "sec-sba"
+          ]
+        },
+        {
+          "titre": "Consigner les décisions et rédiger le HLD",
+          "roles": [
+            "architecte"
+          ],
+          "competences": [
+            "adr",
+            "hld-lld"
+          ]
+        }
+      ],
+      "jalon": {
+        "titre": "Revue d'architecture",
+        "criteres": [
+          "Chaque exigence de service est couverte par un élément du design",
+          "Les risques réglementaires ont une réponse",
+          "Les décisions principales sont consignées"
+        ]
+      },
+      "risques": [
+        "Design sur-spécifié par rapport aux exigences",
+        "Dépendance à un fournisseur non anticipée",
+        "Choix de réseau secondaire incompatible avec les exigences de l'éditeur"
+      ]
+    },
+    {
+      "id": "dimensionnement",
+      "titre": "Dimensionnement et détail (LLD)",
+      "objectif": "Chiffrer la plateforme et détailler sa réalisation.",
+      "livrables": [
+        "Dimensionnement : nœuds, CPU, mémoire, stockage, réseaux",
+        "LLD : paramètres, plan d'adressage, matrice de flux",
+        "Plan de tests de charge",
+        "Objectifs de service (SLO) et supervision cible"
+      ],
+      "activites": [
+        {
+          "titre": "Dimensionner le cluster à partir des exigences des fonctions",
+          "roles": [
+            "architecte",
+            "ingenieur-caas",
+            "editeur"
+          ],
+          "competences": [
+            "dimensionnement",
+            "perf-hugepages",
+            "perf-profile",
+            "bench-dimensionnement"
+          ]
+        },
+        {
+          "titre": "Rédiger le LLD, le plan d'IP et la matrice de flux",
+          "roles": [
+            "architecte",
+            "reseau",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "hld-lld",
+            "reseau-ip",
+            "sctp-flux",
+            "archi-reseau-support"
+          ]
+        },
+        {
+          "titre": "Estimer coûts, énergie et capacité d'évolution",
+          "roles": [
+            "architecte",
+            "chef-projet"
+          ],
+          "competences": [
+            "cout-energie",
+            "cycle-vie-plateforme",
+            "capacite"
+          ]
+        },
+        {
+          "titre": "Définir les objectifs de service et la supervision cible",
+          "roles": [
+            "sre",
+            "architecte"
+          ],
+          "competences": [
+            "sre-slo",
+            "alerting-utile",
+            "observabilite-design"
+          ]
+        }
+      ],
+      "jalon": {
+        "titre": "LLD validé et engagement des moyens",
+        "criteres": [
+          "Dimensionnement validé par l'éditeur",
+          "Plan d'IP et flux validés par l'équipe réseau",
+          "Objectifs de service convenus avec l'exploitation"
+        ]
+      },
+      "risques": [
+        "Hypothèses de charge non vérifiées",
+        "Plan d'IP incompatible avec l'interconnexion existante",
+        "Coût sous-estimé des licences et de l'énergie"
+      ]
+    },
+    {
+      "id": "plateforme",
+      "titre": "Construction de la plateforme",
+      "objectif": "Installer et configurer le CaaS conformément au LLD, de façon reproductible.",
+      "livrables": [
+        "Clusters installés sur les deux sites",
+        "Réseaux secondaires, stockage et profils de performance configurés",
+        "Supervision et journalisation opérationnelles",
+        "Procédure d'installation rejouable"
+      ],
+      "activites": [
+        {
+          "titre": "Installer le cluster et ses opérateurs",
+          "roles": [
+            "ingenieur-caas",
+            "devops"
+          ],
+          "competences": [
+            "linux",
+            "conteneurs",
+            "k8s-archi",
+            "ocp-install",
+            "ocp-operators",
+            "ansible-python"
+          ]
+        },
+        {
+          "titre": "Configurer les réseaux secondaires et l'accélération",
+          "roles": [
+            "ingenieur-caas",
+            "reseau"
+          ],
+          "competences": [
+            "multus",
+            "sriov",
+            "dpdk",
+            "lb-bgp"
+          ]
+        },
+        {
+          "titre": "Configurer stockage, performance et résilience",
+          "roles": [
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "ceph",
+            "perf-hugepages",
+            "perf-profile",
+            "ha-geo",
+            "stockage-dr"
+          ]
+        },
+        {
+          "titre": "Mettre en place observabilité et automatisation",
+          "roles": [
+            "sre",
+            "devops",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "obs-metrics",
+            "obs-logs",
+            "obs-dash",
+            "gitops",
+            "sondes"
+          ]
+        },
+        {
+          "titre": "Durcir la plateforme",
+          "roles": [
+            "securite",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "sec-durcissement",
+            "sec-detection",
+            "sec-secrets",
+            "sec-reseau"
+          ]
+        }
+      ],
+      "jalon": {
+        "titre": "Plateforme prête pour l'accueil des fonctions",
+        "criteres": [
+          "Installation rejouable et documentée",
+          "Écarts au LLD tracés et justifiés",
+          "Supervision et alertes de base opérationnelles"
+        ]
+      },
+      "risques": [
+        "Matériel livré différent du LLD",
+        "Alignement CPU, mémoire et carte réseau mal réglé, qui dégrade le plan usager",
+        "Installation manuelle non reproductible"
+      ]
+    },
+    {
+      "id": "integration",
+      "titre": "Intégration des fonctions réseau",
+      "objectif": "Déployer les fonctions de l'éditeur sur la plateforme et les faire dialoguer de bout en bout.",
+      "livrables": [
+        "Charts et configurations des fonctions, versionnés",
+        "Matrice de conformité aux exigences de l'éditeur",
+        "Environnement d'intégration reproductible",
+        "Dossier d'intégration"
+      ],
+      "activites": [
+        {
+          "titre": "Recevoir et contrôler les livrables de l'éditeur",
+          "roles": [
+            "integrateur-nf",
+            "devops",
+            "editeur"
+          ],
+          "competences": [
+            "onboarding-editeur",
+            "etsi-sol",
+            "config-nf",
+            "helm-cnf",
+            "helm"
+          ]
+        },
+        {
+          "titre": "Déployer le cœur 5G en environnement d'intégration",
+          "roles": [
+            "integrateur-nf",
+            "devops",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "deploiement-lab",
+            "amf",
+            "smf-upf",
+            "nrf-scp",
+            "session-pdu",
+            "lab-as-code"
+          ]
+        },
+        {
+          "titre": "Brancher la chaîne CI/CD d'intégration",
+          "roles": [
+            "devops",
+            "integrateur-nf"
+          ],
+          "competences": [
+            "ci-cd-integration",
+            "tests-config",
+            "gitops",
+            "git-ci"
+          ]
+        },
+        {
+          "titre": "Valider les interfaces avec le réseau et les autres domaines",
+          "roles": [
+            "integrateur-nf",
+            "reseau",
+            "editeur"
+          ],
+          "competences": [
+            "interfonctionnement-4g",
+            "sepp",
+            "ims-voix",
+            "multi-editeurs"
+          ]
+        },
+        {
+          "titre": "Sécuriser les échanges entre fonctions",
+          "roles": [
+            "securite",
+            "integrateur-nf"
+          ],
+          "competences": [
+            "sec-sba",
+            "sec-plateforme",
+            "sec-5g"
+          ]
+        },
+        {
+          "titre": "Rédiger le dossier d'intégration",
+          "roles": [
+            "integrateur-nf",
+            "architecte"
+          ],
+          "competences": [
+            "dossier-integration"
+          ]
+        }
+      ],
+      "jalon": {
+        "titre": "Intégration complète",
+        "criteres": [
+          "Les fonctions s'enregistrent et dialoguent sur les interfaces prévues",
+          "Le déploiement est reproductible depuis le dépôt de configuration",
+          "Les écarts par rapport aux exigences de l'éditeur sont tracés"
+        ]
+      },
+      "risques": [
+        "Écarts d'interprétation des spécifications entre éditeurs",
+        "Livrables de l'éditeur incomplets ou non versionnés",
+        "Configuration modifiée à la main, impossible à rejouer"
+      ]
+    },
+    {
+      "id": "tests",
+      "titre": "Tests et validation",
+      "objectif": "Démontrer que la solution fonctionne, tient la charge et résiste aux pannes.",
+      "livrables": [
+        "Plan et rapport de tests fonctionnels",
+        "Rapport de performance et de charge",
+        "Rapport de tests de résilience",
+        "Rapport de scan de sécurité"
+      ],
+      "activites": [
+        {
+          "titre": "Simuler le réseau d'accès et les terminaux",
+          "roles": [
+            "integrateur-nf",
+            "devops"
+          ],
+          "competences": [
+            "simulation-ran-ue",
+            "enregistrement",
+            "traces"
+          ]
+        },
+        {
+          "titre": "Dérouler les tests fonctionnels et d'interopérabilité",
+          "roles": [
+            "integrateur-nf",
+            "devops",
+            "editeur"
+          ],
+          "competences": [
+            "tests-fonctionnels",
+            "multi-editeurs"
+          ]
+        },
+        {
+          "titre": "Mesurer performance et capacité",
+          "roles": [
+            "integrateur-nf",
+            "architecte",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "tests-perf",
+            "bench-dimensionnement",
+            "perf-profile"
+          ]
+        },
+        {
+          "titre": "Éprouver la résilience",
+          "roles": [
+            "sre",
+            "integrateur-nf"
+          ],
+          "competences": [
+            "chaos",
+            "resilience-nf",
+            "ha-geo"
+          ]
+        },
+        {
+          "titre": "Vérifier la sécurité des images et de la plateforme",
+          "roles": [
+            "securite",
+            "sre"
+          ],
+          "competences": [
+            "sec-supply",
+            "gestion-vulns"
+          ]
+        }
+      ],
+      "jalon": {
+        "titre": "Go pour la recette",
+        "criteres": [
+          "Tests fonctionnels réussis ou écarts acceptés",
+          "Performance conforme au dimensionnement",
+          "Aucune vulnérabilité critique ouverte"
+        ]
+      },
+      "risques": [
+        "Simulateur peu représentatif du trafic réel",
+        "Tests de charge lancés trop tard",
+        "Résilience testée sur un seul site"
+      ]
+    },
+    {
+      "id": "recette",
+      "titre": "Recette et préparation de l'exploitation",
+      "objectif": "Faire accepter la solution et préparer l'équipe qui l'exploitera.",
+      "livrables": [
+        "Rapport de recette signé",
+        "Runbooks et procédures d'exploitation",
+        "Plan de reprise testé",
+        "Dossier de conformité"
+      ],
+      "activites": [
+        {
+          "titre": "Dérouler la recette avec les critères d'acceptation",
+          "roles": [
+            "integrateur-nf",
+            "chef-projet",
+            "editeur"
+          ],
+          "competences": [
+            "recette",
+            "kpi-5gc"
+          ]
+        },
+        {
+          "titre": "Rédiger runbooks et organiser l'astreinte",
+          "roles": [
+            "sre",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "runbooks",
+            "niveaux-support",
+            "incident-astreinte"
+          ]
+        },
+        {
+          "titre": "Tester le plan de reprise",
+          "roles": [
+            "architecte",
+            "sre",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "pra-rpo-rto",
+            "stockage-dr",
+            "ha-geo"
+          ]
+        },
+        {
+          "titre": "Constituer le dossier de conformité",
+          "roles": [
+            "securite",
+            "juridique",
+            "architecte"
+          ],
+          "competences": [
+            "reg-risque",
+            "reglementation-5gc",
+            "reg-nis2"
+          ]
+        },
+        {
+          "titre": "Transférer les compétences à l'équipe d'exploitation",
+          "roles": [
+            "integrateur-nf",
+            "sre",
+            "devops"
+          ],
+          "competences": [
+            "procedures-5g-diagnostic",
+            "analyse-incident",
+            "alerting-utile"
+          ]
+        }
+      ],
+      "jalon": {
+        "titre": "Go / No-go de mise en production",
+        "criteres": [
+          "Recette signée",
+          "Équipe d'exploitation formée, astreinte organisée",
+          "Plan de reprise testé",
+          "Dossier de conformité complet"
+        ]
+      },
+      "risques": [
+        "Recette sur un périmètre plus étroit que la production",
+        "Exploitation découvrant la solution le jour de la bascule",
+        "Dossier de conformité incomplet au moment du go"
+      ]
+    },
+    {
+      "id": "production",
+      "titre": "Mise en production",
+      "objectif": "Basculer sans interruption notable et sécuriser les premières semaines.",
+      "livrables": [
+        "Plan de bascule et de retour arrière",
+        "Bascule réalisée et vérifiée",
+        "Rapport de suivi renforcé (hypercare)"
+      ],
+      "activites": [
+        {
+          "titre": "Planifier la fenêtre, la bascule et le retour arrière",
+          "roles": [
+            "chef-projet",
+            "sre",
+            "integrateur-nf"
+          ],
+          "competences": [
+            "gestion-changement",
+            "upgrade-nf"
+          ]
+        },
+        {
+          "titre": "Basculer progressivement le trafic",
+          "roles": [
+            "integrateur-nf",
+            "reseau",
+            "sre"
+          ],
+          "competences": [
+            "upgrade-nf",
+            "lb-bgp",
+            "gestion-changement"
+          ]
+        },
+        {
+          "titre": "Assurer le suivi renforcé après la bascule",
+          "roles": [
+            "sre",
+            "ingenieur-caas",
+            "integrateur-nf",
+            "editeur"
+          ],
+          "competences": [
+            "alerting-utile",
+            "obs-metrics",
+            "analyse-incident"
+          ]
+        },
+        {
+          "titre": "Tenir la gestion d'incident et l'escalade",
+          "roles": [
+            "sre",
+            "ingenieur-caas",
+            "editeur"
+          ],
+          "competences": [
+            "niveaux-support",
+            "incident-astreinte"
+          ]
+        },
+        {
+          "titre": "Préparer la notification des incidents aux autorités",
+          "roles": [
+            "securite",
+            "juridique"
+          ],
+          "competences": [
+            "reg-nis2",
+            "reg-cadre-fr"
+          ]
+        }
+      ],
+      "jalon": {
+        "titre": "Fin du suivi renforcé",
+        "criteres": [
+          "Objectifs de service tenus sur la période convenue",
+          "Aucun incident majeur ouvert",
+          "Passage de relais acté à l'exploitation"
+        ]
+      },
+      "risques": [
+        "Bascule sans retour arrière préparé",
+        "Alertes trop bruyantes qui masquent les vrais signaux",
+        "Éditeur peu disponible pendant la fenêtre"
+      ]
+    },
+    {
+      "id": "exploitation",
+      "titre": "Exploitation et amélioration continue",
+      "objectif": "Faire vivre la plateforme : tenir le service, maintenir, faire évoluer.",
+      "livrables": [
+        "Tableaux de bord et revue périodique des objectifs de service",
+        "Post-mortems et actions correctives suivies",
+        "Plan de mises à jour et de correctifs",
+        "Plan de capacité"
+      ],
+      "activites": [
+        {
+          "titre": "Superviser, traiter les incidents et analyser les causes",
+          "roles": [
+            "sre",
+            "integrateur-nf",
+            "ingenieur-caas"
+          ],
+          "competences": [
+            "alerting-utile",
+            "analyse-incident",
+            "postmortem",
+            "k8s-troubleshoot"
+          ]
+        },
+        {
+          "titre": "Mettre à jour la plateforme et les fonctions sans coupure",
+          "roles": [
+            "ingenieur-caas",
+            "integrateur-nf",
+            "sre"
+          ],
+          "competences": [
+            "ocp-upgrade",
+            "upgrade-nf",
+            "capacite-noeuds",
+            "gestion-vulns"
+          ]
+        },
+        {
+          "titre": "Suivre capacité et coûts",
+          "roles": [
+            "sre",
+            "architecte"
+          ],
+          "competences": [
+            "capacite",
+            "cout-energie",
+            "cycle-vie-plateforme"
+          ]
+        },
+        {
+          "titre": "Réduire le travail manuel et améliorer les procédures",
+          "roles": [
+            "sre",
+            "devops"
+          ],
+          "competences": [
+            "toil",
+            "runbooks",
+            "ansible-python"
+          ]
+        },
+        {
+          "titre": "Assurer la veille réglementaire et la souveraineté",
+          "roles": [
+            "juridique",
+            "securite",
+            "architecte"
+          ],
+          "competences": [
+            "reg-nis2",
+            "reg-souverainete",
+            "reg-anssi"
+          ]
+        }
+      ],
+      "jalon": {
+        "titre": "Revue périodique",
+        "criteres": [
+          "Objectifs de service revus avec le métier",
+          "Actions des post-mortems clôturées ou planifiées",
+          "Trajectoire de versions et de capacité à jour"
+        ]
+      },
+      "risques": [
+        "Dette de mises à jour qui s'accumule",
+        "Savoir concentré sur une seule personne",
+        "Évolution réglementaire non répercutée"
+      ]
+    }
+  ]
+}

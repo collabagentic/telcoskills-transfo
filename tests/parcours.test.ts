@@ -62,10 +62,17 @@ describe("recombiner", () => {
 
   it("chaque étape dit pourquoi elle est là", () => {
     const f = recombiner(graphe, questions, { q1: "x" }, { x: "Domaine X" });
-    expect(f.etapes.find((e) => e.id === "b")?.pourquoi).toBe("Domaine X : métier X");
+    expect(f.etapes.find((e) => e.id === "c")?.pourquoi).toBe("Domaine X : métier X");
+    expect(f.etapes.find((e) => e.id === "b")?.pourquoi).toBe("prérequis de « Titre c »");
     const g2 = recombiner(graphe, questions, { q1: "y" });
     expect(g2.etapes.find((e) => e.id === "a")?.pourquoi).toContain("prérequis de");
     expect(g2.etapes.find((e) => e.id === "c")?.pourquoi).toBe("votre objectif");
+  });
+
+  it("une étape qui sert dans le projet le dit, au lieu de répéter les réponses", () => {
+    const avecUsage = graphe.map((c) => (c.id === "c" ? { ...c, usage: "sert en phase 4 du projet, « Installer le cluster »" } : c));
+    const f = recombiner(avecUsage, questions, { q1: "x" }, { x: "Domaine X" });
+    expect(f.etapes.find((e) => e.id === "c")?.pourquoi).toBe("sert en phase 4 du projet, « Installer le cluster »");
   });
 
   it("les compétences hors parcours sont listées", () => {
