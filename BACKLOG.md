@@ -785,3 +785,11 @@ L'auteur juge l'habillage de l'ancien site meilleur, sauf le cockpit et les fich
 - **Barre de navigation** permanente (`BarreNavigation`) : Ma feuille de route, Compétences, Le projet, Les outils, et une recherche ⌘K sur les fiches, les compétences et les outils.
 - **Accueil en quatre blocs** : la promesse, la boîte de discussion de l'ancien accueil (`ConversationAccueil` : trois questions en bulles, le premier pas, le chemin recalculé à côté), trois portes avec un vrai aperçu (projet, outils, compétences), l'exemple avant / après.
 - Le cockpit et les fiches ne sont pas réécrits : ils prennent l'habillage par les jetons.
+
+## 18. « Votre chemin » dans chaque fiche (décision de l'auteur, 2026-11-28)
+
+Inspiré du « step by step » de GOV.UK, retenu après deux prototypes (colonne contre bandeau d'itinéraire) : **la colonne de gauche d'une fiche montre le chemin du visiteur**, pas le domaine.
+
+- « Étape 26 sur 62 » et une barre ; trois chapitres dans l'ordre du chemin (Les fondamentaux, Le cœur du métier, Pour aller loin), numérotation continue, seul le chapitre en cours est déplié, « Tout montrer » déplie le reste ; étapes faites barrées (`src/composants/lecon/RailChemin.tsx`, calcul dans `chemin.ts`).
+- Sans réponse, ou si la fiche n'est pas dans le chemin : le menu du domaine, avec une ligne qui le dit (et invite aux trois questions).
+- Constat à traiter dans le questionnaire : pour « ingénieur cœur réseau », les fiches de transposition 4G → 5G (MME → AMF…) sont hors du chemin, faute de poids sur le domaine cœur 5G.

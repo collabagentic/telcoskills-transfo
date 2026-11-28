@@ -680,7 +680,10 @@ a.lc-rail-ligne:focus-visible {
   .lc-rail .lc-rail-pos {
     display: none;
   }
-  .lc-rail[data-ferme="oui"] ol {
+  .lc-rail[data-ferme="oui"] ol,
+  .lc-rail[data-ferme="oui"] .rc-pos,
+  .lc-rail[data-ferme="oui"] .rc-tout,
+  .lc-rail[data-ferme="oui"] .rc-note {
     display: none;
   }
   .lc-rail ol {
@@ -730,3 +733,138 @@ a.lc-rail-ligne:focus-visible {
   }
 }
 
+/* ---------- Votre chemin en colonne (façon GOV.UK step by step) ---------- */
+.rc-pos,
+.rc-note {
+  margin: var(--e-1) 0 var(--e-3);
+  color: var(--encre-2);
+  font-size: var(--t-xs);
+  line-height: 1.5;
+}
+
+.rc-barre {
+  display: block;
+  height: 4px;
+  margin-top: var(--e-2);
+  background: var(--filet);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.rc-barre span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+.rc-tout {
+  font: inherit;
+  font-size: var(--t-xs);
+  color: var(--accent-texte);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.rc ol.rc-blocs {
+  list-style: none;
+  margin: var(--e-2) 0 0;
+  padding: 0;
+  display: block;
+  border-left: 2px solid var(--filet);
+}
+
+.rc-bloc {
+  position: relative;
+  padding: 0 0 var(--e-2) var(--e-4);
+}
+
+.rc-bloc summary {
+  display: flex;
+  align-items: baseline;
+  gap: var(--e-2);
+  cursor: pointer;
+  list-style: none;
+  padding: var(--e-1) 0;
+}
+
+.rc-bloc summary::-webkit-details-marker {
+  display: none;
+}
+
+.rc-num {
+  position: absolute;
+  left: -0.8rem;
+  display: inline-grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  border: 2px solid var(--filet-fort);
+  background: var(--fond);
+  font-family: var(--police-mono), monospace;
+  font-size: var(--t-xs);
+  color: var(--encre-2);
+}
+
+.rc-bloc[data-encours="oui"] .rc-num {
+  border-color: var(--accent);
+  color: var(--accent-texte);
+}
+
+.rc-nom {
+  flex: 1;
+  font-weight: 600;
+  color: var(--encre);
+}
+
+.rc-compte {
+  font-family: var(--police-mono), monospace;
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+}
+
+.rc-bloc ol {
+  list-style: none;
+  margin: var(--e-1) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.rc-bloc li a,
+.rc-bloc li span {
+  display: block;
+  padding: 3px var(--e-2);
+  border-radius: var(--r-s);
+  color: var(--encre-2);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.rc-bloc li a:hover {
+  background: var(--accent-surface-1);
+  color: var(--encre);
+}
+
+.rc-bloc li b {
+  font-family: var(--police-mono), monospace;
+  font-weight: 400;
+  font-size: var(--t-xs);
+  color: var(--encre-3);
+}
+
+.rc-bloc li[data-etat="ici"] span {
+  background: var(--accent-surface-1);
+  color: var(--accent-texte);
+  font-weight: 600;
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.rc-bloc li[data-etat="faite"] a {
+  text-decoration: line-through;
+  text-decoration-color: var(--filet-fort);
+}

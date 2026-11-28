@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Epreuve } from "@/composants/Epreuve";
 import { premiereLecture } from "@/composants/GesteFiche";
 import { SuiteFiche } from "@/composants/NavigationFiche";
@@ -12,7 +12,9 @@ import type { DonneesPubliques } from "@/contenu/publiques";
 import { competenceFaite } from "@/lib/parcours";
 import { useParcours } from "@/lib/stockage";
 import { Avis, DiagrammeFiche, Puces, SchemaChaine } from "./commun";
+import { useChemin } from "./chemin";
 import { MarquerAcquis } from "./MarquerAcquis";
+import { RailChemin } from "./RailChemin";
 import "./lecon.css";
 
 const GENRE = { transposition: "Change de forme", nouveaute: "Vraiment nouveau" } as const;
@@ -20,7 +22,7 @@ const NOM_TYPE = { cours: "Cours", video: "Vidéo", doc: "Documentation", openso
 const ETAPES = ["avant", "compare", "apres"] as const;
 
 /**
- * La fiche, en leçon continue, comme une unité d'un module Microsoft Learn. À gauche, le menu de TOUTES les étapes du domaine :
+ * La fiche, en leçon continue, comme une unité d'un module Microsoft Learn. À gauche, votre chemin si la fiche y est, sinon le menu de toutes les étapes du domaine :
  * chaque étape est un lien, l'étape en cours est surlignée (aucune boîte ne défile, la page s'allonge).
  * Au centre, trois phases (partir de l'existant, voir ce qui change, pratiquer) avec une barre de progression et « Continuer » en bas,
  * et le schéma avant / après juste au-dessus du texte : chaque phase le fait avancer. Rien n'est réécrit : tous les textes viennent de la fiche.
@@ -29,6 +31,8 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
   const [phase, setPhase] = useState(0);
   const [menuOuvert, setMenuOuvert] = useState(false);
   const parcours = useParcours();
+  const competencesFiche = useMemo(() => l.competences.map((x) => x.id), [l.competences]);
+  const chemin = useChemin(donnees, l.id, competencesFiche);
   const avis = new Set(l.avis);
   const avecAvant = l.schema.avant !== null;
   const lecture = l.plusLoin.length > 0 ? premiereLecture(l.plusLoin) : null;
@@ -48,6 +52,9 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
 
   return (
     <div className="lc-fiche">
+      {chemin.rang >= 0 ? (
+        <RailChemin c={chemin} />
+      ) : (
       <aside className="lc-rail" data-ferme={menuOuvert ? "non" : "oui"}>
         <nav aria-label={`Menu du domaine ${l.domaine}`}>
           <button type="button" className="lc-rail-bascule" onClick={() => setMenuOuvert(!menuOuvert)} aria-expanded={menuOuvert}>
@@ -56,6 +63,15 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
           <p className="lc-petit-titre">{l.domaine}</p>
           <p className="lc-rail-pos">
             Étape {rang} sur {l.voisines.length}
+          </p>
+          <p className="rc-note">
+            {chemin.vide ? (
+              <>
+                Pas encore de chemin : <Link href="/">trois questions</Link> suffisent, et cette colonne suivra votre feuille de route.
+              </>
+            ) : (
+              "Cette fiche n'est pas dans votre chemin : vous la lisez en plus."
+            )}
           </p>
           <ol>
             {l.voisines.map((v) => (
@@ -78,6 +94,7 @@ export function FicheLecon({ l, donnees }: { l: Lecon; donnees: DonneesPubliques
           </ol>
         </nav>
       </aside>
+      )}
 
       <article className="lc-droite" id="lc-haut">
         <p className="lc-fil">
